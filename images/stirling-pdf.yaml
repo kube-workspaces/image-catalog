@@ -1,0 +1,19 @@
+apiVersion: kubeworkspaces.io/v1alpha1
+kind: Image
+metadata:
+  name: stirling-pdf
+spec:
+  defaultPath: /
+  defaultPort: 8080
+  description: Powerful self-hosted PDF manipulation tool. Merge, split, rotate, convert,
+    compress, sign, add watermarks, OCR, and dozens more PDF operations.
+  category: Tool
+  displayName: Stirling PDF
+  homepageURL: https://stirlingpdf.io
+  icon: https://cdn.jsdelivr.net/gh/homarr-labs/dashboard-icons/svg/stirling-pdf.svg
+  image: stirlingtools/stirling-pdf:latest
+  imageHomepageURL: https://hub.docker.com/r/stirlingtools/stirling-pdf
+  proxyConfig:
+    needsNoopSW: true
+    rewriteHostAbsolutePaths: true
+  sourceURL: https://github.com/Stirling-Tools/Stirling-PDF

@@ -1,0 +1,32 @@
+apiVersion: kubeworkspaces.io/v1alpha1
+kind: Image
+metadata:
+  name: grafana
+spec:
+  defaultEnv:
+  - name: GF_SERVER_ROOT_URL
+    value: /proxy/{{namespace}}/{{name}}/
+  - name: GF_SERVER_SERVE_FROM_SUB_PATH
+    value: "true"
+  - name: GF_AUTH_ANONYMOUS_ENABLED
+    value: "true"
+  - name: GF_AUTH_ANONYMOUS_ORG_ROLE
+    value: Admin
+  defaultPath: /
+  defaultPort: 3000
+  description: Industry-standard observability dashboard. Visualize metrics from Prometheus,
+    Loki, InfluxDB, Elasticsearch, and dozens of other data sources.
+  category: Tool
+  tags:
+  - monitoring
+  - dashboards
+  displayName: Grafana
+  homepageURL: https://grafana.com
+  icon: https://cdn.jsdelivr.net/gh/homarr-labs/dashboard-icons/svg/grafana.svg
+  image: grafana/grafana:latest
+  imageHomepageURL: https://hub.docker.com/r/grafana/grafana
+  proxyConfig:
+    preservePathPrefix: true
+  sourceURL: https://github.com/grafana/grafana
+  defaultUID: 472
+  defaultHomedir: /var/lib/grafana

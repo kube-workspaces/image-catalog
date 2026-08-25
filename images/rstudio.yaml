@@ -1,0 +1,28 @@
+apiVersion: kubeworkspaces.io/v1alpha1
+kind: Image
+metadata:
+  name: rstudio
+spec:
+  defaultPath: /
+  defaultPort: 8787
+  description: Full-featured R IDE in the browser. Includes R console, script editor,
+    package manager, and plot viewer.
+  category: IDE
+  tags:
+  - R
+  - datascience
+  - statistics
+  displayName: RStudio Server
+  homepageURL: https://posit.co/products/open-source/rstudio/
+  icon: https://cdn.jsdelivr.net/gh/homarr-labs/dashboard-icons/png/rstudio.png
+  image: rocker/rstudio:latest
+  imageHomepageURL: https://hub.docker.com/r/rocker/rstudio
+  sourceURL: https://github.com/rocker-org/rocker-versioned2
+  defaultEnv:
+  - name: DISABLE_AUTH
+    value: "true"
+  defaultUser: rstudio
+  defaultHomedir: /home/rstudio
+  defaultUID: 1000
+  proxyConfig:
+    rewriteHostAbsolutePaths: true

@@ -1,0 +1,19 @@
+apiVersion: kubeworkspaces.io/v1alpha1
+kind: Image
+metadata:
+  name: cyberchef
+spec:
+  defaultPath: /
+  defaultPort: 8000
+  description: "GCHQ's CyberChef — The Cyber Swiss Army Knife. Encoding, decoding,
+    encryption, compression, hashing, and hundreds of data manipulation operations
+    in the browser."
+  category: Tool
+  displayName: CyberChef
+  homepageURL: https://gchq.github.io/CyberChef
+  icon: https://cdn.jsdelivr.net/gh/homarr-labs/dashboard-icons/svg/cyberchef.svg
+  image: mpepping/cyberchef:latest
+  imageHomepageURL: https://hub.docker.com/r/mpepping/cyberchef
+  proxyConfig:
+    rewriteHostAbsolutePaths: true
+  sourceURL: https://github.com/gchq/CyberChef

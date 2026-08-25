@@ -1,0 +1,30 @@
+apiVersion: kubeworkspaces.io/v1alpha1
+kind: Image
+metadata:
+  name: firefox
+spec:
+  defaultEnv:
+  - name: SUBFOLDER
+    value: /proxy/{{namespace}}/{{name}}/
+  defaultPath: /
+  defaultPort: 3000
+  description: Mozilla Firefox browser streamed via KasmVNC. Isolated browser session
+    in a container with full web access.
+  category: Browser
+  tags:
+  - vnc
+  - web
+  displayName: Firefox Browser
+  homepageURL: https://github.com/linuxserver/docker-firefox
+  icon: https://cdn.simpleicons.org/firefox/FF7139
+  image: linuxserver/firefox:latest
+  imageHomepageURL: https://hub.docker.com/r/linuxserver/firefox
+  defaultSharedMemory: true
+  proxyConfig:
+    needsNoopSW: true
+    preservePathPrefix: true
+    websocketPaths:
+    - /websockify
+  sourceURL: https://github.com/linuxserver/docker-webtop
+  defaultUser: abc
+  defaultHomedir: /config

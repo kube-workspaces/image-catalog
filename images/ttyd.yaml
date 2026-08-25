@@ -1,0 +1,19 @@
+apiVersion: kubeworkspaces.io/v1alpha1
+kind: Image
+metadata:
+  name: ttyd
+spec:
+  defaultPath: /
+  defaultPort: 7681
+  description: Share your terminal over the web. Lightweight web-based terminal emulator
+    — run any CLI app in a browser.
+  category: Tool
+  displayName: ttyd Web Terminal
+  homepageURL: https://github.com/tsl0922/ttyd
+  icon: 💻
+  image: tsl0922/ttyd:latest
+  imageHomepageURL: https://hub.docker.com/r/tsl0922/ttyd
+  proxyConfig:
+    needsNoopSW: true
+    rewriteHostAbsolutePaths: true
+  sourceURL: https://github.com/tsl0922/ttyd

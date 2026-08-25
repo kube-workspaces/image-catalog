@@ -1,0 +1,26 @@
+apiVersion: kubeworkspaces.io/v1alpha1
+kind: Image
+metadata:
+  name: jlesage-chromium
+spec:
+  defaultPath: /
+  defaultPort: 5800
+  description: Lightweight Chromium browser with noVNC web UI (~370MB). Includes clipboard
+    sync, audio, and file manager.
+  category: Browser
+  tags:
+  - vnc
+  - web
+  displayName: Chromium (Lightweight)
+  homepageURL: https://www.chromium.org
+  icon: https://cdn.jsdelivr.net/gh/homarr-labs/dashboard-icons/png/chromium.png
+  image: jlesage/chromium:latest
+  imageHomepageURL: https://hub.docker.com/r/jlesage/chromium
+  sourceURL: https://github.com/jlesage/docker-chromium
+  defaultEnv:
+  - name: WEB_AUDIO
+    value: "1"
+  - name: KEEP_APP_RUNNING
+    value: "1"
+  proxyConfig:
+    rewriteHostAbsolutePaths: true

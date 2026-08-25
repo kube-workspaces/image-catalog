@@ -1,0 +1,28 @@
+apiVersion: kubeworkspaces.io/v1alpha1
+kind: Image
+metadata:
+  name: jupyter-datascience
+spec:
+  defaultEnv:
+  - name: JUPYTER_ENABLE_LAB
+    value: 'yes'
+  defaultPath: /lab
+  defaultPort: 8888
+  description: JupyterLab with Python, R, Julia, and data science libraries (pandas,
+    numpy, scipy, matplotlib, scikit-learn, tensorflow).
+  category: IDE
+  tags:
+  - python
+  - datascience
+  - jupyter
+  displayName: Jupyter Data Science
+  homepageURL: https://jupyter.org
+  icon: https://cdn.simpleicons.org/jupyter/F37626
+  image: jupyter/datascience-notebook:latest
+  imageHomepageURL: https://hub.docker.com/r/jupyter/datascience-notebook
+  proxyConfig:
+    needsNoopSW: true
+    rewriteHostAbsolutePaths: true
+  sourceURL: https://github.com/jupyter/docker-stacks
+  defaultUser: jovyan
+  defaultHomedir: /home/jovyan

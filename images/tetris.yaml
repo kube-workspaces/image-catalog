@@ -1,0 +1,18 @@
+apiVersion: kubeworkspaces.io/v1alpha1
+kind: Image
+metadata:
+  name: tetris
+spec:
+  defaultPath: /
+  defaultPort: 80
+  description: Classic Tetris with keyboard controls and FPS stats overlay. Fully
+    self-contained.
+  category: Game
+  tags:
+  - arcade
+  - retro
+  displayName: Tetris
+  homepageURL: https://github.com/jakesgordon/javascript-tetris
+  icon: '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><rect x="4" y="2" width="5" height="5" fill="#00f0f0"/><rect x="9" y="2" width="5" height="5" fill="#00f0f0"/><rect x="9" y="7" width="5" height="5" fill="#00f0f0"/><rect x="14" y="7" width="5" height="5" fill="#00f0f0"/></svg>'
+  image: uzyexe/tetris:latest
+  imageHomepageURL: https://hub.docker.com/r/uzyexe/tetris

@@ -1,0 +1,18 @@
+apiVersion: kubeworkspaces.io/v1alpha1
+kind: Image
+metadata:
+  name: wordle
+spec:
+  defaultPath: /
+  defaultPort: 80
+  description: Daily word-guessing game. 6 attempts to guess a 5-letter word with
+    color-coded feedback.
+  category: Game
+  tags:
+  - puzzle
+  - word
+  displayName: Wordle
+  homepageURL: https://github.com/cwackerfuss/react-wordle
+  icon: '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><rect x="2" y="8" width="5" height="5" rx="0.5" fill="#6aaa64"/><rect x="8" y="8" width="5" height="5" rx="0.5" fill="#c9b458"/><rect x="14" y="8" width="5" height="5" rx="0.5" fill="#6aaa64"/><rect x="2" y="14" width="5" height="5" rx="0.5" fill="#787c7e"/><rect x="8" y="14" width="5" height="5" rx="0.5" fill="#6aaa64"/><rect x="14" y="14" width="5" height="5" rx="0.5" fill="#787c7e"/></svg>'
+  image: modem7/wordle:legacy
+  imageHomepageURL: https://hub.docker.com/r/modem7/wordle

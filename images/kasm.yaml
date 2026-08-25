@@ -1,0 +1,31 @@
+apiVersion: kubeworkspaces.io/v1alpha1
+kind: Image
+metadata:
+  name: kasm
+  annotations:
+    catalog.kubeworkspaces.io/example: "true"
+spec:
+  defaultEnv:
+  - name: KASM_PORT
+    value: '3000'
+  defaultPath: /
+  defaultPort: 3000
+  description: Full Kasm Workspaces platform with Docker-in-Docker. Requires privileged
+    mode. Access the setup wizard first, then the main interface.
+  category: Desktop
+  tags:
+  - vnc
+  - linux
+  displayName: Kasm Workspaces
+  homepageURL: https://kasmweb.com
+  icon: https://cdn.simpleicons.org/linuxserver/DA3B8A
+  image: linuxserver/kasm:1.19.0
+  imageHomepageURL: https://hub.docker.com/r/linuxserver/kasm
+  privileged: true
+  defaultSharedMemory: true
+  proxyConfig:
+    needsNoopSW: true
+    rewriteHostAbsolutePaths: true
+    scheme: https
+    tlsSkipVerify: true
+  sourceURL: https://github.com/linuxserver/docker-kasm

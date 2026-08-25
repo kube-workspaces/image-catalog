@@ -1,0 +1,20 @@
+apiVersion: kubeworkspaces.io/v1alpha1
+kind: Image
+metadata:
+  name: trilium-notes
+spec:
+  defaultPath: /
+  defaultPort: 8080
+  description: Hierarchical note-taking app with rich text, code blocks, mind maps,
+    relation maps, and scripting. Personal knowledge base with powerful search.
+  category: Productivity
+  displayName: Trilium Notes
+  homepageURL: https://triliumnext.github.io/Docs/
+  icon: https://cdn.jsdelivr.net/gh/homarr-labs/dashboard-icons/svg/trilium.svg
+  image: triliumnext/trilium:v0.104.0
+  imageHomepageURL: https://hub.docker.com/r/triliumnext/trilium
+  proxyConfig:
+    needsNoopSW: true
+    rewriteHostAbsolutePaths: true
+  sourceURL: https://github.com/TriliumNext/Notes
+  defaultHomedir: /home/node

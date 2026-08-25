@@ -1,0 +1,21 @@
+apiVersion: kubeworkspaces.io/v1alpha1
+kind: Image
+metadata:
+  name: adminer
+spec:
+  defaultPath: /
+  defaultPort: 8080
+  description: Lightweight database management in a single PHP file. Supports MySQL,
+    PostgreSQL, SQLite, MS SQL, Oracle, and MongoDB.
+  category: Tool
+  tags:
+  - database
+  - admin
+  displayName: Adminer (Database Manager)
+  homepageURL: https://www.adminer.org
+  icon: https://cdn.jsdelivr.net/gh/homarr-labs/dashboard-icons/svg/adminer.svg
+  image: adminer:latest
+  imageHomepageURL: https://hub.docker.com/_/adminer
+  proxyConfig:
+    rewriteHostAbsolutePaths: true
+  sourceURL: https://github.com/vrana/adminer

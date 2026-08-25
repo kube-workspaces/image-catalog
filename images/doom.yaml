@@ -1,0 +1,34 @@
+apiVersion: kubeworkspaces.io/v1alpha1
+kind: Image
+metadata:
+  name: doom
+spec:
+  defaultCredentials:
+    password: password
+    username: kasm_user
+  defaultEnv:
+  - name: VNC_PW
+    value: password
+  defaultPath: /
+  defaultPort: 6901
+  description: Play classic DOOM in the browser via KasmVNC. Chocolate Doom engine
+    with full shareware WAD included.
+  category: Game
+  tags:
+  - vnc
+  - retro
+  displayName: DOOM
+  homepageURL: https://github.com/kasmtech/workspaces-images
+  icon: https://upload.wikimedia.org/wikipedia/en/5/57/Doom_cover_art.jpg
+  image: kasmweb/doom:1.19.0-rolling-daily
+  imageHomepageURL: https://hub.docker.com/r/kasmweb/doom
+  proxyConfig:
+    needsNoopSW: true
+    rewriteHostAbsolutePaths: true
+    scheme: https
+    tlsSkipVerify: true
+    websocketPaths:
+    - /websockify
+  sourceURL: https://github.com/kasmtech/workspaces-images
+  defaultUser: kasm_user
+  defaultHomedir: /home/kasm_user

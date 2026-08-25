@@ -1,0 +1,28 @@
+apiVersion: kubeworkspaces.io/v1alpha1
+kind: Image
+metadata:
+  name: zeppelin
+spec:
+  defaultPath: /
+  defaultPort: 8080
+  description: Multi-language data analytics notebook. Supports Spark, SQL, Python,
+    R, Scala, and Flink interpreters.
+  category: IDE
+  tags:
+  - datascience
+  - spark
+  - sql
+  - python
+  displayName: Apache Zeppelin
+  homepageURL: https://zeppelin.apache.org
+  icon: '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 6h16l-2 3H6L4 6zm0 5h16l-2 3H6L4 11zm2 5h12l-1.5 2.5H7.5L6 16z" fill="#3071a9"/></svg>'
+  image: apache/zeppelin:0.12.1
+  imageHomepageURL: https://hub.docker.com/r/apache/zeppelin
+  sourceURL: https://github.com/apache/zeppelin
+  defaultEnv:
+  - name: ZEPPELIN_SERVER_CONTEXT_PATH
+    value: /proxy/{{namespace}}/{{name}}/
+  - name: ZEPPELIN_ADDR
+    value: 0.0.0.0
+  proxyConfig:
+    preservePathPrefix: true

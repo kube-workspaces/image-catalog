@@ -1,0 +1,39 @@
+apiVersion: kubeworkspaces.io/v1alpha1
+kind: Image
+metadata:
+  name: code-server
+  annotations:
+    catalog.kubeworkspaces.io/example: "true"
+spec:
+  defaultArgs:
+  - --bind-addr
+  - 0.0.0.0:8080
+  - --auth
+  - none
+  defaultEnv:
+  - name: VSCODE_PROXY_URI
+    value: /proxy/{{namespace}}/{{name}}/proxy/{{port}}/
+  defaultPath: /
+  defaultPort: 8080
+  description: Browser-based VS Code experience
+  category: IDE
+  tags:
+  - code
+  - vscode
+  - editor
+  displayName: Code Server (VS Code)
+  homepageURL: https://github.com/coder/code-server
+  icon: https://cdn.jsdelivr.net/gh/homarr-labs/dashboard-icons/png/code-server.png
+  image: codercom/code-server:latest
+  imageHomepageURL: https://hub.docker.com/r/codercom/code-server
+  proxyConfig:
+    needsNoopSW: true
+    rewriteHostAbsolutePaths: true
+  sourceURL: https://github.com/coder/code-server
+  defaultUser: coder
+  defaultHomedir: /home/coder
+  defaultUID: 1000
+  defaultInitContainers:
+    - name: volume-permissions
+      image: busybox:1.37
+      command: ["sh", "-c", "chown -R {{uid}}:{{uid}} /home/coder"]

@@ -1,0 +1,29 @@
+apiVersion: kubeworkspaces.io/v1alpha1
+kind: Image
+metadata:
+  name: obsidian
+spec:
+  defaultPath: /
+  defaultPort: 3000
+  description: Obsidian knowledge base and markdown editor via KasmVNC. Linked notes,
+    graph view, and plugin ecosystem.
+  category: Productivity
+  tags:
+  - notes
+  - markdown
+  - knowledge
+  displayName: Obsidian
+  homepageURL: https://obsidian.md
+  icon: https://cdn.jsdelivr.net/gh/homarr-labs/dashboard-icons/png/obsidian.png
+  image: linuxserver/obsidian:latest
+  imageHomepageURL: https://hub.docker.com/r/linuxserver/obsidian
+  sourceURL: https://github.com/linuxserver/docker-obsidian
+  defaultSharedMemory: true
+  defaultEnv:
+  - name: SUBFOLDER
+    value: /proxy/{{namespace}}/{{name}}/
+  proxyConfig:
+    needsNoopSW: true
+    preservePathPrefix: true
+  defaultUser: abc
+  defaultHomedir: /config

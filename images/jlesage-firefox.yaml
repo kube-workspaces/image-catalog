@@ -1,0 +1,26 @@
+apiVersion: kubeworkspaces.io/v1alpha1
+kind: Image
+metadata:
+  name: jlesage-firefox
+spec:
+  defaultPath: /
+  defaultPort: 5800
+  description: Lightweight Firefox browser with noVNC web UI (~300MB). Includes clipboard
+    sync, audio, and file manager.
+  category: Browser
+  tags:
+  - vnc
+  - web
+  displayName: Firefox (Lightweight)
+  homepageURL: https://www.mozilla.org/firefox/
+  icon: https://cdn.jsdelivr.net/gh/homarr-labs/dashboard-icons/png/firefox.png
+  image: jlesage/firefox:latest
+  imageHomepageURL: https://hub.docker.com/r/jlesage/firefox
+  sourceURL: https://github.com/jlesage/docker-firefox
+  defaultEnv:
+  - name: WEB_AUDIO
+    value: "1"
+  - name: KEEP_APP_RUNNING
+    value: "1"
+  proxyConfig:
+    rewriteHostAbsolutePaths: true

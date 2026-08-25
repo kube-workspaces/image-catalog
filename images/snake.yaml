@@ -1,0 +1,16 @@
+apiVersion: kubeworkspaces.io/v1alpha1
+kind: Image
+metadata:
+  name: snake
+spec:
+  defaultPath: /
+  defaultPort: 80
+  description: Classic Snake game on HTML5 canvas. Arrow keys to control. Single
+    self-contained HTML file.
+  category: Game
+  tags:
+  - arcade
+  - retro
+  displayName: Snake
+  icon: '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 12h4v3h4v-3h4v-3h4v3h2" stroke="#4caf50" stroke-width="3" fill="none" stroke-linecap="round" stroke-linejoin="round"/><circle cx="21" cy="9" r="1.5" fill="#4caf50"/></svg>'
+  image: jmartej204/snake-game:latest

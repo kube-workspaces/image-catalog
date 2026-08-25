@@ -1,0 +1,30 @@
+apiVersion: kubeworkspaces.io/v1alpha1
+kind: Image
+metadata:
+  name: tor-browser
+spec:
+  defaultPath: /
+  defaultPort: 6901
+  description: Tor Browser for anonymous browsing via KasmVNC. Routes all traffic
+    through the Tor network.
+  category: Browser
+  tags:
+  - vnc
+  - privacy
+  displayName: Tor Browser
+  homepageURL: https://www.torproject.org
+  icon: https://cdn.jsdelivr.net/gh/homarr-labs/dashboard-icons/png/tor.png
+  image: kasmweb/tor-browser:1.18.0
+  imageHomepageURL: https://hub.docker.com/r/kasmweb/tor-browser
+  sourceURL: https://github.com/kasmtech/workspaces-images
+  defaultEnv:
+  - name: VNC_PW
+    value: password
+  defaultCredentials:
+    username: kasm_user
+    password: password
+  proxyConfig:
+    needsNoopSW: true
+    rewriteHostAbsolutePaths: true
+    scheme: https
+    tlsSkipVerify: true

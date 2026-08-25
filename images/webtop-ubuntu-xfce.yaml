@@ -1,0 +1,32 @@
+apiVersion: kubeworkspaces.io/v1alpha1
+kind: Image
+metadata:
+  name: webtop-ubuntu-xfce
+spec:
+  defaultEnv:
+  - name: SUBFOLDER
+    value: /proxy/{{namespace}}/{{name}}/
+  defaultPath: /
+  defaultPort: 3000
+  description: Full Ubuntu desktop with XFCE in the browser via KasmVNC. Includes
+    common desktop apps (Firefox, LibreOffice, file manager).
+  category: Desktop
+  tags:
+  - vnc
+  - linux
+  - ubuntu
+  - xfce
+  displayName: Ubuntu XFCE Desktop
+  homepageURL: https://github.com/linuxserver/docker-webtop
+  icon: https://cdn.simpleicons.org/ubuntu/E95420
+  image: linuxserver/webtop:ubuntu-xfce
+  imageHomepageURL: https://hub.docker.com/r/linuxserver/webtop
+  defaultSharedMemory: true
+  proxyConfig:
+    needsNoopSW: true
+    preservePathPrefix: true
+    websocketPaths:
+    - /websockify
+  sourceURL: https://github.com/linuxserver/docker-webtop
+  defaultUser: abc
+  defaultHomedir: /config

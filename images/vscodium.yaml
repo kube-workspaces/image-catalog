@@ -1,0 +1,29 @@
+apiVersion: kubeworkspaces.io/v1alpha1
+kind: Image
+metadata:
+  name: vscodium
+spec:
+  defaultPath: /
+  defaultPort: 3000
+  description: VSCodium (open-source VS Code without telemetry) as a full desktop
+    app via KasmVNC. Supports all VS Code extensions.
+  category: IDE
+  tags:
+  - code
+  - vscode
+  - editor
+  displayName: VSCodium
+  homepageURL: https://vscodium.com
+  icon: '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M17.5 0L5.8 9.3 2.3 6.8 0 8v8l2.3 1.2 3.5-2.5L17.5 24 24 21.4V2.6L17.5 0zm-1 4.4v15.2l-8.5-7.6 8.5-7.6z" fill="#2f80ed"/></svg>'
+  image: linuxserver/vscodium:latest
+  imageHomepageURL: https://hub.docker.com/r/linuxserver/vscodium
+  sourceURL: https://github.com/linuxserver/docker-vscodium
+  defaultSharedMemory: true
+  defaultEnv:
+  - name: SUBFOLDER
+    value: /proxy/{{namespace}}/{{name}}/
+  proxyConfig:
+    needsNoopSW: true
+    preservePathPrefix: true
+  defaultUser: abc
+  defaultHomedir: /config

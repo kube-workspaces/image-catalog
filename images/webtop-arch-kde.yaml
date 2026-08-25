@@ -1,0 +1,32 @@
+apiVersion: kubeworkspaces.io/v1alpha1
+kind: Image
+metadata:
+  name: webtop-arch-kde
+spec:
+  defaultEnv:
+  - name: SUBFOLDER
+    value: /proxy/{{namespace}}/{{name}}/
+  defaultPath: /
+  defaultPort: 3000
+  description: Arch Linux with KDE Plasma desktop via KasmVNC. Bleeding-edge rolling
+    release with a modern desktop environment.
+  category: Desktop
+  tags:
+  - vnc
+  - linux
+  - arch
+  - kde
+  displayName: Arch Linux KDE Desktop
+  homepageURL: https://github.com/linuxserver/docker-webtop
+  icon: https://cdn.simpleicons.org/archlinux/1793D1
+  image: linuxserver/webtop:arch-kde
+  imageHomepageURL: https://hub.docker.com/r/linuxserver/webtop
+  defaultSharedMemory: true
+  proxyConfig:
+    needsNoopSW: true
+    preservePathPrefix: true
+    websocketPaths:
+    - /websockify
+  sourceURL: https://github.com/linuxserver/docker-webtop
+  defaultUser: abc
+  defaultHomedir: /config

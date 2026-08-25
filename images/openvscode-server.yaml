@@ -1,0 +1,28 @@
+apiVersion: kubeworkspaces.io/v1alpha1
+kind: Image
+metadata:
+  name: openvscode-server
+spec:
+  defaultEnv:
+  - name: VSCODE_PROXY_URI
+    value: /proxy/{{namespace}}/{{name}}/proxy/{{port}}/
+  defaultPath: /
+  defaultPort: 3000
+  description: Open-source VS Code server by Gitpod. Lightweight browser-based IDE
+    with extensions marketplace.
+  category: IDE
+  tags:
+  - code
+  - vscode
+  - editor
+  displayName: OpenVSCode Server
+  homepageURL: https://github.com/gitpod-io/openvscode-server
+  icon: https://cdn.jsdelivr.net/gh/homarr-labs/dashboard-icons/svg/vscode.svg
+  image: gitpod/openvscode-server:latest
+  imageHomepageURL: https://hub.docker.com/r/gitpod/openvscode-server
+  proxyConfig:
+    needsNoopSW: true
+    rewriteHostAbsolutePaths: true
+  sourceURL: https://github.com/gitpod-io/openvscode-server
+  defaultUser: openvscode-server
+  defaultHomedir: /home/workspace

@@ -1,0 +1,18 @@
+apiVersion: kubeworkspaces.io/v1alpha1
+kind: Image
+metadata:
+  name: pacman
+spec:
+  defaultPath: /
+  defaultPort: 80
+  description: Classic Pac-Man arcade game running entirely in the browser with sound
+    effects. Self-contained, no network required to play.
+  category: Game
+  tags:
+  - arcade
+  - retro
+  displayName: Pac-Man (HTML5)
+  homepageURL: https://github.com/platzhersh/pacman-canvas
+  icon: '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2z" fill="#FFD700"/><path d="M12 12L22 6V18z" fill="#1a1a2e"/><circle cx="10" cy="7" r="1.5" fill="#1a1a2e"/></svg>'
+  image: uzyexe/pacman:latest
+  imageHomepageURL: https://hub.docker.com/r/uzyexe/pacman

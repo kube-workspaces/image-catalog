@@ -1,0 +1,26 @@
+apiVersion: kubeworkspaces.io/v1alpha1
+kind: Image
+metadata:
+  name: chromium
+spec:
+  defaultPath: /
+  defaultPort: 3000
+  description: Chromium browser in a container with KasmVNC web access. Full browser
+    with extensions support.
+  category: Browser
+  tags:
+  - vnc
+  - web
+  displayName: Chromium Browser
+  homepageURL: https://github.com/nicholasgasior/docker-chromium
+  icon: https://cdn.jsdelivr.net/gh/homarr-labs/dashboard-icons/png/chromium.png
+  image: linuxserver/chromium:latest
+  imageHomepageURL: https://hub.docker.com/r/linuxserver/chromium
+  sourceURL: https://github.com/linuxserver/docker-chromium
+  defaultSharedMemory: true
+  defaultEnv:
+  - name: SUBFOLDER
+    value: /proxy/{{namespace}}/{{name}}/
+  proxyConfig:
+    needsNoopSW: true
+    preservePathPrefix: true

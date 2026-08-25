@@ -1,0 +1,27 @@
+apiVersion: kubeworkspaces.io/v1alpha1
+kind: Image
+metadata:
+  name: rdesktop-ubuntu-xfce
+spec:
+  defaultEnv:
+  - name: SUBFOLDER
+    value: /proxy/{{namespace}}/{{name}}/
+  defaultPath: /
+  defaultPort: 3000
+  description: Ubuntu desktop with XFCE accessible via RDP and a browser-based Guacamole
+    client. Full persistent desktop environment.
+  category: Desktop
+  displayName: Ubuntu XFCE RDP Desktop
+  homepageURL: https://github.com/linuxserver/docker-rdesktop
+  icon: https://cdn.simpleicons.org/ubuntu/E95420
+  image: linuxserver/rdesktop:ubuntu-xfce
+  imageHomepageURL: https://hub.docker.com/r/linuxserver/rdesktop
+  defaultSharedMemory: true
+  proxyConfig:
+    needsNoopSW: true
+    preservePathPrefix: true
+    websocketPaths:
+    - /websockify
+  sourceURL: https://github.com/linuxserver/docker-rdesktop
+  defaultUser: abc
+  defaultHomedir: /config

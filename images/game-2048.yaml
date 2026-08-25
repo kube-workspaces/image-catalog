@@ -1,0 +1,17 @@
+apiVersion: kubeworkspaces.io/v1alpha1
+kind: Image
+metadata:
+  name: game-2048
+spec:
+  defaultPath: /
+  defaultPort: 80
+  description: Addictive sliding puzzle game. Combine tiles to reach 2048. Works on
+    keyboard and touch.
+  category: Game
+  tags:
+  - puzzle
+  displayName: "2048"
+  homepageURL: https://github.com/gabrielecirulli/2048
+  icon: '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><rect x="2" y="2" width="20" height="20" rx="3" fill="#edc22e"/><text x="12" y="16" font-family="sans-serif" font-size="10" font-weight="bold" fill="#fff" text-anchor="middle">2048</text></svg>'
+  image: cnrock/2048:latest
+  imageHomepageURL: https://hub.docker.com/r/cnrock/2048

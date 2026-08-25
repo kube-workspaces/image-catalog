@@ -1,0 +1,33 @@
+apiVersion: kubeworkspaces.io/v1alpha1
+kind: Image
+metadata:
+  name: kasmweb-chrome
+  annotations:
+    catalog.kubeworkspaces.io/example: "true"
+spec:
+  defaultCredentials:
+    password: password
+    username: kasm_user
+  defaultEnv:
+  - name: VNC_PW
+    value: password
+  defaultPath: /
+  defaultPort: 6901
+  description: Chrome browser streamed via KasmVNC
+  category: Browser
+  displayName: Kasm Chrome
+  homepageURL: https://kasmweb.com
+  icon: https://cdn.simpleicons.org/googlechrome/4285F4
+  image: kasmweb/chrome:1.19.0
+  imageHomepageURL: https://hub.docker.com/r/kasmweb/chrome
+  privileged: true
+  proxyConfig:
+    needsNoopSW: true
+    rewriteHostAbsolutePaths: true
+    scheme: https
+    tlsSkipVerify: true
+    websocketPaths:
+    - /websockify
+  sourceURL: https://github.com/kasmtech
+  defaultUser: kasm_user
+  defaultHomedir: /home/kasm_user

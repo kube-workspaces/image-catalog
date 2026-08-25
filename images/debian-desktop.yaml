@@ -1,0 +1,31 @@
+apiVersion: kubeworkspaces.io/v1alpha1
+kind: Image
+metadata:
+  name: debian-desktop
+  annotations:
+    catalog.kubeworkspaces.io/example: "true"
+spec:
+  defaultPath: /vnc.html?resize=remote
+  defaultPort: 6901
+  description: Debian desktop in a container with web access via TigerVNC and websockify.
+  category: Desktop
+  tags:
+  - vnc
+  - linux
+  - debian
+  displayName: Debian Desktop
+  homepageURL: https://github.com/flaccid/container-debian-desktop/blob/main/README.md
+  icon: https://raw.githubusercontent.com/flaccid/container-debian-desktop/refs/heads/main/config/openlogo-debianV2.svg
+  image: flaccid/debian-desktop:latest
+  imageHomepageURL: https://hub.docker.com/r/flaccid/debian-desktop
+  privileged: false
+  proxyConfig:
+    needsNoopSW: true
+    rewriteHostAbsolutePaths: true
+    audioPort: 6902
+  additionalPorts:
+    - name: audio
+      port: 6902
+  sourceURL: https://github.com/flaccid/container-debian-desktop
+  defaultUser: admin
+  defaultHomedir: /home/admin

@@ -1,0 +1,36 @@
+apiVersion: kubeworkspaces.io/v1alpha1
+kind: Image
+metadata:
+  name: kasm-desktop-deluxe
+spec:
+  defaultCredentials:
+    password: password
+    username: kasm_user
+  defaultEnv:
+  - name: VNC_PW
+    value: password
+  defaultPath: /
+  defaultPort: 6901
+  description: Extended Kasm desktop with additional applications and tools pre-installed.
+    Ubuntu desktop via KasmVNC with office suite, dev tools, and media apps.
+  category: Desktop
+  tags:
+  - vnc
+  - linux
+  - ubuntu
+  displayName: Kasm Desktop Deluxe
+  homepageURL: https://kasmweb.com
+  icon: https://cdn.jsdelivr.net/gh/homarr-labs/dashboard-icons/svg/kasm.svg
+  image: kasmweb/desktop-deluxe:1.19.0
+  imageHomepageURL: https://hub.docker.com/r/kasmweb/desktop-deluxe
+  privileged: true
+  proxyConfig:
+    needsNoopSW: true
+    rewriteHostAbsolutePaths: true
+    scheme: https
+    tlsSkipVerify: true
+    websocketPaths:
+    - /websockify
+  sourceURL: https://github.com/kasmtech
+  defaultUser: kasm_user
+  defaultHomedir: /home/kasm_user

@@ -1,0 +1,18 @@
+apiVersion: kubeworkspaces.io/v1alpha1
+kind: Image
+metadata:
+  name: excalidraw
+spec:
+  defaultPath: /
+  defaultPort: 80
+  description: Virtual collaborative whiteboard for sketching diagrams, wireframes,
+    and hand-drawn style illustrations. Simple, intuitive, and open source.
+  category: Productivity
+  displayName: Excalidraw (Whiteboard)
+  homepageURL: https://excalidraw.com
+  icon: https://cdn.jsdelivr.net/gh/homarr-labs/dashboard-icons/svg/excalidraw.svg
+  image: excalidraw/excalidraw:latest
+  imageHomepageURL: https://hub.docker.com/r/excalidraw/excalidraw
+  proxyConfig:
+    rewriteHostAbsolutePaths: true
+  sourceURL: https://github.com/excalidraw/excalidraw
