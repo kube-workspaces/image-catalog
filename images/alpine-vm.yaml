@@ -1,0 +1,22 @@
+apiVersion: kubeworkspaces.io/v1alpha1
+kind: Image
+metadata:
+  name: alpine-vm
+  annotations:
+    catalog.kubeworkspaces.io/example: "true"
+spec:
+  displayName: Alpine VM
+  description: Alpine Linux virtual machine (KubeVirt containerDisk). Boots a minimal
+    Alpine guest; connect via the serial console.
+  category: VM
+  tags:
+  - vm
+  - linux
+  - alpine
+  defaultPort: 22
+  homepageURL: https://alpinelinux.org
+  image: quay.io/kubevirt/alpine-container-disk-demo:20260906_007c02cac1
+  imageHomepageURL: https://quay.io/repository/kubevirt/alpine-container-disk-demo
+  sourceURL: https://github.com/kubevirt/kubevirt/tree/main/containerimages
+  workspaceTypes:
+  - vm

@@ -1,0 +1,22 @@
+apiVersion: kubeworkspaces.io/v1alpha1
+kind: Image
+metadata:
+  name: debian-vm
+  annotations:
+    catalog.kubeworkspaces.io/example: "true"
+spec:
+  displayName: Debian VM
+  description: Debian Linux virtual machine (KubeVirt containerDisk). Boots a full
+    Debian guest; connect via the serial console.
+  category: VM
+  tags:
+  - vm
+  - linux
+  - debian
+  defaultPort: 22
+  homepageURL: https://www.debian.org
+  image: quay.io/containerdisks/debian:12
+  imageHomepageURL: https://quay.io/repository/containerdisks/debian
+  sourceURL: https://github.com/kubevirt/containerdisks
+  workspaceTypes:
+  - vm
