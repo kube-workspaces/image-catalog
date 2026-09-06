@@ -1,4 +1,4 @@
-# image-catalog
+# Kube Workspaces Image Catalog
 
 A catalog of [`Image`](https://github.com/kube-workspaces/controller) custom
 resources for [kube-workspaces](https://github.com/kube-workspaces) — the
