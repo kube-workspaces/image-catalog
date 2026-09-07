@@ -18,5 +18,6 @@ spec:
   image: quay.io/kubevirt/alpine-container-disk-demo:20260906_007c02cac1
   imageHomepageURL: https://quay.io/repository/kubevirt/alpine-container-disk-demo
   sourceURL: https://github.com/kubevirt/kubevirt/tree/main/containerimages
+  defaultUser: root
   workspaceTypes:
   - vm

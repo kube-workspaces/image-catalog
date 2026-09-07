@@ -18,5 +18,8 @@ spec:
   image: quay.io/containerdisks/debian:12
   imageHomepageURL: https://quay.io/repository/containerdisks/debian
   sourceURL: https://github.com/kubevirt/containerdisks
+  defaultUser: root
+  defaultPassword: debian
+  defaultCloudInit: true
   workspaceTypes:
   - vm
