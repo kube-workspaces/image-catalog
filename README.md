@@ -39,6 +39,8 @@ The filename always matches `metadata.name` (e.g. `images/code-server.yaml`).
 | `code-server` | Code Server (VS Code) | IDE | 8080 | ✓ |
 | `cyberchef` | CyberChef | Tool | 8000 | - |
 | `debian-desktop` | Debian Desktop | Desktop | 6901 | ✓ |
+| `debian-gnome` | Debian GNOME Desktop | Desktop | 22 | ✓ |
+| `debian-vm` | Debian VM | VM | 22 | ✓ |
 | `doom` | DOOM | Game | 6901 | - |
 | `drawio` | draw.io (Diagrams) | Productivity | 8080 | - |
 | `excalidraw` | Excalidraw (Whiteboard) | Productivity | 80 | - |
