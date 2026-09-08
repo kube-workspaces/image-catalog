@@ -92,6 +92,30 @@ done
 
 endgroup
 
+group "image reference uniqueness"
+
+# Two Image CRs sharing a spec.image are indistinguishable to the controller:
+# a Workspace records only the image reference, and imageByRef resolves the
+# first matching Image. That silently reconfigures existing workspaces when a
+# second image with the same reference appears (e.g. a 'desktop' variant of
+# the same base). Keep spec.image unique across the catalog.
+declare -A seen_images
+for f in images/*.yaml; do
+  ref=$(yq -N '.spec.image' "$f" 2>/dev/null)
+  if [ -n "$ref" ] && [ "$ref" != "null" ]; then
+    if [ -n "${seen_images[$ref]:-}" ]; then
+      fail "spec.image '$ref' is unique (also used by ${seen_images[$ref]})"
+    else
+      seen_images[$ref]="$f"
+    fi
+  fi
+done
+if [ ${#seen_images[@]} -gt 0 ]; then
+  pass "every spec.image reference is unique across the catalog"
+fi
+
+endgroup
+
 group "schema validation"
 
 if command -v kubeconform >/dev/null 2>&1; then
