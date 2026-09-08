@@ -41,5 +41,6 @@ spec:
   persistentRootDisk: true
   persistentRootDiskSize: 20Gi
   memoryLimit: 4Gi
+  memoryRequest: 5Gi
   workspaceTypes:
   - vm

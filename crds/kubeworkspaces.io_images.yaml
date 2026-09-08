@@ -86,6 +86,12 @@ spec:
                 items:
                   type: string
                 type: array
+              defaultCloudInit:
+                description: |-
+                  DefaultCloudInit indicates the image has cloud-init baked in. When true,
+                  user-data (e.g. a user/password from DefaultUser/DefaultPassword) can be
+                  seeded into the guest at first boot.
+                type: boolean
               defaultCredentials:
                 description: DefaultCredentials are the default login credentials
                   for this image.
@@ -1552,6 +1558,12 @@ spec:
                   - name
                   type: object
                 type: array
+              defaultPassword:
+                description: |-
+                  DefaultPassword is the default password for DefaultUser. Only set when the
+                  image has a known default password for this user; leave empty/unset when
+                  there is no known default (e.g. the guest uses no password).
+                type: string
               defaultPath:
                 description: Default URL path for connecting (e.g. "/vnc.html?resize=remote").
                 type: string
@@ -1580,6 +1592,12 @@ spec:
                 type: integer
               defaultUser:
                 description: DefaultUser is the default user for this image.
+                type: string
+              defaultUserData:
+                description: |-
+                  DefaultUserData is reserved user-data for the guest (cloud-init). Empty by
+                  default; later used to seed first-boot configuration when DefaultCloudInit
+                  is true. Not yet consumed by the controller.
                 type: string
               description:
                 description: Description of the image.
@@ -1617,6 +1635,36 @@ spec:
                   - url
                   type: object
                 type: array
+              memoryLimit:
+                description: |-
+                  MemoryLimit overrides the VM domain memory (guest RAM) for vm workspaces
+                  (e.g. "4Gi"). Useful for desktop images that need more memory than the
+                  container-default memory requests/limits. Empty means use the container's
+                  resources as-is.
+                type: string
+              memoryRequest:
+                description: |-
+                  MemoryRequest overrides the virt-launcher pod memory request and limit for
+                  vm workspaces (e.g. "5Gi"). Use together with MemoryLimit to decouple the
+                  pod allocation from the guest RAM: the guest gets MemoryLimit while the pod
+                  is granted extra headroom for qemu overhead (TCG translation buffers, page
+                  cache, virt-launcher), preventing OOM-kills when limits would otherwise sit
+                  at exactly MemoryLimit plus KubeVirt's minimal overhead. Requires
+                  MemoryRequest >= MemoryLimit. Empty keeps the pod request/limit equal to
+                  MemoryLimit (or the container defaults when MemoryLimit is empty).
+                type: string
+              persistentRootDisk:
+                description: |-
+                  PersistentRootDisk indicates the VM root disk should be a DataVolume
+                  backing-persistent PVC imported from the container disk image (via CDI)
+                  rather than an ephemeral containerDisk. Requires a storage class that CDI
+                  can provision. Ignored for non-vm workspaces.
+                type: boolean
+              persistentRootDiskSize:
+                description: |-
+                  PersistentRootDiskSize is the requested root PVC size when
+                  PersistentRootDisk is true (e.g. "10Gi"). Defaults to "10Gi" when empty.
+                type: string
               privileged:
                 description: Privileged indicates that containers using this image
                   should run in privileged mode.
