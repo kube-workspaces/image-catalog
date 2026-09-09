@@ -34,6 +34,7 @@ The filename always matches `metadata.name` (e.g. `images/code-server.yaml`).
 
 | Name | Display Name | Category | Port | Example |
 |------|---------------|----------|------|---------|
+| `alpine-vm` | Alpine VM | VM | 22 | ✓ |
 | `adminer` | Adminer (Database Manager) | Tool | 8080 | - |
 | `chromium` | Chromium Browser | Browser | 3000 | - |
 | `code-server` | Code Server (VS Code) | IDE | 8080 | ✓ |
@@ -98,6 +99,13 @@ Commonly used fields:
 | `defaultEnv` | []{name,value} | Env vars; supports `{{namespace}}`/`{{name}}` placeholders |
 | `defaultCredentials` | {username,password} | Default login shown in the UI |
 | `defaultUser` / `defaultHomedir` / `defaultShell` | string | Shell/exec session defaults |
+| `defaultPassword` | string | Default password for `defaultUser` (only set when there is a known default) |
+| `defaultCloudInit` | bool | Image has cloud-init baked in; lets user-data be seeded at first boot |
+| `defaultUserData` | string | cloud-init user-data (e.g. `#cloud-config`) applied to VM guests |
+| `workspaceTypes` | []string | Workspace types this image supports: `container`, `vm`, `scratch` (empty = container only) |
+| `persistentRootDisk` / `persistentRootDiskSize` | bool / string | VM root as a CDI DataVolume-backed PVC (e.g. `20Gi`) instead of an ephemeral containerDisk |
+| `memoryLimit` / `memoryRequest` | string | VM guest RAM and virt-launcher pod memory overrides (e.g. `4Gi` / `5Gi`) |
+| `videoDevice` | string | VM video device type: `virtio` (virtio-gpu, recommended), `vga`, `bochs`, `cirrus`, `ramfb` |
 | `defaultUID` | int64 | Sets pod `securityContext.runAsUser`/`fsGroup` |
 | `defaultInitContainers` | []Container | Injected at creation (e.g. volume chown) |
 | `additionalPorts` | []{name,port,protocol} | Extra exposed ports (e.g. audio) |

@@ -24,7 +24,7 @@ metadata:
 ```
 
 These are the images the `kube-workspaces/deploy` Helm chart installs by
-default (`installExampleImages: true`). Keep this set small (currently 5) and
+default (`installExampleImages: true`). Keep this set small (currently 8) and
 representative — it is what a first-time installer sees. Adding this
 annotation to a new image is a deliberate choice, not the default; most
 contributions should not set it.
