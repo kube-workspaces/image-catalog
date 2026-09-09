@@ -1,15 +1,17 @@
 apiVersion: kubeworkspaces.io/v1alpha1
 kind: Image
 metadata:
-  name: debian-gnome
+  name: debian-xfce
   annotations:
     catalog.kubeworkspaces.io/example: "true"
 spec:
-  displayName: Debian GNOME Desktop
-  description: Debian Linux virtual machine with a full GNOME desktop, accessibly
-    via the graphical VNC display console. The root disk is a persistent DataVolume
-    (CDI registry import), so the desktop and any changes survive restarts. GNOME
-    is installed by cloud-init on first boot and uses 4Gi of memory by default.
+  displayName: Debian Desktop XFCE
+  description: Debian Linux virtual machine with a lightweight XFCE desktop,
+    accessible via the graphical VNC display console. The root disk is a
+    persistent DataVolume (CDI registry import), so the desktop and any changes
+    survive restarts. XFCE is installed by cloud-init on first boot and uses 4Gi
+    of memory by default. Supports fluid display resize (the guest follows the
+    console window size).
   category: Desktop
   tags:
   - vm
@@ -17,6 +19,7 @@ spec:
   - debian
   - desktop
   - gui
+  - xfce
   defaultPort: 22
   homepageURL: https://www.debian.org
   image: quay.io/containerdisks/debian:13
@@ -34,9 +37,19 @@ spec:
         debian:debian
     package_update: true
     packages:
-    - task-gnome-desktop
+    - task-xfce-desktop
     - qemu-guest-agent
     write_files:
+    # Autologin the default user straight into an XFCE session.
+    - path: /etc/lightdm/lightdm.conf.d/50-autologin.conf
+      permissions: "0644"
+      content: |
+        [Seat:*]
+        user-session=xfce
+        autologin-user=debian
+        autologin-session=xfce
+        autologin-user-timeout=0
+        logind-check-graphical=false
     # Apply the virtio-gpu EDID preferred mode to the active X display
     # whenever the VNC client resizes the window. QEMU emits a DRM "change"
     # uevent on VNC SetDesktopSize; the new size is the first (preferred)
