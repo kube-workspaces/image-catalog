@@ -36,8 +36,52 @@ spec:
     packages:
     - task-gnome-desktop
     - qemu-guest-agent
+    write_files:
+    # Apply the virtio-gpu EDID preferred mode to the active X display
+    # whenever the VNC client resizes the window. QEMU emits a DRM "change"
+    # uevent on VNC SetDesktopSize; the new size is the first (preferred)
+    # mode in /sys/class/drm/card0-*/modes.
+    - path: /usr/local/sbin/kw-display-resize
+      permissions: "0755"
+      content: |
+        #!/bin/bash
+        set -u
+        MODES=$(ls /sys/class/drm/card0-*/modes 2>/dev/null | head -n1)
+        [ -n "$MODES" ] || exit 0
+        PREFERRED=$(head -n1 "$MODES")
+        [ -n "$PREFERRED" ] || exit 0
+        ACTIVE_VT=$(cat /sys/class/tty/tty0/active 2>/dev/null)
+        VTN=""
+        case "$ACTIVE_VT" in tty*) VTN=${ACTIVE_VT#tty} ;; esac
+        DISPLAY_NUM=""
+        if [ -n "$VTN" ]; then
+          DISPLAY_NUM=$(ps -eo args= | grep "[X]org" | grep "vt$VTN" \
+            | grep -oE ":[0-9]+" | head -n1)
+        fi
+        if [ -z "$DISPLAY_NUM" ]; then
+          DISPLAY_NUM=$(ps -eo lstart=,args= 2>/dev/null | grep "[X]org" \
+            | sort -k1,5 | tail -n1 | grep -oE ":[0-9]+" | head -n1)
+        fi
+        [ -n "$DISPLAY_NUM" ] || exit 0
+        XAUTH=$(ls /var/run/lightdm/root/ 2>/dev/null | grep -F "$DISPLAY_NUM" \
+          | head -n1)
+        [ -n "$XAUTH" ] || XAUTH=$(ls /var/run/lightdm/root/ 2>/dev/null \
+          | tail -n1)
+        [ -n "$XAUTH" ] || exit 0
+        export DISPLAY="$DISPLAY_NUM" XAUTHORITY="/var/run/lightdm/root/$XAUTH"
+        CURRENT=$(xrandr 2>/dev/null | grep -oE 'current [0-9]+ x [0-9]+' \
+          | head -n1)
+        if [ "$CURRENT" != "current ${PREFERRED%x*} x ${PREFERRED#*x}" ]; then
+          xrandr --output Virtual-1 --auto 2>/dev/null || true
+        fi
+    - path: /etc/udev/rules.d/99-kw-display-resize.rules
+      permissions: "0644"
+      content: |
+        ACTION=="change", SUBSYSTEM=="drm", RUN+="/usr/local/sbin/kw-display-resize"
     runcmd:
     - systemctl set-default graphical.target
+    - udevadm control --reload-rules
+    - udevadm trigger --subsystem-match=drm --action=change || true
   persistentRootDisk: true
   persistentRootDiskSize: 20Gi
   memoryLimit: 4Gi
