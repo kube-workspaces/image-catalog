@@ -1729,6 +1729,38 @@ spec:
                       type: string
                     type: array
                 type: object
+              remoteDesktop:
+                description: RemoteDesktop configuration for this image (e.g. Tier
+                  1 transport).
+                properties:
+                  path:
+                    description: Path relative to the agent's base URL (e.g. "/").
+                    type: string
+                  port:
+                    description: Port the agent listens on in the guest.
+                    format: int32
+                    type: integer
+                  protocol:
+                    description: Protocol name (e.g. "selkies").
+                    enum:
+                    - selkies
+                    type: string
+                required:
+                - port
+                - protocol
+                type: object
+              soundDevice:
+                description: |-
+                  SoundDevice overrides the KubeVirt domain sound device model for vm
+                  workspaces (sets domain.devices.sound.model). Valid values are "ac97"
+                  and "ich9". Empty uses KubeVirt's default (no sound device) and leaves
+                  domain.devices.sound unset. Ignored for non-vm workspaces. Enabling
+                  this activates the QEMU VNC audio pseudo-encoding for Tier 0 audio
+                  playback.
+                enum:
+                - ac97
+                - ich9
+                type: string
               sourceURL:
                 description: SourceURL is the source code repository URL.
                 type: string
@@ -1737,6 +1769,22 @@ spec:
                 items:
                   type: string
                 type: array
+              videoDevice:
+                description: |-
+                  VideoDevice overrides the KubeVirt domain video device type for vm
+                  workspaces (sets domain.devices.video.type). "virtio" attaches the
+                  virtio-gpu paravirtual display (recommended for modern desktop guests
+                  with virtio graphics drivers); other valid values are "vga", "bochs",
+                  "cirrus" and "ramfb". Empty uses KubeVirt's default auto-attach (VGA for
+                  BIOS, bochs for EFI) and leaves domain.devices.video unset. Ignored for
+                  non-vm workspaces.
+                enum:
+                - virtio
+                - vga
+                - bochs
+                - cirrus
+                - ramfb
+                type: string
               workspaceTypes:
                 description: |-
                   WorkspaceTypes lists the workspace types this image can be used with
