@@ -52,7 +52,7 @@ spec:
     # The containerdisk ships the Debian "cloud" kernel, which intentionally
     # omits virtio_gpu — no /dev/dri, no graphical logind seat, no Xorg. The
     # generic kernel is installed here and made the only one (removed below),
-    # then the guest reboots into it (power_state_change).
+    # then the guest reboots into it (power_state).
     - linux-image-amd64
     write_files:
     # Autologin the default user straight into an XFCE session.
@@ -192,14 +192,13 @@ spec:
     # Finish pending configuration before pruning the cloud kernel.
     - dpkg --configure -a
     # Drop the cloud kernel so the generic one is the only GRUB entry; its
-    # removal triggers update-grub, and power_state_change then reboots.
+    # removal triggers update-grub, and power_state then reboots.
     - DEBIAN_FRONTEND=noninteractive apt-get -y purge 'linux-image-*-cloud-amd64' 'linux-headers-*-cloud-amd64' 'linux-image-cloud-amd64' || true
     - systemctl daemon-reload
     - systemctl enable --now kw-display-resize.service selkies.service
-    power_state_change:
+    power_state:
       mode: reboot
-      delay: "+1"
-      message: "Rebooting into the generic kernel (cloud kernel removed)"
+      delay: now
   persistentRootDisk: true
   persistentRootDiskSize: 20Gi
   memoryLimit: 4Gi
