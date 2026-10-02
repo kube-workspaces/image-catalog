@@ -4,6 +4,7 @@ metadata:
   name: debian-vm
   annotations:
     catalog.kubeworkspaces.io/example: "true"
+    kubeworkspaces.io/ssh-key-propagation: qemuGuestAgent
 spec:
   displayName: Debian VM
   description: Debian Linux virtual machine (KubeVirt containerDisk). Boots a full
@@ -21,5 +22,17 @@ spec:
   defaultUser: root
   defaultPassword: debian
   defaultCloudInit: true
+  defaultUserData: |
+    #cloud-config
+    ssh_pwauth: true
+    chpasswd:
+      expire: false
+      list: |
+        root:debian
+    package_update: true
+    packages:
+    - qemu-guest-agent
+    runcmd:
+    - systemctl enable --now qemu-guest-agent.service
   workspaceTypes:
   - vm

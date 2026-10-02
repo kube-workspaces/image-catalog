@@ -113,6 +113,21 @@ Commonly used fields:
 | `privileged` | bool | Runs the container privileged |
 | `proxyConfig` | object | Reverse-proxy behaviour hints — see below |
 
+VM images can opt into platform-managed live SSH keys with metadata annotation
+`kubeworkspaces.io/ssh-key-propagation: qemuGuestAgent` and `spec.defaultUser`.
+The guest must install and run `qemu-guest-agent` with SSH-key command support.
+The controller then attaches a stable Secret using KubeVirt access credentials;
+key additions and deletions replace the account's entire `authorized_keys`
+(manual entries are not preserved). Existing VMs require one restart to attach
+the credential source. `debian-vm` and `debian-xfce` opt in and provision the
+agent; cloud-init capability alone does not enable managed keys.
+
+The XFCE defaults configure MAC-independent netplan/networkd DHCP and static
+public DNS (`1.1.1.1`, `9.9.9.9`) before package installation and on each boot.
+Customize the resolvers in `defaultUserData` when cluster-internal DNS is needed
+or public DNS egress is restricted. Updated defaults apply to fresh provisions;
+they do not automatically retrofit an existing persistent guest.
+
 `proxyConfig` fields (all optional): `needsNoopSW`, `websocketPaths`,
 `rewriteHostAbsolutePaths`, `customRequestHeaders`, `injectBaseTag`,
 `scheme` (`http`/`https`), `tlsSkipVerify`, `preservePathPrefix`, `audioPort`.
