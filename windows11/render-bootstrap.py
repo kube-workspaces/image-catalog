@@ -50,7 +50,7 @@ def answer_file(mode, hostname, username, password, image_name="Windows 11 Pro")
         commands = element(setup, "RunSynchronous")
         command = element(commands, "RunSynchronousCommand", **{"{" + WCM + "}action": "add"})
         element(command, "Order", 1)
-        element(command, "Path", r"cmd /c for %d in (C D E F G H I J K) do @if exist %d:\viostor\w11\amd64\viostor.inf drvload %d:\viostor\w11\amd64\viostor.inf")
+        element(command, "Path", r"cmd /c for %d in (C D E F G H I J K) do @if exist %d:\viostor\w11\amd64\viostor.inf (subst V: %d:\ & drvload %d:\viostor\w11\amd64\viostor.inf)")
         configuration = element(setup, "DiskConfiguration")
         disk = element(configuration, "Disk", **{"{" + WCM + "}action": "add"})
         element(disk, "DiskID", 0)
@@ -83,6 +83,16 @@ def answer_file(mode, hostname, username, password, image_name="Windows 11 Pro")
         key = element(user, "ProductKey")
         element(key, "Key", "")
         element(key, "WillShowUI", "Never")
+        # drvload only loads the installer kernel. Native offline servicing
+        # must also inject the boot-critical driver into the installed root.
+        # V: is an alias of the discovered driver ISO for this WinPE session.
+        offline = element(root, "settings", **{"pass": "offlineServicing"})
+        customisations = component(offline, "Microsoft-Windows-PnpCustomizationsNonWinPE")
+        paths = element(customisations, "DriverPaths")
+        for order, driver in enumerate(("viostor", "NetKVM", "vioserial", "Balloon"), start=1):
+            path = element(paths, "PathAndCredentials", **{"{" + WCM + "}action": "add",
+                           "{" + WCM + "}keyValue": str(order)})
+            element(path, "Path", f"V:\\{driver}\\w11\\amd64")
     settings = element(root, "settings", **{"pass": "specialize"})
     shell = component(settings, "Microsoft-Windows-Shell-Setup")
     element(shell, "ComputerName", hostname)

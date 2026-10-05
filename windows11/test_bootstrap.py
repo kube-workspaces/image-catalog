@@ -37,6 +37,9 @@ class BootstrapTests(unittest.TestCase):
         self.assertEqual(root.find(".//u:Disk/u:WillWipeDisk", NS).text, "true")
         self.assertEqual(root.find(".//u:MetaData/u:Value", NS).text, "Windows 11 Pro")
         self.assertEqual(root.find(".//u:InstallTo/u:PartitionID", NS).text, "3")
+        paths = root.findall("u:settings[@pass='offlineServicing']/u:component/u:DriverPaths/u:PathAndCredentials/u:Path", NS)
+        self.assertIn(r"V:\viostor\w11\amd64", [p.text for p in paths])
+        self.assertIn("subst V:", root.find(".//u:RunSynchronousCommand/u:Path", NS).text)
         self.assertNotIn("LabConfig", ET.tostring(root, encoding="unicode"))
 
     def test_invalid_identity_rejected(self):

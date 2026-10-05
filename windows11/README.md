@@ -99,8 +99,13 @@ The new output directory is mode 0700 and its Secret/credential files are mode
 0600. The tool generates a unique initial password, XML-escapes values, refuses
 to overwrite an existing output directory, and never prints credentials. For an
 isolated blank-root installer fixture use `--mode install`; **this mode wipes
-disk 0**, selects Windows 11 Pro, loads viostor in WinPE and installs the agent
-and drivers during specialise. Clone mode has no disk-partitioning or driver
+disk 0**, selects Windows 11 Pro, loads viostor in WinPE, injects boot-critical
+drivers through native offline servicing, and installs the agent during
+specialise. Loading a driver with `drvload` alone is insufficient: the installed
+root also needs that driver before its first boot. The installer aliases the
+discovered driver ISO as `V:` for its WinPE/offline-servicing session.
+See Microsoft's [offline driver paths contract](https://learn.microsoft.com/en-us/windows-hardware/customize/desktop/unattend/microsoft-windows-pnpcustomizationsnonwinpe-driverpaths).
+Clone mode has no disk-partitioning or driver
 media dependency. Neither mode enables auto-logon or installer requirement
 bypasses. Validate the answer file against the pinned Windows build with Windows
 System Image Manager; the shipped renderer is proof tooling pending two-clone
