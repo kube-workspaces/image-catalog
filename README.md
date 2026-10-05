@@ -9,6 +9,10 @@ This repo is the **source of truth** for these manifests. Downstream repos
 (notably [`deploy`](https://github.com/kube-workspaces/deploy)) vendor a
 pinned release rather than reading from `main` directly.
 
+The [private Windows 11 image recipe](windows11/README.md) includes proof-only
+bootstrap/evidence tooling and containerDisk packaging. It does not bundle
+Windows binaries or enable a Windows Image CR in the released catalog.
+
 ## Overview
 
 Each file in [`images/`](images/) is a single, complete `Image` CR:

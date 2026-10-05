@@ -23,3 +23,15 @@ jobs:
 
       - name: Build dist artifacts
         run: scripts/build.sh
+
+      - name: Windows bootstrap regression tests
+        run: python3 -m unittest discover -s windows11 -p 'test_*.py'
+
+      - name: Parse Windows guest evidence script
+        shell: pwsh
+        run: |
+          $errors = $null
+          $tokens = $null
+          [System.Management.Automation.Language.Parser]::ParseFile(
+            "$PWD/windows11/Collect-Evidence.ps1", [ref]$tokens, [ref]$errors) | Out-Null
+          if ($errors.Count) { $errors; exit 1 }

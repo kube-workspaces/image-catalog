@@ -1,0 +1,11 @@
+*.iso
+*.qcow2
+*.img
+*.vhd*
+*.xml
+*.json
+*.txt
+*.log
+*.key
+*.pfx
+__pycache__/
