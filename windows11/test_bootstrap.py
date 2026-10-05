@@ -40,6 +40,12 @@ class BootstrapTests(unittest.TestCase):
         paths = root.findall("u:settings[@pass='offlineServicing']/u:component/u:DriverPaths/u:PathAndCredentials/u:Path", NS)
         self.assertIn(r"V:\viostor\w11\amd64", [p.text for p in paths])
         self.assertIn("subst V:", root.find(".//u:RunSynchronousCommand/u:Path", NS).text)
+        deployment = root.find("u:settings[@pass='specialize']/u:component[@name='Microsoft-Windows-Deployment']", NS)
+        command = deployment.find(".//u:Path", NS).text
+        self.assertLessEqual(len(command), 259)
+        self.assertIn("configure.ps1", command)
+        self.assertIn("exit /b !errorlevel!", command)
+        self.assertTrue(command.endswith('exit /b 1"'))
         self.assertNotIn("LabConfig", ET.tostring(root, encoding="unicode"))
 
     def test_invalid_identity_rejected(self):

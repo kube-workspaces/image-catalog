@@ -32,6 +32,8 @@ jobs:
         run: |
           $errors = $null
           $tokens = $null
-          [System.Management.Automation.Language.Parser]::ParseFile(
-            "$PWD/windows11/Collect-Evidence.ps1", [ref]$tokens, [ref]$errors) | Out-Null
-          if ($errors.Count) { $errors; exit 1 }
+          foreach ($script in @("Collect-Evidence.ps1", "Configure-Guest.ps1")) {
+            [System.Management.Automation.Language.Parser]::ParseFile(
+              "$PWD/windows11/$script", [ref]$tokens, [ref]$errors) | Out-Null
+            if ($errors.Count) { $errors; exit 1 }
+          }

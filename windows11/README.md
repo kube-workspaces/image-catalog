@@ -104,6 +104,9 @@ drivers through native offline servicing, and installs the agent during
 specialise. Loading a driver with `drvload` alone is insufficient: the installed
 root also needs that driver before its first boot. The installer aliases the
 discovered driver ISO as `V:` for its WinPE/offline-servicing session.
+Install Secrets also contain `configure.ps1`; the short specialise command
+discovers and runs it from the Sysprep CD. Keep the script on the media: native
+Deployment RunSynchronous command paths have a 259-character limit.
 See Microsoft's [offline driver paths contract](https://learn.microsoft.com/en-us/windows-hardware/customize/desktop/unattend/microsoft-windows-pnpcustomizationsnonwinpe-driverpaths).
 Clone mode has no disk-partitioning or driver
 media dependency. Neither mode enables auto-logon or installer requirement

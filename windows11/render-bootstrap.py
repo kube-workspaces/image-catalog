@@ -102,7 +102,9 @@ def answer_file(mode, hostname, username, password, image_name="Windows 11 Pro")
         commands = element(deployment, "RunSynchronous")
         command = element(commands, "RunSynchronousCommand", **{"{" + WCM + "}action": "add"})
         element(command, "Order", 1)
-        element(command, "Path", r'''powershell.exe -NoProfile -ExecutionPolicy Bypass -Command "$m=Get-PSDrive -PSProvider FileSystem | Where-Object {Test-Path ($_.Root+'guest-agent\qemu-ga-x86_64.msi')} | Select-Object -First 1; if (-not $m) {throw 'Driver media missing'}; foreach ($d in @('viostor','NetKVM','vioserial','Balloon')) { & pnputil.exe /add-driver ($m.Root+$d+'\w11\amd64\*.inf') /install }; $p=Start-Process msiexec.exe -ArgumentList @('/i',($m.Root+'guest-agent\qemu-ga-x86_64.msi'),'/qn','/norestart') -Wait -PassThru; if ($p.ExitCode -notin @(0,3010)) {throw 'Agent installation failed'}; Start-Service QEMU-GA"''')
+        # Deployment RunSynchronous Path is limited to 259 characters. Keep
+        # script contents on Sysprep media rather than embedding a long command.
+        element(command, "Path", r'cmd /v:on /c "for %d in (D E F G H I J K L M N O P Q R S T U V W Y Z) do @if exist %d:\configure.ps1 (powershell.exe -NoProfile -ExecutionPolicy Bypass -File %d:\configure.ps1 & exit /b !errorlevel!) & exit /b 1"')
     settings = element(root, "settings", **{"pass": "oobeSystem"})
     international = component(settings, "Microsoft-Windows-International-Core")
     for key in ("InputLocale", "SystemLocale", "UILanguage", "UserLocale"):
@@ -150,6 +152,8 @@ def main():
     secret = {"apiVersion": "v1", "kind": "Secret",
               "metadata": {"name": args.secret_name, "namespace": args.namespace},
               "type": "Opaque", "stringData": {"autounattend.xml": xml}}
+    if args.mode == "install":
+        secret["stringData"]["configure.ps1"] = Path(__file__).with_name("Configure-Guest.ps1").read_text()
     write_private(args.output_dir / "bootstrap-secret.json", json.dumps(secret, indent=2))
     write_private(args.output_dir / "credentials.json", json.dumps(
         {"username": args.username, "password": password, "hostname": hostname}, indent=2))
