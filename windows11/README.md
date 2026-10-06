@@ -6,6 +6,16 @@ schema, provisioning and lifecycle integration must pass the
 before a Windows catalog entry is shipped. Microsoft binaries, installer media,
 license keys and per-guest credentials are operator supplied and private.
 
+For the complete operator workflow, follow
+[Build your own Windows 11 image from an official ISO](./BUILD-GUIDE.md).
+It includes media upload, native answer-file installation, guest checks,
+unencrypted Sysprep sealing, root-only export, Docker-free packaging, private CDI
+authentication and independent-clone validation. Reusable tooling lives here:
+`render-bootstrap.py`, `render-import-secret.py`, `Configure-Guest.ps1`,
+`Collect-Evidence.ps1`, `Test-PersistentState.ps1`, `Remove-Bootstrap.ps1`,
+`prepare-sealed-root.py`, and `package-layer.py`.
+Keep generated media/disks/credentials outside this checkout.
+
 ## Inputs and build record
 
 Use Windows 11 x86-64 **Pro or Enterprise** on eligible Linux amd64 KVM workers.
@@ -49,6 +59,14 @@ implicit defaults. No installer requirement bypasses or CPU-name spoofing.
    keys and cached answer files. Keep the template root **unencrypted**; do not
    clone TPM-bound BitLocker state. Any encryption starts in each provisioned
    clone with its own TPM and independently stored recovery material.
+   Check `Get-BitLockerVolume -MountPoint C:` after OOBE and after a restart:
+   Windows can automatically encrypt the volume while `ProtectionStatus` is
+   still Off. That status alone does not establish an unencrypted template.
+   If needed, run `Disable-BitLocker -MountPoint C:` on the disposable build
+   guest and wait until `VolumeStatus` is FullyDecrypted and the encryption
+   percentage is zero before sealing. Prevent automatic device encryption in
+   the build-template policy; cloned guests can explicitly enable their own
+   protection after provisioning. Remove any test TPM-bound keys before export.
 2. Generalise from elevated PowerShell with
    `C:\Windows\System32\Sysprep\Sysprep.exe /generalize /shutdown /oobe /mode:vm`.
    Verify Sysprep succeeded for the pinned build. Do not restart the sealed root.
@@ -59,7 +77,8 @@ implicit defaults. No installer requirement bypasses or CPU-name spoofing.
 4. Convert the offline root into a standalone disk:
 
    ```sh
-   qemu-img convert -p -O qcow2 exported-root.img disk.qcow2
+   qemu-img convert -p -O qcow2 exported-root.img sealed-root.qcow2
+   python3 windows11/prepare-sealed-root.py --disk sealed-root.qcow2 --output disk.qcow2
    qemu-img check disk.qcow2
    qemu-img info --output=json disk.qcow2
    sha256sum disk.qcow2
@@ -69,7 +88,19 @@ implicit defaults. No installer requirement bypasses or CPU-name spoofing.
    (CDI filesystem overhead needs capacity beyond the guest virtual disk size).
    Avoid storing raw disks inside this source checkout.
 
+   The offline preparation step checks the generalised OOBE state, removes
+   backup/cached answer files and sets a credential-free native setup pointer
+   to `D:\autounattend.xml`. The tested post-Sysprep guest did not implicitly
+   discover its SATA answer CD. Keep the clone profile to root plus one Sysprep
+   CD (D), and remove the pointer after confirmed setup. See the
+   [guide's discovery details](./BUILD-GUIDE.md#native-answer-file-discovery-in-the-sealed-root).
+
 ## Package and privately import
+
+For a Docker-free path, `package-layer.py --disk /PRIVATE/disk.qcow2 --output
+/PRIVATE/root-layer.tar.gz` creates the UID-107 layer for `crane append`. See the
+[guide](./BUILD-GUIDE.md#7-package-and-publish-privately) for commands and capacity
+planning; Docker's builder cache is additional to the exported disk.
 
 In a separate private build context containing this Dockerfile and the sealed
 `disk.qcow2` only:
@@ -82,8 +113,10 @@ docker buildx imagetools inspect REGISTRY/PRIVATE/windows11:RECIPE_BUILD
 
 The scratch containerDisk contains `/disk/disk.qcow2`, readable by KubeVirt's
 UID 107. Record and use its **sha256 OCI digest** in clone fixtures. Test CDI's
-actual pod registry import with a same-namespace
-`kubernetes.io/dockerconfigjson` Secret (`registry.secretRef`), not just a
+actual pod registry import with a same-namespace Opaque Secret containing
+`accessKeyId` (username) and `secretKey` (password/token), referenced by
+`registry.secretRef`. `render-import-secret.py` converts private inline Docker
+auth to this CDI 1.61 pod-import contract. Do not rely on just a
 successful local Docker pull. A future launcher containerDisk path would need
 its own imagePullSecrets as well; this recipe's clones use imported PVC roots.
 

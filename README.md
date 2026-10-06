@@ -12,6 +12,8 @@ pinned release rather than reading from `main` directly.
 The [private Windows 11 image recipe](windows11/README.md) includes proof-only
 bootstrap/evidence tooling and containerDisk packaging. It does not bundle
 Windows binaries or enable a Windows Image CR in the released catalog.
+Start with the [official-ISO-to-cluster build guide](windows11/BUILD-GUIDE.md)
+for installation, native provisioning, private publishing and clone validation.
 
 ## Overview
 

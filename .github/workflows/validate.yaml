@@ -14,7 +14,7 @@ jobs:
       - name: Install tools
         run: |
           sudo snap install yq
-          sudo apt-get update && sudo apt-get install -y jq
+          sudo apt-get update && sudo apt-get install -y jq qemu-utils
           curl -fsSL https://github.com/yannh/kubeconform/releases/latest/download/kubeconform-linux-amd64.tar.gz \
             | tar -xz -C /usr/local/bin kubeconform
 
@@ -24,7 +24,7 @@ jobs:
       - name: Build dist artifacts
         run: scripts/build.sh
 
-      - name: Windows bootstrap regression tests
+      - name: Windows bootstrap and disk packaging regression tests
         run: python3 -m unittest discover -s windows11 -p 'test_*.py'
 
       - name: Parse Windows guest evidence script
@@ -32,7 +32,7 @@ jobs:
         run: |
           $errors = $null
           $tokens = $null
-          foreach ($script in @("Collect-Evidence.ps1", "Configure-Guest.ps1")) {
+          foreach ($script in @("Collect-Evidence.ps1", "Configure-Guest.ps1", "Test-PersistentState.ps1", "Remove-Bootstrap.ps1")) {
             [System.Management.Automation.Language.Parser]::ParseFile(
               "$PWD/windows11/$script", [ref]$tokens, [ref]$errors) | Out-Null
             if ($errors.Count) { $errors; exit 1 }
