@@ -127,6 +127,31 @@ Note that CD-ROM access is unavailable in this VM regardless: even with a drive 
 
 ---
 
+## Building and publishing the containerdisk
+
+`ms-dos-622.raw`, `ms-dos-622.vhd` and `ms-dos-622.7z` are build artifacts:
+they are gitignored, so **a fresh clone does not contain them and
+`make docker-build` will fail until they are regenerated.** Fetch them first:
+
+```bash
+./fetch-msdos-622.sh   # needs curl, p7zip (7z) and qemu-img
+```
+
+Then build and publish:
+
+```bash
+make docker-build      # runs patch-cd-rom first (needs mtools)
+make docker-login      # prompts for Docker Hub credentials / access token
+make docker-push
+```
+
+- `make docker-build` always applies `patch-cd-rom` first, so a freshly fetched
+  image is fixed before it is built and pushed.
+- The published tag is `latest`. An existing persistent root PVC keeps whatever
+  it was imported with — only newly created workspaces pick up a new push.
+
+---
+
 ## Running it as a kube-workspaces VM
 
 The catalog entry lives at [`images/ms-dos-622.yaml`](../images/ms-dos-622.yaml).
