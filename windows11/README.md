@@ -144,8 +144,10 @@ See Microsoft's [offline driver paths contract](https://learn.microsoft.com/en-u
 Clone mode has no disk-partitioning or driver
 media dependency. Neither mode enables auto-logon or installer requirement
 bypasses. Validate the answer file against the pinned Windows build with Windows
-System Image Manager; the shipped renderer is proof tooling pending two-clone
-runtime acceptance.
+System Image Manager. Clone-mode native provisioning has passed the direct
+two-clone runtime proof with the offline discovery-pointer preparation step.
+Fresh install-mode acceptance of the final wrapper/helper combination and
+platform-managed provisioning remain open.
 
 Use the clone fixture twice, with distinct Secret-backed SATA Sysprep media,
 different firmware UUIDs, local credentials and hostnames. Generate answer files
@@ -160,6 +162,12 @@ Sysprep media while stopped after confirmed setup; clean guest answer-file
 caches and delete the bootstrap Secret after detaching. Record import duration,
 first-desktop duration, private-registry authentication and root/state PVC
 ownership/deletion results. Only promote the artifact after this proof passes.
+
+The direct two-clone proof now confirms independent accounts/credentials,
+desktop login, root/firmware/TPM-key persistence across changed VMI UIDs, and
+bootstrap cleanup/removal without OOBE replay. This does not close Windows
+Update/BitLocker recovery, application connection-path or product lifecycle
+acceptance. Keep those results separate when validating your own build.
 
 ## Current limits
 
