@@ -176,6 +176,26 @@ login, keyboard/layout, absolute pointer, Ctrl+Alt+Delete and reconnect. Record
 `dxdiag` graphics limitations; a usable VGA/basic desktop does not establish GPU
 acceleration, audio, clipboard or automatic resize.
 
+### Premium agent prerequisites (operator decision)
+
+The workspace-agent premium path needs two guest-side pieces before sealing.
+Both are operator-owned decisions recorded here, not defaults:
+
+1. **Virtual display driver trust.** The evaluated IDD package
+   (`VirtualDisplayDriver 25.7.23`, embedded driver 11.30.4.434) carries a
+   Valid Authenticode catalog signed by **SignPath Foundation** (GlobalSign
+   R45 chain) — not Microsoft attestation. Windows refuses staging until
+   that publisher is pinned to TrustedPublishers. Either pin the publisher
+   certificate as part of the build (document the thumbprint and keep the
+   export offline), or select a Microsoft-attested virtual-display driver and
+   re-run the whole proof for it. Never disable Secure Boot, Memory
+   Integrity, or signature enforcement to make a driver load.
+2. **Agent install without identity.** The sealed image may contain
+   `kw-agent.exe`, the installer and the pinned driver package, but **never**
+   an enrolled `identity.json`, an enrollment token, host keys, or account
+   credentials. Enrollment happens per clone at first boot (one-use token),
+   verified by two independently enrolled clones with distinct identities.
+
 Install intended updates and test a guest reboot. Then test graceful
 `virtctl stop`/`start` with installer/driver/Sysprep media detached while stopped.
 Record a changed VMI UID and unchanged VM/root/state PVC identities. Verify a
