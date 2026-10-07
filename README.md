@@ -136,7 +136,10 @@ they do not automatically retrofit an existing persistent guest.
 
 `proxyConfig` fields (all optional): `needsNoopSW`, `websocketPaths`,
 `rewriteHostAbsolutePaths`, `customRequestHeaders`, `injectBaseTag`,
-`scheme` (`http`/`https`), `tlsSkipVerify`, `preservePathPrefix`, `audioPort`.
+`scheme` (`http`/`https`), `tlsSkipVerify`, `preservePathPrefix`, `audioPort`,
+`agentPort` (guest TCP port of the workspace-agent listener; when set on a VM
+image the controller forwards it through masquerade and exposes it on the
+workspace Service, and the proxy serves the `/agent/` bridge against it).
 
 The CRD schema itself is vendored at
 [`crds/kubeworkspaces.io_images.yaml`](crds/kubeworkspaces.io_images.yaml)
