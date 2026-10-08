@@ -15,6 +15,9 @@ Windows binaries or enable a Windows Image CR in the released catalog.
 Start with the [official-ISO-to-cluster build guide](windows11/BUILD-GUIDE.md)
 for installation, native provisioning, private publishing and clone validation.
 
+The [FreeBSD 15.1 recipe](freebsd/README.md) packages the official cloud-init
+disk for KubeVirt, with a persistent root disk and SSH/serial-console access.
+
 ## Overview
 
 Each file in [`images/`](images/) is a single, complete `Image` CR:
@@ -53,6 +56,7 @@ The filename always matches `metadata.name` (e.g. `images/code-server.yaml`).
 | `excalidraw` | Excalidraw (Whiteboard) | Productivity | 80 | - |
 | `filebrowser` | File Browser | Tool | 80 | - |
 | `firefox` | Firefox Browser | Browser | 3000 | - |
+| `freebsd-vm` | FreeBSD 15.1 VM | VM | 22 | - |
 | `game-2048` | 2048 | Game | 80 | - |
 | `grafana` | Grafana | Tool | 3000 | - |
 | `jlesage-chromium` | Chromium (Lightweight) | Browser | 5800 | - |

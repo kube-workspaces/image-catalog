@@ -1,0 +1,25 @@
+apiVersion: kubeworkspaces.io/v1alpha1
+kind: Workspace
+metadata:
+  name: freebsd-15-1
+spec:
+  type: vm
+  template:
+    spec:
+      nodeSelector:
+        kubernetes.io/arch: amd64
+      containers:
+      - name: freebsd
+        image: flaccid/containerdisk-freebsd@sha256:ade6d7265d8f0e683572e5d46f4d3598416d7d6cbf6f4521410b06e5e3b6e0ac
+        imagePullPolicy: IfNotPresent
+        ports:
+        - name: ssh
+          containerPort: 22
+          protocol: TCP
+        resources:
+          limits:
+            cpu: "2"
+            memory: 2Gi
+          requests:
+            cpu: 500m
+            memory: 512Mi

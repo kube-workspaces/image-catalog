@@ -1,0 +1,48 @@
+apiVersion: kubeworkspaces.io/v1alpha1
+kind: Image
+metadata:
+  name: freebsd-vm
+spec:
+  displayName: FreeBSD 15.1 VM
+  description: FreeBSD 15.1-RELEASE amd64 virtual machine using the official
+    UFS cloud image with nuageinit (NoCloud). Connect via SSH or the serial console. Requires KubeVirt;
+    FreeBSD cannot run as a native container on Linux nodes.
+  category: VM
+  tags:
+  - vm
+  - freebsd
+  - bsd
+  - cloud-init
+  defaultPort: 22
+  homepageURL: https://www.freebsd.org
+  image: flaccid/containerdisk-freebsd@sha256:ade6d7265d8f0e683572e5d46f4d3598416d7d6cbf6f4521410b06e5e3b6e0ac
+  imageHomepageURL: https://hub.docker.com/r/flaccid/containerdisk-freebsd
+  sourceURL: https://github.com/kube-workspaces/image-catalog/tree/main/freebsd
+  defaultUser: freebsd
+  defaultPassword: freebsd
+  defaultHomedir: /home/freebsd
+  defaultShell: /bin/sh
+  defaultCloudInit: true
+  defaultUserData: |
+    #cloud-config
+    users:
+    - default
+    ssh_pwauth: true
+    write_files:
+    - path: /etc/rc.conf.d/firstboot_pkg_upgrade
+      content: |
+        firstboot_pkg_upgrade_enable="NO"
+    chpasswd:
+      expire: false
+      users:
+      - name: freebsd
+        password: freebsd
+        type: text
+    runcmd:
+    - sysrc sshd_enable=YES
+  memoryLimit: 2Gi
+  memoryRequest: 2304Mi
+  persistentRootDisk: true
+  persistentRootDiskSize: 10Gi
+  workspaceTypes:
+  - vm
