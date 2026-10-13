@@ -246,7 +246,8 @@ spec:
   memoryRequest: 5Gi
   videoDevice: virtio
   # Intel HDA sound card (ich9) enables guest audio over QEMU's VNC audio
-  # channel (Tier 0 audio playback in the desktop client). ich9/intel-hda is
+  # channel (Tier 0 audio playback in the web client; the desktop client only
+  # detects the device). ich9/intel-hda is
   # available on all QEMU builds (AC97 may be compiled out), and Debian ships
   # snd-hda-intel with generic analog playback. The guest runs an audio server
   # (ALSA/pulse/pipewire) configured to output to the HDA device.
