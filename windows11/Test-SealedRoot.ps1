@@ -20,7 +20,12 @@ param(
     [string]$WorkspaceGeneration = ''
 )
 
+. (Join-Path $PSScriptRoot 'VddSettings.ps1')
+
+. (Join-Path $PSScriptRoot 'VddSettings.ps1')
+
 $ErrorActionPreference = 'Stop'
+
 $dataDir = Join-Path $env:PROGRAMDATA 'workspace-agent'
 
 function Assert-NoFile($path, $why) {
@@ -47,7 +52,20 @@ if ($Mode -eq 'Seal') {
     }
     $idd = @(Get-PnpDevice -Class Display -ErrorAction SilentlyContinue | Where-Object { $_.FriendlyName -match 'Virtual|Indirect' })
     if (-not $idd.Count) { throw 'sealed root has no virtual/indirect display device' }
-    Write-Output 'seal gate passed: premium stack present, identity-free'
+    # Assert the virtual-display mode list is the premium list aligned to frontend presets.
+    if (-not (Test-Path -LiteralPath $VddConfigPath)) { throw "sealed root missing virtual display config: $VddConfigPath" }
+    $cur = Get-VddSettingsResolutions -Path $VddConfigPath
+    if ($cur.Count -ne $VddPremiumResolutions.Count) {
+        throw "virtual display mode count mismatch: expected $($VddPremiumResolutions.Count), got $($cur.Count)"
+    }
+    $key = @('Width','Height')
+    $expectedSet = @{}
+    foreach ($r in $VddPremiumResolutions) { $expectedSet["$($r.Width)x$($r.Height)"] = $true }
+    foreach ($r in $cur) {
+        $k = "$($r.Width)x$($r.Height)"
+        if (-not $expectedSet.ContainsKey($k)) { throw "unadvertised mode in sealed vdd_settings.xml: $k" }
+    }
+    Write-Output 'seal gate passed: premium stack present, identity-free, virtual display modes aligned'
     return
 }
 

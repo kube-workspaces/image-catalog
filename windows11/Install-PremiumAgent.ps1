@@ -1,7 +1,8 @@
 # Installs the premium workspace-agent stack into the build guest BEFORE
 # sealing: the pinned kw-agent MSI plus the approved virtual-display
-# driver package. Operator supplies both on local media; the repository
-# distributes no Windows binaries.
+# driver package and writes a standard vdd_settings.xml (modes aligned
+# to the frontend presets). Operator supplies both on local media; the
+# repository distributes no Windows binaries.
 #
 # The install must leave the guest UNENROLLED: no identity.json, no
 # enrollment-token.json, no account credentials. Enrollment happens per
@@ -19,6 +20,8 @@ param(
     [Parameter(Mandatory = $true)][string]$AgentVersion
 )
 
+. (Join-Path $PSScriptRoot 'VddSettings.ps1')
+
 $ErrorActionPreference = 'Stop'
 
 if (-not (Test-Path -LiteralPath $AgentMsi -PathType Leaf)) { throw "Agent MSI missing: $AgentMsi" }
@@ -33,9 +36,24 @@ foreach ($secret in @('identity.json', 'enrollment-token.json')) {
     }
 }
 
+# Write the premium virtual-display mode list aligned to the frontend presets.
+# The running driver reads this at start; reload it best-effort if already installed.
+Write-VddSettings
+
+
 & pnputil.exe /add-driver (Join-Path $IddDriverDir '*.inf') /install
 $result = $LASTEXITCODE
 if ($result -notin @(0, 3010)) { throw "IDD driver installation failed (exit $result)" }
+
+# Reload the virtual display driver so it reads the updated mode list (best-effort).
+[void](Invoke-VddDriverReload -Attempts 3)
+
+# Verify the configured mode list was written.
+if (-not (Test-Path -LiteralPath $VddConfigPath)) { throw "Virtual display config missing: $VddConfigPath" }
+$cur = Get-VddSettingsResolutions -Path $VddConfigPath
+if ($cur.Count -ne $VddPremiumResolutions.Count) {
+    throw "Virtual display mode count mismatch: expected $($VddPremiumResolutions.Count), got $($cur.Count)"
+}
 
 $installer = Start-Process msiexec.exe -ArgumentList @('/i', $AgentMsi, '/qn', '/norestart') -Wait -PassThru
 if ($installer.ExitCode -notin @(0, 3010)) { throw "Agent MSI installation failed (exit $($installer.ExitCode))" }
