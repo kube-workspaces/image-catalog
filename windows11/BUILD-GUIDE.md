@@ -193,8 +193,17 @@ Both are operator-owned decisions recorded here, not defaults:
 2. **Agent install without identity.** The sealed image may contain
    `kw-agent.exe`, the installer and the pinned driver package, but **never**
    an enrolled `identity.json`, an enrollment token, host keys, or account
-   credentials. Enrollment happens per clone at first boot (one-use token),
-   verified by two independently enrolled clones with distinct identities.
+   credentials. Enrollment happens per clone at first boot (controller-staged
+   one-use token, consumed single-use; rotation adopted on re-provisioning).
+   Install with the repo helper, which enforces the unenrolled invariant:
+
+   ```powershell
+   .\Install-PremiumAgent.ps1 -AgentMsi C:\media\workspace-agent-<version>-windows-amd64.msi `
+     -IddDriverDir C:\media\vdd-25.7.23 -AgentVersion <version>
+   ```
+
+   Two independently enrolled clones with distinct identities are the
+   proof (section 8); a manually enrolled reference guest is not.
 
 Install intended updates and test a guest reboot. Then test graceful
 `virtctl stop`/`start` with installer/driver/Sysprep media detached while stopped.
@@ -238,6 +247,12 @@ Do this in the disposable build guest, after the intended updates finish:
    `C:\Windows\System32\Sysprep\unattend.xml`; a stale answer file can override
    clone provisioning. Use an appropriate temporary administrative context to
    remove the build account rather than retaining it in the template.
+4. Run the seal gate. It fails closed on any enrolled identity, live token,
+   answer cache, missing agent service or missing virtual display:
+
+   ```powershell
+   .\Test-SealedRoot.ps1 -Mode Seal -AgentVersion <version>
+   ```
 4. Set the VM to Manual before Sysprep so an automatic run strategy cannot restart
    the generalised root:
 
@@ -416,6 +431,20 @@ credentials. Confirm both guests finish OOBE, accept their own password, have
 distinct computer names/account SIDs/firmware identities/TPMs, and connect their
 guest agent. An imported disk or `VMI Running` alone is not proof of a ready
 Windows desktop.
+
+For premium sealed roots, prove exactly-once enrollment per clone (needs the
+controller's per-generation token staging; managed workspaces get it
+automatically during provisioning). In each provisioned clone, from elevated
+PowerShell with that clone's workspace UID and generation:
+
+```powershell
+.\Test-SealedRoot.ps1 -Mode Clone -WorkspaceUid <uid> -WorkspaceGeneration <generation>
+```
+
+Require both clones enrolled, no live token at rest, and distinct identity keys
+(compare the `identity-check` output, never the private key). Then exercise
+Reset on one clone: the new generation must re-enroll (rotation adopted) while
+the untouched clone keeps serving.
 
 After confirmed setup, clean guest answer-file caches. Stop the clone, wait for
 VMI deletion, remove `sysprep` from both its saved manifest's disks and volumes,
