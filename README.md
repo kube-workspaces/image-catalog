@@ -138,6 +138,36 @@ Customize the resolvers in `defaultUserData` when cluster-internal DNS is needed
 or public DNS egress is restricted. Updated defaults apply to fresh provisions;
 they do not automatically retrofit an existing persistent guest.
 
+The XFCE image uses **xfce4-screensaver** for password-protected screen locking.
+Selkies captures and injects input into `DISPLAY=:0`; Debian's alternative
+`light-locker` switches to a separate LightDM greeter on another X display/VT.
+That leaves Selkies capturing a black, inactive user display while the QEMU/VNC
+console correctly shows the greeter. Client wake keys cannot repair that
+display mismatch. Keep the locker within the captured session rather than
+disabling authentication or automatically switching away from a locked greeter.
+The virtual monitor's DPMS power-saving is disabled; the screensaver can still
+blank and lock the session without turning off the captured output.
+
+For an existing persistent XFCE guest provisioned with `light-locker`, install
+the replacement and remove the old locker inside the guest:
+
+```bash
+sudo apt-get install xfce4-screensaver
+sudo apt-get purge light-locker
+```
+
+Then log out and back in through the VM console so the new locker autostarts.
+This ends the graphical session; save work first. Verify that clicking inside
+the connected remote display reveals the password prompt on the same X
+display, without a VT switch. A blank lock screen before clicking can be
+normal. In the logged-in guest's terminal, also disable monitor power-saving:
+
+```bash
+xfconf-query -c xfce4-power-manager -p /xfce4-power-manager/dpms-enabled --create -t bool -s false
+xset dpms force on
+xset -dpms
+```
+
 `proxyConfig` fields (all optional): `needsNoopSW`, `websocketPaths`,
 `rewriteHostAbsolutePaths`, `customRequestHeaders`, `injectBaseTag`,
 `scheme` (`http`/`https`), `tlsSkipVerify`, `preservePathPrefix`, `audioPort`,
