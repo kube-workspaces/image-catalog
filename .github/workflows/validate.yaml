@@ -27,13 +27,13 @@ jobs:
       - name: Windows bootstrap and disk packaging regression tests
         run: python3 -m unittest discover -s windows11 -p 'test_*.py'
 
-      - name: Parse Windows guest evidence script
+      - name: Parse all Windows guest scripts
         shell: pwsh
         run: |
           $errors = $null
           $tokens = $null
-          foreach ($script in @("Collect-Evidence.ps1", "Configure-Guest.ps1", "Test-PersistentState.ps1", "Remove-Bootstrap.ps1")) {
+          foreach ($script in Get-ChildItem "$PWD/windows11" -Filter '*.ps1') {
             [System.Management.Automation.Language.Parser]::ParseFile(
-              "$PWD/windows11/$script", [ref]$tokens, [ref]$errors) | Out-Null
+              $script.FullName, [ref]$tokens, [ref]$errors) | Out-Null
             if ($errors.Count) { $errors; exit 1 }
           }

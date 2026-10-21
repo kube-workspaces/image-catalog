@@ -176,6 +176,12 @@ login, keyboard/layout, absolute pointer, Ctrl+Alt+Delete and reconnect. Record
 `dxdiag` graphics limitations; a usable VGA/basic desktop does not establish GPU
 acceleration, audio, clipboard or automatic resize.
 
+`IMAGE_STATE_COMPLETE` can appear before Windows OOBE's final reboot. Before
+provisioning large guest files, require the generated account/hostname and a
+stable completed boot for at least 180 seconds; restart that settling window
+after a guest-agent disconnect or boot-time change. A partially completed file
+transfer must be restarted from byte zero and its guest/source checksum compared.
+
 ### Premium agent prerequisites (operator decision)
 
 The workspace-agent premium path needs two guest-side pieces before sealing.
@@ -185,9 +191,11 @@ Both are operator-owned decisions recorded here, not defaults:
    (`VirtualDisplayDriver 25.7.23`, embedded driver 11.30.4.434) carries a
    Valid Authenticode catalog signed by **SignPath Foundation** (GlobalSign
    R45 chain) — not Microsoft attestation. Windows refuses staging until
-   that publisher is pinned to TrustedPublishers. Either pin the publisher
-   certificate as part of the build (document the thumbprint and keep the
-   export offline), or select a Microsoft-attested virtual-display driver and
+   that publisher is pinned to TrustedPublishers. The installer verifies the
+   catalog signature and the approved publisher thumbprint
+   `3CF8CF26D8BA266C3A483AB7D26D4A818E317D76` before adding that certificate.
+   Explicitly review `-IddPublisherThumbprint` for a different package, or select
+   a Microsoft-attested virtual-display driver and
    re-run the whole proof for it. Never disable Secure Boot, Memory
    Integrity, or signature enforcement to make a driver load.
 2. **Agent install without identity.** The sealed image may contain
@@ -198,9 +206,21 @@ Both are operator-owned decisions recorded here, not defaults:
    Install with the repo helper, which enforces the unenrolled invariant:
 
    ```powershell
-   .\Install-PremiumAgent.ps1 -AgentMsi C:\media\workspace-agent-<version>-windows-amd64.msi `
-     -IddDriverDir C:\media\vdd-25.7.23 -AgentVersion <version>
+   .\Install-PremiumAgent.ps1 -AgentMsi C:\media\workspace-agent-v<version>-windows-amd64.msi `
+     -IddDriverDir C:\media\vdd-25.7.23 -AgentVersion <version> `
+     -VcRedistPath C:\media\vc_redist.x64.exe
    ```
+
+   Keep `Install-PremiumAgent.ps1`, `Install-RootDisplayDevice.ps1` and
+   `VddSettings.ps1` together. Supply the pinned x64 Visual C++ redistributable
+   as local media (record its version/source/SHA256); the guest does not download
+   it. The installer checks both runtime DLLs before starting the agent, logs MSI
+   setup to `-InstallLogPath` (default: the process TEMP directory), and verifies
+   the actual `KubeWorkspacesAgent` SCM service. `pnputil` stages the signed
+   driver package; the SetupAPI helper also creates/binds its root-enumerated
+   `ROOT\MTTVDD` devnode and requires a healthy present device. Package staging
+   alone, `pnputil /scan-devices`, and a nonexistent `New-PnpDevice` command do
+   not establish that devnode.
 
    Two independently enrolled clones with distinct identities are the
    proof (section 8); a manually enrolled reference guest is not.
@@ -253,7 +273,7 @@ Do this in the disposable build guest, after the intended updates finish:
    ```powershell
    .\Test-SealedRoot.ps1 -Mode Seal -AgentVersion <version>
    ```
-4. Set the VM to Manual before Sysprep so an automatic run strategy cannot restart
+5. Set the VM to Manual before Sysprep so an automatic run strategy cannot restart
    the generalised root:
 
    ```sh
@@ -261,7 +281,7 @@ Do this in the disposable build guest, after the intended updates finish:
      -p '{"spec":{"runStrategy":"Manual"}}'
    ```
 
-5. From elevated PowerShell run:
+6. From elevated PowerShell run:
 
    ```powershell
    C:\Windows\System32\Sysprep\Sysprep.exe /generalize /shutdown /oobe /mode:vm
@@ -269,7 +289,7 @@ Do this in the disposable build guest, after the intended updates finish:
 
    Confirm successful shutdown; if Sysprep fails inspect its Panther logs and
    resolve the actual error. **Do not boot the sealed root again.**
-6. After guest shutdown, set `runStrategy: Halted` and wait for the VMI to be
+7. After guest shutdown, set `runStrategy: Halted` and wait for the VMI to be
    deleted before offline export:
 
    ```sh
@@ -305,6 +325,16 @@ intended virtual size. Guest BitLocker decryption is a separate guest check;
 80Gi virtual disk; check the actual requested/allocated PVC sizes and free space.
 After verifying the standalone QCOW2 and retaining the cluster source, you can
 remove the redundant raw export to reclaim space.
+
+For CompactOS/WOF-compressed Windows roots, the filesystem driver inside the
+libguestfs appliance must support WOF. With NTFS-3G this requires the
+[system-compression plugin](https://github.com/ebiggers/ntfs-3g-system-compression)
+(pin a reviewed release/commit). When installing it outside the package manager,
+explicitly include its shared object in supermin's appliance host-file list;
+installing it only on the host is insufficient. Without it, system DLLs can
+appear as `unsupported reparse tag 0x80000017` symlinks and `virt-win-reg` can
+report no OS despite readable NTFS/registry hives. Preserve the checked disk and
+fix the appliance rather than bypassing the generalized-state validation.
 
 ### Native answer-file discovery in the sealed root
 

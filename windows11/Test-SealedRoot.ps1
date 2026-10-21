@@ -22,8 +22,6 @@ param(
 
 . (Join-Path $PSScriptRoot 'VddSettings.ps1')
 
-. (Join-Path $PSScriptRoot 'VddSettings.ps1')
-
 $ErrorActionPreference = 'Stop'
 
 $dataDir = Join-Path $env:PROGRAMDATA 'workspace-agent'
@@ -42,7 +40,7 @@ if ($Mode -eq 'Seal') {
     foreach ($cache in @('C:\Windows\Panther\unattend.xml', 'C:\Windows\System32\Sysprep\unattend.xml')) {
         Assert-NoFile $cache 'stale answer file would override clone provisioning'
     }
-    $service = Get-Service -Name 'workspace-agent' -ErrorAction SilentlyContinue
+    $service = Get-Service -Name 'KubeWorkspacesAgent' -ErrorAction SilentlyContinue
     if ($null -eq $service) { throw 'premium agent service missing from sealed root' }
     if ($AgentVersion -ne '') {
         $reported = (& "$env:ProgramFiles\workspace-agent\kw-agent.exe" --version 2>$null)
@@ -50,7 +48,7 @@ if ($Mode -eq 'Seal') {
             throw "Agent version mismatch: expected $AgentVersion, got: $reported"
         }
     }
-    $idd = @(Get-PnpDevice -Class Display -ErrorAction SilentlyContinue | Where-Object { $_.FriendlyName -match 'Virtual|Indirect' })
+    $idd = @(Get-PnpDevice -PresentOnly -Class Display -ErrorAction SilentlyContinue | Where-Object { $_.InstanceId -like 'ROOT\MTTVDD\*' -and $_.Status -eq 'OK' })
     if (-not $idd.Count) { throw 'sealed root has no virtual/indirect display device' }
     # Assert the virtual-display mode list is the premium list aligned to frontend presets.
     if (-not (Test-Path -LiteralPath $VddConfigPath)) { throw "sealed root missing virtual display config: $VddConfigPath" }

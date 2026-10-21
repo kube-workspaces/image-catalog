@@ -16,6 +16,14 @@ authentication and independent-clone validation. Reusable tooling lives here:
 `prepare-sealed-root.py`, and `package-layer.py`.
 Keep generated media/disks/credentials outside this checkout.
 
+The premium stack helpers also live here: `Install-PremiumAgent.ps1`,
+`Install-RootDisplayDevice.ps1`, `VddSettings.ps1` and `Test-SealedRoot.ps1`.
+Keep the installer and its adjacent helpers together. Supply the pinned agent
+MSI, signed IDD and x64 VC++ redistributable as operator-owned media. The
+installer verifies the IDD publisher pin, creates its root display devnode,
+and checks the `KubeWorkspacesAgent` SCM service while leaving the root
+unenrolled. The build guide documents the input and logging parameters.
+
 ## Inputs and build record
 
 Use Windows 11 x86-64 **Pro or Enterprise** on eligible Linux amd64 KVM workers.
