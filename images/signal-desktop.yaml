@@ -1,0 +1,39 @@
+apiVersion: kubeworkspaces.io/v1alpha1
+kind: Image
+metadata:
+  name: signal-desktop
+spec:
+  defaultPath: /
+  defaultPort: 6080
+  description: Signal Private Messenger on Debian, accessible through noVNC.
+    Link with Signal on your phone. Attach a volume at /home/signal to retain
+    your linked-device identity and messages across container replacements.
+  category: Productivity
+  tags:
+  - messaging
+  - privacy
+  - debian
+  - vnc
+  displayName: Signal Private Messenger
+  homepageURL: https://signal.org
+  icon: https://cdn.simpleicons.org/signal/3A76F0
+  image: flaccid/signal-desktop:latest
+  imageHomepageURL: https://hub.docker.com/r/flaccid/signal-desktop
+  proxyConfig:
+    needsNoopSW: true
+    rewriteHostAbsolutePaths: true
+    websocketPaths:
+    - /websockify
+  sourceURL: https://github.com/flaccid/container-signal-desktop
+  defaultUser: signal
+  defaultHomedir: /home/signal
+  defaultShell: /bin/bash
+  defaultUID: 1000
+  defaultSharedMemory: true
+  defaultInitContainers:
+  - name: volume-permissions
+    image: busybox:1.37
+    command:
+    - sh
+    - -c
+    - if [ -d /home/signal ]; then chown -R {{uid}}:{{uid}} /home/signal; fi
