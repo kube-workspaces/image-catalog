@@ -101,6 +101,16 @@ if ($reported -notmatch [regex]::Escape($AgentVersion)) {
     throw "Agent version mismatch: expected $AgentVersion, got: $reported"
 }
 
+# A fresh VirtIO network is normally classified Public. Install a program/port
+# scoped exception before the first interactive worker starts, avoiding the
+# per-user firewall prompt and its default inbound block rules.
+$agentPath = Join-Path $env:ProgramFiles 'workspace-agent\kw-agent.exe'
+$firewallName = 'KubeWorkspacesAgentDesktop'
+Get-NetFirewallRule -Name $firewallName -ErrorAction SilentlyContinue | Remove-NetFirewallRule
+New-NetFirewallRule -Name $firewallName -DisplayName 'KubeWorkspaces Agent Desktop' `
+    -Direction Inbound -Action Allow -Enabled True -Program $agentPath `
+    -Protocol TCP -LocalPort 44787 -Profile Any | Out-Null
+
 $idd = @(Get-PnpDevice -PresentOnly -Class Display -ErrorAction SilentlyContinue | Where-Object { $_.InstanceId -like 'ROOT\MTTVDD\*' -and $_.Status -eq 'OK' })
 if (-not $idd.Count) { throw 'No virtual/indirect display device after IDD install' }
 

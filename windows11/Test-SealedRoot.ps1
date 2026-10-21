@@ -34,6 +34,30 @@ function Assert-File($path, $why) {
     if (-not (Test-Path -LiteralPath $path -PathType Leaf)) { throw "$why ($path missing)" }
 }
 
+# Service installation/enrollment alone does not prove that a proxy can reach
+# the interactive listener. Require the explicit all-profile desktop exception
+# in both seal and clone gates, and reject conflicting application block rules.
+$agentPath = Join-Path $env:ProgramFiles 'workspace-agent\kw-agent.exe'
+$firewall = @(Get-NetFirewallRule -PolicyStore ActiveStore -Name 'KubeWorkspacesAgentDesktop' -ErrorAction SilentlyContinue)
+if ($firewall.Count -ne 1 -or $firewall[0].Enabled -ne 'True' -or
+    $firewall[0].Direction -ne 'Inbound' -or $firewall[0].Action -ne 'Allow' -or
+    $firewall[0].Profile -ne 'Any') {
+    throw 'premium desktop firewall exception missing, disabled or not enabled for all network profiles'
+}
+$application = @($firewall | Get-NetFirewallApplicationFilter)
+$ports = @($firewall | Get-NetFirewallPortFilter)
+if ($application.Count -ne 1 -or $application[0].Program -ne $agentPath -or
+    $ports.Count -ne 1 -or $ports[0].Protocol -notin @('TCP', '6') -or
+    $ports[0].LocalPort -ne '44787') {
+    throw 'premium desktop firewall exception must target kw-agent.exe TCP port 44787'
+}
+$blocks = @(Get-NetFirewallApplicationFilter -PolicyStore ActiveStore -Program $agentPath -ErrorAction SilentlyContinue |
+    Get-NetFirewallRule | Where-Object { $_.Enabled -eq 'True' -and $_.Direction -eq 'Inbound' -and $_.Action -eq 'Block' } |
+    Where-Object { @($_ | Get-NetFirewallPortFilter | Where-Object {
+        $_.Protocol -in @('TCP', '6', 'Any', '256') -and $_.LocalPort -in @('Any', '44787')
+    }).Count -gt 0 })
+if ($blocks.Count) { throw 'conflicting inbound block rule prevents premium desktop access' }
+
 if ($Mode -eq 'Seal') {
     Assert-NoFile (Join-Path $dataDir 'identity.json') 'sealed root must not carry an enrolled identity'
     Assert-NoFile (Join-Path $dataDir 'enrollment-token.json') 'sealed root must not carry an enrollment token'

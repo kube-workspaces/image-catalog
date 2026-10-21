@@ -220,8 +220,20 @@ Both are operator-owned decisions recorded here, not defaults:
    the actual `KubeWorkspacesAgent` SCM service. `pnputil` stages the signed
    driver package; the SetupAPI helper also creates/binds its root-enumerated
    `ROOT\MTTVDD` devnode and requires a healthy present device. Package staging
-   alone, `pnputil /scan-devices`, and a nonexistent `New-PnpDevice` command do
-   not establish that devnode.
+    alone, `pnputil /scan-devices`, and a nonexistent `New-PnpDevice` command do
+    not establish that devnode.
+
+    The installer also creates `KubeWorkspacesAgentDesktop`, an inbound Windows
+    Firewall exception scoped to `kw-agent.exe` and TCP port 44787 on all network
+    profiles. Fresh VirtIO networks commonly use the Public profile. Install
+    this rule before the first user login so Windows does not prompt/block the
+    worker. The seal/clone gate requires the rule and rejects conflicting agent
+    TCP block rules; it does not disable the firewall or change network category.
+
+    The native service starts the premium desktop worker only after an eligible
+    console user signs in. Use the recovery VNC console for the initial Windows
+    login, then select Premium. Login/lock/secure-desktop capture is not provided
+    by the ordinary user-session worker.
 
    Two independently enrolled clones with distinct identities are the
    proof (section 8); a manually enrolled reference guest is not.
