@@ -4,8 +4,9 @@ This guide takes an operator-owned Windows ISO through installation, validation,
 Sysprep, private OCI packaging and two independent KubeVirt VM clones. The
 repository supplies scripts and recipes; **it distributes no Windows binaries**.
 You download the media from Microsoft and keep the installed image in your own
-private registry. Windows workspace catalog/API/UI integration is still in
-development: the result here is a direct KubeVirt VM in your cluster.
+private registry. Managed Windows workspace integration is available through
+the catalog template in section 9; the validation fixtures
+below use direct KubeVirt VMs in your cluster.
 
 ## 1. Prepare the cluster, workstation and inputs
 
@@ -496,8 +497,30 @@ active configuration pass. Then detach media/delete the Secret as described abov
 
 Record actual private-CDI-import success, import/desktop timings, graceful
 stop/start, Windows Update behaviour, display limitations and ownership cleanup.
-Only then mark the image accepted for the tested VM profile. Product-managed
-Windows workspace support requires the remaining controller/API/UI integration.
+Only then mark the image accepted for the tested VM profile. Use the template
+below to offer the resulting artifact through the workspace catalog.
+
+## 9. Offer the result as a workspace catalog Image
+
+The catalog ships an Image template for this recipe as
+[`images/ms-windows-11-vm.yaml`](../images/ms-windows-11-vm.yaml). Its
+`spec.image` is a deliberate unresolvable placeholder, so the template is inert
+until you point it at your artifact:
+
+```sh
+cp "$CATALOG/images/ms-windows-11-vm.yaml" "$PRIVATE/ms-windows-11-vm.yaml"
+# set spec.image to registry.example.com/private/windows11@sha256:<digest>
+kubectl apply -f "$PRIVATE/ms-windows-11-vm.yaml"
+```
+
+The Image CR carries presentation and policy (category, ports, agent
+`remoteDesktop`, persistent root size, memory and `vmProfile`) but no registry
+credentials. Reuse the same-namespace import Secret and CA ConfigMap from
+section 8, reference them from the workspace's `vmProfile`
+(`importSecretName`, `importCertConfigMapName`) at create time, and keep the
+applied manifest private when your registry hostname or digest identifies private
+infrastructure. Validate each new digest with the clone checks above before
+wider use.
 
 ## Troubleshooting and cleanup
 

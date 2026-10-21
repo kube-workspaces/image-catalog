@@ -1,0 +1,38 @@
+apiVersion: kubeworkspaces.io/v1alpha1
+kind: Image
+metadata:
+  name: ms-windows-11-vm
+spec:
+  displayName: Windows 11 VM (self-built)
+  description: Windows 11 Pro/Enterprise (amd64) as a sealed, generalised KubeVirt
+    root built by the operator from an official ISO. This template ships with a
+    placeholder image reference — build your own image with the BUILD-GUIDE package
+    stage and replace spec.image with your private OCI digest before use. Persistent
+    root disk, native Sysprep bootstrap and controller-managed initial credentials;
+    display-only (no mounts, env, shared memory or GPU). Requires KubeVirt, CDI and
+    a Windows 11-eligible amd64 worker.
+  category: VM
+  tags:
+  - vm
+  - windows
+  defaultPort: 3389
+  homepageURL: https://www.microsoft.com/software-download/windows11
+  # Placeholder only — not a pullable image. Replace with your own digest-pinned
+  # reference produced by the BUILD-GUIDE "package" stage, e.g.
+  # registry.example.com/windows11@sha256:<digest>.
+  image: registry.example.invalid/windows11@sha256:0000000000000000000000000000000000000000000000000000000000000000
+  sourceURL: https://github.com/kube-workspaces/image-catalog/tree/main/windows11
+  memoryLimit: 8Gi
+  memoryRequest: 8Gi
+  persistentRootDisk: true
+  persistentRootDiskSize: 80Gi
+  proxyConfig:
+    agentPort: 44787
+  remoteDesktop:
+    path: /
+    port: 44787
+    protocol: agent
+  soundDevice: ich9
+  vmProfile: windows11-amd64-v1
+  workspaceTypes:
+  - vm

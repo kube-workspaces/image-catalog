@@ -1,10 +1,12 @@
 # Private Windows 11 prepared root recipe
 
-This is a **Phase 0 proof recipe**, not an enabled Image CR. Windows product
-schema, provisioning and lifecycle integration must pass the
-[cross-repo plan](https://github.com/kube-workspaces/tracking/blob/main/windows-vm-workspaces-plan.md)
-before a Windows catalog entry is shipped. Microsoft binaries, installer media,
-license keys and per-guest credentials are operator supplied and private.
+A catalog Image template for this recipe ships as
+[`images/ms-windows-11-vm.yaml`](../images/ms-windows-11-vm.yaml). It carries a
+placeholder `spec.image`; build your image with the guide below, then replace
+that value with your private digest-pinned OCI reference. The template supplies
+the Windows VM profile, persistent root and premium agent connection settings.
+Microsoft binaries, installer media, license keys and per-guest credentials are
+operator supplied and private.
 
 For the complete operator workflow, follow
 [Build your own Windows 11 image from an official ISO](./BUILD-GUIDE.md).
