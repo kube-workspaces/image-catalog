@@ -72,6 +72,7 @@ The filename always matches `metadata.name` (e.g. `images/code-server.yaml`).
 | `pacman` | Pac-Man (HTML5) | Game | 80 | - |
 | `rdesktop-ubuntu-xfce` | Ubuntu XFCE RDP Desktop | Desktop | 3000 | - |
 | `rstudio` | RStudio Server | IDE | 8787 | - |
+| `signal-desktop` | Signal Private Messenger | Productivity | 6080 | - |
 | `snake` | Snake | Game | 80 | - |
 | `stirling-pdf` | Stirling PDF | Tool | 8080 | - |
 | `tetris` | Tetris | Game | 80 | - |
