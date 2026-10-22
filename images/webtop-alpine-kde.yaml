@@ -20,6 +20,7 @@ spec:
   homepageURL: https://github.com/linuxserver/docker-webtop
   icon: https://cdn.simpleicons.org/alpinelinux/0D597F
   image: linuxserver/webtop:alpine-kde
+  defaultImagePullPolicy: Always
   imageHomepageURL: https://hub.docker.com/r/linuxserver/webtop
   defaultSharedMemory: true
   proxyConfig:

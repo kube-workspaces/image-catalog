@@ -20,6 +20,7 @@ spec:
   homepageURL: https://kasmweb.com
   icon: https://cdn.simpleicons.org/linuxserver/DA3B8A
   image: linuxserver/kasm:1.19.0
+  defaultImagePullPolicy: Always
   imageHomepageURL: https://hub.docker.com/r/linuxserver/kasm
   privileged: true
   defaultSharedMemory: true

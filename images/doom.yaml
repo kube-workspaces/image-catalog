@@ -21,6 +21,7 @@ spec:
   homepageURL: https://github.com/kasmtech/workspaces-images
   icon: https://upload.wikimedia.org/wikipedia/en/5/57/Doom_cover_art.jpg
   image: kasmweb/doom:1.19.0-rolling-daily
+  defaultImagePullPolicy: Always
   imageHomepageURL: https://hub.docker.com/r/kasmweb/doom
   proxyConfig:
     needsNoopSW: true

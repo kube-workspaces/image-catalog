@@ -20,6 +20,7 @@ spec:
   homepageURL: https://github.com/linuxserver/docker-webtop
   icon: https://cdn.simpleicons.org/ubuntu/E95420
   image: linuxserver/webtop:ubuntu-xfce
+  defaultImagePullPolicy: Always
   imageHomepageURL: https://hub.docker.com/r/linuxserver/webtop
   defaultSharedMemory: true
   proxyConfig:

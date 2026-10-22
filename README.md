@@ -121,6 +121,7 @@ Commonly used fields:
 | `defaultInitContainers` | []Container | Injected at creation (e.g. volume chown) |
 | `additionalPorts` | []{name,port,protocol} | Extra exposed ports (e.g. audio) |
 | `defaultSharedMemory` | bool | Mounts `/dev/shm` as memory-backed |
+| `defaultImagePullPolicy` | string | Container pull policy (`Always`, `IfNotPresent`, `Never`); empty = Kubernetes default (`Always` for `:latest`, `IfNotPresent` for pinned tags). Set `Always` for images published under a rolling tag so restarted workspaces pick up new builds. A workspace can override it |
 | `privileged` | bool | Runs the container privileged |
 | `proxyConfig` | object | Reverse-proxy behaviour hints — see below |
 

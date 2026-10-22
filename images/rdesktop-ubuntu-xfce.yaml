@@ -15,6 +15,7 @@ spec:
   homepageURL: https://github.com/linuxserver/docker-rdesktop
   icon: https://cdn.simpleicons.org/ubuntu/E95420
   image: linuxserver/rdesktop:ubuntu-xfce
+  defaultImagePullPolicy: Always
   imageHomepageURL: https://hub.docker.com/r/linuxserver/rdesktop
   defaultSharedMemory: true
   proxyConfig:

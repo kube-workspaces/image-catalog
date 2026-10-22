@@ -20,6 +20,7 @@ spec:
   homepageURL: https://github.com/linuxserver/docker-webtop
   icon: https://cdn.simpleicons.org/archlinux/1793D1
   image: linuxserver/webtop:arch-kde
+  defaultImagePullPolicy: Always
   imageHomepageURL: https://hub.docker.com/r/linuxserver/webtop
   defaultSharedMemory: true
   proxyConfig:
