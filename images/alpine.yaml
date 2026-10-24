@@ -1,0 +1,27 @@
+apiVersion: kubeworkspaces.io/v1alpha1
+kind: Image
+metadata:
+  name: alpine
+spec:
+  defaultPath: /
+  defaultPort: 80
+  description: Lightweight Alpine Linux container image. A minimal, security-oriented
+    Linux distribution supporting container and scratch workspace types.
+  category: Tool
+  tags:
+  - alpine
+  - linux
+  - container
+  - scratch
+  displayName: Alpine Linux
+  homepageURL: https://alpinelinux.org
+  icon: https://cdn.simpleicons.org/alpinelinux/0D597F
+  image: alpine:latest
+  imageHomepageURL: https://hub.docker.com/_/alpine
+  proxyConfig:
+    needsNoopSW: true
+    rewriteHostAbsolutePaths: true
+  sourceURL: https://github.com/alpinelinux/docker-alpine
+  workspaceTypes:
+  - container
+  - scratch

@@ -43,8 +43,9 @@ The filename always matches `metadata.name` (e.g. `images/code-server.yaml`).
 
 | Name | Display Name | Category | Port | Example |
 |------|---------------|----------|------|---------|
-| `alpine-vm` | Alpine VM | VM | 22 | ✓ |
 | `adminer` | Adminer (Database Manager) | Tool | 8080 | - |
+| `alpine` | Alpine Linux | Tool | 80 | - |
+| `alpine-vm` | Alpine VM | VM | 22 | ✓ |
 | `chromium` | Chromium Browser | Browser | 3000 | - |
 | `code-server` | Code Server (VS Code) | IDE | 8080 | ✓ |
 | `cyberchef` | CyberChef | Tool | 8000 | - |
