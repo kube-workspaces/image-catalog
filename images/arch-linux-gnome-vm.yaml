@@ -1,0 +1,185 @@
+# Official upstream base (GNOME is NOT preinstalled):
+# https://geo.mirror.pkgbuild.com/images/v20261015.611680/Arch-Linux-x86_64-cloudimg-20261015.611680.qcow2
+# Published SHA256:
+# 08754e28d91b1680086c6211ef4df13559e766fff7cdb4006489b14b5d281f08
+# Selected approach: import the official cloud disk directly through CDI HTTP;
+# install GNOME through cloud-init below. No OS build or OCI packaging/publish.
+# Requires the controller/API direct HTTP root-import implementation.
+# No new CRD fields are needed. Pins workspace-agent v0.5.0, including the
+# GNOME/Wayland backend and console-user startup installer.
+apiVersion: kubeworkspaces.io/v1alpha1
+kind: Image
+metadata:
+  name: arch-linux-gnome-vm
+  # Add kubeworkspaces.io/ssh-key-propagation: qemuGuestAgent only after
+  # validating live authorized_keys replacement with the packaged guest agent.
+spec:
+  displayName: Arch Linux GNOME Desktop VM
+  description: Arch Linux rolling-release virtual machine with a GNOME desktop,
+    provisioned from the official Arch Linux cloud image. GNOME is installed on
+    first boot and requires Internet access to the Arch package mirrors. Connect
+    through the workspace-agent premium desktop, KubeVirt graphical VNC console
+    or SSH. The persistent root disk
+    retains the desktop, installed packages and user files across restarts.
+  category: Desktop
+  icon: https://cdn.simpleicons.org/archlinux/1793D1
+  tags:
+  - vm
+  - linux
+  - archlinux
+  - desktop
+  - gui
+  - gnome
+  - wayland
+  - cloud-init
+  defaultPort: 22
+  proxyConfig:
+    agentPort: 44787
+  remoteDesktop:
+    protocol: agent
+    port: 44787
+    path: /
+  homepageURL: https://archlinux.org/
+  sourceURL: https://gitlab.archlinux.org/archlinux/arch-boxes
+  # Versioned official cloud image; requires CDI HTTP root-import support.
+  image: https://geo.mirror.pkgbuild.com/images/v20261015.611680/Arch-Linux-x86_64-cloudimg-20261015.611680.qcow2
+  imageHomepageURL: https://geo.mirror.pkgbuild.com/images/
+  links:
+  - title: Official Arch Linux VM images
+    url: https://geo.mirror.pkgbuild.com/images/
+  - title: Official cloud image documentation
+    url: https://wiki.archlinux.org/title/Arch_Linux_on_a_VPS
+  - title: GNOME on Arch Linux
+    url: https://wiki.archlinux.org/title/GNOME
+  # Catalog evaluation credentials, explicitly configured below. These are not
+  # claimed to be the official cloud image's upstream default password.
+  defaultUser: arch
+  defaultPassword: arch
+  defaultHomedir: /home/arch
+  defaultShell: /bin/bash
+  defaultCloudInit: true
+  # GNOME provisions on first boot; the agent archive is checksum-pinned.
+  defaultUserData: |
+    #cloud-config
+    users:
+    - name: arch
+      groups: [wheel]
+      shell: /bin/bash
+      lock_passwd: false
+      plain_text_passwd: arch
+      sudo: ALL=(ALL) NOPASSWD:ALL
+    ssh_pwauth: true
+    chpasswd:
+      expire: false
+      users:
+      - name: arch
+        password: arch
+        type: text
+    # Arch does not support partial upgrades. Upgrade the base before adding
+    # desktop packages; reboot afterwards to use any newly installed kernel.
+    package_update: true
+    package_upgrade: true
+    packages:
+    - gnome
+    - mesa
+    - qemu-guest-agent
+    - curl
+    - ca-certificates
+    - python-gobject
+    - gst-python
+    - gst-plugins-base
+    - gst-plugins-good
+    - gst-plugins-ugly
+    - gst-plugin-pipewire
+    - pipewire-pulse
+    - wireplumber
+    - libpulse
+    write_files:
+    # KubeVirt recreates the VMI identity on stop/start. This persistent root
+    # is the same guest: do not rerun per-instance provisioning or SSH keygen.
+    # Reset/clone use fresh imported roots, so their cloud-init cache is empty.
+    - path: /etc/cloud/cloud.cfg.d/99-workspace-instance.cfg
+      permissions: "0644"
+      content: |
+        manual_cache_clean: true
+    # A forced-connected virtio head may otherwise select its largest EDID
+    # mode. Seed a practical software-encoded desktop without removing modes.
+    - path: /home/arch/.config/monitors.xml
+      owner: arch:arch
+      defer: true
+      permissions: "0644"
+      content: |
+        <monitors version="2">
+          <configuration>
+            <logicalmonitor>
+              <x>0</x><y>0</y><scale>1</scale><primary>yes</primary>
+              <monitor>
+                <monitorspec>
+                  <connector>Virtual-1</connector><vendor>RHT</vendor>
+                  <product>QEMU Monitor</product><serial>0x00000000</serial>
+                </monitorspec>
+                <mode><width>1280</width><height>800</height><rate>60.024</rate></mode>
+              </monitor>
+            </logicalmonitor>
+          </configuration>
+        </monitors>
+    # Start the same console session used by KubeVirt VNC and the Tier 1
+    # worker. Screen locking still requires the configured account password.
+    - path: /etc/gdm/custom.conf
+      permissions: "0644"
+      content: |
+        [daemon]
+        AutomaticLoginEnable=True
+        AutomaticLogin=arch
+    # Keep the official base's networkd/resolved configuration. Do not enable
+    # a competing NetworkManager service just because GNOME installs it.
+    runcmd:
+    # Keep virtio's head connected when the recovery VNC viewer disconnects;
+    # otherwise Mutter can lose every output and agent capture has no monitor.
+    - |
+      set -eu
+      if ! grep -Fq 'video=Virtual-1:1280x800@60e' /etc/default/grub; then
+        printf '\nGRUB_CMDLINE_LINUX_DEFAULT="$GRUB_CMDLINE_LINUX_DEFAULT video=Virtual-1:1280x800@60e"\n' >> /etc/default/grub
+      fi
+      grub-mkconfig -o /boot/grub/grub.cfg
+    # Verified release archive; no source-build fallback.
+    - |
+      set -eu
+      url=https://github.com/kube-workspaces/workspace-agent/releases/download/v0.5.0/workspace-agent-v0.5.0-linux-amd64.tar.gz
+      sha256=a638f3756930c1bb099fb9b338ad781abeacd818d5e5bdd0caf35ee70814666e
+      tempdir=$(mktemp -d)
+      trap 'rm -rf "$tempdir"' EXIT
+      curl --fail --location --retry 3 --output "$tempdir/agent.tar.gz" "$url"
+      printf '%s  %s\n' "$sha256" "$tempdir/agent.tar.gz" | sha256sum --check --strict
+      tar -xzf "$tempdir/agent.tar.gz" -C "$tempdir"
+      bash "$tempdir/workspace-agent-linux-amd64/install.sh" arch
+    # Avoid GNOME's first-login shell-modal welcome dialog in an automatically
+    # provisioned console; it otherwise intercepts the first remote session.
+    - |
+      set -eu
+      version=$(gnome-shell --version)
+      version=${version##* }
+      runuser -u arch -- dbus-run-session -- gsettings set org.gnome.shell welcome-dialog-last-shown-version "$version"
+    - [systemctl, enable, --now, sshd.service]
+    - [systemctl, enable, --now, qemu-guest-agent.service]
+    - [systemctl, enable, gdm.service]
+    - [systemctl, set-default, graphical.target]
+    - [touch, /var/lib/cloud/instance/workspace-desktop-ready]
+    power_state:
+      mode: reboot
+      delay: now
+      timeout: 30
+      condition: [test, -f, /var/lib/cloud/instance/workspace-desktop-ready]
+  # VM catalog semantics: guest RAM, then total launcher allocation including
+  # QEMU overhead (not a conventional container request/limit pair).
+  memoryLimit: 4Gi
+  memoryRequest: 5Gi
+  persistentRootDisk: true
+  persistentRootDiskSize: 30Gi
+  videoDevice: virtio
+  soundDevice: ich9
+  workspaceTypes:
+  - vm
+  # KubeVirt VNC remains the out-of-band setup/recovery path. The controller
+  # writes the per-Workspace/root-generation public agent binding into NoCloud;
+  # the GNOME autostart entry runs the worker in the ordinary console session.
