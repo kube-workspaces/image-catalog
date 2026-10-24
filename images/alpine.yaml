@@ -3,6 +3,9 @@ kind: Image
 metadata:
   name: alpine
 spec:
+  defaultArgs:
+  - sleep
+  - infinity
   defaultPath: /
   defaultPort: 80
   description: Lightweight Alpine Linux container image. A minimal, security-oriented
