@@ -42,6 +42,16 @@ The [Kasm collection](images/kasm/README.md) contains 45 core images in
 including all 86 workspaces in Kasm's public registry. Its README documents
 metadata sources, versions, standalone defaults, and inventory coverage.
 Validation and distribution builds include nested image folders recursively.
+`ImageRepository` syncing scans only the direct files in each configured folder.
+To sync the full catalog, list all three paths explicitly (trailing `/` optional):
+
+```yaml
+spec:
+  paths:
+    - images
+    - images/kasm/core
+    - images/kasm/desktop
+```
 
 ## Available Images
 

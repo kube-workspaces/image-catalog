@@ -103,3 +103,8 @@ Install the complete Kasm collection directly with:
 ```bash
 kubectl apply --recursive -f images/kasm/
 ```
+
+For an `ImageRepository`, list `images/kasm/core` and `images/kasm/desktop`
+separately: repository syncing reads only direct files in each configured folder.
+Include `images` as well to import the other catalog entries. Trailing slashes
+are optional.
