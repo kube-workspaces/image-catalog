@@ -1,0 +1,36 @@
+apiVersion: kubeworkspaces.io/v1alpha1
+kind: Image
+metadata:
+  name: linuxserver-digikam
+spec:
+  defaultPath: /
+  defaultPort: 3000
+  description: '[digiKam]: Professional Photo Management with the Power of Open Source'
+  category: Tool
+  tags:
+  - linuxserver
+  - linux
+  - photos
+  displayName: digiKam (LinuxServer)
+  homepageURL: https://www.digikam.org/
+  icon: https://raw.githubusercontent.com/linuxserver/docker-templates/master/linuxserver.io/img/digikam.png
+  image: linuxserver/digikam:latest
+  imageHomepageURL: https://hub.docker.com/r/linuxserver/digikam
+  workspaceTypes:
+  - container
+  - scratch
+  sourceURL: https://github.com/linuxserver/docker-digikam
+  additionalPorts:
+  - name: tcp-3001
+    port: 3001
+    protocol: TCP
+  proxyConfig:
+    needsNoopSW: true
+    rewriteHostAbsolutePaths: true
+    preservePathPrefix: true
+  defaultSharedMemory: true
+  defaultEnv:
+  - name: SUBFOLDER
+    value: /proxy/{{namespace}}/{{name}}/
+  defaultUser: abc
+  defaultHomedir: /config

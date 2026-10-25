@@ -1,0 +1,37 @@
+apiVersion: kubeworkspaces.io/v1alpha1
+kind: Image
+metadata:
+  name: linuxserver-weixin
+spec:
+  defaultPath: /
+  defaultPort: 3000
+  description: '[Weixin] (WeChat) is an instant messaging, social media, and mobile payment
+    app developed by Tencent.'
+  category: Tool
+  tags:
+  - linuxserver
+  - linux
+  - chat
+  displayName: Weixin (LinuxServer)
+  homepageURL: https://weixin.qq.com/
+  icon: https://raw.githubusercontent.com/linuxserver/docker-templates/master/linuxserver.io/img/weixin-logo.png
+  image: linuxserver/weixin:latest
+  imageHomepageURL: https://hub.docker.com/r/linuxserver/weixin
+  workspaceTypes:
+  - container
+  - scratch
+  sourceURL: https://github.com/linuxserver/docker-weixin
+  additionalPorts:
+  - name: tcp-3001
+    port: 3001
+    protocol: TCP
+  proxyConfig:
+    needsNoopSW: true
+    rewriteHostAbsolutePaths: true
+    preservePathPrefix: true
+  defaultSharedMemory: true
+  defaultEnv:
+  - name: SUBFOLDER
+    value: /proxy/{{namespace}}/{{name}}/
+  defaultUser: abc
+  defaultHomedir: /config

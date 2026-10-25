@@ -1,0 +1,38 @@
+apiVersion: kubeworkspaces.io/v1alpha1
+kind: Image
+metadata:
+  name: linuxserver-gimp
+spec:
+  defaultPath: /
+  defaultPort: 3000
+  description: '[GIMP] is a free and open-source raster graphics editor used for image manipulation
+    (retouching) and image editing, free-form drawing, transcoding between different image
+    file formats, and more specialized tasks. It is extensible by means of plugins, and scriptable.'
+  category: Tool
+  tags:
+  - linuxserver
+  - linux
+  - image-editor
+  displayName: GIMP (LinuxServer)
+  homepageURL: https://www.gimp.org/
+  icon: https://raw.githubusercontent.com/linuxserver/docker-templates/master/linuxserver.io/img/gimp-logo.png
+  image: linuxserver/gimp:latest
+  imageHomepageURL: https://hub.docker.com/r/linuxserver/gimp
+  workspaceTypes:
+  - container
+  - scratch
+  sourceURL: https://github.com/linuxserver/docker-gimp
+  additionalPorts:
+  - name: tcp-3001
+    port: 3001
+    protocol: TCP
+  proxyConfig:
+    needsNoopSW: true
+    rewriteHostAbsolutePaths: true
+    preservePathPrefix: true
+  defaultSharedMemory: true
+  defaultEnv:
+  - name: SUBFOLDER
+    value: /proxy/{{namespace}}/{{name}}/
+  defaultUser: abc
+  defaultHomedir: /config

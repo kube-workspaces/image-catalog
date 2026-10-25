@@ -1,0 +1,33 @@
+apiVersion: kubeworkspaces.io/v1alpha1
+kind: Image
+metadata:
+  name: linuxserver-pyload-ng
+spec:
+  defaultPath: /
+  defaultPort: 8000
+  description: '[pyLoad] is a Free and Open Source download manager written in Python and
+    designed to be extremely lightweight, easily extensible and fully manageable via web.'
+  category: Tool
+  tags:
+  - linuxserver
+  - linux
+  - downloaders
+  displayName: pyLoad NG (LinuxServer)
+  homepageURL: https://pyload.net/
+  icon: https://github.com/linuxserver/docker-templates/raw/master/linuxserver.io/img/pyload-logo.png
+  image: linuxserver/pyload-ng:latest
+  imageHomepageURL: https://hub.docker.com/r/linuxserver/pyload-ng
+  workspaceTypes:
+  - container
+  - scratch
+  sourceURL: https://github.com/linuxserver/docker-pyload-ng
+  additionalPorts:
+  - name: tcp-9666
+    port: 9666
+    protocol: TCP
+  proxyConfig:
+    needsNoopSW: true
+    rewriteHostAbsolutePaths: true
+  defaultCredentials:
+    username: pyload
+    password: pyload

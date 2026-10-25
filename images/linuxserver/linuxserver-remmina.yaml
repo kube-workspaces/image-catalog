@@ -1,0 +1,40 @@
+apiVersion: kubeworkspaces.io/v1alpha1
+kind: Image
+metadata:
+  name: linuxserver-remmina
+spec:
+  defaultPath: /
+  defaultPort: 3000
+  description: '[Remmina] is a remote desktop client written in GTK, aiming to be useful for
+    system administrators and travellers, who need to work with lots of remote computers in
+    front of either large or tiny screens. Remmina supports multiple network protocols, in
+    an integrated and consistent user interface. Currently RDP, VNC, SPICE, SSH and EXEC are
+    supported.'
+  category: Tool
+  tags:
+  - linuxserver
+  - linux
+  - remote-desktop
+  displayName: Remmina (LinuxServer)
+  homepageURL: https://remmina.org/
+  icon: https://raw.githubusercontent.com/linuxserver/docker-templates/master/linuxserver.io/img/remmina-icon.png
+  image: linuxserver/remmina:latest
+  imageHomepageURL: https://hub.docker.com/r/linuxserver/remmina
+  workspaceTypes:
+  - container
+  - scratch
+  sourceURL: https://github.com/linuxserver/docker-remmina
+  additionalPorts:
+  - name: tcp-3001
+    port: 3001
+    protocol: TCP
+  proxyConfig:
+    needsNoopSW: true
+    rewriteHostAbsolutePaths: true
+    preservePathPrefix: true
+  defaultSharedMemory: true
+  defaultEnv:
+  - name: SUBFOLDER
+    value: /proxy/{{namespace}}/{{name}}/
+  defaultUser: abc
+  defaultHomedir: /config

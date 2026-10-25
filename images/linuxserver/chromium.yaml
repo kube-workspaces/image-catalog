@@ -1,0 +1,36 @@
+apiVersion: kubeworkspaces.io/v1alpha1
+kind: Image
+metadata:
+  name: chromium
+spec:
+  defaultPath: /
+  defaultPort: 3000
+  description: '[Chromium] is an open-source browser project that aims to build a safer, faster,
+    and more stable way for all users to experience the web.'
+  category: Browser
+  tags:
+  - linuxserver
+  - linux
+  - web-browser
+  displayName: Chromium (LinuxServer)
+  homepageURL: https://www.chromium.org/chromium-projects/
+  icon: https://raw.githubusercontent.com/linuxserver/docker-templates/master/linuxserver.io/img/chromium-logo.png
+  image: linuxserver/chromium:latest
+  imageHomepageURL: https://hub.docker.com/r/linuxserver/chromium
+  workspaceTypes:
+  - container
+  - scratch
+  sourceURL: https://github.com/linuxserver/docker-chromium
+  additionalPorts:
+  - name: tcp-3001
+    port: 3001
+    protocol: TCP
+  proxyConfig:
+    needsNoopSW: true
+    preservePathPrefix: true
+  defaultSharedMemory: true
+  defaultEnv:
+  - name: SUBFOLDER
+    value: /proxy/{{namespace}}/{{name}}/
+  defaultUser: abc
+  defaultHomedir: /config

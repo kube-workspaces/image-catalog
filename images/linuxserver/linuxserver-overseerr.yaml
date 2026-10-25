@@ -1,0 +1,27 @@
+apiVersion: kubeworkspaces.io/v1alpha1
+kind: Image
+metadata:
+  name: linuxserver-overseerr
+spec:
+  defaultPath: /
+  defaultPort: 5055
+  description: Deprecated by LinuxServer.io. overseerr is a request management and media discovery
+    tool built to work with your existing Plex ecosystem.
+  category: Tool
+  tags:
+  - linuxserver
+  - linux
+  - media-requesters
+  - deprecated
+  displayName: Overseerr (LinuxServer)
+  homepageURL: https://overseerr.dev/
+  icon: https://raw.githubusercontent.com/linuxserver/docker-templates/master/linuxserver.io/img/overseerr.png
+  image: linuxserver/overseerr:latest
+  imageHomepageURL: https://hub.docker.com/r/linuxserver/overseerr
+  workspaceTypes:
+  - container
+  - scratch
+  sourceURL: https://github.com/linuxserver/docker-overseerr
+  proxyConfig:
+    needsNoopSW: true
+    rewriteHostAbsolutePaths: true

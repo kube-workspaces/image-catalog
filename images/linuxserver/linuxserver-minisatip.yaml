@@ -1,0 +1,33 @@
+apiVersion: kubeworkspaces.io/v1alpha1
+kind: Image
+metadata:
+  name: linuxserver-minisatip
+spec:
+  defaultPath: /
+  defaultPort: 8875
+  description: minisatip is a multi-threaded satip server version 1.2 that runs under Linux
+    and it was tested with DVB-S, DVB-S2, DVB-T, DVB-T2, DVB-C, DVB-C2, ATSC and ISDB-T cards.
+  category: Tool
+  tags:
+  - linuxserver
+  - linux
+  - media-tools
+  displayName: minisatip (LinuxServer)
+  homepageURL: https://github.com/catalinii/minisatip
+  icon: https://raw.githubusercontent.com/linuxserver/docker-templates/master/linuxserver.io/img/minisatip-icon.png
+  image: linuxserver/minisatip:latest
+  imageHomepageURL: https://hub.docker.com/r/linuxserver/minisatip
+  workspaceTypes:
+  - container
+  - scratch
+  sourceURL: https://github.com/linuxserver/docker-minisatip
+  additionalPorts:
+  - name: tcp-554
+    port: 554
+    protocol: TCP
+  - name: udp-1900
+    port: 1900
+    protocol: UDP
+  proxyConfig:
+    needsNoopSW: true
+    rewriteHostAbsolutePaths: true

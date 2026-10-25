@@ -1,0 +1,54 @@
+apiVersion: kubeworkspaces.io/v1alpha1
+kind: Image
+metadata:
+  name: linuxserver-unifi-network-application
+spec:
+  defaultPath: /
+  defaultPort: 8443
+  description: The unifi-network-application software is a powerful, enterprise wireless software
+    engine ideal for high-density client deployments requiring low latency and high uptime
+    performance.
+  category: Tool
+  tags:
+  - linuxserver
+  - linux
+  - network
+  displayName: UniFi Network Application (LinuxServer)
+  homepageURL: https://ui.com/
+  icon: https://raw.githubusercontent.com/linuxserver/docker-templates/master/linuxserver.io/img/unifi-banner.png
+  image: linuxserver/unifi-network-application:latest
+  imageHomepageURL: https://hub.docker.com/r/linuxserver/unifi-network-application
+  workspaceTypes:
+  - container
+  - scratch
+  sourceURL: https://github.com/linuxserver/docker-unifi-network-application
+  additionalPorts:
+  - name: udp-3478
+    port: 3478
+    protocol: UDP
+  - name: udp-10001
+    port: 10001
+    protocol: UDP
+  - name: tcp-8080
+    port: 8080
+    protocol: TCP
+  - name: udp-1900
+    port: 1900
+    protocol: UDP
+  - name: tcp-8843
+    port: 8843
+    protocol: TCP
+  - name: tcp-8880
+    port: 8880
+    protocol: TCP
+  - name: tcp-6789
+    port: 6789
+    protocol: TCP
+  - name: udp-5514
+    port: 5514
+    protocol: UDP
+  proxyConfig:
+    needsNoopSW: true
+    rewriteHostAbsolutePaths: true
+    scheme: https
+    tlsSkipVerify: true

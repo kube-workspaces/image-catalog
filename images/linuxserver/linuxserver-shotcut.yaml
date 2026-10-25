@@ -1,0 +1,36 @@
+apiVersion: kubeworkspaces.io/v1alpha1
+kind: Image
+metadata:
+  name: linuxserver-shotcut
+spec:
+  defaultPath: /
+  defaultPort: 3000
+  description: shotcut is a free, open source, cross-platform video editor.
+  category: Tool
+  tags:
+  - linuxserver
+  - linux
+  - video-editor
+  displayName: Shotcut (LinuxServer)
+  homepageURL: https://www.shotcut.org/
+  icon: https://raw.githubusercontent.com/linuxserver/docker-templates/master/linuxserver.io/img/shotcut-logo.png
+  image: linuxserver/shotcut:latest
+  imageHomepageURL: https://hub.docker.com/r/linuxserver/shotcut
+  workspaceTypes:
+  - container
+  - scratch
+  sourceURL: https://github.com/linuxserver/docker-shotcut
+  additionalPorts:
+  - name: tcp-3001
+    port: 3001
+    protocol: TCP
+  proxyConfig:
+    needsNoopSW: true
+    rewriteHostAbsolutePaths: true
+    preservePathPrefix: true
+  defaultSharedMemory: true
+  defaultEnv:
+  - name: SUBFOLDER
+    value: /proxy/{{namespace}}/{{name}}/
+  defaultUser: abc
+  defaultHomedir: /config

@@ -1,0 +1,26 @@
+apiVersion: kubeworkspaces.io/v1alpha1
+kind: Image
+metadata:
+  name: linuxserver-medusa
+spec:
+  defaultPath: /
+  defaultPort: 8081
+  description: medusa is an automatic Video Library Manager for TV Shows. It watches for new
+    episodes of your favorite shows, and when they are posted it does its magic.
+  category: Tool
+  tags:
+  - linuxserver
+  - linux
+  - media-management
+  displayName: Medusa (LinuxServer)
+  homepageURL: https://pymedusa.com/
+  icon: https://raw.githubusercontent.com/linuxserver/docker-templates/master/linuxserver.io/img/medusa-icon.png
+  image: linuxserver/medusa:latest
+  imageHomepageURL: https://hub.docker.com/r/linuxserver/medusa
+  workspaceTypes:
+  - container
+  - scratch
+  sourceURL: https://github.com/linuxserver/docker-medusa
+  proxyConfig:
+    needsNoopSW: true
+    rewriteHostAbsolutePaths: true

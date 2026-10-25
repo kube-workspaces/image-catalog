@@ -1,0 +1,36 @@
+apiVersion: kubeworkspaces.io/v1alpha1
+kind: Image
+metadata:
+  name: vscodium
+spec:
+  defaultPath: /
+  defaultPort: 3000
+  description: '[VSCodium] is a community-driven, freely-licensed binary distribution of Microsoft’s
+    editor VS Code.'
+  category: IDE
+  tags:
+  - linuxserver
+  - linux
+  - programming
+  displayName: VSCodium (LinuxServer)
+  homepageURL: https://vscodium.com/
+  icon: https://raw.githubusercontent.com/linuxserver/docker-templates/master/linuxserver.io/img/vscodium-icon.png
+  image: linuxserver/vscodium:latest
+  imageHomepageURL: https://hub.docker.com/r/linuxserver/vscodium
+  workspaceTypes:
+  - container
+  - scratch
+  sourceURL: https://github.com/linuxserver/docker-vscodium
+  additionalPorts:
+  - name: tcp-3001
+    port: 3001
+    protocol: TCP
+  proxyConfig:
+    needsNoopSW: true
+    preservePathPrefix: true
+  defaultSharedMemory: true
+  defaultEnv:
+  - name: SUBFOLDER
+    value: /proxy/{{namespace}}/{{name}}/
+  defaultUser: abc
+  defaultHomedir: /config

@@ -1,0 +1,33 @@
+apiVersion: kubeworkspaces.io/v1alpha1
+kind: Image
+metadata:
+  name: linuxserver-wireguard
+spec:
+  defaultPath: /
+  defaultPort: 51820
+  description: '[WireGuard®] is an extremely simple yet fast and modern VPN that utilizes
+    state-of-the-art cryptography. It aims to be faster, simpler, leaner, and more useful
+    than IPsec, while avoiding the massive headache. It intends to be considerably more performant
+    than OpenVPN. WireGuard is designed as a general purpose VPN for running on embedded interfaces
+    and super computers alike, fit for many... No browser endpoint; use the terminal or native
+    client.'
+  category: Tool
+  tags:
+  - linuxserver
+  - linux
+  - network
+  - vpn
+  - non-http
+  displayName: WireGuard (LinuxServer)
+  homepageURL: https://www.wireguard.com/
+  icon: https://www.wireguard.com/img/wireguard.svg
+  image: linuxserver/wireguard:latest
+  imageHomepageURL: https://hub.docker.com/r/linuxserver/wireguard
+  workspaceTypes:
+  - container
+  - scratch
+  sourceURL: https://github.com/linuxserver/docker-wireguard
+  additionalPorts:
+  - name: udp-51820
+    port: 51820
+    protocol: UDP

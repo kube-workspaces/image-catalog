@@ -1,0 +1,39 @@
+apiVersion: kubeworkspaces.io/v1alpha1
+kind: Image
+metadata:
+  name: linuxserver-orcaslicer
+spec:
+  defaultPath: /
+  defaultPort: 3000
+  description: '[Orca Slicer] is an open source slicer for FDM printers. OrcaSlicer is fork
+    of Bambu Studio, it was previously known as BambuStudio-SoftFever, Bambu Studio is forked
+    from PrusaSlicer by Prusa Research, which is from Slic3r by Alessandro Ranellucci and
+    the RepRap community'
+  category: Tool
+  tags:
+  - linuxserver
+  - linux
+  - 3d-printing
+  displayName: OrcaSlicer (LinuxServer)
+  homepageURL: https://github.com/SoftFever/OrcaSlicer
+  icon: https://raw.githubusercontent.com/linuxserver/docker-templates/master/linuxserver.io/img/orcaslicer-logo.png
+  image: linuxserver/orcaslicer:latest
+  imageHomepageURL: https://hub.docker.com/r/linuxserver/orcaslicer
+  workspaceTypes:
+  - container
+  - scratch
+  sourceURL: https://github.com/linuxserver/docker-orcaslicer
+  additionalPorts:
+  - name: tcp-3001
+    port: 3001
+    protocol: TCP
+  proxyConfig:
+    needsNoopSW: true
+    rewriteHostAbsolutePaths: true
+    preservePathPrefix: true
+  defaultSharedMemory: true
+  defaultEnv:
+  - name: SUBFOLDER
+    value: /proxy/{{namespace}}/{{name}}/
+  defaultUser: abc
+  defaultHomedir: /config

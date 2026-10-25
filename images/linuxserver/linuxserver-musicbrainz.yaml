@@ -1,0 +1,26 @@
+apiVersion: kubeworkspaces.io/v1alpha1
+kind: Image
+metadata:
+  name: linuxserver-musicbrainz
+spec:
+  defaultPath: /
+  defaultPort: 5000
+  description: Legacy or infrastructure image available on Docker Hub. Musicbrainz container
+    from LinuxServer.io.
+  category: Tool
+  tags:
+  - linuxserver
+  - linux
+  - hub-only
+  displayName: Musicbrainz (LinuxServer)
+  homepageURL: https://hub.docker.com/r/linuxserver/musicbrainz
+  icon: https://raw.githubusercontent.com/linuxserver/docker-templates/master/linuxserver.io/img/linuxserver-ls-logo.png
+  image: linuxserver/musicbrainz:latest
+  imageHomepageURL: https://hub.docker.com/r/linuxserver/musicbrainz
+  workspaceTypes:
+  - container
+  - scratch
+  sourceURL: https://github.com/linuxserver/docker-musicbrainz
+  proxyConfig:
+    needsNoopSW: true
+    rewriteHostAbsolutePaths: true

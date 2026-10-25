@@ -1,0 +1,26 @@
+apiVersion: kubeworkspaces.io/v1alpha1
+kind: Image
+metadata:
+  name: linuxserver-vscodium-web
+spec:
+  defaultPath: /
+  defaultPort: 8000
+  description: vscodium-web is a community-driven, freely-licensed binary distribution of
+    the remote host web component of Microsoft's editor VS Code.
+  category: IDE
+  tags:
+  - linuxserver
+  - linux
+  - programming
+  displayName: VSCodium Web (LinuxServer)
+  homepageURL: https://vscodium.com/
+  icon: https://raw.githubusercontent.com/linuxserver/docker-templates/master/linuxserver.io/img/vscodium-icon.png
+  image: linuxserver/vscodium-web:latest
+  imageHomepageURL: https://hub.docker.com/r/linuxserver/vscodium-web
+  workspaceTypes:
+  - container
+  - scratch
+  sourceURL: https://github.com/linuxserver/docker-vscodium-web
+  proxyConfig:
+    needsNoopSW: true
+    rewriteHostAbsolutePaths: true

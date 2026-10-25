@@ -1,0 +1,39 @@
+apiVersion: kubeworkspaces.io/v1alpha1
+kind: Image
+metadata:
+  name: linuxserver-kali-linux
+spec:
+  defaultPath: /
+  defaultPort: 3000
+  description: kali-linux - is an Advanced Penetration Testing Linux distribution used for
+    Penetration Testing, Ethical Hacking and network security assessments. KALI LINUX ™ is
+    a trademark of OffSec.
+  category: Desktop
+  tags:
+  - linuxserver
+  - linux
+  - remote-desktop
+  - security
+  displayName: Kali Linux (LinuxServer)
+  homepageURL: https://github.com/linuxserver/docker-kali-linux
+  icon: https://raw.githubusercontent.com/linuxserver/docker-templates/master/linuxserver.io/img/kali-logo.png
+  image: linuxserver/kali-linux:latest
+  imageHomepageURL: https://hub.docker.com/r/linuxserver/kali-linux
+  workspaceTypes:
+  - container
+  - scratch
+  sourceURL: https://github.com/linuxserver/docker-kali-linux
+  additionalPorts:
+  - name: tcp-3001
+    port: 3001
+    protocol: TCP
+  proxyConfig:
+    needsNoopSW: true
+    rewriteHostAbsolutePaths: true
+    preservePathPrefix: true
+  defaultSharedMemory: true
+  defaultEnv:
+  - name: SUBFOLDER
+    value: /proxy/{{namespace}}/{{name}}/
+  defaultUser: abc
+  defaultHomedir: /config

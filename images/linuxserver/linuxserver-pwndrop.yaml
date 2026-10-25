@@ -1,0 +1,27 @@
+apiVersion: kubeworkspaces.io/v1alpha1
+kind: Image
+metadata:
+  name: linuxserver-pwndrop
+spec:
+  defaultPath: /pwndrop
+  defaultPort: 8080
+  description: pwndrop is a self-deployable file hosting service for sending out red teaming
+    payloads or securely sharing your private files over HTTP and WebDAV.
+  category: Tool
+  tags:
+  - linuxserver
+  - linux
+  - file-sharing
+  - security
+  displayName: pwndrop (LinuxServer)
+  homepageURL: https://github.com/kgretzky/pwndrop
+  icon: https://raw.githubusercontent.com/kgretzky/pwndrop/master/media/pwndrop-logo-512.png
+  image: linuxserver/pwndrop:latest
+  imageHomepageURL: https://hub.docker.com/r/linuxserver/pwndrop
+  workspaceTypes:
+  - container
+  - scratch
+  sourceURL: https://github.com/linuxserver/docker-pwndrop
+  proxyConfig:
+    needsNoopSW: true
+    rewriteHostAbsolutePaths: true

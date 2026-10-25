@@ -1,0 +1,29 @@
+apiVersion: kubeworkspaces.io/v1alpha1
+kind: Image
+metadata:
+  name: linuxserver-jackett
+spec:
+  defaultPath: /
+  defaultPort: 9117
+  description: 'jackett works as a proxy server: it translates queries from apps (Sonarr,
+    SickRage, CouchPotato, Mylar, etc) into tracker-site-specific http queries, parses the
+    html response, then sends results back to the requesting software. This allows for getting
+    recent uploads (like RSS) and performing searches. Jackett is a single repository of maintained
+    indexer scraping & translation logic - removing...'
+  category: Tool
+  tags:
+  - linuxserver
+  - linux
+  - indexers
+  displayName: Jackett (LinuxServer)
+  homepageURL: https://github.com/Jackett/Jackett
+  icon: https://raw.githubusercontent.com/linuxserver/docker-templates/master/linuxserver.io/img/jackett-banner.png
+  image: linuxserver/jackett:latest
+  imageHomepageURL: https://hub.docker.com/r/linuxserver/jackett
+  workspaceTypes:
+  - container
+  - scratch
+  sourceURL: https://github.com/linuxserver/docker-jackett
+  proxyConfig:
+    needsNoopSW: true
+    rewriteHostAbsolutePaths: true

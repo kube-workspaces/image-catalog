@@ -1,0 +1,36 @@
+apiVersion: kubeworkspaces.io/v1alpha1
+kind: Image
+metadata:
+  name: linuxserver-kodi-headless
+spec:
+  defaultPath: /
+  defaultPort: 8080
+  description: Legacy or infrastructure image available on Docker Hub. Headless Kodi media
+    library server with a web interface.
+  category: Tool
+  tags:
+  - linuxserver
+  - linux
+  - hub-only
+  displayName: Kodi Headless (LinuxServer)
+  homepageURL: https://hub.docker.com/r/linuxserver/kodi-headless
+  icon: https://raw.githubusercontent.com/linuxserver/docker-templates/master/linuxserver.io/img/linuxserver-ls-logo.png
+  image: linuxserver/kodi-headless:latest
+  imageHomepageURL: https://hub.docker.com/r/linuxserver/kodi-headless
+  workspaceTypes:
+  - container
+  - scratch
+  sourceURL: https://github.com/linuxserver/docker-kodi-headless
+  additionalPorts:
+  - name: tcp-9090
+    port: 9090
+    protocol: TCP
+  - name: udp-9777
+    port: 9777
+    protocol: UDP
+  proxyConfig:
+    needsNoopSW: true
+    rewriteHostAbsolutePaths: true
+  defaultCredentials:
+    username: kodi
+    password: kodi

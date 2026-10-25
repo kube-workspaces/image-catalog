@@ -1,0 +1,38 @@
+apiVersion: kubeworkspaces.io/v1alpha1
+kind: Image
+metadata:
+  name: linuxserver-mediaelch
+spec:
+  defaultPath: /
+  defaultPort: 3000
+  description: '[MediaElch] is a MediaManager for Kodi. Information about Movies, TV Shows,
+    Concerts and Music are stored as nfo files. Fanarts are downloaded automatically from
+    fanart.tv. Using the nfo generator, MediaElch can be used with other MediaCenters as well.'
+  category: Tool
+  tags:
+  - linuxserver
+  - linux
+  - media-management
+  displayName: MediaElch (LinuxServer)
+  homepageURL: https://github.com/Komet/MediaElch
+  icon: https://raw.githubusercontent.com/linuxserver/docker-templates/master/linuxserver.io/img/mediaelch-logo.png
+  image: linuxserver/mediaelch:latest
+  imageHomepageURL: https://hub.docker.com/r/linuxserver/mediaelch
+  workspaceTypes:
+  - container
+  - scratch
+  sourceURL: https://github.com/linuxserver/docker-mediaelch
+  additionalPorts:
+  - name: tcp-3001
+    port: 3001
+    protocol: TCP
+  proxyConfig:
+    needsNoopSW: true
+    rewriteHostAbsolutePaths: true
+    preservePathPrefix: true
+  defaultSharedMemory: true
+  defaultEnv:
+  - name: SUBFOLDER
+    value: /proxy/{{namespace}}/{{name}}/
+  defaultUser: abc
+  defaultHomedir: /config

@@ -1,0 +1,30 @@
+apiVersion: kubeworkspaces.io/v1alpha1
+kind: Image
+metadata:
+  name: linuxserver-taisun
+spec:
+  defaultPath: /
+  defaultPort: 3000
+  description: 'Legacy or infrastructure image available on Docker Hub. taisun is an application
+    for a Docker enabled device with an emphasis on providing a web based interface for managing
+    a single server. Taisun allows you to: - Deploy and manage web based virtual desktops.
+    - Deploy Taisun specific stacks of applications - Browse available images on popular Docker
+    repositories - Import a Docker project from any git repository and start developing on
+    your choice...'
+  category: Tool
+  tags:
+  - linuxserver
+  - linux
+  - hub-only
+  displayName: Taisun (LinuxServer)
+  homepageURL: https://www.taisun.io/
+  icon: https://raw.githubusercontent.com/Taisun-Docker/taisun/master/public/favicon/apple-icon-180x180.png
+  image: linuxserver/taisun:latest
+  imageHomepageURL: https://hub.docker.com/r/linuxserver/taisun
+  workspaceTypes:
+  - container
+  - scratch
+  sourceURL: https://github.com/linuxserver/docker-taisun
+  proxyConfig:
+    needsNoopSW: true
+    rewriteHostAbsolutePaths: true

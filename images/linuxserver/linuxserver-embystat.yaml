@@ -1,0 +1,27 @@
+apiVersion: kubeworkspaces.io/v1alpha1
+kind: Image
+metadata:
+  name: linuxserver-embystat
+spec:
+  defaultPath: /
+  defaultPort: 6555
+  description: Legacy or infrastructure image available on Docker Hub. EmbyStat is a personal
+    web server that can calculate all kinds of statistics from your (local) Emby server. Just
+    install this on your server and let him calculate all kinds of fun stuff.
+  category: Tool
+  tags:
+  - linuxserver
+  - linux
+  - hub-only
+  displayName: EmbyStat (LinuxServer)
+  homepageURL: https://github.com/mregni/EmbyStat
+  icon: https://raw.githubusercontent.com/linuxserver/docker-templates/master/linuxserver.io/img/embystat-logo.png
+  image: linuxserver/embystat:latest
+  imageHomepageURL: https://hub.docker.com/r/linuxserver/embystat
+  workspaceTypes:
+  - container
+  - scratch
+  sourceURL: https://github.com/linuxserver/docker-embystat
+  proxyConfig:
+    needsNoopSW: true
+    rewriteHostAbsolutePaths: true

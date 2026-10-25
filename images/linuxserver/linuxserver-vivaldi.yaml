@@ -1,0 +1,37 @@
+apiVersion: kubeworkspaces.io/v1alpha1
+kind: Image
+metadata:
+  name: linuxserver-vivaldi
+spec:
+  defaultPath: /
+  defaultPort: 3000
+  description: '[Vivaldi] is a Norwegian freeware, cross-platform web browser with a built-in
+    email client developed by Vivaldi Technologies.'
+  category: Browser
+  tags:
+  - linuxserver
+  - linux
+  - web-browser
+  displayName: Vivaldi (LinuxServer)
+  homepageURL: https://vivaldi.com/
+  icon: https://raw.githubusercontent.com/linuxserver/docker-templates/master/linuxserver.io/img/vivaldi-logo.png
+  image: linuxserver/vivaldi:latest
+  imageHomepageURL: https://hub.docker.com/r/linuxserver/vivaldi
+  workspaceTypes:
+  - container
+  - scratch
+  sourceURL: https://github.com/linuxserver/docker-vivaldi
+  additionalPorts:
+  - name: tcp-3001
+    port: 3001
+    protocol: TCP
+  proxyConfig:
+    needsNoopSW: true
+    rewriteHostAbsolutePaths: true
+    preservePathPrefix: true
+  defaultSharedMemory: true
+  defaultEnv:
+  - name: SUBFOLDER
+    value: /proxy/{{namespace}}/{{name}}/
+  defaultUser: abc
+  defaultHomedir: /config

@@ -1,0 +1,38 @@
+apiVersion: kubeworkspaces.io/v1alpha1
+kind: Image
+metadata:
+  name: linuxserver-wps-office
+spec:
+  defaultPath: /
+  defaultPort: 3000
+  description: '[WPS Office] is a lightweight, feature-rich comprehensive office suite with
+    high compatibility. As a handy and professional office software, WPS Office allows you
+    to edit files in Writer, Presentation, Spreadsheet, and PDF to improve your work efficiency.'
+  category: Tool
+  tags:
+  - linuxserver
+  - linux
+  - documents
+  displayName: WPS Office (LinuxServer)
+  homepageURL: https://www.wps.com/
+  icon: https://raw.githubusercontent.com/linuxserver/docker-templates/master/linuxserver.io/img/wps-office-icon.png
+  image: linuxserver/wps-office:latest
+  imageHomepageURL: https://hub.docker.com/r/linuxserver/wps-office
+  workspaceTypes:
+  - container
+  - scratch
+  sourceURL: https://github.com/linuxserver/docker-wps-office
+  additionalPorts:
+  - name: tcp-3001
+    port: 3001
+    protocol: TCP
+  proxyConfig:
+    needsNoopSW: true
+    rewriteHostAbsolutePaths: true
+    preservePathPrefix: true
+  defaultSharedMemory: true
+  defaultEnv:
+  - name: SUBFOLDER
+    value: /proxy/{{namespace}}/{{name}}/
+  defaultUser: abc
+  defaultHomedir: /config

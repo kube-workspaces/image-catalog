@@ -1,0 +1,38 @@
+apiVersion: kubeworkspaces.io/v1alpha1
+kind: Image
+metadata:
+  name: linuxserver-ferdium
+spec:
+  defaultPath: /
+  defaultPort: 3000
+  description: '[Ferdium] is a desktop app that helps you organize how you use your favourite
+    apps by combining them into one application.'
+  category: Tool
+  tags:
+  - linuxserver
+  - linux
+  - chat
+  - social
+  displayName: Ferdium (LinuxServer)
+  homepageURL: https://ferdium.org/
+  icon: https://raw.githubusercontent.com/linuxserver/docker-templates/master/linuxserver.io/img/ferdium-logo.png
+  image: linuxserver/ferdium:latest
+  imageHomepageURL: https://hub.docker.com/r/linuxserver/ferdium
+  workspaceTypes:
+  - container
+  - scratch
+  sourceURL: https://github.com/linuxserver/docker-ferdium
+  additionalPorts:
+  - name: tcp-3001
+    port: 3001
+    protocol: TCP
+  proxyConfig:
+    needsNoopSW: true
+    rewriteHostAbsolutePaths: true
+    preservePathPrefix: true
+  defaultSharedMemory: true
+  defaultEnv:
+  - name: SUBFOLDER
+    value: /proxy/{{namespace}}/{{name}}/
+  defaultUser: abc
+  defaultHomedir: /config

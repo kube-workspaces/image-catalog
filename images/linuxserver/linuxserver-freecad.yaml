@@ -1,0 +1,38 @@
+apiVersion: kubeworkspaces.io/v1alpha1
+kind: Image
+metadata:
+  name: linuxserver-freecad
+spec:
+  defaultPath: /
+  defaultPort: 3000
+  description: '[FreeCAD] is a general-purpose parametric 3D computer-aided design (CAD) modeler
+    and a building information modeling (BIM) software application with finite element method
+    (FEM) support.'
+  category: Tool
+  tags:
+  - linuxserver
+  - linux
+  - 3d-modeling
+  displayName: FreeCAD (LinuxServer)
+  homepageURL: https://www.freecad.org/
+  icon: https://raw.githubusercontent.com/linuxserver/docker-templates/master/linuxserver.io/img/freecad-logo.png
+  image: linuxserver/freecad:latest
+  imageHomepageURL: https://hub.docker.com/r/linuxserver/freecad
+  workspaceTypes:
+  - container
+  - scratch
+  sourceURL: https://github.com/linuxserver/docker-freecad
+  additionalPorts:
+  - name: tcp-3001
+    port: 3001
+    protocol: TCP
+  proxyConfig:
+    needsNoopSW: true
+    rewriteHostAbsolutePaths: true
+    preservePathPrefix: true
+  defaultSharedMemory: true
+  defaultEnv:
+  - name: SUBFOLDER
+    value: /proxy/{{namespace}}/{{name}}/
+  defaultUser: abc
+  defaultHomedir: /config

@@ -1,0 +1,37 @@
+apiVersion: kubeworkspaces.io/v1alpha1
+kind: Image
+metadata:
+  name: webtop-alpine-kde
+spec:
+  defaultEnv:
+  - name: SUBFOLDER
+    value: /proxy/{{namespace}}/{{name}}/
+  defaultPath: /
+  defaultPort: 3000
+  description: Lightweight Alpine Linux with KDE Plasma desktop via KasmVNC. Minimal footprint
+    with a modern desktop environment.
+  category: Desktop
+  tags:
+  - linuxserver
+  - vnc
+  - linux
+  - alpine
+  - kde
+  displayName: Alpine KDE Desktop
+  homepageURL: https://github.com/linuxserver/docker-webtop
+  icon: https://raw.githubusercontent.com/linuxserver/docker-templates/master/linuxserver.io/img/webtop-logo.png
+  image: linuxserver/webtop:alpine-kde
+  defaultImagePullPolicy: Always
+  imageHomepageURL: https://hub.docker.com/r/linuxserver/webtop
+  defaultSharedMemory: true
+  proxyConfig:
+    needsNoopSW: true
+    preservePathPrefix: true
+    websocketPaths:
+    - /websockify
+  sourceURL: https://github.com/linuxserver/docker-webtop
+  defaultUser: abc
+  defaultHomedir: /config
+  workspaceTypes:
+  - container
+  - scratch

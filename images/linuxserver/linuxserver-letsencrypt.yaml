@@ -1,0 +1,28 @@
+apiVersion: kubeworkspaces.io/v1alpha1
+kind: Image
+metadata:
+  name: linuxserver-letsencrypt
+spec:
+  defaultPath: /
+  defaultPort: 443
+  description: Legacy or infrastructure image available on Docker Hub. Letsencrypt container
+    from LinuxServer.io.
+  category: Tool
+  tags:
+  - linuxserver
+  - linux
+  - hub-only
+  displayName: Letsencrypt (LinuxServer)
+  homepageURL: https://hub.docker.com/r/linuxserver/letsencrypt
+  icon: https://raw.githubusercontent.com/linuxserver/docker-templates/master/linuxserver.io/img/linuxserver-ls-logo.png
+  image: linuxserver/letsencrypt:latest
+  imageHomepageURL: https://hub.docker.com/r/linuxserver/letsencrypt
+  workspaceTypes:
+  - container
+  - scratch
+  sourceURL: https://github.com/linuxserver/docker-letsencrypt
+  proxyConfig:
+    needsNoopSW: true
+    rewriteHostAbsolutePaths: true
+    scheme: https
+    tlsSkipVerify: true

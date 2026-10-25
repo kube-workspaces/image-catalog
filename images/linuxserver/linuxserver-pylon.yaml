@@ -1,0 +1,28 @@
+apiVersion: kubeworkspaces.io/v1alpha1
+kind: Image
+metadata:
+  name: linuxserver-pylon
+spec:
+  defaultPath: /
+  defaultPort: 3131
+  description: Deprecated by LinuxServer.io. pylon is a web based integrated development environment
+    built with Node.js as a backend and with a supercharged JavaScript/HTML5 frontend, licensed
+    under GPL version 3. This project originates from Cloud9 v2 project.
+  category: Tool
+  tags:
+  - linuxserver
+  - linux
+  - programming
+  - deprecated
+  displayName: Pylon (LinuxServer)
+  homepageURL: https://github.com/pylonide/pylon
+  icon: https://raw.githubusercontent.com/pylonide/pylon/master/doc/screenshot02.png
+  image: linuxserver/pylon:latest
+  imageHomepageURL: https://hub.docker.com/r/linuxserver/pylon
+  workspaceTypes:
+  - container
+  - scratch
+  sourceURL: https://github.com/linuxserver/docker-pylon
+  proxyConfig:
+    needsNoopSW: true
+    rewriteHostAbsolutePaths: true

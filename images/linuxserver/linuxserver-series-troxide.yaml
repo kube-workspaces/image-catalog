@@ -1,0 +1,30 @@
+apiVersion: kubeworkspaces.io/v1alpha1
+kind: Image
+metadata:
+  name: linuxserver-series-troxide
+spec:
+  defaultPath: /
+  defaultPort: 3000
+  description: Deprecated by LinuxServer.io. [Series Troxide] a Simple and Modern Series Tracker
+  category: Tool
+  tags:
+  - linuxserver
+  - linux
+  - media-management
+  - deprecated
+  displayName: Series Troxide (LinuxServer)
+  homepageURL: https://github.com/MaarifaMaarifa/series-troxide
+  icon: https://raw.githubusercontent.com/linuxserver/docker-templates/master/linuxserver.io/img/series-troxide-logo.png
+  image: linuxserver/series-troxide:latest
+  imageHomepageURL: https://hub.docker.com/r/linuxserver/series-troxide
+  workspaceTypes:
+  - container
+  - scratch
+  sourceURL: https://github.com/linuxserver/docker-series-troxide
+  additionalPorts:
+  - name: tcp-3001
+    port: 3001
+    protocol: TCP
+  proxyConfig:
+    needsNoopSW: true
+    rewriteHostAbsolutePaths: true

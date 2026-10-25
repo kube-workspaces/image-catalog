@@ -1,0 +1,27 @@
+apiVersion: kubeworkspaces.io/v1alpha1
+kind: Image
+metadata:
+  name: linuxserver-homeassistant
+spec:
+  defaultPath: /
+  defaultPort: 8123
+  description: '[Home Assistant Core] - Open source home automation that puts local control
+    and privacy first. Powered by a worldwide community of tinkerers and DIY enthusiasts.
+    Perfect to run on a Raspberry Pi or a local server'
+  category: Tool
+  tags:
+  - linuxserver
+  - linux
+  - home-automation
+  displayName: Home Assistant (LinuxServer)
+  homepageURL: https://www.home-assistant.io/
+  icon: https://github.com/home-assistant/home-assistant.io/raw/next/source/images/favicon-192x192-full.png
+  image: linuxserver/homeassistant:latest
+  imageHomepageURL: https://hub.docker.com/r/linuxserver/homeassistant
+  workspaceTypes:
+  - container
+  - scratch
+  sourceURL: https://github.com/linuxserver/docker-homeassistant
+  proxyConfig:
+    needsNoopSW: true
+    rewriteHostAbsolutePaths: true

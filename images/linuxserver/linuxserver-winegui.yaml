@@ -1,0 +1,38 @@
+apiVersion: kubeworkspaces.io/v1alpha1
+kind: Image
+metadata:
+  name: linuxserver-winegui
+spec:
+  defaultPath: /
+  defaultPort: 3000
+  description: '[WineGUI] is a user-interface friendly Wine manager that provides a graphical
+    frontend for creating and managing Wine bottles.'
+  category: Tool
+  tags:
+  - linuxserver
+  - linux
+  - games
+  - business
+  displayName: WineGUI (LinuxServer)
+  homepageURL: https://gitlab.melroy.org/melroy/winegui
+  icon: https://raw.githubusercontent.com/linuxserver/docker-templates/master/linuxserver.io/img/winegui-logo.png
+  image: linuxserver/winegui:latest
+  imageHomepageURL: https://hub.docker.com/r/linuxserver/winegui
+  workspaceTypes:
+  - container
+  - scratch
+  sourceURL: https://github.com/linuxserver/docker-winegui
+  additionalPorts:
+  - name: tcp-3001
+    port: 3001
+    protocol: TCP
+  proxyConfig:
+    needsNoopSW: true
+    rewriteHostAbsolutePaths: true
+    preservePathPrefix: true
+  defaultSharedMemory: true
+  defaultEnv:
+  - name: SUBFOLDER
+    value: /proxy/{{namespace}}/{{name}}/
+  defaultUser: abc
+  defaultHomedir: /config

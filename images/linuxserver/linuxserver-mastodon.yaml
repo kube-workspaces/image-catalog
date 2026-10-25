@@ -1,0 +1,35 @@
+apiVersion: kubeworkspaces.io/v1alpha1
+kind: Image
+metadata:
+  name: linuxserver-mastodon
+spec:
+  defaultPath: /
+  defaultPort: 443
+  description: mastodon is a free, open-source social network server based on ActivityPub
+    where users can follow friends and discover new ones..
+  category: Tool
+  tags:
+  - linuxserver
+  - linux
+  - social
+  displayName: Mastodon (LinuxServer)
+  homepageURL: https://github.com/mastodon/mastodon/
+  icon: https://raw.githubusercontent.com/linuxserver/docker-templates/master/linuxserver.io/img/mastodon-banner.png
+  image: linuxserver/mastodon:latest
+  imageHomepageURL: https://hub.docker.com/r/linuxserver/mastodon
+  workspaceTypes:
+  - container
+  - scratch
+  sourceURL: https://github.com/linuxserver/docker-mastodon
+  additionalPorts:
+  - name: tcp-80
+    port: 80
+    protocol: TCP
+  - name: tcp-9394
+    port: 9394
+    protocol: TCP
+  proxyConfig:
+    needsNoopSW: true
+    rewriteHostAbsolutePaths: true
+    scheme: https
+    tlsSkipVerify: true

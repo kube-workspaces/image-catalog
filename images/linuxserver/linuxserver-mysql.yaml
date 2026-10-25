@@ -1,0 +1,24 @@
+apiVersion: kubeworkspaces.io/v1alpha1
+kind: Image
+metadata:
+  name: linuxserver-mysql
+spec:
+  defaultPath: /
+  defaultPort: 3306
+  description: Legacy or infrastructure image available on Docker Hub. MySQL relational database
+    server. No browser endpoint; use the terminal or native client.
+  category: Tool
+  tags:
+  - linuxserver
+  - linux
+  - hub-only
+  - non-http
+  displayName: MySQL (LinuxServer)
+  homepageURL: https://hub.docker.com/r/linuxserver/mysql
+  icon: https://raw.githubusercontent.com/linuxserver/docker-templates/master/linuxserver.io/img/linuxserver-ls-logo.png
+  image: linuxserver/mysql:latest
+  imageHomepageURL: https://hub.docker.com/r/linuxserver/mysql
+  workspaceTypes:
+  - container
+  - scratch
+  sourceURL: https://github.com/linuxserver/docker-mysql

@@ -1,0 +1,27 @@
+apiVersion: kubeworkspaces.io/v1alpha1
+kind: Image
+metadata:
+  name: linuxserver-kavita
+spec:
+  defaultPath: /
+  defaultPort: 5000
+  description: kavita is a fast, feature rich, cross platform reading server. Built with a
+    focus for being a full solution for all your reading needs. Setup your own server and
+    share your reading collection with your friends and family!
+  category: Tool
+  tags:
+  - linuxserver
+  - linux
+  - books
+  displayName: Kavita (LinuxServer)
+  homepageURL: https://github.com/Kareadita/Kavita
+  icon: https://raw.githubusercontent.com/linuxserver/docker-templates/master/linuxserver.io/img/kavita-logo.png
+  image: linuxserver/kavita:latest
+  imageHomepageURL: https://hub.docker.com/r/linuxserver/kavita
+  workspaceTypes:
+  - container
+  - scratch
+  sourceURL: https://github.com/linuxserver/docker-kavita
+  proxyConfig:
+    needsNoopSW: true
+    rewriteHostAbsolutePaths: true

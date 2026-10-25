@@ -1,0 +1,37 @@
+apiVersion: kubeworkspaces.io/v1alpha1
+kind: Image
+metadata:
+  name: linuxserver-helium
+spec:
+  defaultPath: /
+  defaultPort: 3000
+  description: '[Helium] is a Chromium-based web browser made for people, with love. Privacy-first
+    with unbiased ad-blocking.'
+  category: Browser
+  tags:
+  - linuxserver
+  - linux
+  - web-browser
+  displayName: Helium (LinuxServer)
+  homepageURL: https://helium.computer/
+  icon: https://raw.githubusercontent.com/linuxserver/docker-templates/master/linuxserver.io/img/helium-logo.png
+  image: linuxserver/helium:latest
+  imageHomepageURL: https://hub.docker.com/r/linuxserver/helium
+  workspaceTypes:
+  - container
+  - scratch
+  sourceURL: https://github.com/linuxserver/docker-helium
+  additionalPorts:
+  - name: tcp-3001
+    port: 3001
+    protocol: TCP
+  proxyConfig:
+    needsNoopSW: true
+    rewriteHostAbsolutePaths: true
+    preservePathPrefix: true
+  defaultSharedMemory: true
+  defaultEnv:
+  - name: SUBFOLDER
+    value: /proxy/{{namespace}}/{{name}}/
+  defaultUser: abc
+  defaultHomedir: /config

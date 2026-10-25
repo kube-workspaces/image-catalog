@@ -1,0 +1,28 @@
+apiVersion: kubeworkspaces.io/v1alpha1
+kind: Image
+metadata:
+  name: linuxserver-luanti
+spec:
+  defaultPath: /
+  defaultPort: 30000
+  description: luanti (formerly Minetest) is an open source voxel game-creation platform with
+    easy modding and game creation No browser endpoint; use the terminal or native client.
+  category: Game
+  tags:
+  - linuxserver
+  - linux
+  - games
+  - non-http
+  displayName: Luanti (LinuxServer)
+  homepageURL: https://www.luanti.org/
+  icon: https://raw.githubusercontent.com/linuxserver/docker-templates/master/linuxserver.io/img/minetest-icon.png
+  image: linuxserver/luanti:latest
+  imageHomepageURL: https://hub.docker.com/r/linuxserver/luanti
+  workspaceTypes:
+  - container
+  - scratch
+  sourceURL: https://github.com/linuxserver/docker-luanti
+  additionalPorts:
+  - name: udp-30000
+    port: 30000
+    protocol: UDP

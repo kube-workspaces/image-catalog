@@ -1,0 +1,37 @@
+apiVersion: kubeworkspaces.io/v1alpha1
+kind: Image
+metadata:
+  name: linuxserver-joplin
+spec:
+  defaultPath: /
+  defaultPort: 3000
+  description: '[Joplin] is a free, open source note taking and to-do application, which can
+    handle a large number of notes organised into notebooks.'
+  category: Tool
+  tags:
+  - linuxserver
+  - linux
+  - content-management
+  displayName: Joplin (LinuxServer)
+  homepageURL: https://joplinapp.org/
+  icon: https://raw.githubusercontent.com/linuxserver/docker-templates/master/linuxserver.io/img/joplin-logo.png
+  image: linuxserver/joplin:latest
+  imageHomepageURL: https://hub.docker.com/r/linuxserver/joplin
+  workspaceTypes:
+  - container
+  - scratch
+  sourceURL: https://github.com/linuxserver/docker-joplin
+  additionalPorts:
+  - name: tcp-3001
+    port: 3001
+    protocol: TCP
+  proxyConfig:
+    needsNoopSW: true
+    rewriteHostAbsolutePaths: true
+    preservePathPrefix: true
+  defaultSharedMemory: true
+  defaultEnv:
+  - name: SUBFOLDER
+    value: /proxy/{{namespace}}/{{name}}/
+  defaultUser: abc
+  defaultHomedir: /config

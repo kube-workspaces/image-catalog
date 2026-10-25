@@ -1,0 +1,35 @@
+apiVersion: kubeworkspaces.io/v1alpha1
+kind: Image
+metadata:
+  name: linuxserver-syslog-ng
+spec:
+  defaultPath: /
+  defaultPort: 5514
+  description: '[syslog-ng] allows you to flexibly collect, parse, classify, rewrite and correlate
+    logs from across your infrastructure and store or route them to log analysis tools. No
+    browser endpoint; use the terminal or native client.'
+  category: Tool
+  tags:
+  - linuxserver
+  - linux
+  - monitoring
+  - non-http
+  displayName: syslog-ng (LinuxServer)
+  homepageURL: https://www.syslog-ng.com/products/open-source-log-management/
+  icon: https://raw.githubusercontent.com/linuxserver/docker-templates/master/linuxserver.io/img/syslog-ng-logo.png
+  image: linuxserver/syslog-ng:latest
+  imageHomepageURL: https://hub.docker.com/r/linuxserver/syslog-ng
+  workspaceTypes:
+  - container
+  - scratch
+  sourceURL: https://github.com/linuxserver/docker-syslog-ng
+  additionalPorts:
+  - name: udp-5514
+    port: 5514
+    protocol: UDP
+  - name: tcp-6601
+    port: 6601
+    protocol: TCP
+  - name: tcp-6514
+    port: 6514
+    protocol: TCP

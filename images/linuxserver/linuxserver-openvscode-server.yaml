@@ -1,0 +1,27 @@
+apiVersion: kubeworkspaces.io/v1alpha1
+kind: Image
+metadata:
+  name: linuxserver-openvscode-server
+spec:
+  defaultPath: /
+  defaultPort: 3000
+  description: Deprecated by LinuxServer.io. openvscode-server provides a version of VS Code
+    that runs a server on a remote machine and allows access through a modern web browser.
+  category: IDE
+  tags:
+  - linuxserver
+  - linux
+  - programming
+  - deprecated
+  displayName: OpenVSCode Server (LinuxServer)
+  homepageURL: https://github.com/gitpod-io/openvscode-server
+  icon: https://raw.githubusercontent.com/linuxserver/docker-templates/master/linuxserver.io/img/openvscode-server-logo.png
+  image: linuxserver/openvscode-server:latest
+  imageHomepageURL: https://hub.docker.com/r/linuxserver/openvscode-server
+  workspaceTypes:
+  - container
+  - scratch
+  sourceURL: https://github.com/linuxserver/docker-openvscode-server
+  proxyConfig:
+    needsNoopSW: true
+    rewriteHostAbsolutePaths: true

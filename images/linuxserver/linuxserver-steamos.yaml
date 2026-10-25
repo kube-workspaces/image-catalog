@@ -1,0 +1,102 @@
+apiVersion: kubeworkspaces.io/v1alpha1
+kind: Image
+metadata:
+  name: linuxserver-steamos
+spec:
+  defaultPath: /
+  defaultPort: 3000
+  description: Deprecated by LinuxServer.io. [SteamOS] is an Arch based Linux distribution
+    made by Valve Software. This container is a vanilla Arch install with Steam repositories
+    added for software support. This container will only work with modern AMD/Intel GPUs on
+    a real Linux Host
+  category: Game
+  tags:
+  - linuxserver
+  - linux
+  - games
+  - deprecated
+  displayName: SteamOS (LinuxServer)
+  homepageURL: https://www.steamdeck.com/
+  icon: https://raw.githubusercontent.com/linuxserver/docker-templates/master/linuxserver.io/img/steamos-logo.png
+  image: linuxserver/steamos:latest
+  imageHomepageURL: https://hub.docker.com/r/linuxserver/steamos
+  workspaceTypes:
+  - container
+  - scratch
+  sourceURL: https://github.com/linuxserver/docker-steamos
+  additionalPorts:
+  - name: tcp-3001
+    port: 3001
+    protocol: TCP
+  - name: udp-27031
+    port: 27031
+    protocol: UDP
+  - name: udp-27032
+    port: 27032
+    protocol: UDP
+  - name: udp-27033
+    port: 27033
+    protocol: UDP
+  - name: udp-27034
+    port: 27034
+    protocol: UDP
+  - name: udp-27035
+    port: 27035
+    protocol: UDP
+  - name: udp-27036
+    port: 27036
+    protocol: UDP
+  - name: tcp-27031
+    port: 27031
+    protocol: TCP
+  - name: tcp-27032
+    port: 27032
+    protocol: TCP
+  - name: tcp-27033
+    port: 27033
+    protocol: TCP
+  - name: tcp-27034
+    port: 27034
+    protocol: TCP
+  - name: tcp-27035
+    port: 27035
+    protocol: TCP
+  - name: tcp-27036
+    port: 27036
+    protocol: TCP
+  - name: tcp-47984
+    port: 47984
+    protocol: TCP
+  - name: tcp-47985
+    port: 47985
+    protocol: TCP
+  - name: tcp-47986
+    port: 47986
+    protocol: TCP
+  - name: tcp-47987
+    port: 47987
+    protocol: TCP
+  - name: tcp-47988
+    port: 47988
+    protocol: TCP
+  - name: tcp-47989
+    port: 47989
+    protocol: TCP
+  - name: tcp-47990
+    port: 47990
+    protocol: TCP
+  - name: tcp-48010
+    port: 48010
+    protocol: TCP
+  - name: udp-47998
+    port: 47998
+    protocol: UDP
+  - name: udp-47999
+    port: 47999
+    protocol: UDP
+  - name: udp-48000
+    port: 48000
+    protocol: UDP
+  proxyConfig:
+    needsNoopSW: true
+    rewriteHostAbsolutePaths: true

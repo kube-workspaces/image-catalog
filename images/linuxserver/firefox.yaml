@@ -1,0 +1,40 @@
+apiVersion: kubeworkspaces.io/v1alpha1
+kind: Image
+metadata:
+  name: firefox
+spec:
+  defaultPath: /
+  defaultPort: 3000
+  description: '[Firefox] Browser, also known as Mozilla Firefox or simply Firefox, is a free
+    and open-source web browser developed by the Mozilla Foundation and its subsidiary, the
+    Mozilla Corporation. Firefox uses the Gecko layout engine to render web pages, which implements
+    current and anticipated web standards.'
+  category: Browser
+  tags:
+  - linuxserver
+  - linux
+  - web-browser
+  displayName: Firefox (LinuxServer)
+  homepageURL: https://www.mozilla.org/en-US/firefox/
+  icon: https://raw.githubusercontent.com/linuxserver/docker-templates/master/linuxserver.io/img/firefox-logo.png
+  image: linuxserver/firefox:latest
+  imageHomepageURL: https://hub.docker.com/r/linuxserver/firefox
+  workspaceTypes:
+  - container
+  - scratch
+  sourceURL: https://github.com/linuxserver/docker-firefox
+  additionalPorts:
+  - name: tcp-3001
+    port: 3001
+    protocol: TCP
+  proxyConfig:
+    needsNoopSW: true
+    preservePathPrefix: true
+    websocketPaths:
+    - /websockify
+  defaultSharedMemory: true
+  defaultEnv:
+  - name: SUBFOLDER
+    value: /proxy/{{namespace}}/{{name}}/
+  defaultUser: abc
+  defaultHomedir: /config

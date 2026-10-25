@@ -1,0 +1,32 @@
+apiVersion: kubeworkspaces.io/v1alpha1
+kind: Image
+metadata:
+  name: linuxserver-airsonic
+spec:
+  defaultPath: /
+  defaultPort: 4040
+  description: Legacy or infrastructure image available on Docker Hub. airsonic is a free,
+    web-based media streamer, providing ubiquitious access to your music. Use it to share
+    your music with friends, or to listen to your own music while at work. You can stream
+    to multiple players simultaneously, for instance to one player in your kitchen and another
+    in your living room.
+  category: Tool
+  tags:
+  - linuxserver
+  - linux
+  - hub-only
+  displayName: Airsonic (LinuxServer)
+  homepageURL: https://github.com/airsonic/airsonic
+  icon: https://raw.githubusercontent.com/linuxserver/docker-templates/master/linuxserver.io/img/airsonic-banner.png
+  image: linuxserver/airsonic:latest
+  imageHomepageURL: https://hub.docker.com/r/linuxserver/airsonic
+  workspaceTypes:
+  - container
+  - scratch
+  sourceURL: https://github.com/linuxserver/docker-airsonic
+  proxyConfig:
+    needsNoopSW: true
+    rewriteHostAbsolutePaths: true
+  defaultCredentials:
+    username: admin
+    password: admin

@@ -1,0 +1,38 @@
+apiVersion: kubeworkspaces.io/v1alpha1
+kind: Image
+metadata:
+  name: linuxserver-pelorus
+spec:
+  defaultPath: /pelorus/
+  defaultPort: 3001
+  description: '[Pelorus] is an AI navigator for Selkies-powered Linux desktops. Pelorus runs
+    a FastAPI server that gives an LLM agent (Ollama, OpenAI-compatible, or Gemini) control
+    over mouse, keyboard, screenshot, and window management via the Pixelflux computer-use
+    backend, a Linux accessibility tree (AT-SPI), and optional KWin D-Bus integration.'
+  category: Tool
+  tags:
+  - linuxserver
+  - linux
+  - remote-desktop
+  - ai
+  displayName: Pelorus (LinuxServer)
+  homepageURL: https://github.com/linuxserver/pelorus
+  icon: https://raw.githubusercontent.com/linuxserver/docker-templates/master/linuxserver.io/img/pelorus-logo.png
+  image: linuxserver/pelorus:latest
+  imageHomepageURL: https://hub.docker.com/r/linuxserver/pelorus
+  workspaceTypes:
+  - container
+  - scratch
+  sourceURL: https://github.com/linuxserver/docker-pelorus
+  proxyConfig:
+    needsNoopSW: true
+    rewriteHostAbsolutePaths: true
+    scheme: https
+    tlsSkipVerify: true
+    preservePathPrefix: true
+  defaultSharedMemory: true
+  defaultEnv:
+  - name: SUBFOLDER
+    value: /proxy/{{namespace}}/{{name}}/
+  defaultUser: abc
+  defaultHomedir: /config

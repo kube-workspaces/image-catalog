@@ -1,0 +1,40 @@
+apiVersion: kubeworkspaces.io/v1alpha1
+kind: Image
+metadata:
+  name: linuxserver-wireshark
+spec:
+  defaultPath: /
+  defaultPort: 3000
+  description: '[Wireshark] is the world’s foremost and widely-used network protocol analyzer.
+    It lets you see what’s happening on your network at a microscopic level and is the de
+    facto (and often de jure) standard across many commercial and non-profit enterprises,
+    government agencies, and educational institutions. Wireshark development thrives thanks
+    to the volunteer contributions of networking experts...'
+  category: Tool
+  tags:
+  - linuxserver
+  - linux
+  - network
+  displayName: Wireshark (LinuxServer)
+  homepageURL: https://www.wireshark.org/
+  icon: https://raw.githubusercontent.com/linuxserver/docker-templates/master/linuxserver.io/img/wireshark-icon.png
+  image: linuxserver/wireshark:latest
+  imageHomepageURL: https://hub.docker.com/r/linuxserver/wireshark
+  workspaceTypes:
+  - container
+  - scratch
+  sourceURL: https://github.com/linuxserver/docker-wireshark
+  additionalPorts:
+  - name: tcp-3001
+    port: 3001
+    protocol: TCP
+  proxyConfig:
+    needsNoopSW: true
+    rewriteHostAbsolutePaths: true
+    preservePathPrefix: true
+  defaultSharedMemory: true
+  defaultEnv:
+  - name: SUBFOLDER
+    value: /proxy/{{namespace}}/{{name}}/
+  defaultUser: abc
+  defaultHomedir: /config

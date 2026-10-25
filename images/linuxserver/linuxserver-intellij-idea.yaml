@@ -1,0 +1,37 @@
+apiVersion: kubeworkspaces.io/v1alpha1
+kind: Image
+metadata:
+  name: linuxserver-intellij-idea
+spec:
+  defaultPath: /
+  defaultPort: 3000
+  description: '[IntelliJ IDEA] helps you write code faster with tools that eliminate tedious
+    tasks and let you focus on what matters – building great software.'
+  category: IDE
+  tags:
+  - linuxserver
+  - linux
+  - programming
+  displayName: IntelliJ IDEA (LinuxServer)
+  homepageURL: https://www.jetbrains.com/idea/
+  icon: https://raw.githubusercontent.com/linuxserver/docker-templates/master/linuxserver.io/img/intellij-idea-logo.png
+  image: linuxserver/intellij-idea:latest
+  imageHomepageURL: https://hub.docker.com/r/linuxserver/intellij-idea
+  workspaceTypes:
+  - container
+  - scratch
+  sourceURL: https://github.com/linuxserver/docker-intellij-idea
+  additionalPorts:
+  - name: tcp-3001
+    port: 3001
+    protocol: TCP
+  proxyConfig:
+    needsNoopSW: true
+    rewriteHostAbsolutePaths: true
+    preservePathPrefix: true
+  defaultSharedMemory: true
+  defaultEnv:
+  - name: SUBFOLDER
+    value: /proxy/{{namespace}}/{{name}}/
+  defaultUser: abc
+  defaultHomedir: /config

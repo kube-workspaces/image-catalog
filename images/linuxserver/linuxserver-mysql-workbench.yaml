@@ -1,0 +1,38 @@
+apiVersion: kubeworkspaces.io/v1alpha1
+kind: Image
+metadata:
+  name: linuxserver-mysql-workbench
+spec:
+  defaultPath: /
+  defaultPort: 3000
+  description: '[MySQL Workbench] is a unified visual tool for database architects, developers,
+    and DBAs. MySQL Workbench provides data modeling, SQL development, and comprehensive administration
+    tools for server configuration, user administration, backup, and much more.'
+  category: Tool
+  tags:
+  - linuxserver
+  - linux
+  - databases
+  displayName: MySQL Workbench (LinuxServer)
+  homepageURL: https://www.mysql.com/products/workbench/
+  icon: https://raw.githubusercontent.com/linuxserver/docker-templates/master/linuxserver.io/img/mysql-workbench-icon.png
+  image: linuxserver/mysql-workbench:latest
+  imageHomepageURL: https://hub.docker.com/r/linuxserver/mysql-workbench
+  workspaceTypes:
+  - container
+  - scratch
+  sourceURL: https://github.com/linuxserver/docker-mysql-workbench
+  additionalPorts:
+  - name: tcp-3001
+    port: 3001
+    protocol: TCP
+  proxyConfig:
+    needsNoopSW: true
+    rewriteHostAbsolutePaths: true
+    preservePathPrefix: true
+  defaultSharedMemory: true
+  defaultEnv:
+  - name: SUBFOLDER
+    value: /proxy/{{namespace}}/{{name}}/
+  defaultUser: abc
+  defaultHomedir: /config

@@ -1,0 +1,37 @@
+apiVersion: kubeworkspaces.io/v1alpha1
+kind: Image
+metadata:
+  name: linuxserver-rustdesk
+spec:
+  defaultPath: /
+  defaultPort: 3000
+  description: '[RustDesk] is a full-featured open source remote control alternative for self-hosting
+    and security with minimal configuration.'
+  category: Tool
+  tags:
+  - linuxserver
+  - linux
+  - remote-desktop
+  displayName: RustDesk (LinuxServer)
+  homepageURL: https://rustdesk.com/
+  icon: https://raw.githubusercontent.com/linuxserver/docker-templates/master/linuxserver.io/img/rustdesk-logo.png
+  image: linuxserver/rustdesk:latest
+  imageHomepageURL: https://hub.docker.com/r/linuxserver/rustdesk
+  workspaceTypes:
+  - container
+  - scratch
+  sourceURL: https://github.com/linuxserver/docker-rustdesk
+  additionalPorts:
+  - name: tcp-3001
+    port: 3001
+    protocol: TCP
+  proxyConfig:
+    needsNoopSW: true
+    rewriteHostAbsolutePaths: true
+    preservePathPrefix: true
+  defaultSharedMemory: true
+  defaultEnv:
+  - name: SUBFOLDER
+    value: /proxy/{{namespace}}/{{name}}/
+  defaultUser: abc
+  defaultHomedir: /config

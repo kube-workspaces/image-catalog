@@ -1,0 +1,38 @@
+apiVersion: kubeworkspaces.io/v1alpha1
+kind: Image
+metadata:
+  name: linuxserver-retroarch
+spec:
+  defaultPath: /
+  defaultPort: 3000
+  description: '[RetroArch] is a frontend for emulators, game engines and media players. It
+    enables you to run classic games on a wide range of computers and consoles through its
+    slick graphical interface.'
+  category: Game
+  tags:
+  - linuxserver
+  - linux
+  - games
+  displayName: RetroArch (LinuxServer)
+  homepageURL: https://retroarch.com/
+  icon: https://raw.githubusercontent.com/linuxserver/docker-templates/master/linuxserver.io/img/retroarch-logo.png
+  image: linuxserver/retroarch:latest
+  imageHomepageURL: https://hub.docker.com/r/linuxserver/retroarch
+  workspaceTypes:
+  - container
+  - scratch
+  sourceURL: https://github.com/linuxserver/docker-retroarch
+  additionalPorts:
+  - name: tcp-3001
+    port: 3001
+    protocol: TCP
+  proxyConfig:
+    needsNoopSW: true
+    rewriteHostAbsolutePaths: true
+    preservePathPrefix: true
+  defaultSharedMemory: true
+  defaultEnv:
+  - name: SUBFOLDER
+    value: /proxy/{{namespace}}/{{name}}/
+  defaultUser: abc
+  defaultHomedir: /config

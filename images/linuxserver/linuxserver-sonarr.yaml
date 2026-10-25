@@ -1,0 +1,28 @@
+apiVersion: kubeworkspaces.io/v1alpha1
+kind: Image
+metadata:
+  name: linuxserver-sonarr
+spec:
+  defaultPath: /
+  defaultPort: 8989
+  description: sonarr (formerly NZBdrone) is a PVR for usenet and bittorrent users. It can
+    monitor multiple RSS feeds for new episodes of your favorite shows and will grab, sort
+    and rename them. It can also be configured to automatically upgrade the quality of files
+    already downloaded when a better quality format becomes available.
+  category: Tool
+  tags:
+  - linuxserver
+  - linux
+  - media-management
+  displayName: Sonarr (LinuxServer)
+  homepageURL: https://sonarr.tv/
+  icon: https://raw.githubusercontent.com/linuxserver/docker-templates/master/linuxserver.io/img/sonarr-banner.png
+  image: linuxserver/sonarr:latest
+  imageHomepageURL: https://hub.docker.com/r/linuxserver/sonarr
+  workspaceTypes:
+  - container
+  - scratch
+  sourceURL: https://github.com/linuxserver/docker-sonarr
+  proxyConfig:
+    needsNoopSW: true
+    rewriteHostAbsolutePaths: true

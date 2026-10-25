@@ -1,0 +1,27 @@
+apiVersion: kubeworkspaces.io/v1alpha1
+kind: Image
+metadata:
+  name: linuxserver-tester
+spec:
+  defaultPath: /
+  defaultPort: 3000
+  description: Legacy or infrastructure image available on Docker Hub. This internal tool
+    is used as a desktop sandbox in our CI process to grab a screenshot of a hopefully functional
+    endpoint
+  category: Tool
+  tags:
+  - linuxserver
+  - linux
+  - hub-only
+  displayName: Tester (LinuxServer)
+  homepageURL: https://linuxserver.io
+  icon: https://avatars3.githubusercontent.com/u/12324908?s=200&v=4
+  image: linuxserver/tester:latest
+  imageHomepageURL: https://hub.docker.com/r/linuxserver/tester
+  workspaceTypes:
+  - container
+  - scratch
+  sourceURL: https://github.com/linuxserver/docker-tester
+  proxyConfig:
+    needsNoopSW: true
+    rewriteHostAbsolutePaths: true

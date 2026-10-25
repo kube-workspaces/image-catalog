@@ -1,0 +1,37 @@
+apiVersion: kubeworkspaces.io/v1alpha1
+kind: Image
+metadata:
+  name: linuxserver-altus
+spec:
+  defaultPath: /
+  defaultPort: 3000
+  description: '[Altus] is an Electron-based WhatsApp client with themes and multiple account
+    support.'
+  category: Tool
+  tags:
+  - linuxserver
+  - linux
+  - chat
+  displayName: Altus (LinuxServer)
+  homepageURL: https://github.com/amanharwara/altus
+  icon: https://raw.githubusercontent.com/linuxserver/docker-templates/master/linuxserver.io/img/altus-logo.png
+  image: linuxserver/altus:latest
+  imageHomepageURL: https://hub.docker.com/r/linuxserver/altus
+  workspaceTypes:
+  - container
+  - scratch
+  sourceURL: https://github.com/linuxserver/docker-altus
+  additionalPorts:
+  - name: tcp-3001
+    port: 3001
+    protocol: TCP
+  proxyConfig:
+    needsNoopSW: true
+    rewriteHostAbsolutePaths: true
+    preservePathPrefix: true
+  defaultSharedMemory: true
+  defaultEnv:
+  - name: SUBFOLDER
+    value: /proxy/{{namespace}}/{{name}}/
+  defaultUser: abc
+  defaultHomedir: /config

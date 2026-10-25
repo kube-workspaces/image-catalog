@@ -1,0 +1,38 @@
+apiVersion: kubeworkspaces.io/v1alpha1
+kind: Image
+metadata:
+  name: linuxserver-lm-studio
+spec:
+  defaultPath: /
+  defaultPort: 3000
+  description: '[LM Studio] can run local AI models like gpt-oss, Llama, Gemma, Qwen, and
+    DeepSeek privately on your computer.'
+  category: Tool
+  tags:
+  - linuxserver
+  - linux
+  - remote-desktop
+  - ai
+  displayName: LM Studio (LinuxServer)
+  homepageURL: https://lmstudio.ai/
+  icon: https://raw.githubusercontent.com/linuxserver/docker-templates/master/linuxserver.io/img/lmstudio-logo.png
+  image: linuxserver/lm-studio:latest
+  imageHomepageURL: https://hub.docker.com/r/linuxserver/lm-studio
+  workspaceTypes:
+  - container
+  - scratch
+  sourceURL: https://github.com/linuxserver/docker-lm-studio
+  additionalPorts:
+  - name: tcp-3001
+    port: 3001
+    protocol: TCP
+  proxyConfig:
+    needsNoopSW: true
+    rewriteHostAbsolutePaths: true
+    preservePathPrefix: true
+  defaultSharedMemory: true
+  defaultEnv:
+  - name: SUBFOLDER
+    value: /proxy/{{namespace}}/{{name}}/
+  defaultUser: abc
+  defaultHomedir: /config

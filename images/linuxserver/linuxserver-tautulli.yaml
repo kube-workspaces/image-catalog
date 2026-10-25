@@ -1,0 +1,26 @@
+apiVersion: kubeworkspaces.io/v1alpha1
+kind: Image
+metadata:
+  name: linuxserver-tautulli
+spec:
+  defaultPath: /
+  defaultPort: 8181
+  description: tautulli is a python based web application for monitoring, analytics and notifications
+    for Plex Media Server.
+  category: Tool
+  tags:
+  - linuxserver
+  - linux
+  - media-tools
+  displayName: Tautulli (LinuxServer)
+  homepageURL: http://tautulli.com
+  icon: https://raw.githubusercontent.com/linuxserver/docker-templates/master/linuxserver.io/img/tautulli-icon.png
+  image: linuxserver/tautulli:latest
+  imageHomepageURL: https://hub.docker.com/r/linuxserver/tautulli
+  workspaceTypes:
+  - container
+  - scratch
+  sourceURL: https://github.com/linuxserver/docker-tautulli
+  proxyConfig:
+    needsNoopSW: true
+    rewriteHostAbsolutePaths: true

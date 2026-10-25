@@ -1,0 +1,36 @@
+apiVersion: kubeworkspaces.io/v1alpha1
+kind: Image
+metadata:
+  name: linuxserver-duckstation
+spec:
+  defaultPath: /
+  defaultPort: 3000
+  description: '[DuckStation] is a PS1 Emulator aiming for the best accuracy and game support.'
+  category: Game
+  tags:
+  - linuxserver
+  - linux
+  - games
+  displayName: DuckStation (LinuxServer)
+  homepageURL: https://duckstation.org/
+  icon: https://raw.githubusercontent.com/linuxserver/docker-templates/master/linuxserver.io/img/duckstation-logo.png
+  image: linuxserver/duckstation:latest
+  imageHomepageURL: https://hub.docker.com/r/linuxserver/duckstation
+  workspaceTypes:
+  - container
+  - scratch
+  sourceURL: https://github.com/linuxserver/docker-duckstation
+  additionalPorts:
+  - name: tcp-3001
+    port: 3001
+    protocol: TCP
+  proxyConfig:
+    needsNoopSW: true
+    rewriteHostAbsolutePaths: true
+    preservePathPrefix: true
+  defaultSharedMemory: true
+  defaultEnv:
+  - name: SUBFOLDER
+    value: /proxy/{{namespace}}/{{name}}/
+  defaultUser: abc
+  defaultHomedir: /config

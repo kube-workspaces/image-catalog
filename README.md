@@ -41,9 +41,18 @@ The [Kasm collection](images/kasm/README.md) contains 45 core images in
 `images/kasm/core/` and 109 desktop/application images in `images/kasm/desktop/`,
 including all 86 workspaces in Kasm's public registry. Its README documents
 metadata sources, versions, standalone defaults, and inventory coverage.
+
+The [LinuxServer collection](images/linuxserver/README.md) contains 297 Image CRs
+in `images/linuxserver/`, covering 292 runnable repositories and five existing
+pinned/desktop variants. Its inventory includes all 203 maintained images,
+deprecated images and legacy/infrastructure repositories retained on Docker Hub.
+The collection README documents metadata sources, native-protocol/CLI entries,
+and per-image setup requirements. These images support container and scratch
+workspaces; none are bootable VM disks.
+
 Validation and distribution builds include nested image folders recursively.
 `ImageRepository` syncing scans only the direct files in each configured folder.
-To sync the full catalog, list all three paths explicitly (trailing `/` optional):
+To sync the full catalog, list all four paths explicitly (trailing `/` optional):
 
 ```yaml
 spec:
@@ -51,6 +60,7 @@ spec:
     - images
     - images/kasm/core
     - images/kasm/desktop
+    - images/linuxserver
 ```
 
 ## Available Images
@@ -63,9 +73,9 @@ spec:
 | `alpine` | Alpine Linux | Tool | 80 | - |
 | `alpine-vm` | Alpine VM | VM | 22 | ✓ |
 | `arch-linux-gnome-vm` | Arch Linux GNOME Desktop VM | Desktop | 22 | - |
-| `chromium` | Chromium Browser | Browser | 3000 | - |
+| `chromium` | Chromium (LinuxServer) | Browser | 3000 | - |
 | `code-server` | Code Server (VS Code) | IDE | 8080 | ✓ |
-| `craft-apps` | Craft Apps (ArtCraft) | Productivity | 3000 | - |
+| `craft-apps` | Craft Apps (ArtCraft) (LinuxServer) | Tool | 3000 | - |
 | `cyberchef` | CyberChef | Tool | 8000 | - |
 | `debian-desktop` | Debian Desktop | Desktop | 6901 | ✓ |
 | `debian-vm` | Debian VM | VM | 22 | ✓ |
@@ -74,7 +84,7 @@ spec:
 | `drawio` | draw.io (Diagrams) | Productivity | 8080 | - |
 | `excalidraw` | Excalidraw (Whiteboard) | Productivity | 80 | - |
 | `filebrowser` | File Browser | Tool | 80 | - |
-| `firefox` | Firefox Browser | Browser | 3000 | - |
+| `firefox` | Firefox (LinuxServer) | Browser | 3000 | - |
 | `freebsd-vm` | FreeBSD 15.1 VM | VM | 22 | - |
 | `game-2048` | 2048 | Game | 80 | - |
 | `grafana` | Grafana | Tool | 3000 | - |
@@ -234,23 +244,308 @@ spec:
 | `kasmweb-vlc` | VLC | Tool | 6901 | - |
 | `kasmweb-vs-code` | Visual Studio Code | IDE | 6901 | - |
 | `kasmweb-zoom` | Zoom | Tool | 6901 | - |
-| `libreoffice` | LibreOffice | Productivity | 3000 | - |
+| `libreoffice` | LibreOffice (LinuxServer) | Tool | 3000 | - |
+| `linuxserver-adguardhome-sync` | AdGuard Home Sync (LinuxServer) | Tool | 8080 | - |
+| `linuxserver-airsonic` | Airsonic (LinuxServer) | Tool | 4040 | - |
+| `linuxserver-airsonic-advanced` | Airsonic Advanced (LinuxServer) | Tool | 4040 | - |
+| `linuxserver-altus` | Altus (LinuxServer) | Tool | 3000 | - |
+| `linuxserver-apache` | Apache (LinuxServer) | Tool | 80 | - |
+| `linuxserver-apprise-api` | Apprise API (LinuxServer) | Tool | 8000 | - |
+| `linuxserver-ardour` | Ardour (LinuxServer) | Tool | 3000 | - |
+| `linuxserver-audacity` | Audacity (LinuxServer) | Tool | 3000 | - |
+| `linuxserver-audiosilo` | AudioSilo (LinuxServer) | Tool | 8080 | - |
+| `linuxserver-azahar` | Azahar (LinuxServer) | Game | 3000 | - |
+| `linuxserver-babybuddy` | Baby Buddy (LinuxServer) | Tool | 8000 | - |
+| `linuxserver-bambustudio` | Bambu Studio (LinuxServer) | Tool | 3000 | - |
+| `linuxserver-bazarr` | Bazarr (LinuxServer) | Tool | 6767 | - |
+| `linuxserver-beets` | Beets (LinuxServer) | Tool | 8337 | - |
+| `linuxserver-bitcoin-knots` | Bitcoin Knots (LinuxServer) | Tool | 3000 | - |
+| `linuxserver-blade-of-agony` | Blade of Agony (LinuxServer) | Game | 3000 | - |
+| `linuxserver-blender` | Blender (LinuxServer) | Tool | 3000 | - |
+| `linuxserver-boinc` | BOINC (LinuxServer) | Tool | 8080 | - |
+| `linuxserver-booksonic` | Booksonic (LinuxServer) | Tool | 4040 | - |
+| `linuxserver-booksonic-air` | Booksonic Air (LinuxServer) | Tool | 4040 | - |
+| `linuxserver-bookstack` | BookStack (LinuxServer) | Tool | 80 | - |
+| `linuxserver-brave` | Brave (LinuxServer) | Browser | 3000 | - |
+| `linuxserver-budge` | Budge (LinuxServer) | Tool | 80 | - |
+| `linuxserver-build-agent` | Build Agent (LinuxServer) | Tool | 2222 | - |
+| `linuxserver-calibre` | Calibre (LinuxServer) | Tool | 8080 | - |
+| `linuxserver-calibre-web` | Calibre-Web (LinuxServer) | Tool | 8083 | - |
+| `linuxserver-calligra` | Calligra (LinuxServer) | Tool | 3000 | - |
+| `linuxserver-cardigann` | Cardigann (LinuxServer) | Tool | 5060 | - |
+| `linuxserver-changedetection-io` | changedetection.io (LinuxServer) | Tool | 5000 | - |
+| `linuxserver-chevereto` | Chevereto (LinuxServer) | Tool | 443 | - |
+| `linuxserver-chrome` | Google Chrome (LinuxServer) | Browser | 3000 | - |
+| `linuxserver-ci` | LinuxServer CI (LinuxServer) | Tool | 80 | - |
+| `linuxserver-ci-debug` | LinuxServer CI Debug (LinuxServer) | Tool | 80 | - |
+| `linuxserver-citron` | Citron (LinuxServer) | Game | 3000 | - |
+| `linuxserver-clarkson` | Clarkson (LinuxServer) | Tool | 3000 | - |
+| `linuxserver-cloud9` | Cloud9 (LinuxServer) | IDE | 8000 | - |
+| `linuxserver-code-server` | code-server (LinuxServer) | IDE | 8443 | - |
+| `linuxserver-codiad` | Codiad (LinuxServer) | IDE | 80 | - |
+| `linuxserver-codimd` | CodiMD (LinuxServer) | Tool | 3000 | - |
+| `linuxserver-cops` | COPS (LinuxServer) | Tool | 80 | - |
+| `linuxserver-couchpotato` | CouchPotato (LinuxServer) | Tool | 5050 | - |
+| `linuxserver-cura` | Cura (LinuxServer) | Tool | 3000 | - |
+| `linuxserver-d2-builder` | D2 Builder (LinuxServer) | Tool | 80 | - |
+| `linuxserver-daapd` | DAAPd (LinuxServer) | Tool | 3689 | - |
+| `linuxserver-darktable` | darktable (LinuxServer) | Tool | 3000 | - |
+| `linuxserver-davos` | Davos (LinuxServer) | Tool | 8080 | - |
+| `linuxserver-ddclient` | DDClient (LinuxServer) | Tool | 80 | - |
+| `linuxserver-deluge` | Deluge (LinuxServer) | Tool | 8112 | - |
+| `linuxserver-digikam` | digiKam (LinuxServer) | Tool | 3000 | - |
+| `linuxserver-dillinger` | Dillinger (LinuxServer) | Tool | 8080 | - |
+| `linuxserver-diskover` | Diskover (LinuxServer) | Tool | 80 | - |
+| `linuxserver-doc-builder` | Doc Builder (LinuxServer) | Tool | 80 | - |
+| `linuxserver-docker-compose` | Docker Compose (LinuxServer) | Tool | 80 | - |
+| `linuxserver-dogwalk` | Dogwalk (LinuxServer) | Game | 3000 | - |
+| `linuxserver-dokuwiki` | DokuWiki (LinuxServer) | Tool | 80 | - |
+| `linuxserver-dolphin` | Dolphin (LinuxServer) | Game | 3000 | - |
+| `linuxserver-domoticz` | Domoticz (LinuxServer) | Tool | 8080 | - |
+| `linuxserver-doplarr` | Doplarr (LinuxServer) | Tool | 80 | - |
+| `linuxserver-doplarr-rs` | Doplarr RS (LinuxServer) | Tool | 80 | - |
+| `linuxserver-dosbox-staging` | DOSBox Staging (LinuxServer) | Game | 3000 | - |
+| `linuxserver-doublecommander` | Double Commander (LinuxServer) | Tool | 3000 | - |
+| `linuxserver-duckdns` | DuckDNS (LinuxServer) | Tool | 80 | - |
+| `linuxserver-duckstation` | DuckStation (LinuxServer) | Game | 3000 | - |
+| `linuxserver-duplicati` | Duplicati (LinuxServer) | Tool | 8200 | - |
+| `linuxserver-eden` | Eden (LinuxServer) | Game | 3000 | - |
+| `linuxserver-emby` | Emby (LinuxServer) | Tool | 8096 | - |
+| `linuxserver-embystat` | EmbyStat (LinuxServer) | Tool | 6555 | - |
+| `linuxserver-emulatorjs` | EmulatorJS (LinuxServer) | Game | 3000 | - |
+| `linuxserver-endlessh` | Endlessh (LinuxServer) | Tool | 2222 | - |
+| `linuxserver-fail2ban` | Fail2Ban (LinuxServer) | Tool | 80 | - |
+| `linuxserver-faster-whisper` | Faster Whisper (LinuxServer) | Tool | 10300 | - |
+| `linuxserver-feed2toot` | Feed2Toot (LinuxServer) | Tool | 80 | - |
+| `linuxserver-ferdium` | Ferdium (LinuxServer) | Tool | 3000 | - |
+| `linuxserver-ffmpeg` | FFmpeg (LinuxServer) | Tool | 80 | - |
+| `linuxserver-filezilla` | FileZilla (LinuxServer) | Tool | 3000 | - |
+| `linuxserver-fleet` | Fleet (LinuxServer) | Tool | 8080 | - |
+| `linuxserver-flexget` | FlexGet (LinuxServer) | Tool | 5050 | - |
+| `linuxserver-flood` | Flood (LinuxServer) | Tool | 3000 | - |
+| `linuxserver-flycast` | Flycast (LinuxServer) | Game | 3000 | - |
+| `linuxserver-foldingathome` | Folding@home (LinuxServer) | Tool | 7396 | - |
+| `linuxserver-freecad` | FreeCAD (LinuxServer) | Tool | 3000 | - |
+| `linuxserver-freetube` | FreeTube (LinuxServer) | Tool | 3000 | - |
+| `linuxserver-freshrss` | FreshRSS (LinuxServer) | Tool | 80 | - |
+| `linuxserver-gazee` | Gazee (LinuxServer) | Tool | 4242 | - |
+| `linuxserver-gimp` | GIMP (LinuxServer) | Tool | 3000 | - |
+| `linuxserver-github-desktop` | GitHub Desktop (LinuxServer) | Tool | 3000 | - |
+| `linuxserver-gitqlient` | GitQlient (LinuxServer) | Tool | 3000 | - |
+| `linuxserver-grav` | Grav (LinuxServer) | Tool | 80 | - |
+| `linuxserver-grocy` | grocy (LinuxServer) | Tool | 80 | - |
+| `linuxserver-guacd` | Guacd (LinuxServer) | Tool | 4822 | - |
+| `linuxserver-gzdoom` | GZDoom (LinuxServer) | Game | 3000 | - |
+| `linuxserver-habridge` | HA Bridge (LinuxServer) | Tool | 8080 | - |
+| `linuxserver-handbrake` | HandBrake (LinuxServer) | Tool | 3000 | - |
+| `linuxserver-headphones` | Headphones (LinuxServer) | Tool | 8181 | - |
+| `linuxserver-healthchecks` | Healthchecks (LinuxServer) | Tool | 8000 | - |
+| `linuxserver-hedgedoc` | HedgeDoc (LinuxServer) | Tool | 3000 | - |
+| `linuxserver-heimdall` | Heimdall (LinuxServer) | Tool | 80 | - |
+| `linuxserver-helium` | Helium (LinuxServer) | Browser | 3000 | - |
+| `linuxserver-hishtory-server` | hiSHtory Server (LinuxServer) | Tool | 8080 | - |
+| `linuxserver-homeassistant` | Home Assistant (LinuxServer) | Tool | 8123 | - |
+| `linuxserver-htpcmanager` | HTPC Manager (LinuxServer) | Tool | 8085 | - |
+| `linuxserver-hydra` | Hydra (LinuxServer) | Tool | 5075 | - |
+| `linuxserver-hydra2` | Hydra2 (LinuxServer) | Tool | 5076 | - |
+| `linuxserver-inkscape` | Inkscape (LinuxServer) | Tool | 3000 | - |
+| `linuxserver-intellij-idea` | IntelliJ IDEA (LinuxServer) | IDE | 3000 | - |
+| `linuxserver-ipfs` | IPFS (LinuxServer) | Tool | 80 | - |
+| `linuxserver-jackett` | Jackett (LinuxServer) | Tool | 9117 | - |
+| `linuxserver-jellyfin` | Jellyfin (LinuxServer) | Tool | 8096 | - |
+| `linuxserver-jenkins-builder` | Jenkins Builder (LinuxServer) | Tool | 80 | - |
+| `linuxserver-joplin` | Joplin (LinuxServer) | Tool | 3000 | - |
+| `linuxserver-kali-linux` | Kali Linux (LinuxServer) | Desktop | 3000 | - |
+| `linuxserver-kanzi` | Kanzi (LinuxServer) | Tool | 8000 | - |
+| `linuxserver-kasm` | Kasm Workspaces (LinuxServer) | Desktop | 3000 | - |
+| `linuxserver-kavita` | Kavita (LinuxServer) | Tool | 5000 | - |
+| `linuxserver-kdenlive` | Kdenlive (LinuxServer) | Tool | 3000 | - |
+| `linuxserver-keepassxc` | KeePassXC (LinuxServer) | Tool | 3000 | - |
+| `linuxserver-kicad` | KiCad (LinuxServer) | Tool | 3000 | - |
+| `linuxserver-kimai` | Kimai (LinuxServer) | Tool | 80 | - |
+| `linuxserver-kodi-headless` | Kodi Headless (LinuxServer) | Tool | 8080 | - |
+| `linuxserver-kometa` | Kometa (LinuxServer) | Tool | 80 | - |
+| `linuxserver-krita` | Krita (LinuxServer) | Tool | 3000 | - |
+| `linuxserver-lazylibrarian` | Lazylibrarian (LinuxServer) | Tool | 5299 | - |
+| `linuxserver-ldap-auth` | LDAP Auth (LinuxServer) | Tool | 9000 | - |
+| `linuxserver-letsencrypt` | Letsencrypt (LinuxServer) | Tool | 443 | - |
+| `linuxserver-libresonic` | Libresonic (LinuxServer) | Tool | 4040 | - |
+| `linuxserver-librespeed` | LibreSpeed (LinuxServer) | Tool | 80 | - |
+| `linuxserver-librewolf` | LibreWolf (LinuxServer) | Browser | 3000 | - |
+| `linuxserver-lidarr` | Lidarr (LinuxServer) | Tool | 8686 | - |
+| `linuxserver-limnoria` | Limnoria (LinuxServer) | Tool | 8080 | - |
+| `linuxserver-lm-studio` | LM Studio (LinuxServer) | Tool | 3000 | - |
+| `linuxserver-lollypop` | Lollypop (LinuxServer) | Tool | 3000 | - |
+| `linuxserver-lsio-api` | LinuxServer API (LinuxServer) | Tool | 8000 | - |
+| `linuxserver-luanti` | Luanti (LinuxServer) | Game | 30000 | - |
+| `linuxserver-lychee` | Lychee (LinuxServer) | Tool | 80 | - |
+| `linuxserver-mame` | MAME (LinuxServer) | Game | 3000 | - |
+| `linuxserver-manyfold` | Manyfold (LinuxServer) | Tool | 3214 | - |
+| `linuxserver-mariadb` | MariaDB (LinuxServer) | Tool | 3306 | - |
+| `linuxserver-mastodon` | Mastodon (LinuxServer) | Tool | 443 | - |
+| `linuxserver-mcmyadmin2` | McMyAdmin 2 (LinuxServer) | Tool | 8080 | - |
+| `linuxserver-mediaelch` | MediaElch (LinuxServer) | Tool | 3000 | - |
+| `linuxserver-medusa` | Medusa (LinuxServer) | Tool | 8081 | - |
+| `linuxserver-melonds` | melonDS (LinuxServer) | Game | 3000 | - |
+| `linuxserver-minetest` | Minetest (LinuxServer) | Game | 30000 | - |
+| `linuxserver-minisatip` | minisatip (LinuxServer) | Tool | 8875 | - |
+| `linuxserver-modmanager` | Modmanager (LinuxServer) | Tool | 80 | - |
+| `linuxserver-modrinth` | Modrinth (LinuxServer) | Game | 3000 | - |
+| `linuxserver-monica` | Monica (LinuxServer) | Tool | 80 | - |
+| `linuxserver-msedge` | Microsoft Edge (LinuxServer) | Browser | 3000 | - |
+| `linuxserver-mstream` | mStream (LinuxServer) | Tool | 3000 | - |
+| `linuxserver-mullvad-browser` | Mullvad Browser (LinuxServer) | Browser | 3000 | - |
+| `linuxserver-musicbrainz` | Musicbrainz (LinuxServer) | Tool | 5000 | - |
+| `linuxserver-muximux` | Muximux (LinuxServer) | Tool | 80 | - |
+| `linuxserver-mylar` | Mylar (LinuxServer) | Tool | 8090 | - |
+| `linuxserver-mylar3` | Mylar 3 (LinuxServer) | Tool | 8090 | - |
+| `linuxserver-mysql` | MySQL (LinuxServer) | Tool | 3306 | - |
+| `linuxserver-mysql-workbench` | MySQL Workbench (LinuxServer) | Tool | 3000 | - |
+| `linuxserver-nano` | Nano (LinuxServer) | Tool | 8075 | - |
+| `linuxserver-nano-wallet` | Nano Wallet (LinuxServer) | Tool | 80 | - |
+| `linuxserver-netbootxyz` | netboot.xyz (LinuxServer) | Tool | 3000 | - |
+| `linuxserver-netbox` | NetBox (LinuxServer) | Tool | 8000 | - |
+| `linuxserver-nextcloud` | Nextcloud (LinuxServer) | Tool | 443 | - |
+| `linuxserver-nginx` | NGINX (LinuxServer) | Tool | 80 | - |
+| `linuxserver-ngircd` | ngIRCd (LinuxServer) | Tool | 6667 | - |
+| `linuxserver-nntp2nntp` | NNTP2NNTP (LinuxServer) | Tool | 1563 | - |
+| `linuxserver-nomacs` | nomacs (LinuxServer) | Tool | 3000 | - |
+| `linuxserver-nzbget` | NZBGet (LinuxServer) | Tool | 6789 | - |
+| `linuxserver-nzbhydra2` | NZBHydra 2 (LinuxServer) | Tool | 5076 | - |
+| `linuxserver-ombi` | Ombi (LinuxServer) | Tool | 3579 | - |
+| `linuxserver-onlyoffice` | ONLYOFFICE (LinuxServer) | Tool | 3000 | - |
+| `linuxserver-openshot` | OpenShot (LinuxServer) | Tool | 3000 | - |
+| `linuxserver-openssh-server` | OpenSSH Server (LinuxServer) | Tool | 2222 | - |
+| `linuxserver-openvscode-server` | OpenVSCode Server (LinuxServer) | IDE | 3000 | - |
+| `linuxserver-opera` | Opera (LinuxServer) | Browser | 3000 | - |
+| `linuxserver-orcaslicer` | OrcaSlicer (LinuxServer) | Tool | 3000 | - |
+| `linuxserver-organizr` | Organizr (LinuxServer) | Tool | 80 | - |
+| `linuxserver-oscam` | OSCam (LinuxServer) | Tool | 8888 | - |
+| `linuxserver-overseerr` | Overseerr (LinuxServer) | Tool | 5055 | - |
+| `linuxserver-pairdrop` | PairDrop (LinuxServer) | Tool | 3000 | - |
+| `linuxserver-paperless-ng` | Paperless Ng (LinuxServer) | Tool | 8000 | - |
+| `linuxserver-paperless-ngx` | Paperless Ngx (LinuxServer) | Tool | 8000 | - |
+| `linuxserver-papermerge` | Papermerge (LinuxServer) | Tool | 8000 | - |
+| `linuxserver-pcsx2` | PCSX2 (LinuxServer) | Game | 3000 | - |
+| `linuxserver-pelorus` | Pelorus (LinuxServer) | Tool | 3001 | - |
+| `linuxserver-photoshow` | Photoshow (LinuxServer) | Tool | 80 | - |
+| `linuxserver-phpmyadmin` | phpMyAdmin (LinuxServer) | Tool | 80 | - |
+| `linuxserver-pidgin` | Pidgin (LinuxServer) | Tool | 3000 | - |
+| `linuxserver-piper` | Piper (LinuxServer) | Tool | 10200 | - |
+| `linuxserver-piwigo` | Piwigo (LinuxServer) | Tool | 80 | - |
+| `linuxserver-pixapop` | Pixapop (LinuxServer) | Tool | 80 | - |
+| `linuxserver-planka` | Planka (LinuxServer) | Tool | 1337 | - |
+| `linuxserver-plex` | Plex (LinuxServer) | Tool | 32400 | - |
+| `linuxserver-plex-meta-manager` | Plex Meta Manager (LinuxServer) | Tool | 80 | - |
+| `linuxserver-plexpy` | Plexpy (LinuxServer) | Tool | 8181 | - |
+| `linuxserver-ppsspp` | PPSSPP (LinuxServer) | Game | 3000 | - |
+| `linuxserver-projectsend` | ProjectSend (LinuxServer) | Tool | 80 | - |
+| `linuxserver-prowlarr` | Prowlarr (LinuxServer) | Tool | 9696 | - |
+| `linuxserver-pwndrop` | pwndrop (LinuxServer) | Tool | 8080 | - |
+| `linuxserver-pycharm` | PyCharm (LinuxServer) | IDE | 3000 | - |
+| `linuxserver-pydio` | Pydio (LinuxServer) | Tool | 443 | - |
+| `linuxserver-pydio-cells` | Pydio Cells (LinuxServer) | Tool | 8080 | - |
+| `linuxserver-pyload` | pyLoad (LinuxServer) | Tool | 8000 | - |
+| `linuxserver-pyload-ng` | pyLoad NG (LinuxServer) | Tool | 8000 | - |
+| `linuxserver-pylon` | Pylon (LinuxServer) | Tool | 3131 | - |
+| `linuxserver-python` | Python (LinuxServer) | Tool | 80 | - |
+| `linuxserver-qbittorrent` | qBittorrent (LinuxServer) | Tool | 8080 | - |
+| `linuxserver-qdirstat` | QDirStat (LinuxServer) | Tool | 3000 | - |
+| `linuxserver-qemu-static` | QEMU Static (LinuxServer) | Tool | 80 | - |
+| `linuxserver-quassel-core` | Quassel Core (LinuxServer) | Tool | 4242 | - |
+| `linuxserver-quassel-web` | Quassel Web (LinuxServer) | Tool | 64443 | - |
+| `linuxserver-radarr` | Radarr (LinuxServer) | Tool | 7878 | - |
+| `linuxserver-raneto` | Raneto (LinuxServer) | Tool | 3000 | - |
+| `linuxserver-rawtherapee` | RawTherapee (LinuxServer) | Tool | 3000 | - |
+| `linuxserver-rdesktop` | RDesktop (LinuxServer) | Desktop | 3389 | - |
+| `linuxserver-readarr` | Readarr (LinuxServer) | Tool | 8787 | - |
+| `linuxserver-readme-sync` | Readme Sync (LinuxServer) | Tool | 80 | - |
+| `linuxserver-remmina` | Remmina (LinuxServer) | Tool | 3000 | - |
+| `linuxserver-requestrr` | Requestrr (LinuxServer) | Tool | 4545 | - |
+| `linuxserver-resilio-sync` | Resilio Sync (LinuxServer) | Tool | 8888 | - |
+| `linuxserver-retroarch` | RetroArch (LinuxServer) | Game | 3000 | - |
+| `linuxserver-rpcs3` | RPCS3 (LinuxServer) | Game | 3000 | - |
+| `linuxserver-rsnapshot` | rsnapshot (LinuxServer) | Tool | 80 | - |
+| `linuxserver-rustdesk` | RustDesk (LinuxServer) | Tool | 3000 | - |
+| `linuxserver-rutorrent` | ruTorrent (LinuxServer) | Tool | 80 | - |
+| `linuxserver-sabnzbd` | SABnzbd (LinuxServer) | Tool | 8080 | - |
+| `linuxserver-scrutiny` | Scrutiny (LinuxServer) | Tool | 8080 | - |
+| `linuxserver-scummvm` | ScummVM (LinuxServer) | Game | 3000 | - |
+| `linuxserver-sealskin` | Sealskin (LinuxServer) | Tool | 8443 | - |
+| `linuxserver-series-troxide` | Series Troxide (LinuxServer) | Tool | 3000 | - |
+| `linuxserver-shadps4` | shadPS4 (LinuxServer) | Game | 3000 | - |
+| `linuxserver-shotcut` | Shotcut (LinuxServer) | Tool | 3000 | - |
+| `linuxserver-sickbeard` | Sickbeard (LinuxServer) | Tool | 8081 | - |
+| `linuxserver-sickchill` | SickChill (LinuxServer) | Tool | 8081 | - |
+| `linuxserver-sickgear` | SickGear (LinuxServer) | Tool | 8081 | - |
+| `linuxserver-sickrage` | Sickrage (LinuxServer) | Tool | 8081 | - |
+| `linuxserver-signal` | Signal (LinuxServer) | Tool | 3000 | - |
+| `linuxserver-smokeping` | Smokeping (LinuxServer) | Tool | 80 | - |
+| `linuxserver-snapdrop` | Snapdrop (LinuxServer) | Tool | 80 | - |
+| `linuxserver-snipe-it` | Snipe-IT (LinuxServer) | Tool | 80 | - |
+| `linuxserver-socket-proxy` | Socket Proxy (LinuxServer) | Tool | 2375 | - |
+| `linuxserver-sonarr` | Sonarr (LinuxServer) | Tool | 8989 | - |
+| `linuxserver-speedtest-tracker` | Speedtest Tracker (LinuxServer) | Tool | 80 | - |
+| `linuxserver-spotube` | Spotube (LinuxServer) | Tool | 3000 | - |
+| `linuxserver-sqlitebrowser` | DB Browser for SQLite (LinuxServer) | Tool | 3000 | - |
+| `linuxserver-steam` | Steam (LinuxServer) | Game | 3000 | - |
+| `linuxserver-steamos` | SteamOS (LinuxServer) | Game | 3000 | - |
+| `linuxserver-swag` | SWAG (LinuxServer) | Tool | 443 | - |
+| `linuxserver-synclounge` | SyncLounge (LinuxServer) | Tool | 8088 | - |
+| `linuxserver-syncthing` | Syncthing (LinuxServer) | Tool | 8384 | - |
+| `linuxserver-syslog-ng` | syslog-ng (LinuxServer) | Tool | 5514 | - |
+| `linuxserver-taisun` | Taisun (LinuxServer) | Tool | 3000 | - |
+| `linuxserver-tautulli` | Tautulli (LinuxServer) | Tool | 8181 | - |
+| `linuxserver-telegram` | Telegram (LinuxServer) | Tool | 3000 | - |
+| `linuxserver-tester` | Tester (LinuxServer) | Tool | 3000 | - |
+| `linuxserver-thunderbird` | Thunderbird (LinuxServer) | Tool | 3000 | - |
+| `linuxserver-transmission` | Transmission (LinuxServer) | Tool | 9091 | - |
+| `linuxserver-tvheadend` | Tvheadend (LinuxServer) | Tool | 9981 | - |
+| `linuxserver-ubooquity` | Ubooquity (LinuxServer) | Tool | 2202 | - |
+| `linuxserver-ungoogled-chromium` | Ungoogled Chromium (LinuxServer) | Browser | 3000 | - |
+| `linuxserver-unifi` | UniFi (LinuxServer) | Tool | 8443 | - |
+| `linuxserver-unifi-controller` | UniFi Controller (LinuxServer) | Tool | 8443 | - |
+| `linuxserver-unifi-network-application` | UniFi Network Application (LinuxServer) | Tool | 8443 | - |
+| `linuxserver-unrar` | UnRAR (LinuxServer) | Tool | 80 | - |
+| `linuxserver-vivaldi` | Vivaldi (LinuxServer) | Browser | 3000 | - |
+| `linuxserver-vlc` | VLC (LinuxServer) | Tool | 3000 | - |
+| `linuxserver-vscode` | Visual Studio Code (LinuxServer) | IDE | 3000 | - |
+| `linuxserver-vscodium-web` | VSCodium Web (LinuxServer) | IDE | 8000 | - |
+| `linuxserver-webcord` | WebCord (LinuxServer) | Tool | 3000 | - |
+| `linuxserver-webgrabplus` | WebGrab+Plus (LinuxServer) | Tool | 80 | - |
+| `linuxserver-webstation` | Webstation (LinuxServer) | Tool | 3000 | - |
+| `linuxserver-webtop` | Webtop (LinuxServer) | Desktop | 3000 | - |
+| `linuxserver-weixin` | Weixin (LinuxServer) | Tool | 3000 | - |
+| `linuxserver-wikijs` | Wiki.js (LinuxServer) | Tool | 3000 | - |
+| `linuxserver-winegui` | WineGUI (LinuxServer) | Tool | 3000 | - |
+| `linuxserver-wireguard` | WireGuard (LinuxServer) | Tool | 51820 | - |
+| `linuxserver-wireshark` | Wireshark (LinuxServer) | Tool | 3000 | - |
+| `linuxserver-wps-office` | WPS Office (LinuxServer) | Tool | 3000 | - |
+| `linuxserver-xbackbone` | XBackBone (LinuxServer) | Tool | 80 | - |
+| `linuxserver-xemu` | xemu (LinuxServer) | Game | 3000 | - |
+| `linuxserver-xvfb` | Xvfb (LinuxServer) | Tool | 80 | - |
+| `linuxserver-yaak` | Yaak (LinuxServer) | Tool | 3000 | - |
+| `linuxserver-your-spotify` | Your Spotify (LinuxServer) | Tool | 80 | - |
+| `linuxserver-yq` | yq (LinuxServer) | Tool | 80 | - |
+| `linuxserver-zen` | Zen (LinuxServer) | Browser | 3000 | - |
+| `linuxserver-znc` | ZNC (LinuxServer) | Tool | 6501 | - |
+| `linuxserver-zotero` | Zotero (LinuxServer) | Tool | 3000 | - |
 | `ms-dos-622` | MS-DOS 6.22 | Desktop | 21 | ✓ |
 | `ms-windows-11-vm` | Windows 11 VM (self-built) | VM | 3389 | - |
-| `obsidian` | Obsidian | Productivity | 3000 | - |
+| `obsidian` | Obsidian (LinuxServer) | Tool | 3000 | - |
 | `openvscode-server` | OpenVSCode Server | IDE | 3000 | - |
 | `pacman` | Pac-Man (HTML5) | Game | 80 | - |
-| `rdesktop-ubuntu-xfce` | Ubuntu XFCE RDP Desktop | Desktop | 3000 | - |
+| `rdesktop-ubuntu-xfce` | Ubuntu XFCE RDP Desktop | Desktop | 3389 | - |
 | `rstudio` | RStudio Server | IDE | 8787 | - |
 | `signal-desktop` | Signal Private Messenger | Productivity | 6080 | - |
 | `snake` | Snake | Game | 80 | - |
 | `stirling-pdf` | Stirling PDF | Tool | 8080 | - |
 | `tetris` | Tetris | Game | 80 | - |
-| `thelounge` | The Lounge (IRC) | Productivity | 9000 | - |
+| `thelounge` | The Lounge (LinuxServer) | Tool | 9000 | - |
 | `tor-browser` | Tor-Browser | Browser | 6901 | - |
 | `trilium-notes` | Trilium Notes | Productivity | 8080 | - |
 | `ttyd` | ttyd Web Terminal | Tool | 7681 | - |
-| `vscodium` | VSCodium | IDE | 3000 | - |
+| `vscodium` | VSCodium (LinuxServer) | IDE | 3000 | - |
 | `webtop-alpine-kde` | Alpine KDE Desktop | Desktop | 3000 | - |
 | `webtop-arch-kde` | Arch Linux KDE Desktop | Desktop | 3000 | - |
 | `webtop-ubuntu-xfce` | Ubuntu XFCE Desktop | Desktop | 3000 | - |

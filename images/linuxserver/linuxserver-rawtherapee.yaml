@@ -1,0 +1,36 @@
+apiVersion: kubeworkspaces.io/v1alpha1
+kind: Image
+metadata:
+  name: linuxserver-rawtherapee
+spec:
+  defaultPath: /
+  defaultPort: 3000
+  description: '[RawTherapee] is a free, cross-platform raw image processing program!'
+  category: Tool
+  tags:
+  - linuxserver
+  - linux
+  - image-editor
+  displayName: RawTherapee (LinuxServer)
+  homepageURL: https://rawtherapee.com/
+  icon: https://raw.githubusercontent.com/linuxserver/docker-templates/master/linuxserver.io/img/rawtherapee-logo.png
+  image: linuxserver/rawtherapee:latest
+  imageHomepageURL: https://hub.docker.com/r/linuxserver/rawtherapee
+  workspaceTypes:
+  - container
+  - scratch
+  sourceURL: https://github.com/linuxserver/docker-rawtherapee
+  additionalPorts:
+  - name: tcp-3001
+    port: 3001
+    protocol: TCP
+  proxyConfig:
+    needsNoopSW: true
+    rewriteHostAbsolutePaths: true
+    preservePathPrefix: true
+  defaultSharedMemory: true
+  defaultEnv:
+  - name: SUBFOLDER
+    value: /proxy/{{namespace}}/{{name}}/
+  defaultUser: abc
+  defaultHomedir: /config

@@ -1,0 +1,26 @@
+apiVersion: kubeworkspaces.io/v1alpha1
+kind: Image
+metadata:
+  name: linuxserver-ci
+spec:
+  defaultPath: /
+  defaultPort: 80
+  description: Legacy or infrastructure image available on Docker Hub. LinuxServer image testing,
+    SBOM generation and CI reporting tool. No browser endpoint; use the terminal or native
+    client.
+  category: Tool
+  tags:
+  - linuxserver
+  - linux
+  - internal
+  - hub-only
+  - cli
+  displayName: LinuxServer CI (LinuxServer)
+  homepageURL: https://hub.docker.com/r/linuxserver/ci
+  icon: https://raw.githubusercontent.com/linuxserver/docker-templates/master/linuxserver.io/img/linuxserver-ls-logo.png
+  image: linuxserver/ci:latest
+  imageHomepageURL: https://hub.docker.com/r/linuxserver/ci
+  workspaceTypes:
+  - container
+  - scratch
+  sourceURL: https://github.com/linuxserver/docker-ci

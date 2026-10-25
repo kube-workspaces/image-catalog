@@ -1,0 +1,27 @@
+apiVersion: kubeworkspaces.io/v1alpha1
+kind: Image
+metadata:
+  name: linuxserver-ngircd
+spec:
+  defaultPath: /
+  defaultPort: 6667
+  description: ngircd is a free, portable and lightweight Internet Relay Chat server for small
+    or private networks, developed under the GNU General Public License (GPL). It is easy
+    to configure, can cope with dynamic IP addresses, and supports IPv6, SSL-protected connections
+    as well as PAM for authentication. It is written from scratch and not based on the original
+    IRCd. No browser endpoint; use the terminal or native client.
+  category: Tool
+  tags:
+  - linuxserver
+  - linux
+  - irc
+  - non-http
+  displayName: ngIRCd (LinuxServer)
+  homepageURL: https://ngircd.barton.de/
+  icon: https://raw.githubusercontent.com/linuxserver/docker-templates/master/linuxserver.io/img/ngircd-logo.png
+  image: linuxserver/ngircd:latest
+  imageHomepageURL: https://hub.docker.com/r/linuxserver/ngircd
+  workspaceTypes:
+  - container
+  - scratch
+  sourceURL: https://github.com/linuxserver/docker-ngircd

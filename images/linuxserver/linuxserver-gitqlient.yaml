@@ -1,0 +1,37 @@
+apiVersion: kubeworkspaces.io/v1alpha1
+kind: Image
+metadata:
+  name: linuxserver-gitqlient
+spec:
+  defaultPath: /
+  defaultPort: 3000
+  description: '[GitQlient] is a multi-platform Git client originally forked from QGit. Nowadays
+    it goes beyond of just a fork and adds a lot of new functionality.'
+  category: Tool
+  tags:
+  - linuxserver
+  - linux
+  - programming
+  displayName: GitQlient (LinuxServer)
+  homepageURL: https://github.com/francescmm/GitQlient
+  icon: https://raw.githubusercontent.com/linuxserver/docker-templates/master/linuxserver.io/img/gitqlient-icon.png
+  image: linuxserver/gitqlient:latest
+  imageHomepageURL: https://hub.docker.com/r/linuxserver/gitqlient
+  workspaceTypes:
+  - container
+  - scratch
+  sourceURL: https://github.com/linuxserver/docker-gitqlient
+  additionalPorts:
+  - name: tcp-3001
+    port: 3001
+    protocol: TCP
+  proxyConfig:
+    needsNoopSW: true
+    rewriteHostAbsolutePaths: true
+    preservePathPrefix: true
+  defaultSharedMemory: true
+  defaultEnv:
+  - name: SUBFOLDER
+    value: /proxy/{{namespace}}/{{name}}/
+  defaultUser: abc
+  defaultHomedir: /config

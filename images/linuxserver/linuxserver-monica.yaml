@@ -1,0 +1,31 @@
+apiVersion: kubeworkspaces.io/v1alpha1
+kind: Image
+metadata:
+  name: linuxserver-monica
+spec:
+  defaultPath: /
+  defaultPort: 80
+  description: Deprecated by LinuxServer.io. monica is an open source personal relationship
+    management system, that lets you document your life.
+  category: Tool
+  tags:
+  - linuxserver
+  - linux
+  - content-management
+  - deprecated
+  displayName: Monica (LinuxServer)
+  homepageURL: https://github.com/monicahq/monica
+  icon: https://raw.githubusercontent.com/linuxserver/docker-templates/master/linuxserver.io/img/monica-logo.png
+  image: linuxserver/monica:latest
+  imageHomepageURL: https://hub.docker.com/r/linuxserver/monica
+  workspaceTypes:
+  - container
+  - scratch
+  sourceURL: https://github.com/linuxserver/docker-monica
+  additionalPorts:
+  - name: tcp-443
+    port: 443
+    protocol: TCP
+  proxyConfig:
+    needsNoopSW: true
+    rewriteHostAbsolutePaths: true

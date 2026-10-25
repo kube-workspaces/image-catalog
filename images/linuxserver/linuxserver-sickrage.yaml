@@ -1,0 +1,26 @@
+apiVersion: kubeworkspaces.io/v1alpha1
+kind: Image
+metadata:
+  name: linuxserver-sickrage
+spec:
+  defaultPath: /
+  defaultPort: 8081
+  description: Legacy or infrastructure image available on Docker Hub. sickrage has been deprecated.
+    Please use linuxserver/sickchill instead
+  category: Tool
+  tags:
+  - linuxserver
+  - linux
+  - hub-only
+  displayName: Sickrage (LinuxServer)
+  homepageURL: https://sick-rage.github.io/
+  icon: https://raw.githubusercontent.com/linuxserver/docker-templates/master/linuxserver.io/img/sickrage-banner.png
+  image: linuxserver/sickrage:latest
+  imageHomepageURL: https://hub.docker.com/r/linuxserver/sickrage
+  workspaceTypes:
+  - container
+  - scratch
+  sourceURL: https://github.com/linuxserver/docker-sickrage
+  proxyConfig:
+    needsNoopSW: true
+    rewriteHostAbsolutePaths: true

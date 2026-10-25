@@ -1,0 +1,30 @@
+apiVersion: kubeworkspaces.io/v1alpha1
+kind: Image
+metadata:
+  name: linuxserver-diskover
+spec:
+  defaultPath: /
+  defaultPort: 80
+  description: diskover is an open source file system indexer that uses Elasticsearch to index
+    and manage data across heterogeneous storage systems.
+  category: Tool
+  tags:
+  - linuxserver
+  - linux
+  - storage
+  - monitoring
+  displayName: Diskover (LinuxServer)
+  homepageURL: https://github.com/diskoverdata/diskover-community
+  icon: https://raw.githubusercontent.com/diskoverdata/diskover-community/master/diskover-web/public/images/diskover.png
+  image: linuxserver/diskover:latest
+  imageHomepageURL: https://hub.docker.com/r/linuxserver/diskover
+  workspaceTypes:
+  - container
+  - scratch
+  sourceURL: https://github.com/linuxserver/docker-diskover
+  proxyConfig:
+    needsNoopSW: true
+    rewriteHostAbsolutePaths: true
+  defaultCredentials:
+    username: diskover
+    password: darkdata

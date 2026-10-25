@@ -1,0 +1,25 @@
+apiVersion: kubeworkspaces.io/v1alpha1
+kind: Image
+metadata:
+  name: linuxserver-grav
+spec:
+  defaultPath: /
+  defaultPort: 80
+  description: grav is a Fast, Simple, and Flexible, file-based Web-platform.
+  category: Tool
+  tags:
+  - linuxserver
+  - linux
+  - content-management
+  displayName: Grav (LinuxServer)
+  homepageURL: https://github.com/getgrav/grav/
+  icon: https://raw.githubusercontent.com/linuxserver/docker-templates/master/linuxserver.io/img/grav-logo.png
+  image: linuxserver/grav:latest
+  imageHomepageURL: https://hub.docker.com/r/linuxserver/grav
+  workspaceTypes:
+  - container
+  - scratch
+  sourceURL: https://github.com/linuxserver/docker-grav
+  proxyConfig:
+    needsNoopSW: true
+    rewriteHostAbsolutePaths: true

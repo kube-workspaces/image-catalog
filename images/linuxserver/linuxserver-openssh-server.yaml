@@ -1,0 +1,27 @@
+apiVersion: kubeworkspaces.io/v1alpha1
+kind: Image
+metadata:
+  name: linuxserver-openssh-server
+spec:
+  defaultPath: /
+  defaultPort: 2222
+  description: openssh-server is a sandboxed environment that allows ssh access without giving
+    keys to the entire server. Giving ssh access via private key often means giving full access
+    to the server. This container creates a limited and sandboxed environment that others
+    can ssh into. The users only have access to the folders mapped and the processes running
+    inside this container. No browser endpoint; use the terminal or native client.
+  category: Tool
+  tags:
+  - linuxserver
+  - linux
+  - administration
+  - non-http
+  displayName: OpenSSH Server (LinuxServer)
+  homepageURL: https://www.openssh.com/
+  icon: https://raw.githubusercontent.com/linuxserver/docker-templates/master/linuxserver.io/img/openssh-server-logo.png
+  image: linuxserver/openssh-server:latest
+  imageHomepageURL: https://hub.docker.com/r/linuxserver/openssh-server
+  workspaceTypes:
+  - container
+  - scratch
+  sourceURL: https://github.com/linuxserver/docker-openssh-server

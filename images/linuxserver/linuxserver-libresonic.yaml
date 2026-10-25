@@ -1,0 +1,32 @@
+apiVersion: kubeworkspaces.io/v1alpha1
+kind: Image
+metadata:
+  name: linuxserver-libresonic
+spec:
+  defaultPath: /
+  defaultPort: 4040
+  description: Legacy or infrastructure image available on Docker Hub. THIS IMAGE IS DEPRECATED.
+    PLEASE USE AIRSONIC linuxserver/airsonic libresonic is a free, web-based media streamer,
+    providing ubiqutious access to your music. Use it to share your music with friends, or
+    to listen to your own music while at work. You can stream to multiple players simultaneously,
+    for instance to one player in your kitchen and another in your living room.
+  category: Tool
+  tags:
+  - linuxserver
+  - linux
+  - hub-only
+  displayName: Libresonic (LinuxServer)
+  homepageURL: https://github.com/Libresonic/libresonic
+  icon: https://raw.githubusercontent.com/linuxserver/docker-templates/master/linuxserver.io/img/libresonic.png
+  image: linuxserver/libresonic:latest
+  imageHomepageURL: https://hub.docker.com/r/linuxserver/libresonic
+  workspaceTypes:
+  - container
+  - scratch
+  sourceURL: https://github.com/linuxserver/docker-libresonic
+  proxyConfig:
+    needsNoopSW: true
+    rewriteHostAbsolutePaths: true
+  defaultCredentials:
+    username: admin
+    password: admin

@@ -1,0 +1,37 @@
+apiVersion: kubeworkspaces.io/v1alpha1
+kind: Image
+metadata:
+  name: linuxserver-yaak
+spec:
+  defaultPath: /
+  defaultPort: 3000
+  description: yaak is a desktop API client for organizing and executing REST, GraphQL, and
+    gRPC requests. It's built using Tauri, Rust, and ReactJS.
+  category: Tool
+  tags:
+  - linuxserver
+  - linux
+  - programming
+  displayName: Yaak (LinuxServer)
+  homepageURL: https://yaak.app/
+  icon: https://raw.githubusercontent.com/linuxserver/docker-templates/master/linuxserver.io/img/yaak-logo.png
+  image: linuxserver/yaak:latest
+  imageHomepageURL: https://hub.docker.com/r/linuxserver/yaak
+  workspaceTypes:
+  - container
+  - scratch
+  sourceURL: https://github.com/linuxserver/docker-yaak
+  additionalPorts:
+  - name: tcp-3001
+    port: 3001
+    protocol: TCP
+  proxyConfig:
+    needsNoopSW: true
+    rewriteHostAbsolutePaths: true
+    preservePathPrefix: true
+  defaultSharedMemory: true
+  defaultEnv:
+  - name: SUBFOLDER
+    value: /proxy/{{namespace}}/{{name}}/
+  defaultUser: abc
+  defaultHomedir: /config

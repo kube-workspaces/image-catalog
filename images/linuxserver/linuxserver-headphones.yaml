@@ -1,0 +1,27 @@
+apiVersion: kubeworkspaces.io/v1alpha1
+kind: Image
+metadata:
+  name: linuxserver-headphones
+spec:
+  defaultPath: /
+  defaultPort: 8181
+  description: Legacy or infrastructure image available on Docker Hub. headphones is an automated
+    music downloader for NZB and Torrent, written in Python. It supports SABnzbd, NZBget,
+    Transmission, µTorrent and Blackhole.
+  category: Tool
+  tags:
+  - linuxserver
+  - linux
+  - hub-only
+  displayName: Headphones (LinuxServer)
+  homepageURL: https://github.com/rembo10/headphones
+  icon: https://raw.githubusercontent.com/linuxserver/docker-templates/master/linuxserver.io/img/headphones-banner.png
+  image: linuxserver/headphones:latest
+  imageHomepageURL: https://hub.docker.com/r/linuxserver/headphones
+  workspaceTypes:
+  - container
+  - scratch
+  sourceURL: https://github.com/linuxserver/docker-headphones
+  proxyConfig:
+    needsNoopSW: true
+    rewriteHostAbsolutePaths: true

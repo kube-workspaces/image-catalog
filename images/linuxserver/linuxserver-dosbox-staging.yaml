@@ -1,0 +1,37 @@
+apiVersion: kubeworkspaces.io/v1alpha1
+kind: Image
+metadata:
+  name: linuxserver-dosbox-staging
+spec:
+  defaultPath: /
+  defaultPort: 3000
+  description: '[DOSBox Staging] is a modern continuation of DOSBox a free and open-source
+    emulator that enables the execution of MS-DOS software, especially video games.'
+  category: Game
+  tags:
+  - linuxserver
+  - linux
+  - games
+  displayName: DOSBox Staging (LinuxServer)
+  homepageURL: https://www.dosbox-staging.org/
+  icon: https://raw.githubusercontent.com/linuxserver/docker-templates/master/linuxserver.io/img/dosbox-logo.png
+  image: linuxserver/dosbox-staging:latest
+  imageHomepageURL: https://hub.docker.com/r/linuxserver/dosbox-staging
+  workspaceTypes:
+  - container
+  - scratch
+  sourceURL: https://github.com/linuxserver/docker-dosbox-staging
+  additionalPorts:
+  - name: tcp-3001
+    port: 3001
+    protocol: TCP
+  proxyConfig:
+    needsNoopSW: true
+    rewriteHostAbsolutePaths: true
+    preservePathPrefix: true
+  defaultSharedMemory: true
+  defaultEnv:
+  - name: SUBFOLDER
+    value: /proxy/{{namespace}}/{{name}}/
+  defaultUser: abc
+  defaultHomedir: /config

@@ -1,0 +1,30 @@
+apiVersion: kubeworkspaces.io/v1alpha1
+kind: Image
+metadata:
+  name: linuxserver-healthchecks
+spec:
+  defaultPath: /
+  defaultPort: 8000
+  description: healthchecks is a watchdog for your cron jobs. It's a web server that listens
+    for pings from your cron jobs, plus a web interface.
+  category: Tool
+  tags:
+  - linuxserver
+  - linux
+  - monitoring
+  displayName: Healthchecks (LinuxServer)
+  homepageURL: https://github.com/healthchecks/healthchecks
+  icon: https://raw.githubusercontent.com/linuxserver/docker-templates/master/linuxserver.io/img/healthchecks-logo.png
+  image: linuxserver/healthchecks:latest
+  imageHomepageURL: https://hub.docker.com/r/linuxserver/healthchecks
+  workspaceTypes:
+  - container
+  - scratch
+  sourceURL: https://github.com/linuxserver/docker-healthchecks
+  additionalPorts:
+  - name: tcp-2525
+    port: 2525
+    protocol: TCP
+  proxyConfig:
+    needsNoopSW: true
+    rewriteHostAbsolutePaths: true

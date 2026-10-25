@@ -1,0 +1,32 @@
+apiVersion: kubeworkspaces.io/v1alpha1
+kind: Image
+metadata:
+  name: linuxserver-booksonic-air
+spec:
+  defaultPath: /
+  defaultPort: 4040
+  description: 'Legacy or infrastructure image available on Docker Hub. booksonic-air is a
+    platform for accessing the audiobooks you own wherever you are. At the moment the platform
+    consists of: * Booksonic Air - A server for streaming your audiobooks, successor to the
+    original Booksonic server and based on Airsonic. * Booksonic App - An DSub based Android
+    app for connection to Booksonic-Air servers.'
+  category: Tool
+  tags:
+  - linuxserver
+  - linux
+  - hub-only
+  displayName: Booksonic Air (LinuxServer)
+  homepageURL: http://booksonic.org
+  icon: https://raw.githubusercontent.com/linuxserver/docker-templates/master/linuxserver.io/img/booksonic-air.png
+  image: linuxserver/booksonic-air:latest
+  imageHomepageURL: https://hub.docker.com/r/linuxserver/booksonic-air
+  workspaceTypes:
+  - container
+  - scratch
+  sourceURL: https://github.com/linuxserver/docker-booksonic-air
+  proxyConfig:
+    needsNoopSW: true
+    rewriteHostAbsolutePaths: true
+  defaultCredentials:
+    username: admin
+    password: admin

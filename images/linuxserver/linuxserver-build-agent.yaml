@@ -1,0 +1,26 @@
+apiVersion: kubeworkspaces.io/v1alpha1
+kind: Image
+metadata:
+  name: linuxserver-build-agent
+spec:
+  defaultPath: /
+  defaultPort: 2222
+  description: Legacy or infrastructure image available on Docker Hub. SSH-accessible LinuxServer
+    build agent with Docker-in-Docker. No browser endpoint; use the terminal or native client.
+  category: Tool
+  tags:
+  - linuxserver
+  - linux
+  - internal
+  - hub-only
+  - non-http
+  displayName: Build Agent (LinuxServer)
+  homepageURL: https://hub.docker.com/r/linuxserver/build-agent
+  icon: https://raw.githubusercontent.com/linuxserver/docker-templates/master/linuxserver.io/img/linuxserver-ls-logo.png
+  image: linuxserver/build-agent:latest
+  imageHomepageURL: https://hub.docker.com/r/linuxserver/build-agent
+  workspaceTypes:
+  - container
+  - scratch
+  sourceURL: https://github.com/linuxserver/docker-build-agent
+  privileged: true

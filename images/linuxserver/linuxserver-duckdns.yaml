@@ -1,0 +1,27 @@
+apiVersion: kubeworkspaces.io/v1alpha1
+kind: Image
+metadata:
+  name: linuxserver-duckdns
+spec:
+  defaultPath: /
+  defaultPort: 80
+  description: duckdns is a free service which will point a DNS (sub domains of duckdns.org)
+    to an IP of your choice. The service is completely free, and doesn't require reactivation
+    or forum posts to maintain its existence. No browser endpoint; use the terminal or native
+    client.
+  category: Tool
+  tags:
+  - linuxserver
+  - linux
+  - network
+  - dns
+  - cli
+  displayName: DuckDNS (LinuxServer)
+  homepageURL: https://duckdns.org/
+  icon: https://raw.githubusercontent.com/linuxserver/docker-templates/master/linuxserver.io/img/duckdns.png
+  image: linuxserver/duckdns:latest
+  imageHomepageURL: https://hub.docker.com/r/linuxserver/duckdns
+  workspaceTypes:
+  - container
+  - scratch
+  sourceURL: https://github.com/linuxserver/docker-duckdns

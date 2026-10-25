@@ -1,0 +1,38 @@
+apiVersion: kubeworkspaces.io/v1alpha1
+kind: Image
+metadata:
+  name: linuxserver-mame
+spec:
+  defaultPath: /
+  defaultPort: 3000
+  description: '[MAME] is a free and open-source emulator designed to emulate the hardware
+    of arcade games, video game consoles, old computers and other systems in software on modern
+    personal computers.'
+  category: Game
+  tags:
+  - linuxserver
+  - linux
+  - games
+  displayName: MAME (LinuxServer)
+  homepageURL: https://www.mamedev.org/
+  icon: https://raw.githubusercontent.com/linuxserver/docker-templates/master/linuxserver.io/img/mame-logo.png
+  image: linuxserver/mame:latest
+  imageHomepageURL: https://hub.docker.com/r/linuxserver/mame
+  workspaceTypes:
+  - container
+  - scratch
+  sourceURL: https://github.com/linuxserver/docker-mame
+  additionalPorts:
+  - name: tcp-3001
+    port: 3001
+    protocol: TCP
+  proxyConfig:
+    needsNoopSW: true
+    rewriteHostAbsolutePaths: true
+    preservePathPrefix: true
+  defaultSharedMemory: true
+  defaultEnv:
+  - name: SUBFOLDER
+    value: /proxy/{{namespace}}/{{name}}/
+  defaultUser: abc
+  defaultHomedir: /config

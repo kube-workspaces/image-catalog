@@ -1,0 +1,25 @@
+apiVersion: kubeworkspaces.io/v1alpha1
+kind: Image
+metadata:
+  name: linuxserver-doplarr
+spec:
+  defaultPath: /
+  defaultPort: 80
+  description: Deprecated by LinuxServer.io. doplarr is an *arr request bot for Discord."
+    No browser endpoint; use the terminal or native client.
+  category: Tool
+  tags:
+  - linuxserver
+  - linux
+  - media-requesters
+  - deprecated
+  - cli
+  displayName: Doplarr (LinuxServer)
+  homepageURL: https://github.com/kiranshila/Doplarr
+  icon: https://raw.githubusercontent.com/linuxserver/docker-templates/master/linuxserver.io/img/doplarr-logo_title.png
+  image: linuxserver/doplarr:latest
+  imageHomepageURL: https://hub.docker.com/r/linuxserver/doplarr
+  workspaceTypes:
+  - container
+  - scratch
+  sourceURL: https://github.com/linuxserver/docker-doplarr

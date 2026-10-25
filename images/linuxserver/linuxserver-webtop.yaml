@@ -1,0 +1,37 @@
+apiVersion: kubeworkspaces.io/v1alpha1
+kind: Image
+metadata:
+  name: linuxserver-webtop
+spec:
+  defaultPath: /
+  defaultPort: 3000
+  description: webtop - Alpine, Ubuntu, Fedora, and Arch based containers containing full
+    desktop environments in officially supported flavors accessible via any modern web browser.
+  category: Desktop
+  tags:
+  - linuxserver
+  - linux
+  - remote-desktop
+  displayName: Webtop (LinuxServer)
+  homepageURL: https://github.com/linuxserver/docker-webtop
+  icon: https://raw.githubusercontent.com/linuxserver/docker-templates/master/linuxserver.io/img/webtop-logo.png
+  image: linuxserver/webtop:latest
+  imageHomepageURL: https://hub.docker.com/r/linuxserver/webtop
+  workspaceTypes:
+  - container
+  - scratch
+  sourceURL: https://github.com/linuxserver/docker-webtop
+  additionalPorts:
+  - name: tcp-3001
+    port: 3001
+    protocol: TCP
+  proxyConfig:
+    needsNoopSW: true
+    rewriteHostAbsolutePaths: true
+    preservePathPrefix: true
+  defaultSharedMemory: true
+  defaultEnv:
+  - name: SUBFOLDER
+    value: /proxy/{{namespace}}/{{name}}/
+  defaultUser: abc
+  defaultHomedir: /config

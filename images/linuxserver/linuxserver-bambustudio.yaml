@@ -1,0 +1,38 @@
+apiVersion: kubeworkspaces.io/v1alpha1
+kind: Image
+metadata:
+  name: linuxserver-bambustudio
+spec:
+  defaultPath: /
+  defaultPort: 3000
+  description: '[Bambu Studio] is an open-source, cutting-edge, feature-rich slicing software.
+    It contains project-based workflows, systematically optimized slicing algorithms, and
+    an easy-to-use graphical interface, bringing users an incredibly smooth printing experience.'
+  category: Tool
+  tags:
+  - linuxserver
+  - linux
+  - 3d-printing
+  displayName: Bambu Studio (LinuxServer)
+  homepageURL: https://bambulab.com/en/download/studio
+  icon: https://raw.githubusercontent.com/linuxserver/docker-templates/master/linuxserver.io/img/bambustudio-logo.png
+  image: linuxserver/bambustudio:latest
+  imageHomepageURL: https://hub.docker.com/r/linuxserver/bambustudio
+  workspaceTypes:
+  - container
+  - scratch
+  sourceURL: https://github.com/linuxserver/docker-bambustudio
+  additionalPorts:
+  - name: tcp-3001
+    port: 3001
+    protocol: TCP
+  proxyConfig:
+    needsNoopSW: true
+    rewriteHostAbsolutePaths: true
+    preservePathPrefix: true
+  defaultSharedMemory: true
+  defaultEnv:
+  - name: SUBFOLDER
+    value: /proxy/{{namespace}}/{{name}}/
+  defaultUser: abc
+  defaultHomedir: /config

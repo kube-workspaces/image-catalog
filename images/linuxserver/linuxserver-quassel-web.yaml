@@ -1,0 +1,33 @@
+apiVersion: kubeworkspaces.io/v1alpha1
+kind: Image
+metadata:
+  name: linuxserver-quassel-web
+spec:
+  defaultPath: /
+  defaultPort: 64443
+  description: Legacy or infrastructure image available on Docker Hub. quassel-web is a web
+    client for Quassel. Note that a Quassel-Core instance is required, we have a container
+    available here.
+  category: Tool
+  tags:
+  - linuxserver
+  - linux
+  - hub-only
+  displayName: Quassel Web (LinuxServer)
+  homepageURL: https://github.com/magne4000/quassel-webserver
+  icon: https://raw.githubusercontent.com/linuxserver/docker-templates/master/linuxserver.io/img/quassel-web-banner.png
+  image: linuxserver/quassel-web:latest
+  imageHomepageURL: https://hub.docker.com/r/linuxserver/quassel-web
+  workspaceTypes:
+  - container
+  - scratch
+  sourceURL: https://github.com/linuxserver/docker-quassel-web
+  additionalPorts:
+  - name: tcp-64080
+    port: 64080
+    protocol: TCP
+  proxyConfig:
+    needsNoopSW: true
+    rewriteHostAbsolutePaths: true
+    scheme: https
+    tlsSkipVerify: true

@@ -1,0 +1,30 @@
+apiVersion: kubeworkspaces.io/v1alpha1
+kind: Image
+metadata:
+  name: linuxserver-nginx
+spec:
+  defaultPath: /
+  defaultPort: 80
+  description: nginx is an HTTP web server, reverse proxy, content cache, load balancer, TCP/UDP
+    proxy server, and mail proxy server.
+  category: Tool
+  tags:
+  - linuxserver
+  - linux
+  - reverse-proxy
+  displayName: NGINX (LinuxServer)
+  homepageURL: https://nginx.org/
+  icon: https://raw.githubusercontent.com/linuxserver/docker-templates/master/linuxserver.io/img/nginx-banner.png
+  image: linuxserver/nginx:latest
+  imageHomepageURL: https://hub.docker.com/r/linuxserver/nginx
+  workspaceTypes:
+  - container
+  - scratch
+  sourceURL: https://github.com/linuxserver/docker-nginx
+  additionalPorts:
+  - name: tcp-443
+    port: 443
+    protocol: TCP
+  proxyConfig:
+    needsNoopSW: true
+    rewriteHostAbsolutePaths: true

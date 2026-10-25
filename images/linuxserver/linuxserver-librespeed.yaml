@@ -1,0 +1,26 @@
+apiVersion: kubeworkspaces.io/v1alpha1
+kind: Image
+metadata:
+  name: linuxserver-librespeed
+spec:
+  defaultPath: /
+  defaultPort: 80
+  description: librespeed is a very lightweight Speedtest implemented in Javascript, using
+    XMLHttpRequest and Web Workers. No Flash, No Java, No Websocket, No Bullshit.
+  category: Tool
+  tags:
+  - linuxserver
+  - linux
+  - monitoring
+  displayName: LibreSpeed (LinuxServer)
+  homepageURL: https://github.com/librespeed/speedtest
+  icon: https://raw.githubusercontent.com/librespeed/speedtest/master/.logo/logo3.png
+  image: linuxserver/librespeed:latest
+  imageHomepageURL: https://hub.docker.com/r/linuxserver/librespeed
+  workspaceTypes:
+  - container
+  - scratch
+  sourceURL: https://github.com/linuxserver/docker-librespeed
+  proxyConfig:
+    needsNoopSW: true
+    rewriteHostAbsolutePaths: true

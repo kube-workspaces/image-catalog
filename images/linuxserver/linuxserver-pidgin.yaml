@@ -1,0 +1,39 @@
+apiVersion: kubeworkspaces.io/v1alpha1
+kind: Image
+metadata:
+  name: linuxserver-pidgin
+spec:
+  defaultPath: /
+  defaultPort: 3000
+  description: '[Pidgin] is a chat program which lets you log into accounts on multiple chat
+    networks simultaneously. This means that you can be chatting with friends on XMPP and
+    sitting in an IRC channel at the same time.'
+  category: Tool
+  tags:
+  - linuxserver
+  - linux
+  - irc
+  - chat
+  displayName: Pidgin (LinuxServer)
+  homepageURL: https://pidgin.im/
+  icon: https://raw.githubusercontent.com/linuxserver/docker-templates/master/linuxserver.io/img/pidgin-logo.png
+  image: linuxserver/pidgin:latest
+  imageHomepageURL: https://hub.docker.com/r/linuxserver/pidgin
+  workspaceTypes:
+  - container
+  - scratch
+  sourceURL: https://github.com/linuxserver/docker-pidgin
+  additionalPorts:
+  - name: tcp-3001
+    port: 3001
+    protocol: TCP
+  proxyConfig:
+    needsNoopSW: true
+    rewriteHostAbsolutePaths: true
+    preservePathPrefix: true
+  defaultSharedMemory: true
+  defaultEnv:
+  - name: SUBFOLDER
+    value: /proxy/{{namespace}}/{{name}}/
+  defaultUser: abc
+  defaultHomedir: /config

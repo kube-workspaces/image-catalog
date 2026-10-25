@@ -1,0 +1,25 @@
+apiVersion: kubeworkspaces.io/v1alpha1
+kind: Image
+metadata:
+  name: linuxserver-piper
+spec:
+  defaultPath: /
+  defaultPort: 10200
+  description: piper is a fast, local neural text to speech system that sounds great and is
+    optimized for the Raspberry Pi 4. This container provides a Wyoming protocol server for
+    Piper. No browser endpoint; use the terminal or native client.
+  category: Tool
+  tags:
+  - linuxserver
+  - linux
+  - machine-learning
+  - non-http
+  displayName: Piper (LinuxServer)
+  homepageURL: https://github.com/rhasspy/wyoming-piper
+  icon: https://raw.githubusercontent.com/linuxserver/docker-templates/master/linuxserver.io/img/piper-logo.png
+  image: linuxserver/piper:latest
+  imageHomepageURL: https://hub.docker.com/r/linuxserver/piper
+  workspaceTypes:
+  - container
+  - scratch
+  sourceURL: https://github.com/linuxserver/docker-piper

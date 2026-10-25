@@ -1,0 +1,38 @@
+apiVersion: kubeworkspaces.io/v1alpha1
+kind: Image
+metadata:
+  name: linuxserver-thunderbird
+spec:
+  defaultPath: /
+  defaultPort: 3000
+  description: '[Thunderbird] is a free and open-source personal information manager primarily
+    used as an e-mail client with a calendar and contactbook, as well as an RSS feed reader,
+    chat client, and news client.'
+  category: Tool
+  tags:
+  - linuxserver
+  - linux
+  - email
+  displayName: Thunderbird (LinuxServer)
+  homepageURL: https://www.thunderbird.net/
+  icon: https://raw.githubusercontent.com/linuxserver/docker-templates/master/linuxserver.io/img/thunderbird-logo.png
+  image: linuxserver/thunderbird:latest
+  imageHomepageURL: https://hub.docker.com/r/linuxserver/thunderbird
+  workspaceTypes:
+  - container
+  - scratch
+  sourceURL: https://github.com/linuxserver/docker-thunderbird
+  additionalPorts:
+  - name: tcp-3001
+    port: 3001
+    protocol: TCP
+  proxyConfig:
+    needsNoopSW: true
+    rewriteHostAbsolutePaths: true
+    preservePathPrefix: true
+  defaultSharedMemory: true
+  defaultEnv:
+  - name: SUBFOLDER
+    value: /proxy/{{namespace}}/{{name}}/
+  defaultUser: abc
+  defaultHomedir: /config

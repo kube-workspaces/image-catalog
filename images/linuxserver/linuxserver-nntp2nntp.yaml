@@ -1,0 +1,28 @@
+apiVersion: kubeworkspaces.io/v1alpha1
+kind: Image
+metadata:
+  name: linuxserver-nntp2nntp
+spec:
+  defaultPath: /
+  defaultPort: 1563
+  description: 'Legacy or infrastructure image available on Docker Hub. NNTP2NNTP proxy allow
+    you to use your NNTP Account from multiple systems, each with own user name and password.
+    It fully supports SSL and you can also limit the access to proxy with SSL certificates.
+    nntp2nntp proxy is very simple and pretty fast. ## Warning Whilst we know of no nntp2nntp
+    security issues the upstream code for this project has received no changes since 06.08.15
+    and is likely... No browser endpoint; use the terminal or native client.'
+  category: Tool
+  tags:
+  - linuxserver
+  - linux
+  - hub-only
+  - non-http
+  displayName: NNTP2NNTP (LinuxServer)
+  homepageURL: https://github.com/linuxserver/nntp2nntp
+  icon: https://raw.githubusercontent.com/linuxserver/docker-templates/master/linuxserver.io/img/nntp2nntp.png
+  image: linuxserver/nntp2nntp:latest
+  imageHomepageURL: https://hub.docker.com/r/linuxserver/nntp2nntp
+  workspaceTypes:
+  - container
+  - scratch
+  sourceURL: https://github.com/linuxserver/docker-nntp2nntp

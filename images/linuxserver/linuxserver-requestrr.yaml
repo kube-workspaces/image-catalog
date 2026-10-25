@@ -1,0 +1,26 @@
+apiVersion: kubeworkspaces.io/v1alpha1
+kind: Image
+metadata:
+  name: linuxserver-requestrr
+spec:
+  defaultPath: /
+  defaultPort: 4545
+  description: Legacy or infrastructure image available on Docker Hub. requestrr is a chatbot
+    used to simplify using services like Sonarr/Radarr/Ombi via the use of chat.
+  category: Tool
+  tags:
+  - linuxserver
+  - linux
+  - hub-only
+  displayName: Requestrr (LinuxServer)
+  homepageURL: https://github.com/darkalfx/requestrr
+  icon: https://github.com/darkalfx/requestrr/raw/master/Logos/requestrr_discord_Icon_512.png
+  image: linuxserver/requestrr:latest
+  imageHomepageURL: https://hub.docker.com/r/linuxserver/requestrr
+  workspaceTypes:
+  - container
+  - scratch
+  sourceURL: https://github.com/linuxserver/docker-requestrr
+  proxyConfig:
+    needsNoopSW: true
+    rewriteHostAbsolutePaths: true

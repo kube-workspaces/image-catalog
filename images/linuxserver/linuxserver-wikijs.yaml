@@ -1,0 +1,25 @@
+apiVersion: kubeworkspaces.io/v1alpha1
+kind: Image
+metadata:
+  name: linuxserver-wikijs
+spec:
+  defaultPath: /
+  defaultPort: 3000
+  description: wikijs A modern, lightweight and powerful wiki app built on NodeJS.
+  category: Tool
+  tags:
+  - linuxserver
+  - linux
+  - content-management
+  displayName: Wiki.js (LinuxServer)
+  homepageURL: https://github.com/Requarks/wiki
+  icon: https://raw.githubusercontent.com/linuxserver/docker-templates/master/linuxserver.io/img/linuxserver-ls-logo.png
+  image: linuxserver/wikijs:latest
+  imageHomepageURL: https://hub.docker.com/r/linuxserver/wikijs
+  workspaceTypes:
+  - container
+  - scratch
+  sourceURL: https://github.com/linuxserver/docker-wikijs
+  proxyConfig:
+    needsNoopSW: true
+    rewriteHostAbsolutePaths: true

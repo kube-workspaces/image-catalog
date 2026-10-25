@@ -1,0 +1,27 @@
+apiVersion: kubeworkspaces.io/v1alpha1
+kind: Image
+metadata:
+  name: linuxserver-nzbhydra2
+spec:
+  defaultPath: /
+  defaultPort: 5076
+  description: nzbhydra2 is a meta search application for NZB indexers, the spiritual successor
+    to NZBmegasearcH, and an evolution of the original application NZBHydra. It provides easy
+    access to a number of raw and newznab based indexers.
+  category: Tool
+  tags:
+  - linuxserver
+  - linux
+  - indexers
+  displayName: NZBHydra 2 (LinuxServer)
+  homepageURL: https://github.com/theotherp/nzbhydra2
+  icon: https://raw.githubusercontent.com/linuxserver/docker-templates/master/linuxserver.io/img/hydra-icon.png
+  image: linuxserver/nzbhydra2:latest
+  imageHomepageURL: https://hub.docker.com/r/linuxserver/nzbhydra2
+  workspaceTypes:
+  - container
+  - scratch
+  sourceURL: https://github.com/linuxserver/docker-nzbhydra2
+  proxyConfig:
+    needsNoopSW: true
+    rewriteHostAbsolutePaths: true

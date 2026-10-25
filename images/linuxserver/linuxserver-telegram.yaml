@@ -1,0 +1,36 @@
+apiVersion: kubeworkspaces.io/v1alpha1
+kind: Image
+metadata:
+  name: linuxserver-telegram
+spec:
+  defaultPath: /
+  defaultPort: 3000
+  description: '[Telegram] is a cloud-based mobile and desktop messaging app.'
+  category: Tool
+  tags:
+  - linuxserver
+  - linux
+  - chat
+  displayName: Telegram (LinuxServer)
+  homepageURL: https://telegram.org/
+  icon: https://raw.githubusercontent.com/linuxserver/docker-templates/master/linuxserver.io/img/telegram-logo.png
+  image: linuxserver/telegram:latest
+  imageHomepageURL: https://hub.docker.com/r/linuxserver/telegram
+  workspaceTypes:
+  - container
+  - scratch
+  sourceURL: https://github.com/linuxserver/docker-telegram
+  additionalPorts:
+  - name: tcp-3001
+    port: 3001
+    protocol: TCP
+  proxyConfig:
+    needsNoopSW: true
+    rewriteHostAbsolutePaths: true
+    preservePathPrefix: true
+  defaultSharedMemory: true
+  defaultEnv:
+  - name: SUBFOLDER
+    value: /proxy/{{namespace}}/{{name}}/
+  defaultUser: abc
+  defaultHomedir: /config

@@ -1,0 +1,36 @@
+apiVersion: kubeworkspaces.io/v1alpha1
+kind: Image
+metadata:
+  name: linuxserver-rutorrent
+spec:
+  defaultPath: /
+  defaultPort: 80
+  description: Legacy or infrastructure image available on Docker Hub. ruTorrent is a popular
+    rtorrent client with a webui for ease of use.
+  category: Tool
+  tags:
+  - linuxserver
+  - linux
+  - hub-only
+  displayName: ruTorrent (LinuxServer)
+  homepageURL: https://github.com/Novik/ruTorrent
+  icon: https://raw.githubusercontent.com/linuxserver/docker-templates/master/linuxserver.io/img/rutorrent.jpg
+  image: linuxserver/rutorrent:latest
+  imageHomepageURL: https://hub.docker.com/r/linuxserver/rutorrent
+  workspaceTypes:
+  - container
+  - scratch
+  sourceURL: https://github.com/linuxserver/docker-rutorrent
+  additionalPorts:
+  - name: tcp-5000
+    port: 5000
+    protocol: TCP
+  - name: tcp-51413
+    port: 51413
+    protocol: TCP
+  - name: udp-6881
+    port: 6881
+    protocol: UDP
+  proxyConfig:
+    needsNoopSW: true
+    rewriteHostAbsolutePaths: true

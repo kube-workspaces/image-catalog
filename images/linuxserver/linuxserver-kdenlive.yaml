@@ -1,0 +1,37 @@
+apiVersion: kubeworkspaces.io/v1alpha1
+kind: Image
+metadata:
+  name: linuxserver-kdenlive
+spec:
+  defaultPath: /
+  defaultPort: 3000
+  description: '[Kdenlive] is a powerful free and open source cross-platform video editing
+    program made by the KDE community. Feature rich and production ready.'
+  category: Tool
+  tags:
+  - linuxserver
+  - linux
+  - video-editor
+  displayName: Kdenlive (LinuxServer)
+  homepageURL: https://kdenlive.org/
+  icon: https://raw.githubusercontent.com/linuxserver/docker-templates/master/linuxserver.io/img/kdenlive-logo.png
+  image: linuxserver/kdenlive:latest
+  imageHomepageURL: https://hub.docker.com/r/linuxserver/kdenlive
+  workspaceTypes:
+  - container
+  - scratch
+  sourceURL: https://github.com/linuxserver/docker-kdenlive
+  additionalPorts:
+  - name: tcp-3001
+    port: 3001
+    protocol: TCP
+  proxyConfig:
+    needsNoopSW: true
+    rewriteHostAbsolutePaths: true
+    preservePathPrefix: true
+  defaultSharedMemory: true
+  defaultEnv:
+  - name: SUBFOLDER
+    value: /proxy/{{namespace}}/{{name}}/
+  defaultUser: abc
+  defaultHomedir: /config

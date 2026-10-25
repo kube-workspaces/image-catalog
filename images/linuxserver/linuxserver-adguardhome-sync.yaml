@@ -1,0 +1,26 @@
+apiVersion: kubeworkspaces.io/v1alpha1
+kind: Image
+metadata:
+  name: linuxserver-adguardhome-sync
+spec:
+  defaultPath: /
+  defaultPort: 8080
+  description: adguardhome-sync is a tool to synchronize AdGuardHome config to replica instances.
+  category: Tool
+  tags:
+  - linuxserver
+  - linux
+  - network
+  - dns
+  displayName: AdGuard Home Sync (LinuxServer)
+  homepageURL: https://github.com/bakito/adguardhome-sync/
+  icon: https://raw.githubusercontent.com/linuxserver/docker-templates/master/linuxserver.io/img/adguardhomesync-icon.png
+  image: linuxserver/adguardhome-sync:latest
+  imageHomepageURL: https://hub.docker.com/r/linuxserver/adguardhome-sync
+  workspaceTypes:
+  - container
+  - scratch
+  sourceURL: https://github.com/linuxserver/docker-adguardhome-sync
+  proxyConfig:
+    needsNoopSW: true
+    rewriteHostAbsolutePaths: true

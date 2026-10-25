@@ -1,0 +1,28 @@
+apiVersion: kubeworkspaces.io/v1alpha1
+kind: Image
+metadata:
+  name: linuxserver-mylar3
+spec:
+  defaultPath: /
+  defaultPort: 8090
+  description: mylar3 is an automated Comic Book downloader (cbr/cbz) for use with NZB and
+    torrents written in python. It supports SABnzbd, NZBGET, and many torrent clients in addition
+    to DDL.
+  category: Tool
+  tags:
+  - linuxserver
+  - linux
+  - books
+  - media-management
+  displayName: Mylar 3 (LinuxServer)
+  homepageURL: https://github.com/MylarComics/mylar3
+  icon: https://raw.githubusercontent.com/linuxserver/docker-templates/master/linuxserver.io/img/mylar-icon.png
+  image: linuxserver/mylar3:latest
+  imageHomepageURL: https://hub.docker.com/r/linuxserver/mylar3
+  workspaceTypes:
+  - container
+  - scratch
+  sourceURL: https://github.com/linuxserver/docker-mylar3
+  proxyConfig:
+    needsNoopSW: true
+    rewriteHostAbsolutePaths: true

@@ -1,0 +1,35 @@
+apiVersion: kubeworkspaces.io/v1alpha1
+kind: Image
+metadata:
+  name: linuxserver-domoticz
+spec:
+  defaultPath: /
+  defaultPort: 8080
+  description: 'Legacy or infrastructure image available on Docker Hub. domoticz is a Home
+    Automation System that lets you monitor and configure various devices like: Lights, Switches,
+    various sensors/meters like Temperature, Rain, Wind, UV, Electra, Gas, Water and much
+    more. Notifications/Alerts can be sent to any mobile device.'
+  category: Tool
+  tags:
+  - linuxserver
+  - linux
+  - hub-only
+  displayName: Domoticz (LinuxServer)
+  homepageURL: https://www.domoticz.com
+  icon: https://github.com/domoticz/domoticz/raw/master/www/images/logo.png
+  image: linuxserver/domoticz:latest
+  imageHomepageURL: https://hub.docker.com/r/linuxserver/domoticz
+  workspaceTypes:
+  - container
+  - scratch
+  sourceURL: https://github.com/linuxserver/docker-domoticz
+  additionalPorts:
+  - name: tcp-6144
+    port: 6144
+    protocol: TCP
+  - name: tcp-1443
+    port: 1443
+    protocol: TCP
+  proxyConfig:
+    needsNoopSW: true
+    rewriteHostAbsolutePaths: true

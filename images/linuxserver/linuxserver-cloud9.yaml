@@ -1,0 +1,27 @@
+apiVersion: kubeworkspaces.io/v1alpha1
+kind: Image
+metadata:
+  name: linuxserver-cloud9
+spec:
+  defaultPath: /
+  defaultPort: 8000
+  description: Legacy or infrastructure image available on Docker Hub. Cloud9 Cloud9 is a
+    complete web based IDE with terminal access. This container is for running their core
+    SDK locally and developing plugins.
+  category: IDE
+  tags:
+  - linuxserver
+  - linux
+  - hub-only
+  displayName: Cloud9 (LinuxServer)
+  homepageURL: https://github.com/c9/core
+  icon: https://raw.githubusercontent.com/linuxserver/docker-templates/master/linuxserver.io/img/cloud9.png
+  image: linuxserver/cloud9:latest
+  imageHomepageURL: https://hub.docker.com/r/linuxserver/cloud9
+  workspaceTypes:
+  - container
+  - scratch
+  sourceURL: https://github.com/linuxserver/docker-cloud9
+  proxyConfig:
+    needsNoopSW: true
+    rewriteHostAbsolutePaths: true

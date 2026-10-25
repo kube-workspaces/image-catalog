@@ -1,0 +1,26 @@
+apiVersion: kubeworkspaces.io/v1alpha1
+kind: Image
+metadata:
+  name: linuxserver-dillinger
+spec:
+  defaultPath: /
+  defaultPort: 8080
+  description: Legacy or infrastructure image available on Docker Hub. dillinger is a cloud-enabled,
+    mobile-ready, offline-storage, AngularJS powered HTML5 Markdown editor.
+  category: Tool
+  tags:
+  - linuxserver
+  - linux
+  - hub-only
+  displayName: Dillinger (LinuxServer)
+  homepageURL: https://github.com/joemccann/dillinger
+  icon: https://raw.githubusercontent.com/linuxserver/docker-templates/master/linuxserver.io/img/dillinger.png
+  image: linuxserver/dillinger:latest
+  imageHomepageURL: https://hub.docker.com/r/linuxserver/dillinger
+  workspaceTypes:
+  - container
+  - scratch
+  sourceURL: https://github.com/linuxserver/docker-dillinger
+  proxyConfig:
+    needsNoopSW: true
+    rewriteHostAbsolutePaths: true

@@ -1,0 +1,37 @@
+apiVersion: kubeworkspaces.io/v1alpha1
+kind: Image
+metadata:
+  name: linuxserver-nomacs
+spec:
+  defaultPath: /
+  defaultPort: 3000
+  description: nomacs is a free, open source image viewer, which supports multiple platforms.
+    You can use it for viewing all common image formats including RAW and psd images.
+  category: Tool
+  tags:
+  - linuxserver
+  - linux
+  - image-editor
+  displayName: nomacs (LinuxServer)
+  homepageURL: https://github.com/nomacs/nomacs
+  icon: https://raw.githubusercontent.com/linuxserver/docker-templates/master/linuxserver.io/img/nomacs-logo.png
+  image: linuxserver/nomacs:latest
+  imageHomepageURL: https://hub.docker.com/r/linuxserver/nomacs
+  workspaceTypes:
+  - container
+  - scratch
+  sourceURL: https://github.com/linuxserver/docker-nomacs
+  additionalPorts:
+  - name: tcp-3001
+    port: 3001
+    protocol: TCP
+  proxyConfig:
+    needsNoopSW: true
+    rewriteHostAbsolutePaths: true
+    preservePathPrefix: true
+  defaultSharedMemory: true
+  defaultEnv:
+  - name: SUBFOLDER
+    value: /proxy/{{namespace}}/{{name}}/
+  defaultUser: abc
+  defaultHomedir: /config

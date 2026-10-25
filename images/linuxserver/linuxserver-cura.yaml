@@ -1,0 +1,38 @@
+apiVersion: kubeworkspaces.io/v1alpha1
+kind: Image
+metadata:
+  name: linuxserver-cura
+spec:
+  defaultPath: /
+  defaultPort: 3000
+  description: '[UltiMaker Cura] is free, easy-to-use 3D printing software trusted by millions
+    of users. Fine-tune your 3D model with 400+ settings for the best slicing and printing
+    results.'
+  category: Tool
+  tags:
+  - linuxserver
+  - linux
+  - 3d-printing
+  displayName: Cura (LinuxServer)
+  homepageURL: https://ultimaker.com/software/ultimaker-cura/
+  icon: https://raw.githubusercontent.com/linuxserver/docker-templates/master/linuxserver.io/img/cura-logo.png
+  image: linuxserver/cura:latest
+  imageHomepageURL: https://hub.docker.com/r/linuxserver/cura
+  workspaceTypes:
+  - container
+  - scratch
+  sourceURL: https://github.com/linuxserver/docker-cura
+  additionalPorts:
+  - name: tcp-3001
+    port: 3001
+    protocol: TCP
+  proxyConfig:
+    needsNoopSW: true
+    rewriteHostAbsolutePaths: true
+    preservePathPrefix: true
+  defaultSharedMemory: true
+  defaultEnv:
+  - name: SUBFOLDER
+    value: /proxy/{{namespace}}/{{name}}/
+  defaultUser: abc
+  defaultHomedir: /config

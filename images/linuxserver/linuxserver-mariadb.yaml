@@ -1,0 +1,24 @@
+apiVersion: kubeworkspaces.io/v1alpha1
+kind: Image
+metadata:
+  name: linuxserver-mariadb
+spec:
+  defaultPath: /
+  defaultPort: 3306
+  description: mariadb is one of the most popular database servers. Made by the original developers
+    of MySQL. No browser endpoint; use the terminal or native client.
+  category: Tool
+  tags:
+  - linuxserver
+  - linux
+  - databases
+  - non-http
+  displayName: MariaDB (LinuxServer)
+  homepageURL: https://mariadb.org/
+  icon: https://raw.githubusercontent.com/linuxserver/docker-templates/master/linuxserver.io/img/mariadb-git.png
+  image: linuxserver/mariadb:latest
+  imageHomepageURL: https://hub.docker.com/r/linuxserver/mariadb
+  workspaceTypes:
+  - container
+  - scratch
+  sourceURL: https://github.com/linuxserver/docker-mariadb

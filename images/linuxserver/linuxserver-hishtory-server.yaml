@@ -1,0 +1,28 @@
+apiVersion: kubeworkspaces.io/v1alpha1
+kind: Image
+metadata:
+  name: linuxserver-hishtory-server
+spec:
+  defaultPath: /
+  defaultPort: 8080
+  description: '[hiSHtory] is a better shell history. It stores your shell history in context
+    (what directory you ran the command in, whether it succeeded or failed, how long it took,
+    etc). This is all stored locally and end-to-end encrypted for syncing to to all your other
+    computers.'
+  category: Tool
+  tags:
+  - linuxserver
+  - linux
+  - administration
+  displayName: hiSHtory Server (LinuxServer)
+  homepageURL: https://github.com/ddworken/hishtory
+  icon: https://raw.githubusercontent.com/linuxserver/docker-templates/master/linuxserver.io/img/hishtory-server-icon.png
+  image: linuxserver/hishtory-server:latest
+  imageHomepageURL: https://hub.docker.com/r/linuxserver/hishtory-server
+  workspaceTypes:
+  - container
+  - scratch
+  sourceURL: https://github.com/linuxserver/docker-hishtory-server
+  proxyConfig:
+    needsNoopSW: true
+    rewriteHostAbsolutePaths: true

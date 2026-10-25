@@ -1,0 +1,29 @@
+apiVersion: kubeworkspaces.io/v1alpha1
+kind: Image
+metadata:
+  name: linuxserver-speedtest-tracker
+spec:
+  defaultPath: /
+  defaultPort: 80
+  description: speedtest-tracker is a self-hosted internet performance tracking application
+    that runs speedtest checks against Ookla's Speedtest service.
+  category: Tool
+  tags:
+  - linuxserver
+  - linux
+  - monitoring
+  displayName: Speedtest Tracker (LinuxServer)
+  homepageURL: https://github.com/alexjustesen/speedtest-tracker
+  icon: https://raw.githubusercontent.com/linuxserver/docker-templates/master/linuxserver.io/img/speedtest-tracker-logo.png
+  image: linuxserver/speedtest-tracker:latest
+  imageHomepageURL: https://hub.docker.com/r/linuxserver/speedtest-tracker
+  workspaceTypes:
+  - container
+  - scratch
+  sourceURL: https://github.com/linuxserver/docker-speedtest-tracker
+  proxyConfig:
+    needsNoopSW: true
+    rewriteHostAbsolutePaths: true
+  defaultCredentials:
+    username: admin@example.com
+    password: password

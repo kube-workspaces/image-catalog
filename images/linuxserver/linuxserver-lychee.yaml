@@ -1,0 +1,27 @@
+apiVersion: kubeworkspaces.io/v1alpha1
+kind: Image
+metadata:
+  name: linuxserver-lychee
+spec:
+  defaultPath: /
+  defaultPort: 80
+  description: lychee is a free photo-management tool, which runs on your server or web-space.
+    Installing is a matter of seconds. Upload, manage and share photos like from a native
+    application. Lychee comes with everything you need and all your photos are stored securely.
+  category: Tool
+  tags:
+  - linuxserver
+  - linux
+  - photos
+  displayName: Lychee (LinuxServer)
+  homepageURL: https://lycheeorg.github.io/
+  icon: https://raw.githubusercontent.com/linuxserver/docker-templates/master/linuxserver.io/img/lychee-icon.png
+  image: linuxserver/lychee:latest
+  imageHomepageURL: https://hub.docker.com/r/linuxserver/lychee
+  workspaceTypes:
+  - container
+  - scratch
+  sourceURL: https://github.com/linuxserver/docker-lychee
+  proxyConfig:
+    needsNoopSW: true
+    rewriteHostAbsolutePaths: true

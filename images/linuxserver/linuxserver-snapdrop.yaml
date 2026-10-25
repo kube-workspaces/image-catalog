@@ -1,0 +1,31 @@
+apiVersion: kubeworkspaces.io/v1alpha1
+kind: Image
+metadata:
+  name: linuxserver-snapdrop
+spec:
+  defaultPath: /
+  defaultPort: 80
+  description: Deprecated by LinuxServer.io. snapdrop A local file sharing in your browser.
+    Inspired by Apple's Airdrop.
+  category: Tool
+  tags:
+  - linuxserver
+  - linux
+  - file-sharing
+  - deprecated
+  displayName: Snapdrop (LinuxServer)
+  homepageURL: https://github.com/snapdrop/snapdrop
+  icon: https://raw.githubusercontent.com/snapdrop/snapdrop/master/client/images/logo_transparent_512x512.png
+  image: linuxserver/snapdrop:latest
+  imageHomepageURL: https://hub.docker.com/r/linuxserver/snapdrop
+  workspaceTypes:
+  - container
+  - scratch
+  sourceURL: https://github.com/linuxserver/docker-snapdrop
+  additionalPorts:
+  - name: tcp-443
+    port: 443
+    protocol: TCP
+  proxyConfig:
+    needsNoopSW: true
+    rewriteHostAbsolutePaths: true

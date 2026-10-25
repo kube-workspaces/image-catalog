@@ -1,0 +1,26 @@
+apiVersion: kubeworkspaces.io/v1alpha1
+kind: Image
+metadata:
+  name: linuxserver-mylar
+spec:
+  defaultPath: /
+  defaultPort: 8090
+  description: Legacy or infrastructure image available on Docker Hub. mylar is an automated
+    Comic Book downloader (cbr/cbz) for use with SABnzbd, NZBGet and torrents.
+  category: Tool
+  tags:
+  - linuxserver
+  - linux
+  - hub-only
+  displayName: Mylar (LinuxServer)
+  homepageURL: https://github.com/evilhero/mylar
+  icon: https://raw.githubusercontent.com/linuxserver/docker-templates/master/linuxserver.io/img/mylar-icon.png
+  image: linuxserver/mylar:latest
+  imageHomepageURL: https://hub.docker.com/r/linuxserver/mylar
+  workspaceTypes:
+  - container
+  - scratch
+  sourceURL: https://github.com/linuxserver/docker-mylar
+  proxyConfig:
+    needsNoopSW: true
+    rewriteHostAbsolutePaths: true

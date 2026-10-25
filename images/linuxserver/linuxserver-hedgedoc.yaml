@@ -1,0 +1,28 @@
+apiVersion: kubeworkspaces.io/v1alpha1
+kind: Image
+metadata:
+  name: linuxserver-hedgedoc
+spec:
+  defaultPath: /
+  defaultPort: 3000
+  description: '[HedgeDoc] gives you access to all your files wherever you are. HedgeDoc is
+    a real-time, multi-platform collaborative markdown note editor. This means that you can
+    write notes with other people on your desktop, tablet or even on the phone. You can sign-in
+    via multiple auth providers like Facebook, Twitter, GitHub and many more on the homepage.'
+  category: Tool
+  tags:
+  - linuxserver
+  - linux
+  - content-management
+  displayName: HedgeDoc (LinuxServer)
+  homepageURL: https://hedgedoc.org/
+  icon: https://raw.githubusercontent.com/linuxserver/docker-templates/master/linuxserver.io/img/hedgedoc-banner.png
+  image: linuxserver/hedgedoc:latest
+  imageHomepageURL: https://hub.docker.com/r/linuxserver/hedgedoc
+  workspaceTypes:
+  - container
+  - scratch
+  sourceURL: https://github.com/linuxserver/docker-hedgedoc
+  proxyConfig:
+    needsNoopSW: true
+    rewriteHostAbsolutePaths: true

@@ -1,0 +1,37 @@
+apiVersion: kubeworkspaces.io/v1alpha1
+kind: Image
+metadata:
+  name: linuxserver-dolphin
+spec:
+  defaultPath: /
+  defaultPort: 3000
+  description: '[Dolphin Emulator] lets you play GameCube and Wii games with various graphical
+    enhancements and other features are available to improve your game experience.'
+  category: Game
+  tags:
+  - linuxserver
+  - linux
+  - games
+  displayName: Dolphin (LinuxServer)
+  homepageURL: https://dolphin-emu.org/
+  icon: https://raw.githubusercontent.com/linuxserver/docker-templates/master/linuxserver.io/img/dolphin-logo.png
+  image: linuxserver/dolphin:latest
+  imageHomepageURL: https://hub.docker.com/r/linuxserver/dolphin
+  workspaceTypes:
+  - container
+  - scratch
+  sourceURL: https://github.com/linuxserver/docker-dolphin
+  additionalPorts:
+  - name: tcp-3001
+    port: 3001
+    protocol: TCP
+  proxyConfig:
+    needsNoopSW: true
+    rewriteHostAbsolutePaths: true
+    preservePathPrefix: true
+  defaultSharedMemory: true
+  defaultEnv:
+  - name: SUBFOLDER
+    value: /proxy/{{namespace}}/{{name}}/
+  defaultUser: abc
+  defaultHomedir: /config

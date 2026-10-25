@@ -1,0 +1,55 @@
+apiVersion: kubeworkspaces.io/v1alpha1
+kind: Image
+metadata:
+  name: linuxserver-plex
+spec:
+  defaultPath: /web
+  defaultPort: 32400
+  description: plex organizes video, music and photos from personal media libraries and streams
+    them to smart TVs, streaming boxes and mobile devices. This container is packaged as a
+    standalone Plex Media Server. Straightforward design and bulk actions mean getting things
+    done faster.
+  category: Tool
+  tags:
+  - linuxserver
+  - linux
+  - media-servers
+  - music
+  - audiobooks
+  displayName: Plex (LinuxServer)
+  homepageURL: https://plex.tv
+  icon: https://raw.githubusercontent.com/linuxserver/docker-templates/master/linuxserver.io/img/plex-logo.png
+  image: linuxserver/plex:latest
+  imageHomepageURL: https://hub.docker.com/r/linuxserver/plex
+  workspaceTypes:
+  - container
+  - scratch
+  sourceURL: https://github.com/linuxserver/docker-plex
+  additionalPorts:
+  - name: udp-1900
+    port: 1900
+    protocol: UDP
+  - name: udp-5353
+    port: 5353
+    protocol: UDP
+  - name: tcp-8324
+    port: 8324
+    protocol: TCP
+  - name: udp-32410
+    port: 32410
+    protocol: UDP
+  - name: udp-32412
+    port: 32412
+    protocol: UDP
+  - name: udp-32413
+    port: 32413
+    protocol: UDP
+  - name: udp-32414
+    port: 32414
+    protocol: UDP
+  - name: tcp-32469
+    port: 32469
+    protocol: TCP
+  proxyConfig:
+    needsNoopSW: true
+    rewriteHostAbsolutePaths: true

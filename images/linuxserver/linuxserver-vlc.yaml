@@ -1,0 +1,37 @@
+apiVersion: kubeworkspaces.io/v1alpha1
+kind: Image
+metadata:
+  name: linuxserver-vlc
+spec:
+  defaultPath: /
+  defaultPort: 3000
+  description: '[VLC Media Player] is a free and open source cross-platform multimedia player
+    and framework that delivers dependable performance across multiple devices.'
+  category: Tool
+  tags:
+  - linuxserver
+  - linux
+  - media-management
+  displayName: VLC (LinuxServer)
+  homepageURL: https://www.videolan.org/vlc/
+  icon: https://raw.githubusercontent.com/linuxserver/docker-templates/master/linuxserver.io/img/vlc-logo.png
+  image: linuxserver/vlc:latest
+  imageHomepageURL: https://hub.docker.com/r/linuxserver/vlc
+  workspaceTypes:
+  - container
+  - scratch
+  sourceURL: https://github.com/linuxserver/docker-vlc
+  additionalPorts:
+  - name: tcp-3001
+    port: 3001
+    protocol: TCP
+  proxyConfig:
+    needsNoopSW: true
+    rewriteHostAbsolutePaths: true
+    preservePathPrefix: true
+  defaultSharedMemory: true
+  defaultEnv:
+  - name: SUBFOLDER
+    value: /proxy/{{namespace}}/{{name}}/
+  defaultUser: abc
+  defaultHomedir: /config

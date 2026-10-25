@@ -1,0 +1,27 @@
+apiVersion: kubeworkspaces.io/v1alpha1
+kind: Image
+metadata:
+  name: linuxserver-scrutiny
+spec:
+  defaultPath: /
+  defaultPort: 8080
+  description: Legacy or infrastructure image available on Docker Hub. scrutiny WebUI for
+    smartd S.M.A.R.T monitoring. Scrutiny is a Hard Drive Health Dashboard & Monitoring solution,
+    merging manufacturer provided S.M.A.R.T metrics with real-world failure rates from Backblaze.
+  category: Tool
+  tags:
+  - linuxserver
+  - linux
+  - hub-only
+  displayName: Scrutiny (LinuxServer)
+  homepageURL: https://github.com/AnalogJ/scrutiny
+  icon: https://raw.githubusercontent.com/AnalogJ/scrutiny/master/docs/dashboard.png
+  image: linuxserver/scrutiny:latest
+  imageHomepageURL: https://hub.docker.com/r/linuxserver/scrutiny
+  workspaceTypes:
+  - container
+  - scratch
+  sourceURL: https://github.com/linuxserver/docker-scrutiny
+  proxyConfig:
+    needsNoopSW: true
+    rewriteHostAbsolutePaths: true

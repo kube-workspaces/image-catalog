@@ -1,0 +1,36 @@
+apiVersion: kubeworkspaces.io/v1alpha1
+kind: Image
+metadata:
+  name: linuxserver-azahar
+spec:
+  defaultPath: /
+  defaultPort: 3000
+  description: '[Azahar] is an open-source 3DS emulator based on Citra.'
+  category: Game
+  tags:
+  - linuxserver
+  - linux
+  - games
+  displayName: Azahar (LinuxServer)
+  homepageURL: https://azahar-emu.org/
+  icon: https://raw.githubusercontent.com/linuxserver/docker-templates/master/linuxserver.io/img/azahar-logo.png
+  image: linuxserver/azahar:latest
+  imageHomepageURL: https://hub.docker.com/r/linuxserver/azahar
+  workspaceTypes:
+  - container
+  - scratch
+  sourceURL: https://github.com/linuxserver/docker-azahar
+  additionalPorts:
+  - name: tcp-3001
+    port: 3001
+    protocol: TCP
+  proxyConfig:
+    needsNoopSW: true
+    rewriteHostAbsolutePaths: true
+    preservePathPrefix: true
+  defaultSharedMemory: true
+  defaultEnv:
+  - name: SUBFOLDER
+    value: /proxy/{{namespace}}/{{name}}/
+  defaultUser: abc
+  defaultHomedir: /config

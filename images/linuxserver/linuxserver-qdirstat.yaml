@@ -1,0 +1,37 @@
+apiVersion: kubeworkspaces.io/v1alpha1
+kind: Image
+metadata:
+  name: linuxserver-qdirstat
+spec:
+  defaultPath: /
+  defaultPort: 3000
+  description: '[QDirStat] Qt-based directory statistics: KDirStat without any KDE -- from
+    the author of the original KDirStat.'
+  category: Tool
+  tags:
+  - linuxserver
+  - linux
+  - storage
+  displayName: QDirStat (LinuxServer)
+  homepageURL: https://github.com/shundhammer/qdirstat
+  icon: https://raw.githubusercontent.com/linuxserver/docker-templates/master/linuxserver.io/img/qdirstat-logo.png
+  image: linuxserver/qdirstat:latest
+  imageHomepageURL: https://hub.docker.com/r/linuxserver/qdirstat
+  workspaceTypes:
+  - container
+  - scratch
+  sourceURL: https://github.com/linuxserver/docker-qdirstat
+  additionalPorts:
+  - name: tcp-3001
+    port: 3001
+    protocol: TCP
+  proxyConfig:
+    needsNoopSW: true
+    rewriteHostAbsolutePaths: true
+    preservePathPrefix: true
+  defaultSharedMemory: true
+  defaultEnv:
+  - name: SUBFOLDER
+    value: /proxy/{{namespace}}/{{name}}/
+  defaultUser: abc
+  defaultHomedir: /config

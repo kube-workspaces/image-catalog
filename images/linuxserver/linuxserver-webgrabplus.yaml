@@ -1,0 +1,25 @@
+apiVersion: kubeworkspaces.io/v1alpha1
+kind: Image
+metadata:
+  name: linuxserver-webgrabplus
+spec:
+  defaultPath: /
+  defaultPort: 80
+  description: webgrabplus is a multi-site incremental xmltv epg grabber. It collects tv-program
+    guide data from selected tvguide sites for your favourite channels. No browser endpoint;
+    use the terminal or native client.
+  category: Tool
+  tags:
+  - linuxserver
+  - linux
+  - media-tools
+  - cli
+  displayName: WebGrab+Plus (LinuxServer)
+  homepageURL: https://www.webgrabplus.com
+  icon: https://raw.githubusercontent.com/linuxserver/docker-templates/master/linuxserver.io/img/linuxserver-ls-logo.png
+  image: linuxserver/webgrabplus:latest
+  imageHomepageURL: https://hub.docker.com/r/linuxserver/webgrabplus
+  workspaceTypes:
+  - container
+  - scratch
+  sourceURL: https://github.com/linuxserver/docker-webgrabplus

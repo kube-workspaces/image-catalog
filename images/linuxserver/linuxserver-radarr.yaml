@@ -1,0 +1,25 @@
+apiVersion: kubeworkspaces.io/v1alpha1
+kind: Image
+metadata:
+  name: linuxserver-radarr
+spec:
+  defaultPath: /
+  defaultPort: 7878
+  description: radarr - A fork of Sonarr to work with movies à la Couchpotato.
+  category: Tool
+  tags:
+  - linuxserver
+  - linux
+  - media-management
+  displayName: Radarr (LinuxServer)
+  homepageURL: https://github.com/Radarr/Radarr
+  icon: https://raw.githubusercontent.com/linuxserver/docker-templates/master/linuxserver.io/img/radarr.png
+  image: linuxserver/radarr:latest
+  imageHomepageURL: https://hub.docker.com/r/linuxserver/radarr
+  workspaceTypes:
+  - container
+  - scratch
+  sourceURL: https://github.com/linuxserver/docker-radarr
+  proxyConfig:
+    needsNoopSW: true
+    rewriteHostAbsolutePaths: true

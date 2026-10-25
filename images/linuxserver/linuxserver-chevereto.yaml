@@ -1,0 +1,34 @@
+apiVersion: kubeworkspaces.io/v1alpha1
+kind: Image
+metadata:
+  name: linuxserver-chevereto
+spec:
+  defaultPath: /
+  defaultPort: 443
+  description: Legacy or infrastructure image available on Docker Hub. chevereto is an image
+    hosting software that allows you to create a beautiful and full-featured image hosting
+    website on your own server. It's your hosting and your rules, so say goodbye to closures
+    and restrictions.
+  category: Tool
+  tags:
+  - linuxserver
+  - linux
+  - hub-only
+  displayName: Chevereto (LinuxServer)
+  homepageURL: https://github.com/rodber/chevereto-free
+  icon: https://raw.githubusercontent.com/linuxserver/docker-templates/master/linuxserver.io/img/linuxserver-ls-logo.png
+  image: linuxserver/chevereto:latest
+  imageHomepageURL: https://hub.docker.com/r/linuxserver/chevereto
+  workspaceTypes:
+  - container
+  - scratch
+  sourceURL: https://github.com/linuxserver/docker-chevereto
+  additionalPorts:
+  - name: tcp-80
+    port: 80
+    protocol: TCP
+  proxyConfig:
+    needsNoopSW: true
+    rewriteHostAbsolutePaths: true
+    scheme: https
+    tlsSkipVerify: true

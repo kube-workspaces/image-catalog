@@ -1,0 +1,36 @@
+apiVersion: kubeworkspaces.io/v1alpha1
+kind: Image
+metadata:
+  name: linuxserver-webstation
+spec:
+  defaultPath: /
+  defaultPort: 3000
+  description: '[Webstation] is a web native emulation focused LXQt desktop based on Ubuntu.'
+  category: Tool
+  tags:
+  - linuxserver
+  - linux
+  - games
+  displayName: Webstation (LinuxServer)
+  homepageURL: https://github.com/linuxserver/docker-webstation
+  icon: https://raw.githubusercontent.com/linuxserver/docker-templates/master/linuxserver.io/img/webstation-logo.png
+  image: linuxserver/webstation:latest
+  imageHomepageURL: https://hub.docker.com/r/linuxserver/webstation
+  workspaceTypes:
+  - container
+  - scratch
+  sourceURL: https://github.com/linuxserver/docker-webstation
+  additionalPorts:
+  - name: tcp-3001
+    port: 3001
+    protocol: TCP
+  proxyConfig:
+    needsNoopSW: true
+    rewriteHostAbsolutePaths: true
+    preservePathPrefix: true
+  defaultSharedMemory: true
+  defaultEnv:
+  - name: SUBFOLDER
+    value: /proxy/{{namespace}}/{{name}}/
+  defaultUser: abc
+  defaultHomedir: /config

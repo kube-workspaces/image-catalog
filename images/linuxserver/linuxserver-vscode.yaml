@@ -1,0 +1,37 @@
+apiVersion: kubeworkspaces.io/v1alpha1
+kind: Image
+metadata:
+  name: linuxserver-vscode
+spec:
+  defaultPath: /
+  defaultPort: 3000
+  description: '[VS Code] is an integrated development environment developed by Microsoft.
+    This container runs the full desktop application, for a web native version see Code Server.'
+  category: IDE
+  tags:
+  - linuxserver
+  - linux
+  - programming
+  displayName: Visual Studio Code (LinuxServer)
+  homepageURL: https://code.visualstudio.com/
+  icon: https://raw.githubusercontent.com/linuxserver/docker-templates/master/linuxserver.io/img/vscode-logo.png
+  image: linuxserver/vscode:latest
+  imageHomepageURL: https://hub.docker.com/r/linuxserver/vscode
+  workspaceTypes:
+  - container
+  - scratch
+  sourceURL: https://github.com/linuxserver/docker-vscode
+  additionalPorts:
+  - name: tcp-3001
+    port: 3001
+    protocol: TCP
+  proxyConfig:
+    needsNoopSW: true
+    rewriteHostAbsolutePaths: true
+    preservePathPrefix: true
+  defaultSharedMemory: true
+  defaultEnv:
+  - name: SUBFOLDER
+    value: /proxy/{{namespace}}/{{name}}/
+  defaultUser: abc
+  defaultHomedir: /config

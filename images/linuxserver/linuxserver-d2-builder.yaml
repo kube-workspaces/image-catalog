@@ -1,0 +1,26 @@
+apiVersion: kubeworkspaces.io/v1alpha1
+kind: Image
+metadata:
+  name: linuxserver-d2-builder
+spec:
+  defaultPath: /
+  defaultPort: 80
+  description: Legacy or infrastructure image available on Docker Hub. LinuxServer CI tool
+    for generating D2 diagrams from image definitions. No browser endpoint; use the terminal
+    or native client.
+  category: Tool
+  tags:
+  - linuxserver
+  - linux
+  - internal
+  - hub-only
+  - cli
+  displayName: D2 Builder (LinuxServer)
+  homepageURL: https://hub.docker.com/r/linuxserver/d2-builder
+  icon: https://raw.githubusercontent.com/linuxserver/docker-templates/master/linuxserver.io/img/linuxserver-ls-logo.png
+  image: linuxserver/d2-builder:latest
+  imageHomepageURL: https://hub.docker.com/r/linuxserver/d2-builder
+  workspaceTypes:
+  - container
+  - scratch
+  sourceURL: https://github.com/linuxserver/docker-d2-builder

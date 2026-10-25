@@ -1,0 +1,31 @@
+apiVersion: kubeworkspaces.io/v1alpha1
+kind: Image
+metadata:
+  name: linuxserver-gazee
+spec:
+  defaultPath: /
+  defaultPort: 4242
+  description: Legacy or infrastructure image available on Docker Hub. THIS IMAGE IS DEPRECATED,
+    IT WILL NO LONGER RECEIVE UPDATES. gazee is a WebApp Comic Reader for your favorite digital
+    comics. Reach and read your comic library from any web connected device with a modern
+    web browser.
+  category: Tool
+  tags:
+  - linuxserver
+  - linux
+  - hub-only
+  displayName: Gazee (LinuxServer)
+  homepageURL: https://github.com/hubbcaps/gazee
+  icon: https://raw.githubusercontent.com/hubbcaps/gazee/master/public/images/logos/red/logo-red-yellow.png
+  image: linuxserver/gazee:latest
+  imageHomepageURL: https://hub.docker.com/r/linuxserver/gazee
+  workspaceTypes:
+  - container
+  - scratch
+  sourceURL: https://github.com/linuxserver/docker-gazee
+  proxyConfig:
+    needsNoopSW: true
+    rewriteHostAbsolutePaths: true
+  defaultCredentials:
+    username: admin
+    password: gazee

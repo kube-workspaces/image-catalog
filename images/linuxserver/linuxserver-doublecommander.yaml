@@ -1,0 +1,38 @@
+apiVersion: kubeworkspaces.io/v1alpha1
+kind: Image
+metadata:
+  name: linuxserver-doublecommander
+spec:
+  defaultPath: /
+  defaultPort: 3000
+  description: '[Double Commander] is a free cross platform open source file manager with
+    two panels side by side. It is inspired by Total Commander and features some new ideas.'
+  category: Tool
+  tags:
+  - linuxserver
+  - linux
+  - administration
+  - storage
+  displayName: Double Commander (LinuxServer)
+  homepageURL: https://doublecmd.sourceforge.io/
+  icon: https://raw.githubusercontent.com/linuxserver/docker-templates/master/linuxserver.io/img/doublecommander-icon.png
+  image: linuxserver/doublecommander:latest
+  imageHomepageURL: https://hub.docker.com/r/linuxserver/doublecommander
+  workspaceTypes:
+  - container
+  - scratch
+  sourceURL: https://github.com/linuxserver/docker-doublecommander
+  additionalPorts:
+  - name: tcp-3001
+    port: 3001
+    protocol: TCP
+  proxyConfig:
+    needsNoopSW: true
+    rewriteHostAbsolutePaths: true
+    preservePathPrefix: true
+  defaultSharedMemory: true
+  defaultEnv:
+  - name: SUBFOLDER
+    value: /proxy/{{namespace}}/{{name}}/
+  defaultUser: abc
+  defaultHomedir: /config

@@ -1,0 +1,28 @@
+apiVersion: kubeworkspaces.io/v1alpha1
+kind: Image
+metadata:
+  name: linuxserver-lazylibrarian
+spec:
+  defaultPath: /home
+  defaultPort: 5299
+  description: lazylibrarian is a program to follow authors and grab metadata for all your
+    digital reading needs. It uses a combination of Goodreads Librarything and optionally
+    GoogleBooks as sources for author info and book info. This container is based on the DobyTang
+    fork.
+  category: Tool
+  tags:
+  - linuxserver
+  - linux
+  - books
+  displayName: Lazylibrarian (LinuxServer)
+  homepageURL: https://lazylibrarian.gitlab.io/
+  icon: https://raw.githubusercontent.com/linuxserver/docker-templates/master/linuxserver.io/img/lazylibrarian-icon.png
+  image: linuxserver/lazylibrarian:latest
+  imageHomepageURL: https://hub.docker.com/r/linuxserver/lazylibrarian
+  workspaceTypes:
+  - container
+  - scratch
+  sourceURL: https://github.com/linuxserver/docker-lazylibrarian
+  proxyConfig:
+    needsNoopSW: true
+    rewriteHostAbsolutePaths: true

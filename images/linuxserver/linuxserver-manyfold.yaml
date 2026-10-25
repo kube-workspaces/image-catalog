@@ -1,0 +1,26 @@
+apiVersion: kubeworkspaces.io/v1alpha1
+kind: Image
+metadata:
+  name: linuxserver-manyfold
+spec:
+  defaultPath: /
+  defaultPort: 3214
+  description: manyfold is an open source, self-hosted web application for managing a collection
+    of 3D models, particularly focused on 3D printing.
+  category: Tool
+  tags:
+  - linuxserver
+  - linux
+  - 3d-printing
+  displayName: Manyfold (LinuxServer)
+  homepageURL: https://github.com/manyfold3d/manyfold/
+  icon: https://raw.githubusercontent.com/linuxserver/docker-templates/master/linuxserver.io/img/manyfold-logo.png
+  image: linuxserver/manyfold:latest
+  imageHomepageURL: https://hub.docker.com/r/linuxserver/manyfold
+  workspaceTypes:
+  - container
+  - scratch
+  sourceURL: https://github.com/linuxserver/docker-manyfold
+  proxyConfig:
+    needsNoopSW: true
+    rewriteHostAbsolutePaths: true

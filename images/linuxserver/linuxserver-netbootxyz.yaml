@@ -1,0 +1,38 @@
+apiVersion: kubeworkspaces.io/v1alpha1
+kind: Image
+metadata:
+  name: linuxserver-netbootxyz
+spec:
+  defaultPath: /
+  defaultPort: 3000
+  description: Deprecated by LinuxServer.io. netbootxyz is a way to PXE boot various operating
+    system installers or utilities from one place within the BIOS without the need of having
+    to go retrieve the media to run the tool. iPXE is used to provide a user friendly menu
+    from within the BIOS that lets you easily choose the operating system you want along with
+    any specific types of versions or bootable flags.
+  category: Tool
+  tags:
+  - linuxserver
+  - linux
+  - administration
+  - network
+  - deprecated
+  displayName: netboot.xyz (LinuxServer)
+  homepageURL: https://netboot.xyz
+  icon: https://netboot.xyz/images/netboot.xyz.gif
+  image: linuxserver/netbootxyz:latest
+  imageHomepageURL: https://hub.docker.com/r/linuxserver/netbootxyz
+  workspaceTypes:
+  - container
+  - scratch
+  sourceURL: https://github.com/linuxserver/docker-netbootxyz
+  additionalPorts:
+  - name: udp-69
+    port: 69
+    protocol: UDP
+  - name: tcp-80
+    port: 80
+    protocol: TCP
+  proxyConfig:
+    needsNoopSW: true
+    rewriteHostAbsolutePaths: true

@@ -1,0 +1,32 @@
+apiVersion: kubeworkspaces.io/v1alpha1
+kind: Image
+metadata:
+  name: linuxserver-papermerge
+spec:
+  defaultPath: /
+  defaultPort: 8000
+  description: Legacy or infrastructure image available on Docker Hub. papermerge is an open
+    source document management system (DMS) primarily designed for archiving and retrieving
+    your digital documents. Instead of having piles of paper documents all over your desk,
+    office or drawers - you can quickly scan them and configure your scanner to directly upload
+    to Papermerge DMS."
+  category: Tool
+  tags:
+  - linuxserver
+  - linux
+  - hub-only
+  displayName: Papermerge (LinuxServer)
+  homepageURL: https://www.papermerge.com/
+  icon: https://raw.githubusercontent.com/linuxserver/docker-templates/master/linuxserver.io/img/papermerge-icon.png
+  image: linuxserver/papermerge:latest
+  imageHomepageURL: https://hub.docker.com/r/linuxserver/papermerge
+  workspaceTypes:
+  - container
+  - scratch
+  sourceURL: https://github.com/linuxserver/docker-papermerge
+  proxyConfig:
+    needsNoopSW: true
+    rewriteHostAbsolutePaths: true
+  defaultCredentials:
+    username: admin
+    password: admin

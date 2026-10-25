@@ -1,0 +1,38 @@
+apiVersion: kubeworkspaces.io/v1alpha1
+kind: Image
+metadata:
+  name: linuxserver-spotube
+spec:
+  defaultPath: /
+  defaultPort: 3000
+  description: '[Spotube] is an open source, cross-platform Spotify client compatible across
+    multiple platforms utilizing Spotify''s data API and YouTube, Piped.video or JioSaavn
+    as an audio source, eliminating the need for Spotify Premium'
+  category: Tool
+  tags:
+  - linuxserver
+  - linux
+  - music
+  displayName: Spotube (LinuxServer)
+  homepageURL: https://spotube.krtirtho.dev/
+  icon: https://raw.githubusercontent.com/linuxserver/docker-templates/master/linuxserver.io/img/spotube-logo.png
+  image: linuxserver/spotube:latest
+  imageHomepageURL: https://hub.docker.com/r/linuxserver/spotube
+  workspaceTypes:
+  - container
+  - scratch
+  sourceURL: https://github.com/linuxserver/docker-spotube
+  additionalPorts:
+  - name: tcp-3001
+    port: 3001
+    protocol: TCP
+  proxyConfig:
+    needsNoopSW: true
+    rewriteHostAbsolutePaths: true
+    preservePathPrefix: true
+  defaultSharedMemory: true
+  defaultEnv:
+  - name: SUBFOLDER
+    value: /proxy/{{namespace}}/{{name}}/
+  defaultUser: abc
+  defaultHomedir: /config

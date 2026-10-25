@@ -1,0 +1,28 @@
+apiVersion: kubeworkspaces.io/v1alpha1
+kind: Image
+metadata:
+  name: linuxserver-codiad
+spec:
+  defaultPath: /
+  defaultPort: 80
+  description: Legacy or infrastructure image available on Docker Hub. THIS IMAGE IS DEPRECATED.
+    PLEASE MIGRATE TO CLOUD9 IF POSSIBLE linuxserver/cloud9 codiad is a web-based IDE framework
+    with a small footprint and minimal requirements. We have added a few plugins. More can
+    be added in the marketplace in the WebUI.
+  category: IDE
+  tags:
+  - linuxserver
+  - linux
+  - hub-only
+  displayName: Codiad (LinuxServer)
+  homepageURL: http://codiad.com/
+  icon: https://raw.githubusercontent.com/linuxserver/docker-templates/master/linuxserver.io/img/linuxserver-ls-logo.png
+  image: linuxserver/codiad:latest
+  imageHomepageURL: https://hub.docker.com/r/linuxserver/codiad
+  workspaceTypes:
+  - container
+  - scratch
+  sourceURL: https://github.com/linuxserver/docker-codiad
+  proxyConfig:
+    needsNoopSW: true
+    rewriteHostAbsolutePaths: true

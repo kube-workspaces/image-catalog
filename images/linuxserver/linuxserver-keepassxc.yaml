@@ -1,0 +1,37 @@
+apiVersion: kubeworkspaces.io/v1alpha1
+kind: Image
+metadata:
+  name: linuxserver-keepassxc
+spec:
+  defaultPath: /
+  defaultPort: 3000
+  description: '[KeePassXC] is a free and open-source password manager. It started as a community
+    fork of KeePassX (itself a cross-platform port of KeePass).'
+  category: Tool
+  tags:
+  - linuxserver
+  - linux
+  - password-manager
+  displayName: KeePassXC (LinuxServer)
+  homepageURL: https://keepassxc.org/
+  icon: https://raw.githubusercontent.com/linuxserver/docker-templates/master/linuxserver.io/img/keepassxc-logo.png
+  image: linuxserver/keepassxc:latest
+  imageHomepageURL: https://hub.docker.com/r/linuxserver/keepassxc
+  workspaceTypes:
+  - container
+  - scratch
+  sourceURL: https://github.com/linuxserver/docker-keepassxc
+  additionalPorts:
+  - name: tcp-3001
+    port: 3001
+    protocol: TCP
+  proxyConfig:
+    needsNoopSW: true
+    rewriteHostAbsolutePaths: true
+    preservePathPrefix: true
+  defaultSharedMemory: true
+  defaultEnv:
+  - name: SUBFOLDER
+    value: /proxy/{{namespace}}/{{name}}/
+  defaultUser: abc
+  defaultHomedir: /config

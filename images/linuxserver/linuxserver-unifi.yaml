@@ -1,0 +1,41 @@
+apiVersion: kubeworkspaces.io/v1alpha1
+kind: Image
+metadata:
+  name: linuxserver-unifi
+spec:
+  defaultPath: /
+  defaultPort: 8443
+  description: Legacy or infrastructure image available on Docker Hub. Legacy UniFi network
+    controller and web administration interface.
+  category: Tool
+  tags:
+  - linuxserver
+  - linux
+  - hub-only
+  displayName: UniFi (LinuxServer)
+  homepageURL: https://hub.docker.com/r/linuxserver/unifi
+  icon: https://raw.githubusercontent.com/linuxserver/docker-templates/master/linuxserver.io/img/linuxserver-ls-logo.png
+  image: linuxserver/unifi:latest
+  imageHomepageURL: https://hub.docker.com/r/linuxserver/unifi
+  workspaceTypes:
+  - container
+  - scratch
+  sourceURL: https://github.com/linuxserver/docker-unifi
+  additionalPorts:
+  - name: tcp-8080
+    port: 8080
+    protocol: TCP
+  - name: tcp-8081
+    port: 8081
+    protocol: TCP
+  - name: tcp-8843
+    port: 8843
+    protocol: TCP
+  - name: tcp-8880
+    port: 8880
+    protocol: TCP
+  proxyConfig:
+    needsNoopSW: true
+    rewriteHostAbsolutePaths: true
+    scheme: https
+    tlsSkipVerify: true

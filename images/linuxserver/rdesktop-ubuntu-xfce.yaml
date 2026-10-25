@@ -1,0 +1,34 @@
+apiVersion: kubeworkspaces.io/v1alpha1
+kind: Image
+metadata:
+  name: rdesktop-ubuntu-xfce
+spec:
+  defaultPath: /
+  defaultPort: 3389
+  description: Ubuntu XFCE desktop with native RDP access on port 3389. Deprecated by LinuxServer.io;
+    use an RDP client rather than browser Connect.
+  category: Desktop
+  displayName: Ubuntu XFCE RDP Desktop
+  homepageURL: https://github.com/linuxserver/docker-rdesktop
+  icon: https://raw.githubusercontent.com/linuxserver/docker-templates/master/linuxserver.io/img/linuxserver-ls-logo.png
+  image: linuxserver/rdesktop:ubuntu-xfce
+  defaultImagePullPolicy: Always
+  imageHomepageURL: https://hub.docker.com/r/linuxserver/rdesktop
+  defaultSharedMemory: true
+  sourceURL: https://github.com/linuxserver/docker-rdesktop
+  defaultUser: abc
+  defaultHomedir: /config
+  workspaceTypes:
+  - container
+  - scratch
+  tags:
+  - linuxserver
+  - linux
+  - desktop
+  - rdp
+  - deprecated
+  - non-http
+  defaultCredentials:
+    username: abc
+    password: abc
+  defaultPassword: abc

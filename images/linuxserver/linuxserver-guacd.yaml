@@ -1,0 +1,26 @@
+apiVersion: kubeworkspaces.io/v1alpha1
+kind: Image
+metadata:
+  name: linuxserver-guacd
+spec:
+  defaultPath: /
+  defaultPort: 4822
+  description: Legacy or infrastructure image available on Docker Hub. guacd - Apache Guacamole
+    is a clientless remote desktop gateway. It supports standard protocols like VNC, RDP,
+    and SSH. This container is only the backend server component needed to use The official
+    or 3rd party HTML5 frontends. No browser endpoint; use the terminal or native client.
+  category: Tool
+  tags:
+  - linuxserver
+  - linux
+  - hub-only
+  - non-http
+  displayName: Guacd (LinuxServer)
+  homepageURL: https://guacamole.apache.org/
+  icon: https://raw.githubusercontent.com/linuxserver/docker-templates/master/linuxserver.io/img/guacd.png
+  image: linuxserver/guacd:latest
+  imageHomepageURL: https://hub.docker.com/r/linuxserver/guacd
+  workspaceTypes:
+  - container
+  - scratch
+  sourceURL: https://github.com/linuxserver/docker-guacd

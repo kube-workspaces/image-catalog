@@ -1,0 +1,31 @@
+apiVersion: kubeworkspaces.io/v1alpha1
+kind: Image
+metadata:
+  name: linuxserver-rdesktop
+spec:
+  defaultPath: /
+  defaultPort: 3389
+  description: Deprecated by LinuxServer.io. No description No browser endpoint; use the terminal
+    or native client.
+  category: Desktop
+  tags:
+  - linuxserver
+  - linux
+  - deprecated
+  - non-http
+  displayName: RDesktop (LinuxServer)
+  homepageURL: https://hub.docker.com/r/linuxserver/rdesktop
+  icon: https://raw.githubusercontent.com/linuxserver/docker-templates/master/linuxserver.io/img/linuxserver-ls-logo.png
+  image: linuxserver/rdesktop:latest
+  imageHomepageURL: https://hub.docker.com/r/linuxserver/rdesktop
+  workspaceTypes:
+  - container
+  - scratch
+  sourceURL: https://github.com/linuxserver/docker-rdesktop
+  defaultCredentials:
+    username: abc
+    password: abc
+  defaultUser: abc
+  defaultHomedir: /config
+  defaultPassword: abc
+  defaultSharedMemory: true

@@ -1,0 +1,26 @@
+apiVersion: kubeworkspaces.io/v1alpha1
+kind: Image
+metadata:
+  name: linuxserver-flood
+spec:
+  defaultPath: /
+  defaultPort: 3000
+  description: Legacy or infrastructure image available on Docker Hub. Flood web interface
+    for rTorrent.
+  category: Tool
+  tags:
+  - linuxserver
+  - linux
+  - hub-only
+  displayName: Flood (LinuxServer)
+  homepageURL: https://hub.docker.com/r/linuxserver/flood
+  icon: https://raw.githubusercontent.com/linuxserver/docker-templates/master/linuxserver.io/img/linuxserver-ls-logo.png
+  image: linuxserver/flood:latest
+  imageHomepageURL: https://hub.docker.com/r/linuxserver/flood
+  workspaceTypes:
+  - container
+  - scratch
+  sourceURL: https://github.com/linuxserver/docker-flood
+  proxyConfig:
+    needsNoopSW: true
+    rewriteHostAbsolutePaths: true

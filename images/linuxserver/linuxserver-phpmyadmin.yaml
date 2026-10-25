@@ -1,0 +1,26 @@
+apiVersion: kubeworkspaces.io/v1alpha1
+kind: Image
+metadata:
+  name: linuxserver-phpmyadmin
+spec:
+  defaultPath: /
+  defaultPort: 80
+  description: phpmyadmin is a free software tool written in PHP, intended to handle the administration
+    of MySQL over the Web. phpMyAdmin supports a wide range of operations on MySQL and MariaDB.
+  category: Tool
+  tags:
+  - linuxserver
+  - linux
+  - databases
+  displayName: phpMyAdmin (LinuxServer)
+  homepageURL: https://github.com/phpmyadmin/phpmyadmin/
+  icon: https://raw.githubusercontent.com/linuxserver/docker-templates/master/linuxserver.io/img/phpmyadmin-logo.png
+  image: linuxserver/phpmyadmin:latest
+  imageHomepageURL: https://hub.docker.com/r/linuxserver/phpmyadmin
+  workspaceTypes:
+  - container
+  - scratch
+  sourceURL: https://github.com/linuxserver/docker-phpmyadmin
+  proxyConfig:
+    needsNoopSW: true
+    rewriteHostAbsolutePaths: true

@@ -1,0 +1,27 @@
+apiVersion: kubeworkspaces.io/v1alpha1
+kind: Image
+metadata:
+  name: linuxserver-sickgear
+spec:
+  defaultPath: /
+  defaultPort: 8081
+  description: '[SickGear] provides management of TV shows and/or Anime, it detects new episodes,
+    links downloader apps, and more.. For more information on SickGear visit their website
+    and check it out: https://github.com/SickGear/SickGear'
+  category: Tool
+  tags:
+  - linuxserver
+  - linux
+  - media-management
+  displayName: SickGear (LinuxServer)
+  homepageURL: https://github.com/sickgear/sickgear
+  icon: https://raw.githubusercontent.com/linuxserver/docker-templates/master/linuxserver.io/img/linuxserver-ls-logo.png
+  image: linuxserver/sickgear:latest
+  imageHomepageURL: https://hub.docker.com/r/linuxserver/sickgear
+  workspaceTypes:
+  - container
+  - scratch
+  sourceURL: https://github.com/linuxserver/docker-sickgear
+  proxyConfig:
+    needsNoopSW: true
+    rewriteHostAbsolutePaths: true

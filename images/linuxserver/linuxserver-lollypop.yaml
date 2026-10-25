@@ -1,0 +1,37 @@
+apiVersion: kubeworkspaces.io/v1alpha1
+kind: Image
+metadata:
+  name: linuxserver-lollypop
+spec:
+  defaultPath: /
+  defaultPort: 3000
+  description: '[Lollypop] is a lightweight modern music player designed to work excellently
+    on the GNOME desktop environment.'
+  category: Tool
+  tags:
+  - linuxserver
+  - linux
+  - music
+  displayName: Lollypop (LinuxServer)
+  homepageURL: https://wiki.gnome.org/Apps/Lollypop
+  icon: https://raw.githubusercontent.com/linuxserver/docker-templates/master/linuxserver.io/img/lollypop-icon.png
+  image: linuxserver/lollypop:latest
+  imageHomepageURL: https://hub.docker.com/r/linuxserver/lollypop
+  workspaceTypes:
+  - container
+  - scratch
+  sourceURL: https://github.com/linuxserver/docker-lollypop
+  additionalPorts:
+  - name: tcp-3001
+    port: 3001
+    protocol: TCP
+  proxyConfig:
+    needsNoopSW: true
+    rewriteHostAbsolutePaths: true
+    preservePathPrefix: true
+  defaultSharedMemory: true
+  defaultEnv:
+  - name: SUBFOLDER
+    value: /proxy/{{namespace}}/{{name}}/
+  defaultUser: abc
+  defaultHomedir: /config

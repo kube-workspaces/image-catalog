@@ -1,0 +1,32 @@
+apiVersion: kubeworkspaces.io/v1alpha1
+kind: Image
+metadata:
+  name: linuxserver-resilio-sync
+spec:
+  defaultPath: /
+  defaultPort: 8888
+  description: resilio-sync (formerly BitTorrent Sync) uses the BitTorrent protocol to sync
+    files and folders between all of your devices. There are both free and paid versions,
+    this container supports both. There is an official sync image but we created this one
+    as it supports user mapping to simplify permissions for volumes.
+  category: Tool
+  tags:
+  - linuxserver
+  - linux
+  - backup
+  displayName: Resilio Sync (LinuxServer)
+  homepageURL: https://www.resilio.com/individuals/
+  icon: https://raw.githubusercontent.com/linuxserver/docker-templates/master/linuxserver.io/img/resilio-sync-logo.png
+  image: linuxserver/resilio-sync:latest
+  imageHomepageURL: https://hub.docker.com/r/linuxserver/resilio-sync
+  workspaceTypes:
+  - container
+  - scratch
+  sourceURL: https://github.com/linuxserver/docker-resilio-sync
+  additionalPorts:
+  - name: tcp-55555
+    port: 55555
+    protocol: TCP
+  proxyConfig:
+    needsNoopSW: true
+    rewriteHostAbsolutePaths: true

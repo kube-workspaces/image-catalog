@@ -1,0 +1,34 @@
+apiVersion: kubeworkspaces.io/v1alpha1
+kind: Image
+metadata:
+  name: linuxserver-kimai
+spec:
+  defaultPath: /
+  defaultPort: 80
+  description: 'kimai is a professional grade time-tracking application, free and open-source.
+    It handles use-cases of freelancers as well as companies with dozens or hundreds of users.
+    Kimai was build to track your project times and ships with many advanced features, including
+    but not limited to: JSON API, invoicing, data exports, multi-timer and punch-in punch-out
+    mode, tagging, multi-user - multi-timezones...'
+  category: Tool
+  tags:
+  - linuxserver
+  - linux
+  - finance
+  - business
+  displayName: Kimai (LinuxServer)
+  homepageURL: https://kimai.org/
+  icon: https://raw.githubusercontent.com/linuxserver/docker-templates/master/linuxserver.io/img/kimai-logo.png
+  image: linuxserver/kimai:latest
+  imageHomepageURL: https://hub.docker.com/r/linuxserver/kimai
+  workspaceTypes:
+  - container
+  - scratch
+  sourceURL: https://github.com/linuxserver/docker-kimai
+  additionalPorts:
+  - name: tcp-443
+    port: 443
+    protocol: TCP
+  proxyConfig:
+    needsNoopSW: true
+    rewriteHostAbsolutePaths: true

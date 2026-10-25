@@ -1,0 +1,42 @@
+apiVersion: kubeworkspaces.io/v1alpha1
+kind: Image
+metadata:
+  name: linuxserver-calibre
+spec:
+  defaultPath: /
+  defaultPort: 8080
+  description: calibre is a powerful and easy to use e-book manager. Users say it's outstanding
+    and a must-have. It'll allow you to do nearly everything and it takes things a step beyond
+    normal e-book software. It's also completely free and open source and great for both casual
+    users and computer experts.
+  category: Tool
+  tags:
+  - linuxserver
+  - linux
+  - books
+  displayName: Calibre (LinuxServer)
+  homepageURL: https://calibre-ebook.com/
+  icon: https://raw.githubusercontent.com/linuxserver/docker-templates/master/linuxserver.io/img/calibre-logo.png
+  image: linuxserver/calibre:latest
+  imageHomepageURL: https://hub.docker.com/r/linuxserver/calibre
+  workspaceTypes:
+  - container
+  - scratch
+  sourceURL: https://github.com/linuxserver/docker-calibre
+  additionalPorts:
+  - name: tcp-8181
+    port: 8181
+    protocol: TCP
+  - name: tcp-8081
+    port: 8081
+    protocol: TCP
+  proxyConfig:
+    needsNoopSW: true
+    rewriteHostAbsolutePaths: true
+    preservePathPrefix: true
+  defaultSharedMemory: true
+  defaultEnv:
+  - name: SUBFOLDER
+    value: /proxy/{{namespace}}/{{name}}/
+  defaultUser: abc
+  defaultHomedir: /config

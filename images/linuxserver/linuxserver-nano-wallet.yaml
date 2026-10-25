@@ -1,0 +1,30 @@
+apiVersion: kubeworkspaces.io/v1alpha1
+kind: Image
+metadata:
+  name: linuxserver-nano-wallet
+spec:
+  defaultPath: /
+  defaultPort: 80
+  description: Legacy or infrastructure image available on Docker Hub. Nano Wallet is a digital
+    payment protocol designed to be accessible and lightweight, with a focus on removing inefficiencies
+    present in other cryptocurrencies. With ultrafast transactions and zero fees on a secure,
+    green and decentralized network, this makes Nano ideal for everyday transactions. This
+    container is a simple nginx wrapper for the light wallet located here. You will need to
+    pass a...
+  category: Tool
+  tags:
+  - linuxserver
+  - linux
+  - hub-only
+  displayName: Nano Wallet (LinuxServer)
+  homepageURL: https://nano.org/
+  icon: https://raw.githubusercontent.com/linuxserver/docker-templates/master/linuxserver.io/img/linuxserver-ls-logo.png
+  image: linuxserver/nano-wallet:latest
+  imageHomepageURL: https://hub.docker.com/r/linuxserver/nano-wallet
+  workspaceTypes:
+  - container
+  - scratch
+  sourceURL: https://github.com/linuxserver/docker-nano-wallet
+  proxyConfig:
+    needsNoopSW: true
+    rewriteHostAbsolutePaths: true

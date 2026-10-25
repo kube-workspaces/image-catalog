@@ -1,0 +1,27 @@
+apiVersion: kubeworkspaces.io/v1alpha1
+kind: Image
+metadata:
+  name: linuxserver-hydra
+spec:
+  defaultPath: /
+  defaultPort: 5075
+  description: Legacy or infrastructure image available on Docker Hub. hydra is a meta search
+    for NZB indexers and the "spiritual successor" to NZBmegasearcH. It provides easy access
+    to a number of raw and newznab based indexers.
+  category: Tool
+  tags:
+  - linuxserver
+  - linux
+  - hub-only
+  displayName: Hydra (LinuxServer)
+  homepageURL: https://github.com/theotherp/nzbhydra
+  icon: https://raw.githubusercontent.com/linuxserver/docker-templates/master/linuxserver.io/img/hydra-icon.png
+  image: linuxserver/hydra:latest
+  imageHomepageURL: https://hub.docker.com/r/linuxserver/hydra
+  workspaceTypes:
+  - container
+  - scratch
+  sourceURL: https://github.com/linuxserver/docker-hydra
+  proxyConfig:
+    needsNoopSW: true
+    rewriteHostAbsolutePaths: true

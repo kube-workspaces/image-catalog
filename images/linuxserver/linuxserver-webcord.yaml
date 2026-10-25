@@ -1,0 +1,39 @@
+apiVersion: kubeworkspaces.io/v1alpha1
+kind: Image
+metadata:
+  name: linuxserver-webcord
+spec:
+  defaultPath: /
+  defaultPort: 3000
+  description: '[WebCord] can be summarized as a pack of security and privacy hardenings,
+    Discord features reimplementations, Electron / Chromium / Discord bugs workarounds, stylesheets,
+    internal pages and wrapped https://discord.com page, designed to conform with ToS as much
+    as it is possible (or hide the changes that might violate it from Discord''s eyes).'
+  category: Tool
+  tags:
+  - linuxserver
+  - linux
+  - chat
+  displayName: WebCord (LinuxServer)
+  homepageURL: https://github.com/SpacingBat3/WebCord
+  icon: https://raw.githubusercontent.com/linuxserver/docker-templates/master/linuxserver.io/img/webcord-icon.png
+  image: linuxserver/webcord:latest
+  imageHomepageURL: https://hub.docker.com/r/linuxserver/webcord
+  workspaceTypes:
+  - container
+  - scratch
+  sourceURL: https://github.com/linuxserver/docker-webcord
+  additionalPorts:
+  - name: tcp-3001
+    port: 3001
+    protocol: TCP
+  proxyConfig:
+    needsNoopSW: true
+    rewriteHostAbsolutePaths: true
+    preservePathPrefix: true
+  defaultSharedMemory: true
+  defaultEnv:
+  - name: SUBFOLDER
+    value: /proxy/{{namespace}}/{{name}}/
+  defaultUser: abc
+  defaultHomedir: /config

@@ -1,0 +1,29 @@
+apiVersion: kubeworkspaces.io/v1alpha1
+kind: Image
+metadata:
+  name: linuxserver-lidarr
+spec:
+  defaultPath: /
+  defaultPort: 8686
+  description: lidarr is a music collection manager for Usenet and BitTorrent users. It can
+    monitor multiple RSS feeds for new tracks from your favorite artists and will grab, sort
+    and rename them. It can also be configured to automatically upgrade the quality of files
+    already downloaded when a better quality format becomes available.
+  category: Tool
+  tags:
+  - linuxserver
+  - linux
+  - media-management
+  - music
+  displayName: Lidarr (LinuxServer)
+  homepageURL: https://github.com/lidarr/Lidarr
+  icon: https://github.com/lidarr/Lidarr/raw/develop/Logo/400.png
+  image: linuxserver/lidarr:latest
+  imageHomepageURL: https://hub.docker.com/r/linuxserver/lidarr
+  workspaceTypes:
+  - container
+  - scratch
+  sourceURL: https://github.com/linuxserver/docker-lidarr
+  proxyConfig:
+    needsNoopSW: true
+    rewriteHostAbsolutePaths: true

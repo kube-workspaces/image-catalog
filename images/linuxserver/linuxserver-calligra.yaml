@@ -1,0 +1,38 @@
+apiVersion: kubeworkspaces.io/v1alpha1
+kind: Image
+metadata:
+  name: linuxserver-calligra
+spec:
+  defaultPath: /
+  defaultPort: 3000
+  description: '[Calligra] is an office and graphic art suite by KDE. It is available for
+    desktop PCs, tablet computers, and smartphones. It contains applications for word processing,
+    spreadsheets, presentation, vector graphics, and editing databases.'
+  category: Tool
+  tags:
+  - linuxserver
+  - linux
+  - documents
+  displayName: Calligra (LinuxServer)
+  homepageURL: https://calligra.org/
+  icon: https://raw.githubusercontent.com/linuxserver/docker-templates/master/linuxserver.io/img/calligra-logo.png
+  image: linuxserver/calligra:latest
+  imageHomepageURL: https://hub.docker.com/r/linuxserver/calligra
+  workspaceTypes:
+  - container
+  - scratch
+  sourceURL: https://github.com/linuxserver/docker-calligra
+  additionalPorts:
+  - name: tcp-3001
+    port: 3001
+    protocol: TCP
+  proxyConfig:
+    needsNoopSW: true
+    rewriteHostAbsolutePaths: true
+    preservePathPrefix: true
+  defaultSharedMemory: true
+  defaultEnv:
+  - name: SUBFOLDER
+    value: /proxy/{{namespace}}/{{name}}/
+  defaultUser: abc
+  defaultHomedir: /config

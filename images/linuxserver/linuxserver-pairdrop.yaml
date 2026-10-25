@@ -1,0 +1,27 @@
+apiVersion: kubeworkspaces.io/v1alpha1
+kind: Image
+metadata:
+  name: linuxserver-pairdrop
+spec:
+  defaultPath: /
+  defaultPort: 3000
+  description: '[PairDrop] is a sublime alternative to AirDrop that works on all platforms.
+    Send images, documents or text via peer to peer connection to devices in the same local
+    network/Wi-Fi or to paired devices.'
+  category: Tool
+  tags:
+  - linuxserver
+  - linux
+  - file-sharing
+  displayName: PairDrop (LinuxServer)
+  homepageURL: https://github.com/schlagmichdoch/PairDrop
+  icon: https://raw.githubusercontent.com/schlagmichdoch/PairDrop/master/public/images/android-chrome-512x512.png
+  image: linuxserver/pairdrop:latest
+  imageHomepageURL: https://hub.docker.com/r/linuxserver/pairdrop
+  workspaceTypes:
+  - container
+  - scratch
+  sourceURL: https://github.com/linuxserver/docker-pairdrop
+  proxyConfig:
+    needsNoopSW: true
+    rewriteHostAbsolutePaths: true

@@ -1,0 +1,25 @@
+apiVersion: kubeworkspaces.io/v1alpha1
+kind: Image
+metadata:
+  name: linuxserver-htpcmanager
+spec:
+  defaultPath: /
+  defaultPort: 8085
+  description: htpcmanager is a front end for many htpc related applications.
+  category: Tool
+  tags:
+  - linuxserver
+  - linux
+  - media-tools
+  displayName: HTPC Manager (LinuxServer)
+  homepageURL: https://github.com/HTPC-Manager/HTPC-Manager
+  icon: https://raw.githubusercontent.com/linuxserver/docker-templates/master/linuxserver.io/img/htpcmanager-icon.png
+  image: linuxserver/htpcmanager:latest
+  imageHomepageURL: https://hub.docker.com/r/linuxserver/htpcmanager
+  workspaceTypes:
+  - container
+  - scratch
+  sourceURL: https://github.com/linuxserver/docker-htpcmanager
+  proxyConfig:
+    needsNoopSW: true
+    rewriteHostAbsolutePaths: true

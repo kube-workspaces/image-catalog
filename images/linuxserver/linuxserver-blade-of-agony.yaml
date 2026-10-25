@@ -1,0 +1,37 @@
+apiVersion: kubeworkspaces.io/v1alpha1
+kind: Image
+metadata:
+  name: linuxserver-blade-of-agony
+spec:
+  defaultPath: /
+  defaultPort: 3000
+  description: '[Wolfenstein: Blade of Agony] is a story-driven WWII shooter inspired by Wolfenstein
+    and Doom.'
+  category: Game
+  tags:
+  - linuxserver
+  - linux
+  - games
+  displayName: Blade of Agony (LinuxServer)
+  homepageURL: https://boa.realm667.com/
+  icon: https://raw.githubusercontent.com/linuxserver/docker-templates/master/linuxserver.io/img/boa-logo.png
+  image: linuxserver/blade-of-agony:latest
+  imageHomepageURL: https://hub.docker.com/r/linuxserver/blade-of-agony
+  workspaceTypes:
+  - container
+  - scratch
+  sourceURL: https://github.com/linuxserver/docker-blade-of-agony
+  additionalPorts:
+  - name: tcp-3001
+    port: 3001
+    protocol: TCP
+  proxyConfig:
+    needsNoopSW: true
+    rewriteHostAbsolutePaths: true
+    preservePathPrefix: true
+  defaultSharedMemory: true
+  defaultEnv:
+  - name: SUBFOLDER
+    value: /proxy/{{namespace}}/{{name}}/
+  defaultUser: abc
+  defaultHomedir: /config

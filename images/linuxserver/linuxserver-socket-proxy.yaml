@@ -1,0 +1,27 @@
+apiVersion: kubeworkspaces.io/v1alpha1
+kind: Image
+metadata:
+  name: linuxserver-socket-proxy
+spec:
+  defaultPath: /
+  defaultPort: 2375
+  description: The Socket Proxy is a security-enhanced proxy which allows you to apply access
+    rules to the Docker socket, limiting the attack surface for containers such as watchtower
+    or Traefik that need to use it.
+  category: Tool
+  tags:
+  - linuxserver
+  - linux
+  - docker
+  displayName: Socket Proxy (LinuxServer)
+  homepageURL: https://hub.docker.com/r/linuxserver/socket-proxy
+  icon: https://raw.githubusercontent.com/linuxserver/docker-templates/master/linuxserver.io/img/docker-logo.png
+  image: linuxserver/socket-proxy:latest
+  imageHomepageURL: https://hub.docker.com/r/linuxserver/socket-proxy
+  workspaceTypes:
+  - container
+  - scratch
+  sourceURL: https://github.com/linuxserver/docker-socket-proxy
+  proxyConfig:
+    needsNoopSW: true
+    rewriteHostAbsolutePaths: true

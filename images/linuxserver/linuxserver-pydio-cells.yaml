@@ -1,0 +1,28 @@
+apiVersion: kubeworkspaces.io/v1alpha1
+kind: Image
+metadata:
+  name: linuxserver-pydio-cells
+spec:
+  defaultPath: /
+  defaultPort: 8080
+  description: pydio-cells is the nextgen file sharing platform for organizations. It is a
+    full rewrite of the Pydio project using the Go language following a micro-service architecture.
+  category: Tool
+  tags:
+  - linuxserver
+  - linux
+  - file-sharing
+  displayName: Pydio Cells (LinuxServer)
+  homepageURL: https://pydio.com/
+  icon: https://raw.githubusercontent.com/linuxserver/docker-templates/master/linuxserver.io/img/pydio-cells-icon.png
+  image: linuxserver/pydio-cells:latest
+  imageHomepageURL: https://hub.docker.com/r/linuxserver/pydio-cells
+  workspaceTypes:
+  - container
+  - scratch
+  sourceURL: https://github.com/linuxserver/docker-pydio-cells
+  proxyConfig:
+    needsNoopSW: true
+    rewriteHostAbsolutePaths: true
+    scheme: https
+    tlsSkipVerify: true

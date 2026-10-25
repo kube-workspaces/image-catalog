@@ -1,0 +1,40 @@
+apiVersion: kubeworkspaces.io/v1alpha1
+kind: Image
+metadata:
+  name: linuxserver-bitcoin-knots
+spec:
+  defaultPath: /
+  defaultPort: 3000
+  description: '[Bitcoin Knots] can be used as a desktop client for regular payments or as
+    a full node server utility for merchants and other payment services.'
+  category: Tool
+  tags:
+  - linuxserver
+  - linux
+  - finance
+  displayName: Bitcoin Knots (LinuxServer)
+  homepageURL: https://bitcoinknots.org/
+  icon: https://raw.githubusercontent.com/linuxserver/docker-templates/master/linuxserver.io/img/bitcoin-knots-logo.png
+  image: linuxserver/bitcoin-knots:latest
+  imageHomepageURL: https://hub.docker.com/r/linuxserver/bitcoin-knots
+  workspaceTypes:
+  - container
+  - scratch
+  sourceURL: https://github.com/linuxserver/docker-bitcoin-knots
+  additionalPorts:
+  - name: tcp-3001
+    port: 3001
+    protocol: TCP
+  - name: tcp-8333
+    port: 8333
+    protocol: TCP
+  proxyConfig:
+    needsNoopSW: true
+    rewriteHostAbsolutePaths: true
+    preservePathPrefix: true
+  defaultSharedMemory: true
+  defaultEnv:
+  - name: SUBFOLDER
+    value: /proxy/{{namespace}}/{{name}}/
+  defaultUser: abc
+  defaultHomedir: /config

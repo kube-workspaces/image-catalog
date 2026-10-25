@@ -1,0 +1,40 @@
+apiVersion: kubeworkspaces.io/v1alpha1
+kind: Image
+metadata:
+  name: linuxserver-mullvad-browser
+spec:
+  defaultPath: /
+  defaultPort: 3000
+  description: The [Mullvad Browser] is a privacy-focused web browser developed in a collaboration
+    between Mullvad VPN and the Tor Project. It’s designed to minimize tracking and fingerprinting.
+    You could say it’s a Tor Browser to use without the Tor Network. Instead, you can use
+    it with a trustworthy VPN.
+  category: Browser
+  tags:
+  - linuxserver
+  - linux
+  - web-browser
+  - vpn
+  displayName: Mullvad Browser (LinuxServer)
+  homepageURL: https://mullvad.net/en/browser
+  icon: https://raw.githubusercontent.com/linuxserver/docker-templates/master/linuxserver.io/img/mullvad-browser-logo.png
+  image: linuxserver/mullvad-browser:latest
+  imageHomepageURL: https://hub.docker.com/r/linuxserver/mullvad-browser
+  workspaceTypes:
+  - container
+  - scratch
+  sourceURL: https://github.com/linuxserver/docker-mullvad-browser
+  additionalPorts:
+  - name: tcp-3001
+    port: 3001
+    protocol: TCP
+  proxyConfig:
+    needsNoopSW: true
+    rewriteHostAbsolutePaths: true
+    preservePathPrefix: true
+  defaultSharedMemory: true
+  defaultEnv:
+  - name: SUBFOLDER
+    value: /proxy/{{namespace}}/{{name}}/
+  defaultUser: abc
+  defaultHomedir: /config

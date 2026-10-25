@@ -1,0 +1,32 @@
+apiVersion: kubeworkspaces.io/v1alpha1
+kind: Image
+metadata:
+  name: linuxserver-xbackbone
+spec:
+  defaultPath: /
+  defaultPort: 80
+  description: xbackbone is a simple, self-hosted, lightweight PHP file manager that support
+    the instant sharing tool ShareX and *NIX systems. It supports uploading and displaying
+    images, GIF, video, code, formatted text, and file downloading and uploading. Also have
+    a web UI with multi user management, past uploads history and search support.
+  category: Tool
+  tags:
+  - linuxserver
+  - linux
+  - file-sharing
+  displayName: XBackBone (LinuxServer)
+  homepageURL: https://github.com/SergiX44/XBackBone
+  icon: https://cdn.jsdelivr.net/gh/homarr-labs/dashboard-icons/svg/xbackbone.svg
+  image: linuxserver/xbackbone:latest
+  imageHomepageURL: https://hub.docker.com/r/linuxserver/xbackbone
+  workspaceTypes:
+  - container
+  - scratch
+  sourceURL: https://github.com/linuxserver/docker-xbackbone
+  additionalPorts:
+  - name: tcp-443
+    port: 443
+    protocol: TCP
+  proxyConfig:
+    needsNoopSW: true
+    rewriteHostAbsolutePaths: true

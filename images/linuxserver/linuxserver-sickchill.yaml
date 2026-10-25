@@ -1,0 +1,28 @@
+apiVersion: kubeworkspaces.io/v1alpha1
+kind: Image
+metadata:
+  name: linuxserver-sickchill
+spec:
+  defaultPath: /
+  defaultPort: 8081
+  description: Deprecated by LinuxServer.io. sickchill is an Automatic Video Library Manager
+    for TV Shows. It watches for new episodes of your favorite shows, and when they are posted
+    it does its magic.
+  category: Tool
+  tags:
+  - linuxserver
+  - linux
+  - media-management
+  - deprecated
+  displayName: SickChill (LinuxServer)
+  homepageURL: https://github.com/SickChill/SickChill
+  icon: https://raw.githubusercontent.com/linuxserver/docker-templates/master/linuxserver.io/img/sickchill-banner.png
+  image: linuxserver/sickchill:latest
+  imageHomepageURL: https://hub.docker.com/r/linuxserver/sickchill
+  workspaceTypes:
+  - container
+  - scratch
+  sourceURL: https://github.com/linuxserver/docker-sickchill
+  proxyConfig:
+    needsNoopSW: true
+    rewriteHostAbsolutePaths: true

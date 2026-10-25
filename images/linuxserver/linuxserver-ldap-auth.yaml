@@ -1,0 +1,34 @@
+apiVersion: kubeworkspaces.io/v1alpha1
+kind: Image
+metadata:
+  name: linuxserver-ldap-auth
+spec:
+  defaultPath: /
+  defaultPort: 9000
+  description: ldap-auth software is for authenticating users who request protected resources
+    from servers proxied by nginx. It includes a daemon (ldap-auth) that communicates with
+    an authentication server, and a webserver daemon that generates an authentication cookie
+    based on the user’s credentials. The daemons are written in Python for use with a Lightweight
+    Directory Access Protocol (LDAP) authentication...
+  category: Tool
+  tags:
+  - linuxserver
+  - linux
+  - administration
+  - security
+  displayName: LDAP Auth (LinuxServer)
+  homepageURL: https://github.com/nginxinc/nginx-ldap-auth
+  icon: https://raw.githubusercontent.com/linuxserver/docker-templates/master/linuxserver.io/img/ldap-auth-logo.png
+  image: linuxserver/ldap-auth:latest
+  imageHomepageURL: https://hub.docker.com/r/linuxserver/ldap-auth
+  workspaceTypes:
+  - container
+  - scratch
+  sourceURL: https://github.com/linuxserver/docker-ldap-auth
+  additionalPorts:
+  - name: tcp-8888
+    port: 8888
+    protocol: TCP
+  proxyConfig:
+    needsNoopSW: true
+    rewriteHostAbsolutePaths: true

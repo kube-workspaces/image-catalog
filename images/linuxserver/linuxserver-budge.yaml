@@ -1,0 +1,31 @@
+apiVersion: kubeworkspaces.io/v1alpha1
+kind: Image
+metadata:
+  name: linuxserver-budge
+spec:
+  defaultPath: /
+  defaultPort: 80
+  description: Deprecated by LinuxServer.io. budge is an open source 'budgeting with envelopes'
+    personal finance app.
+  category: Tool
+  tags:
+  - linuxserver
+  - linux
+  - finance
+  - deprecated
+  displayName: Budge (LinuxServer)
+  homepageURL: https://github.com/linuxserver/budge
+  icon: https://raw.githubusercontent.com/linuxserver/docker-templates/master/linuxserver.io/img/linuxserver-ls-logo.png
+  image: linuxserver/budge:latest
+  imageHomepageURL: https://hub.docker.com/r/linuxserver/budge
+  workspaceTypes:
+  - container
+  - scratch
+  sourceURL: https://github.com/linuxserver/docker-budge
+  additionalPorts:
+  - name: tcp-443
+    port: 443
+    protocol: TCP
+  proxyConfig:
+    needsNoopSW: true
+    rewriteHostAbsolutePaths: true

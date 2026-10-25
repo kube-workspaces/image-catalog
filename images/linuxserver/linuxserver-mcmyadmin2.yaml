@@ -1,0 +1,30 @@
+apiVersion: kubeworkspaces.io/v1alpha1
+kind: Image
+metadata:
+  name: linuxserver-mcmyadmin2
+spec:
+  defaultPath: /
+  defaultPort: 8080
+  description: Legacy or infrastructure image available on Docker Hub. McMyAdmin 2 web management
+    interface for a Minecraft server.
+  category: Tool
+  tags:
+  - linuxserver
+  - linux
+  - hub-only
+  displayName: McMyAdmin 2 (LinuxServer)
+  homepageURL: https://hub.docker.com/r/linuxserver/mcmyadmin2
+  icon: https://raw.githubusercontent.com/linuxserver/docker-templates/master/linuxserver.io/img/linuxserver-ls-logo.png
+  image: linuxserver/mcmyadmin2:latest
+  imageHomepageURL: https://hub.docker.com/r/linuxserver/mcmyadmin2
+  workspaceTypes:
+  - container
+  - scratch
+  sourceURL: https://github.com/linuxserver/docker-mcmyadmin2
+  additionalPorts:
+  - name: tcp-25565
+    port: 25565
+    protocol: TCP
+  proxyConfig:
+    needsNoopSW: true
+    rewriteHostAbsolutePaths: true

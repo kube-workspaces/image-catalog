@@ -1,0 +1,31 @@
+apiVersion: kubeworkspaces.io/v1alpha1
+kind: Image
+metadata:
+  name: linuxserver-grocy
+spec:
+  defaultPath: /
+  defaultPort: 80
+  description: 'grocy is an ERP system for your kitchen! Cut down on food waste, and manage
+    your chores with this brilliant utility. Keep track of your purchases, how much food you
+    are wasting, what chores need doing and what batteries need charging with this proudly
+    Open Source tool For more information on grocy visit their website and check it out: https://grocy.info'
+  category: Tool
+  tags:
+  - linuxserver
+  - linux
+  - recipes
+  displayName: grocy (LinuxServer)
+  homepageURL: https://github.com/grocy/grocy
+  icon: https://raw.githubusercontent.com/linuxserver/docker-templates/master/linuxserver.io/img/grocy-logo.png
+  image: linuxserver/grocy:latest
+  imageHomepageURL: https://hub.docker.com/r/linuxserver/grocy
+  workspaceTypes:
+  - container
+  - scratch
+  sourceURL: https://github.com/linuxserver/docker-grocy
+  proxyConfig:
+    needsNoopSW: true
+    rewriteHostAbsolutePaths: true
+  defaultCredentials:
+    username: admin
+    password: admin

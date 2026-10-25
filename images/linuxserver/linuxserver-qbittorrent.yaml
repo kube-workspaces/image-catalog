@@ -1,0 +1,33 @@
+apiVersion: kubeworkspaces.io/v1alpha1
+kind: Image
+metadata:
+  name: linuxserver-qbittorrent
+spec:
+  defaultPath: /
+  defaultPort: 8080
+  description: The qbittorrent is a bittorrent client programmed in C++ / Qt that uses libtorrent
+    (sometimes called libtorrent-rasterbar) by Arvid Norberg.
+  category: Tool
+  tags:
+  - linuxserver
+  - linux
+  - downloaders
+  displayName: qBittorrent (LinuxServer)
+  homepageURL: https://www.qbittorrent.org/
+  icon: https://github.com/linuxserver/docker-templates/raw/master/linuxserver.io/img/qbittorrent-icon.png
+  image: linuxserver/qbittorrent:latest
+  imageHomepageURL: https://hub.docker.com/r/linuxserver/qbittorrent
+  workspaceTypes:
+  - container
+  - scratch
+  sourceURL: https://github.com/linuxserver/docker-qbittorrent
+  additionalPorts:
+  - name: tcp-6881
+    port: 6881
+    protocol: TCP
+  - name: udp-6881
+    port: 6881
+    protocol: UDP
+  proxyConfig:
+    needsNoopSW: true
+    rewriteHostAbsolutePaths: true

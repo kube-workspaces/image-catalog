@@ -1,0 +1,29 @@
+apiVersion: kubeworkspaces.io/v1alpha1
+kind: Image
+metadata:
+  name: thelounge
+spec:
+  defaultPath: /
+  defaultPort: 9000
+  description: thelounge (a fork of shoutIRC) is a web IRC client that you host on your own
+    server.
+  category: Tool
+  tags:
+  - linuxserver
+  - linux
+  - irc
+  - chat
+  displayName: The Lounge (LinuxServer)
+  homepageURL: https://thelounge.github.io/
+  icon: https://cdn.jsdelivr.net/gh/homarr-labs/dashboard-icons/svg/thelounge.svg
+  image: linuxserver/thelounge:latest
+  imageHomepageURL: https://hub.docker.com/r/linuxserver/thelounge
+  workspaceTypes:
+  - container
+  - scratch
+  sourceURL: https://github.com/linuxserver/docker-thelounge
+  proxyConfig:
+    needsNoopSW: true
+    rewriteHostAbsolutePaths: true
+  defaultUser: abc
+  defaultHomedir: /config

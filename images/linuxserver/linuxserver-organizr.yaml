@@ -1,0 +1,30 @@
+apiVersion: kubeworkspaces.io/v1alpha1
+kind: Image
+metadata:
+  name: linuxserver-organizr
+spec:
+  defaultPath: /
+  defaultPort: 80
+  description: 'Legacy or infrastructure image available on Docker Hub. # THIS IMAGE IS DEPRECATED.
+    Please use the official image at https://hub.docker.com/r/organizr/organizr organizr is
+    a HTPC/Homelab Services Organizer - Written in PHP Do you have quite a bit of services
+    running on your computer or server? Do you have a lot of bookmarks or have to memorize
+    a bunch of ip''s and ports? Well, Organizr is here to help with that. Organizr allows
+    you to setup "Tabs"...'
+  category: Tool
+  tags:
+  - linuxserver
+  - linux
+  - hub-only
+  displayName: Organizr (LinuxServer)
+  homepageURL: https://github.com/causefx/Organizr
+  icon: https://raw.githubusercontent.com/linuxserver/docker-templates/master/linuxserver.io/img/organizr-icon.png
+  image: linuxserver/organizr:latest
+  imageHomepageURL: https://hub.docker.com/r/linuxserver/organizr
+  workspaceTypes:
+  - container
+  - scratch
+  sourceURL: https://github.com/linuxserver/docker-organizr
+  proxyConfig:
+    needsNoopSW: true
+    rewriteHostAbsolutePaths: true

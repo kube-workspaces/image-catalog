@@ -1,0 +1,32 @@
+apiVersion: kubeworkspaces.io/v1alpha1
+kind: Image
+metadata:
+  name: linuxserver-nextcloud
+spec:
+  defaultPath: /
+  defaultPort: 443
+  description: nextcloud gives you access to all your files wherever you are. Where are your
+    photos and documents? With Nextcloud you pick a server of your choice, at home, in a data
+    center or at a provider. And that is where your files will be. Nextcloud runs on that
+    server, protecting your data and giving you access from your desktop or mobile devices.
+    Through Nextcloud you also access, sync and share your...
+  category: Tool
+  tags:
+  - linuxserver
+  - linux
+  - cloud
+  - documents
+  displayName: Nextcloud (LinuxServer)
+  homepageURL: https://nextcloud.com/
+  icon: https://raw.githubusercontent.com/linuxserver/docker-templates/master/linuxserver.io/img/nextcloud-icon.png
+  image: linuxserver/nextcloud:latest
+  imageHomepageURL: https://hub.docker.com/r/linuxserver/nextcloud
+  workspaceTypes:
+  - container
+  - scratch
+  sourceURL: https://github.com/linuxserver/docker-nextcloud
+  proxyConfig:
+    needsNoopSW: true
+    rewriteHostAbsolutePaths: true
+    scheme: https
+    tlsSkipVerify: true

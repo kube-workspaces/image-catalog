@@ -1,0 +1,25 @@
+apiVersion: kubeworkspaces.io/v1alpha1
+kind: Image
+metadata:
+  name: linuxserver-modmanager
+spec:
+  defaultPath: /
+  defaultPort: 80
+  description: Modmanager is a centralised tool for downloading and updating docker mods for
+    all your other Linuxserver containers. No browser endpoint; use the terminal or native
+    client.
+  category: Tool
+  tags:
+  - linuxserver
+  - linux
+  - docker
+  - cli
+  displayName: Modmanager (LinuxServer)
+  homepageURL: https://hub.docker.com/r/linuxserver/modmanager
+  icon: https://raw.githubusercontent.com/linuxserver/docker-templates/master/linuxserver.io/img/linuxserver-ls-logo.png
+  image: linuxserver/modmanager:latest
+  imageHomepageURL: https://hub.docker.com/r/linuxserver/modmanager
+  workspaceTypes:
+  - container
+  - scratch
+  sourceURL: https://github.com/linuxserver/docker-modmanager

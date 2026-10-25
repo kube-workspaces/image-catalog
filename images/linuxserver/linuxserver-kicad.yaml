@@ -1,0 +1,36 @@
+apiVersion: kubeworkspaces.io/v1alpha1
+kind: Image
+metadata:
+  name: linuxserver-kicad
+spec:
+  defaultPath: /
+  defaultPort: 3000
+  description: '[KiCad] - A Cross Platform and Open Source Electronics Design Automation Suite.'
+  category: Tool
+  tags:
+  - linuxserver
+  - linux
+  - 3d-modeling
+  displayName: KiCad (LinuxServer)
+  homepageURL: https://www.kicad.org/
+  icon: https://raw.githubusercontent.com/linuxserver/docker-templates/master/linuxserver.io/img/kicad-logo.png
+  image: linuxserver/kicad:latest
+  imageHomepageURL: https://hub.docker.com/r/linuxserver/kicad
+  workspaceTypes:
+  - container
+  - scratch
+  sourceURL: https://github.com/linuxserver/docker-kicad
+  additionalPorts:
+  - name: tcp-3001
+    port: 3001
+    protocol: TCP
+  proxyConfig:
+    needsNoopSW: true
+    rewriteHostAbsolutePaths: true
+    preservePathPrefix: true
+  defaultSharedMemory: true
+  defaultEnv:
+  - name: SUBFOLDER
+    value: /proxy/{{namespace}}/{{name}}/
+  defaultUser: abc
+  defaultHomedir: /config

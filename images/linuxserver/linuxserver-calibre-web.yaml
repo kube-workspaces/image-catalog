@@ -1,0 +1,31 @@
+apiVersion: kubeworkspaces.io/v1alpha1
+kind: Image
+metadata:
+  name: linuxserver-calibre-web
+spec:
+  defaultPath: /
+  defaultPort: 8083
+  description: calibre-web is a web app providing a clean interface for browsing, reading
+    and downloading eBooks using an existing Calibre database. It is also possible to integrate
+    google drive and edit metadata and your calibre library through the app itself. This software
+    is a fork of library and licensed under the GPL v3 License.
+  category: Tool
+  tags:
+  - linuxserver
+  - linux
+  - books
+  displayName: Calibre-Web (LinuxServer)
+  homepageURL: https://github.com/janeczku/calibre-web
+  icon: https://raw.githubusercontent.com/linuxserver/docker-templates/master/linuxserver.io/img/calibre-web-icon.png
+  image: linuxserver/calibre-web:latest
+  imageHomepageURL: https://hub.docker.com/r/linuxserver/calibre-web
+  workspaceTypes:
+  - container
+  - scratch
+  sourceURL: https://github.com/linuxserver/docker-calibre-web
+  proxyConfig:
+    needsNoopSW: true
+    rewriteHostAbsolutePaths: true
+  defaultCredentials:
+    username: admin
+    password: admin123

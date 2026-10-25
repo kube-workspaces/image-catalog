@@ -1,0 +1,40 @@
+apiVersion: kubeworkspaces.io/v1alpha1
+kind: Image
+metadata:
+  name: linuxserver-scummvm
+spec:
+  defaultPath: /
+  defaultPort: 3000
+  description: '[ScummVM] is a program which allows you to run certain classic graphical adventure
+    and role-playing games, provided you already have their data files. The clever part about
+    this: ScummVM just replaces the executables shipped with the games, allowing you to play
+    them on systems for which they were never designed! ScummVM is a complete rewrite of these
+    games'' executables and is not an emulator.'
+  category: Game
+  tags:
+  - linuxserver
+  - linux
+  - games
+  displayName: ScummVM (LinuxServer)
+  homepageURL: https://www.scummvm.org/
+  icon: https://raw.githubusercontent.com/linuxserver/docker-templates/master/linuxserver.io/img/scummvm-logo.png
+  image: linuxserver/scummvm:latest
+  imageHomepageURL: https://hub.docker.com/r/linuxserver/scummvm
+  workspaceTypes:
+  - container
+  - scratch
+  sourceURL: https://github.com/linuxserver/docker-scummvm
+  additionalPorts:
+  - name: tcp-3001
+    port: 3001
+    protocol: TCP
+  proxyConfig:
+    needsNoopSW: true
+    rewriteHostAbsolutePaths: true
+    preservePathPrefix: true
+  defaultSharedMemory: true
+  defaultEnv:
+  - name: SUBFOLDER
+    value: /proxy/{{namespace}}/{{name}}/
+  defaultUser: abc
+  defaultHomedir: /config

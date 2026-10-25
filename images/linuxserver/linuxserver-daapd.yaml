@@ -1,0 +1,29 @@
+apiVersion: kubeworkspaces.io/v1alpha1
+kind: Image
+metadata:
+  name: linuxserver-daapd
+spec:
+  defaultPath: /
+  defaultPort: 3689
+  description: Deprecated by LinuxServer.io. daapd (iTunes) media server with support for
+    AirPlay devices, Apple Remote (and compatibles), Chromecast, MPD and internet radio.
+  category: Tool
+  tags:
+  - linuxserver
+  - linux
+  - deprecated
+  displayName: DAAPd (LinuxServer)
+  homepageURL: https://owntone.github.io/owntone-server/
+  icon: https://raw.githubusercontent.com/linuxserver/docker-templates/master/linuxserver.io/img/daapd-icon.png
+  image: linuxserver/daapd:latest
+  imageHomepageURL: https://hub.docker.com/r/linuxserver/daapd
+  workspaceTypes:
+  - container
+  - scratch
+  sourceURL: https://github.com/linuxserver/docker-daapd
+  proxyConfig:
+    needsNoopSW: true
+    rewriteHostAbsolutePaths: true
+  defaultCredentials:
+    username: admin
+    password: changeme

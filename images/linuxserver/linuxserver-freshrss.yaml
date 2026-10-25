@@ -1,0 +1,25 @@
+apiVersion: kubeworkspaces.io/v1alpha1
+kind: Image
+metadata:
+  name: linuxserver-freshrss
+spec:
+  defaultPath: /
+  defaultPort: 80
+  description: freshrss is a free, self-hostable aggregator for rss feeds.
+  category: Tool
+  tags:
+  - linuxserver
+  - linux
+  - rss
+  displayName: FreshRSS (LinuxServer)
+  homepageURL: https://freshrss.org/
+  icon: https://raw.githubusercontent.com/linuxserver/docker-templates/master/linuxserver.io/img/freshrss-banner.png
+  image: linuxserver/freshrss:latest
+  imageHomepageURL: https://hub.docker.com/r/linuxserver/freshrss
+  workspaceTypes:
+  - container
+  - scratch
+  sourceURL: https://github.com/linuxserver/docker-freshrss
+  proxyConfig:
+    needsNoopSW: true
+    rewriteHostAbsolutePaths: true

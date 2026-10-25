@@ -1,0 +1,30 @@
+apiVersion: kubeworkspaces.io/v1alpha1
+kind: Image
+metadata:
+  name: linuxserver-paperless-ng
+spec:
+  defaultPath: /
+  defaultPort: 8000
+  description: Legacy or infrastructure image available on Docker Hub. paperless-ng is an
+    application by Daniel Quinn and contributors that indexes your scanned documents and allows
+    you to easily search for documents and store metadata alongside your documents."
+  category: Tool
+  tags:
+  - linuxserver
+  - linux
+  - hub-only
+  displayName: Paperless Ng (LinuxServer)
+  homepageURL: https://github.com/jonaswinkler/paperless-ng
+  icon: https://raw.githubusercontent.com/linuxserver/docker-templates/master/linuxserver.io/img/linuxserver-ls-logo.png
+  image: linuxserver/paperless-ng:latest
+  imageHomepageURL: https://hub.docker.com/r/linuxserver/paperless-ng
+  workspaceTypes:
+  - container
+  - scratch
+  sourceURL: https://github.com/linuxserver/docker-paperless-ng
+  proxyConfig:
+    needsNoopSW: true
+    rewriteHostAbsolutePaths: true
+  defaultCredentials:
+    username: admin
+    password: admin

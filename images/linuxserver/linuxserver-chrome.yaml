@@ -1,0 +1,37 @@
+apiVersion: kubeworkspaces.io/v1alpha1
+kind: Image
+metadata:
+  name: linuxserver-chrome
+spec:
+  defaultPath: /
+  defaultPort: 3000
+  description: '[Chrome] is the official web browser from Google, built to be fast, secure,
+    and customizable.'
+  category: Browser
+  tags:
+  - linuxserver
+  - linux
+  - web-browser
+  displayName: Google Chrome (LinuxServer)
+  homepageURL: https://www.google.com/chrome/
+  icon: https://raw.githubusercontent.com/linuxserver/docker-templates/master/linuxserver.io/img/chrome-logo.png
+  image: linuxserver/chrome:latest
+  imageHomepageURL: https://hub.docker.com/r/linuxserver/chrome
+  workspaceTypes:
+  - container
+  - scratch
+  sourceURL: https://github.com/linuxserver/docker-chrome
+  additionalPorts:
+  - name: tcp-3001
+    port: 3001
+    protocol: TCP
+  proxyConfig:
+    needsNoopSW: true
+    rewriteHostAbsolutePaths: true
+    preservePathPrefix: true
+  defaultSharedMemory: true
+  defaultEnv:
+  - name: SUBFOLDER
+    value: /proxy/{{namespace}}/{{name}}/
+  defaultUser: abc
+  defaultHomedir: /config

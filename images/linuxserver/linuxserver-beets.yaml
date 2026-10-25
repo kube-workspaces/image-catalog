@@ -1,0 +1,27 @@
+apiVersion: kubeworkspaces.io/v1alpha1
+kind: Image
+metadata:
+  name: linuxserver-beets
+spec:
+  defaultPath: /
+  defaultPort: 8337
+  description: beets is a music library manager and not, for the most part, a music player.
+    It does include a simple player plugin and an experimental Web-based player, but it generally
+    leaves actual sound-reproduction to specialized tools.
+  category: Tool
+  tags:
+  - linuxserver
+  - linux
+  - music
+  displayName: Beets (LinuxServer)
+  homepageURL: http://beets.io/
+  icon: https://raw.githubusercontent.com/linuxserver/docker-templates/master/linuxserver.io/img/beets-icon.png
+  image: linuxserver/beets:latest
+  imageHomepageURL: https://hub.docker.com/r/linuxserver/beets
+  workspaceTypes:
+  - container
+  - scratch
+  sourceURL: https://github.com/linuxserver/docker-beets
+  proxyConfig:
+    needsNoopSW: true
+    rewriteHostAbsolutePaths: true

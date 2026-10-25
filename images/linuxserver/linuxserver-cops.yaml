@@ -1,0 +1,33 @@
+apiVersion: kubeworkspaces.io/v1alpha1
+kind: Image
+metadata:
+  name: linuxserver-cops
+spec:
+  defaultPath: /
+  defaultPort: 80
+  description: 'cops by Sébastien Lucas, now maintained by MikesPub, stands for Calibre OPDS
+    (and HTML) Php Server. COPS links to your Calibre library database and allows downloading
+    and emailing of books directly from a web browser and provides a OPDS feed to connect
+    to your devices. Changes in your Calibre library are reflected immediately in your COPS
+    pages. See : [COPS''s home] for more details. Don''t...'
+  category: Tool
+  tags:
+  - linuxserver
+  - linux
+  - books
+  displayName: COPS (LinuxServer)
+  homepageURL: https://github.com/mikespub-org/seblucas-cops
+  icon: https://raw.githubusercontent.com/linuxserver/docker-templates/master/linuxserver.io/img/cops-icon.png
+  image: linuxserver/cops:latest
+  imageHomepageURL: https://hub.docker.com/r/linuxserver/cops
+  workspaceTypes:
+  - container
+  - scratch
+  sourceURL: https://github.com/linuxserver/docker-cops
+  additionalPorts:
+  - name: tcp-443
+    port: 443
+    protocol: TCP
+  proxyConfig:
+    needsNoopSW: true
+    rewriteHostAbsolutePaths: true

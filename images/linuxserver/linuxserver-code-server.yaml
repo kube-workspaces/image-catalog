@@ -1,0 +1,29 @@
+apiVersion: kubeworkspaces.io/v1alpha1
+kind: Image
+metadata:
+  name: linuxserver-code-server
+spec:
+  defaultPath: /
+  defaultPort: 8443
+  description: code-server is VS Code running on a remote server, accessible through the browser.
+    - Code on your Chromebook, tablet, and laptop with a consistent dev environment. - If
+    you have a Windows or Mac workstation, more easily develop for Linux. - Take advantage
+    of large cloud servers to speed up tests, compilations, downloads, and more. - Preserve
+    battery life when you're on the go. - All intensive...
+  category: IDE
+  tags:
+  - linuxserver
+  - linux
+  - programming
+  displayName: code-server (LinuxServer)
+  homepageURL: https://coder.com
+  icon: https://raw.githubusercontent.com/linuxserver/docker-templates/master/linuxserver.io/img/code-server-banner.png
+  image: linuxserver/code-server:latest
+  imageHomepageURL: https://hub.docker.com/r/linuxserver/code-server
+  workspaceTypes:
+  - container
+  - scratch
+  sourceURL: https://github.com/linuxserver/docker-code-server
+  proxyConfig:
+    needsNoopSW: true
+    rewriteHostAbsolutePaths: true

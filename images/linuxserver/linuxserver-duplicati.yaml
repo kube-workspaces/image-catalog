@@ -1,0 +1,28 @@
+apiVersion: kubeworkspaces.io/v1alpha1
+kind: Image
+metadata:
+  name: linuxserver-duplicati
+spec:
+  defaultPath: /
+  defaultPort: 8200
+  description: duplicati is a backup client that securely stores encrypted, incremental, compressed
+    backups on local storage, cloud storage services and remote file servers. It works with
+    standard protocols like FTP, SSH, WebDAV as well as popular services like Microsoft OneDrive,
+    Amazon S3, Google Drive, box.com, Mega, B2, and many others.
+  category: Tool
+  tags:
+  - linuxserver
+  - linux
+  - backup
+  displayName: Duplicati (LinuxServer)
+  homepageURL: https://www.duplicati.com/
+  icon: https://github.com/linuxserver/docker-templates/raw/master/linuxserver.io/img/duplicati-icon.png
+  image: linuxserver/duplicati:latest
+  imageHomepageURL: https://hub.docker.com/r/linuxserver/duplicati
+  workspaceTypes:
+  - container
+  - scratch
+  sourceURL: https://github.com/linuxserver/docker-duplicati
+  proxyConfig:
+    needsNoopSW: true
+    rewriteHostAbsolutePaths: true

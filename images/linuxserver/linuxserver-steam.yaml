@@ -1,0 +1,37 @@
+apiVersion: kubeworkspaces.io/v1alpha1
+kind: Image
+metadata:
+  name: linuxserver-steam
+spec:
+  defaultPath: /
+  defaultPort: 3000
+  description: '[Steam] is the ultimate destination for playing, discussing, and creating
+    games.'
+  category: Game
+  tags:
+  - linuxserver
+  - linux
+  - games
+  displayName: Steam (LinuxServer)
+  homepageURL: https://store.steampowered.com/
+  icon: https://raw.githubusercontent.com/linuxserver/docker-templates/master/linuxserver.io/img/steam-logo.png
+  image: linuxserver/steam:latest
+  imageHomepageURL: https://hub.docker.com/r/linuxserver/steam
+  workspaceTypes:
+  - container
+  - scratch
+  sourceURL: https://github.com/linuxserver/docker-steam
+  additionalPorts:
+  - name: tcp-3001
+    port: 3001
+    protocol: TCP
+  proxyConfig:
+    needsNoopSW: true
+    rewriteHostAbsolutePaths: true
+    preservePathPrefix: true
+  defaultSharedMemory: true
+  defaultEnv:
+  - name: SUBFOLDER
+    value: /proxy/{{namespace}}/{{name}}/
+  defaultUser: abc
+  defaultHomedir: /config

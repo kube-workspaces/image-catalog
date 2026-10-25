@@ -1,0 +1,28 @@
+apiVersion: kubeworkspaces.io/v1alpha1
+kind: Image
+metadata:
+  name: linuxserver-sabnzbd
+spec:
+  defaultPath: /
+  defaultPort: 8080
+  description: sabnzbd makes Usenet as simple and streamlined as possible by automating everything
+    we can. All you have to do is add an .nzb. SABnzbd takes over from there, where it will
+    be automatically downloaded, verified, repaired, extracted and filed away with zero human
+    interaction.
+  category: Tool
+  tags:
+  - linuxserver
+  - linux
+  - downloaders
+  displayName: SABnzbd (LinuxServer)
+  homepageURL: http://sabnzbd.org/
+  icon: https://raw.githubusercontent.com/linuxserver/docker-templates/master/linuxserver.io/img/sabnzbd-banner.png
+  image: linuxserver/sabnzbd:latest
+  imageHomepageURL: https://hub.docker.com/r/linuxserver/sabnzbd
+  workspaceTypes:
+  - container
+  - scratch
+  sourceURL: https://github.com/linuxserver/docker-sabnzbd
+  proxyConfig:
+    needsNoopSW: true
+    rewriteHostAbsolutePaths: true

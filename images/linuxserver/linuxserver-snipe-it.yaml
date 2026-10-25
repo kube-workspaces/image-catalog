@@ -1,0 +1,29 @@
+apiVersion: kubeworkspaces.io/v1alpha1
+kind: Image
+metadata:
+  name: linuxserver-snipe-it
+spec:
+  defaultPath: /
+  defaultPort: 80
+  description: Deprecated by LinuxServer.io. snipe-it makes asset management easy. It was
+    built by people solving real-world IT and asset management problems, and a solid UX has
+    always been a top priority. Straightforward design and bulk actions mean getting things
+    done faster.
+  category: Tool
+  tags:
+  - linuxserver
+  - linux
+  - administration
+  - deprecated
+  displayName: Snipe-IT (LinuxServer)
+  homepageURL: https://github.com/grokability/snipe-it
+  icon: https://raw.githubusercontent.com/linuxserver/docker-templates/master/linuxserver.io/img/snipe-it-logo.png
+  image: linuxserver/snipe-it:latest
+  imageHomepageURL: https://hub.docker.com/r/linuxserver/snipe-it
+  workspaceTypes:
+  - container
+  - scratch
+  sourceURL: https://github.com/linuxserver/docker-snipe-it
+  proxyConfig:
+    needsNoopSW: true
+    rewriteHostAbsolutePaths: true

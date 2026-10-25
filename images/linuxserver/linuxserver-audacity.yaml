@@ -1,0 +1,37 @@
+apiVersion: kubeworkspaces.io/v1alpha1
+kind: Image
+metadata:
+  name: linuxserver-audacity
+spec:
+  defaultPath: /
+  defaultPort: 3000
+  description: '[Audacity] is an easy-to-use, multi-track audio editor and recorder. Developed
+    by a group of volunteers as open source.'
+  category: Tool
+  tags:
+  - linuxserver
+  - linux
+  - audio-processing
+  displayName: Audacity (LinuxServer)
+  homepageURL: https://www.audacityteam.org/
+  icon: https://raw.githubusercontent.com/linuxserver/docker-templates/master/linuxserver.io/img/audacity-logo.png
+  image: linuxserver/audacity:latest
+  imageHomepageURL: https://hub.docker.com/r/linuxserver/audacity
+  workspaceTypes:
+  - container
+  - scratch
+  sourceURL: https://github.com/linuxserver/docker-audacity
+  additionalPorts:
+  - name: tcp-3001
+    port: 3001
+    protocol: TCP
+  proxyConfig:
+    needsNoopSW: true
+    rewriteHostAbsolutePaths: true
+    preservePathPrefix: true
+  defaultSharedMemory: true
+  defaultEnv:
+  - name: SUBFOLDER
+    value: /proxy/{{namespace}}/{{name}}/
+  defaultUser: abc
+  defaultHomedir: /config

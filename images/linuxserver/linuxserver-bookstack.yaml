@@ -1,0 +1,32 @@
+apiVersion: kubeworkspaces.io/v1alpha1
+kind: Image
+metadata:
+  name: linuxserver-bookstack
+spec:
+  defaultPath: /
+  defaultPort: 80
+  description: bookstack is a free and open source Wiki designed for creating beautiful documentation.
+    Featuring a simple, but powerful WYSIWYG editor it allows for teams to create detailed
+    and useful documentation with ease. Powered by SQL and including a Markdown editor for
+    those who prefer it, BookStack is geared towards making documentation more of a pleasure
+    than a chore. For more information on...
+  category: Tool
+  tags:
+  - linuxserver
+  - linux
+  - content-management
+  displayName: BookStack (LinuxServer)
+  homepageURL: https://codeberg.org/bookstack/bookstack
+  icon: https://raw.githubusercontent.com/linuxserver/docker-templates/master/linuxserver.io/img/bookstack-logo.png
+  image: linuxserver/bookstack:latest
+  imageHomepageURL: https://hub.docker.com/r/linuxserver/bookstack
+  workspaceTypes:
+  - container
+  - scratch
+  sourceURL: https://github.com/linuxserver/docker-bookstack
+  proxyConfig:
+    needsNoopSW: true
+    rewriteHostAbsolutePaths: true
+  defaultCredentials:
+    username: admin@admin.com
+    password: password

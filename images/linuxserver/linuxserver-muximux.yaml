@@ -1,0 +1,28 @@
+apiVersion: kubeworkspaces.io/v1alpha1
+kind: Image
+metadata:
+  name: linuxserver-muximux
+spec:
+  defaultPath: /
+  defaultPort: 80
+  description: Legacy or infrastructure image available on Docker Hub. muximux is a lightweight
+    portal to view & manage your HTPC apps without having to run anything more than a PHP
+    enabled webserver. With Muximux you don't need to keep multiple tabs open, or bookmark
+    the URL to all of your apps.
+  category: Tool
+  tags:
+  - linuxserver
+  - linux
+  - hub-only
+  displayName: Muximux (LinuxServer)
+  homepageURL: https://github.com/mescon/Muximux
+  icon: https://raw.githubusercontent.com/linuxserver/docker-templates/master/linuxserver.io/img/muximux-icon.png
+  image: linuxserver/muximux:latest
+  imageHomepageURL: https://hub.docker.com/r/linuxserver/muximux
+  workspaceTypes:
+  - container
+  - scratch
+  sourceURL: https://github.com/linuxserver/docker-muximux
+  proxyConfig:
+    needsNoopSW: true
+    rewriteHostAbsolutePaths: true

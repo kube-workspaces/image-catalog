@@ -1,0 +1,27 @@
+apiVersion: kubeworkspaces.io/v1alpha1
+kind: Image
+metadata:
+  name: linuxserver-projectsend
+spec:
+  defaultPath: /
+  defaultPort: 80
+  description: projectsend is a self-hosted application that lets you upload files and assign
+    them to specific clients that you create yourself. Secure, private and easy. No more depending
+    on external services or e-mail to send those files.
+  category: Tool
+  tags:
+  - linuxserver
+  - linux
+  - file-sharing
+  displayName: ProjectSend (LinuxServer)
+  homepageURL: http://www.projectsend.org
+  icon: https://cdn.jsdelivr.net/gh/homarr-labs/dashboard-icons/svg/projectsend.svg
+  image: linuxserver/projectsend:latest
+  imageHomepageURL: https://hub.docker.com/r/linuxserver/projectsend
+  workspaceTypes:
+  - container
+  - scratch
+  sourceURL: https://github.com/linuxserver/docker-projectsend
+  proxyConfig:
+    needsNoopSW: true
+    rewriteHostAbsolutePaths: true

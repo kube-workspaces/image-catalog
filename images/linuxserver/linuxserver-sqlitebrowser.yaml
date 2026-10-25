@@ -1,0 +1,37 @@
+apiVersion: kubeworkspaces.io/v1alpha1
+kind: Image
+metadata:
+  name: linuxserver-sqlitebrowser
+spec:
+  defaultPath: /
+  defaultPort: 3000
+  description: '[DB Browser for SQLite] is a high quality, visual, open source tool to create,
+    design, and edit database files compatible with SQLite.'
+  category: Tool
+  tags:
+  - linuxserver
+  - linux
+  - databases
+  displayName: DB Browser for SQLite (LinuxServer)
+  homepageURL: https://sqlitebrowser.org/
+  icon: https://raw.githubusercontent.com/linuxserver/docker-templates/master/linuxserver.io/img/sqlitebrowser-banner.png
+  image: linuxserver/sqlitebrowser:latest
+  imageHomepageURL: https://hub.docker.com/r/linuxserver/sqlitebrowser
+  workspaceTypes:
+  - container
+  - scratch
+  sourceURL: https://github.com/linuxserver/docker-sqlitebrowser
+  additionalPorts:
+  - name: tcp-3001
+    port: 3001
+    protocol: TCP
+  proxyConfig:
+    needsNoopSW: true
+    rewriteHostAbsolutePaths: true
+    preservePathPrefix: true
+  defaultSharedMemory: true
+  defaultEnv:
+  - name: SUBFOLDER
+    value: /proxy/{{namespace}}/{{name}}/
+  defaultUser: abc
+  defaultHomedir: /config

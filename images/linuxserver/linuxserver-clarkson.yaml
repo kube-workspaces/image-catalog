@@ -1,0 +1,29 @@
+apiVersion: kubeworkspaces.io/v1alpha1
+kind: Image
+metadata:
+  name: linuxserver-clarkson
+spec:
+  defaultPath: /
+  defaultPort: 3000
+  description: Legacy or infrastructure image available on Docker Hub. clarkson is a web-based
+    dashboard application that gives you a neat and clean interface for logging your fuel
+    fill-ups for all of your vehicles. The application has full multi-user support, as well
+    as multiple vehicles per user. Whenever you fill-up your car or motorcycle, keep the receipt
+    and record the data in Clarkson.
+  category: Tool
+  tags:
+  - linuxserver
+  - linux
+  - hub-only
+  displayName: Clarkson (LinuxServer)
+  homepageURL: https://github.com/linuxserver/Clarkson
+  icon: https://raw.githubusercontent.com/linuxserver/Clarkson/master/docs/dashboard.png
+  image: linuxserver/clarkson:latest
+  imageHomepageURL: https://hub.docker.com/r/linuxserver/clarkson
+  workspaceTypes:
+  - container
+  - scratch
+  sourceURL: https://github.com/linuxserver/docker-clarkson
+  proxyConfig:
+    needsNoopSW: true
+    rewriteHostAbsolutePaths: true

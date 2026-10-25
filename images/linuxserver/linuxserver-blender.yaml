@@ -1,0 +1,39 @@
+apiVersion: kubeworkspaces.io/v1alpha1
+kind: Image
+metadata:
+  name: linuxserver-blender
+spec:
+  defaultPath: /
+  defaultPort: 3000
+  description: '[Blender] is a free and open-source 3D computer graphics software toolset
+    used for creating animated films, visual effects, art, 3D printed models, motion graphics,
+    interactive 3D applications, virtual reality, and computer games. This image does not
+    support GPU rendering out of the box only accelerated workspace experience'
+  category: Tool
+  tags:
+  - linuxserver
+  - linux
+  - 3d-modeling
+  displayName: Blender (LinuxServer)
+  homepageURL: https://www.blender.org/
+  icon: https://raw.githubusercontent.com/linuxserver/docker-templates/master/linuxserver.io/img/blender-logo.png
+  image: linuxserver/blender:latest
+  imageHomepageURL: https://hub.docker.com/r/linuxserver/blender
+  workspaceTypes:
+  - container
+  - scratch
+  sourceURL: https://github.com/linuxserver/docker-blender
+  additionalPorts:
+  - name: tcp-3001
+    port: 3001
+    protocol: TCP
+  proxyConfig:
+    needsNoopSW: true
+    rewriteHostAbsolutePaths: true
+    preservePathPrefix: true
+  defaultSharedMemory: true
+  defaultEnv:
+  - name: SUBFOLDER
+    value: /proxy/{{namespace}}/{{name}}/
+  defaultUser: abc
+  defaultHomedir: /config

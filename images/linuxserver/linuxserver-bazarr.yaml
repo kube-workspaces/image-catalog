@@ -1,0 +1,27 @@
+apiVersion: kubeworkspaces.io/v1alpha1
+kind: Image
+metadata:
+  name: linuxserver-bazarr
+spec:
+  defaultPath: /
+  defaultPort: 6767
+  description: bazarr is a companion application to Sonarr and Radarr. It can manage and download
+    subtitles based on your requirements. You define your preferences by TV show or movie
+    and Bazarr takes care of everything for you.
+  category: Tool
+  tags:
+  - linuxserver
+  - linux
+  - media-management
+  displayName: Bazarr (LinuxServer)
+  homepageURL: https://www.bazarr.media/
+  icon: https://raw.githubusercontent.com/linuxserver/docker-templates/master/linuxserver.io/img/bazarr.png
+  image: linuxserver/bazarr:latest
+  imageHomepageURL: https://hub.docker.com/r/linuxserver/bazarr
+  workspaceTypes:
+  - container
+  - scratch
+  sourceURL: https://github.com/linuxserver/docker-bazarr
+  proxyConfig:
+    needsNoopSW: true
+    rewriteHostAbsolutePaths: true

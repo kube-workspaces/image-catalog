@@ -1,0 +1,37 @@
+apiVersion: kubeworkspaces.io/v1alpha1
+kind: Image
+metadata:
+  name: linuxserver-eden
+spec:
+  defaultPath: /
+  defaultPort: 3000
+  description: '[Eden] is an experimental open-source emulator for the Nintendo Switch, built
+    with performance and stability in mind.'
+  category: Game
+  tags:
+  - linuxserver
+  - linux
+  - games
+  displayName: Eden (LinuxServer)
+  homepageURL: https://eden-emu.dev/
+  icon: https://raw.githubusercontent.com/linuxserver/docker-templates/master/linuxserver.io/img/eden-logo.png
+  image: linuxserver/eden:latest
+  imageHomepageURL: https://hub.docker.com/r/linuxserver/eden
+  workspaceTypes:
+  - container
+  - scratch
+  sourceURL: https://github.com/linuxserver/docker-eden
+  additionalPorts:
+  - name: tcp-3001
+    port: 3001
+    protocol: TCP
+  proxyConfig:
+    needsNoopSW: true
+    rewriteHostAbsolutePaths: true
+    preservePathPrefix: true
+  defaultSharedMemory: true
+  defaultEnv:
+  - name: SUBFOLDER
+    value: /proxy/{{namespace}}/{{name}}/
+  defaultUser: abc
+  defaultHomedir: /config

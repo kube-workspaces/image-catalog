@@ -1,0 +1,27 @@
+apiVersion: kubeworkspaces.io/v1alpha1
+kind: Image
+metadata:
+  name: linuxserver-changedetection-io
+spec:
+  defaultPath: /
+  defaultPort: 5000
+  description: changedetection.io provides free, open-source web page monitoring, notification
+    and change detection.
+  category: Tool
+  tags:
+  - linuxserver
+  - linux
+  - web-tools
+  - automation
+  displayName: changedetection.io (LinuxServer)
+  homepageURL: https://github.com/dgtlmoon/changedetection.io
+  icon: https://github.com/linuxserver/docker-templates/raw/master/linuxserver.io/img/changedetection-icon.png
+  image: linuxserver/changedetection.io:latest
+  imageHomepageURL: https://hub.docker.com/r/linuxserver/changedetection.io
+  workspaceTypes:
+  - container
+  - scratch
+  sourceURL: https://github.com/linuxserver/docker-changedetection.io
+  proxyConfig:
+    needsNoopSW: true
+    rewriteHostAbsolutePaths: true

@@ -1,0 +1,29 @@
+apiVersion: kubeworkspaces.io/v1alpha1
+kind: Image
+metadata:
+  name: linuxserver-codimd
+spec:
+  defaultPath: /
+  defaultPort: 3000
+  description: Legacy or infrastructure image available on Docker Hub. CodiMD gives you access
+    to all your files wherever you are. CodiMD is a real-time, multi-platform collaborative
+    markdown note editor. This means that you can write notes with other people on your desktop,
+    tablet or even on the phone. You can sign-in via multiple auth providers like Facebook,
+    Twitter, GitHub and many more on the homepage.
+  category: Tool
+  tags:
+  - linuxserver
+  - linux
+  - hub-only
+  displayName: CodiMD (LinuxServer)
+  homepageURL: https://demo.codimd.org
+  icon: https://cdn.jsdelivr.net/gh/homarr-labs/dashboard-icons/svg/hedgedoc.svg
+  image: linuxserver/codimd:latest
+  imageHomepageURL: https://hub.docker.com/r/linuxserver/codimd
+  workspaceTypes:
+  - container
+  - scratch
+  sourceURL: https://github.com/linuxserver/docker-codimd
+  proxyConfig:
+    needsNoopSW: true
+    rewriteHostAbsolutePaths: true

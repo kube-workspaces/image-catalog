@@ -1,0 +1,29 @@
+apiVersion: kubeworkspaces.io/v1alpha1
+kind: Image
+metadata:
+  name: linuxserver-nzbget
+spec:
+  defaultPath: /
+  defaultPort: 6789
+  description: nzbget is a usenet downloader, written in C++ and designed with performance
+    in mind to achieve maximum download speed by using very little system resources.
+  category: Tool
+  tags:
+  - linuxserver
+  - linux
+  - downloaders
+  displayName: NZBGet (LinuxServer)
+  homepageURL: http://nzbget.com/
+  icon: https://raw.githubusercontent.com/linuxserver/docker-templates/master/linuxserver.io/img/nzbget-banner.png
+  image: linuxserver/nzbget:latest
+  imageHomepageURL: https://hub.docker.com/r/linuxserver/nzbget
+  workspaceTypes:
+  - container
+  - scratch
+  sourceURL: https://github.com/linuxserver/docker-nzbget
+  proxyConfig:
+    needsNoopSW: true
+    rewriteHostAbsolutePaths: true
+  defaultCredentials:
+    username: nzbget
+    password: tegbzn6789

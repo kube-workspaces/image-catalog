@@ -1,0 +1,39 @@
+apiVersion: kubeworkspaces.io/v1alpha1
+kind: Image
+metadata:
+  name: linuxserver-sealskin
+spec:
+  defaultPath: /
+  defaultPort: 8443
+  description: '[Sealskin] is a self-hosted browser isolation and remote application streaming
+    platform. It runs desktop applications in isolated containers on a server you control
+    and streams them to any browser or phone. Clients include a browser extension, mobile
+    apps, and a web app served by the server itself. Each turns links, files, downloads, and
+    text selections into something you open remotely instead...'
+  category: Tool
+  tags:
+  - linuxserver
+  - linux
+  - remote-desktop
+  - business
+  displayName: Sealskin (LinuxServer)
+  homepageURL: https://github.com/selkies-project/sealskin/
+  icon: https://raw.githubusercontent.com/linuxserver/docker-templates/master/linuxserver.io/img/sealskin-logo.png
+  image: linuxserver/sealskin:latest
+  imageHomepageURL: https://hub.docker.com/r/linuxserver/sealskin
+  workspaceTypes:
+  - container
+  - scratch
+  sourceURL: https://github.com/linuxserver/docker-sealskin
+  additionalPorts:
+  - name: tcp-8000
+    port: 8000
+    protocol: TCP
+  - name: tcp-8444
+    port: 8444
+    protocol: TCP
+  proxyConfig:
+    needsNoopSW: true
+    rewriteHostAbsolutePaths: true
+    scheme: https
+    tlsSkipVerify: true

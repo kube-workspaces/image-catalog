@@ -1,0 +1,26 @@
+apiVersion: kubeworkspaces.io/v1alpha1
+kind: Image
+metadata:
+  name: linuxserver-smokeping
+spec:
+  defaultPath: /smokeping/smokeping.cgi
+  defaultPort: 80
+  description: smokeping keeps track of your network latency. For a full example of what this
+    application is capable of visit UCDavis.
+  category: Tool
+  tags:
+  - linuxserver
+  - linux
+  - monitoring
+  displayName: Smokeping (LinuxServer)
+  homepageURL: https://oss.oetiker.ch/smokeping/
+  icon: https://github.com/linuxserver/docker-templates/raw/master/linuxserver.io/img/smokeping-logo.png
+  image: linuxserver/smokeping:latest
+  imageHomepageURL: https://hub.docker.com/r/linuxserver/smokeping
+  workspaceTypes:
+  - container
+  - scratch
+  sourceURL: https://github.com/linuxserver/docker-smokeping
+  proxyConfig:
+    needsNoopSW: true
+    rewriteHostAbsolutePaths: true

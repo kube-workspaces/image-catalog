@@ -1,0 +1,27 @@
+apiVersion: kubeworkspaces.io/v1alpha1
+kind: Image
+metadata:
+  name: linuxserver-feed2toot
+spec:
+  defaultPath: /
+  defaultPort: 80
+  description: Deprecated by LinuxServer.io. feed2toot automatically parses rss feeds, identifies
+    new posts and posts them on the Mastodon social network. No browser endpoint; use the
+    terminal or native client.
+  category: Tool
+  tags:
+  - linuxserver
+  - linux
+  - rss
+  - social
+  - deprecated
+  - cli
+  displayName: Feed2Toot (LinuxServer)
+  homepageURL: https://gitlab.com/chaica/feed2toot
+  icon: https://raw.githubusercontent.com/linuxserver/docker-templates/master/linuxserver.io/img/linuxserver-ls-logo.png
+  image: linuxserver/feed2toot:latest
+  imageHomepageURL: https://hub.docker.com/r/linuxserver/feed2toot
+  workspaceTypes:
+  - container
+  - scratch
+  sourceURL: https://github.com/linuxserver/docker-feed2toot

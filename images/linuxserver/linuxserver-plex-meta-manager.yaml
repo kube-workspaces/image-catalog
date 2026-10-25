@@ -1,0 +1,27 @@
+apiVersion: kubeworkspaces.io/v1alpha1
+kind: Image
+metadata:
+  name: linuxserver-plex-meta-manager
+spec:
+  defaultPath: /
+  defaultPort: 80
+  description: Legacy or infrastructure image available on Docker Hub. plex-meta-manager is
+    a Python 3 script that can be continuously run using YAML configuration files to update
+    on a schedule the metadata of the movies, shows, and collections in your libraries as
+    well as automatically build collections based on various methods all detailed in the wiki.
+    No browser endpoint; use the terminal or native client.
+  category: Tool
+  tags:
+  - linuxserver
+  - linux
+  - hub-only
+  - cli
+  displayName: Plex Meta Manager (LinuxServer)
+  homepageURL: https://github.com/Kometa-Team/Kometa
+  icon: https://raw.githubusercontent.com/linuxserver/docker-templates/master/linuxserver.io/img/plex-meta-manager-banner.png
+  image: linuxserver/plex-meta-manager:latest
+  imageHomepageURL: https://hub.docker.com/r/linuxserver/plex-meta-manager
+  workspaceTypes:
+  - container
+  - scratch
+  sourceURL: https://github.com/linuxserver/docker-plex-meta-manager

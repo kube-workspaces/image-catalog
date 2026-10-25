@@ -1,0 +1,26 @@
+apiVersion: kubeworkspaces.io/v1alpha1
+kind: Image
+metadata:
+  name: linuxserver-rsnapshot
+spec:
+  defaultPath: /
+  defaultPort: 80
+  description: rsnapshot is a filesystem snapshot utility based on rsync. rsnapshot makes
+    it easy to make periodic snapshots of local machines, and remote machines over ssh. The
+    code makes extensive use of hard links whenever possible, to greatly reduce the disk space
+    required. No browser endpoint; use the terminal or native client.
+  category: Tool
+  tags:
+  - linuxserver
+  - linux
+  - backup
+  - cli
+  displayName: rsnapshot (LinuxServer)
+  homepageURL: http://www.rsnapshot.org/
+  icon: https://raw.githubusercontent.com/linuxserver/docker-templates/master/linuxserver.io/img/rsnapshot.png
+  image: linuxserver/rsnapshot:latest
+  imageHomepageURL: https://hub.docker.com/r/linuxserver/rsnapshot
+  workspaceTypes:
+  - container
+  - scratch
+  sourceURL: https://github.com/linuxserver/docker-rsnapshot

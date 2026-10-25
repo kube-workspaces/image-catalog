@@ -1,0 +1,37 @@
+apiVersion: kubeworkspaces.io/v1alpha1
+kind: Image
+metadata:
+  name: linuxserver-kasm
+spec:
+  defaultPath: /
+  defaultPort: 3000
+  description: kasm Workspaces is a docker container streaming platform for delivering browser-based
+    access to desktops, applications, and web services. Kasm uses devops-enabled Containerized
+    Desktop Infrastructure (CDI) to create on-demand, disposable, docker containers that are
+    accessible via web browser. Example use-cases include Remote Browser Isolation (RBI),
+    Data Loss Prevention (DLP), Desktop as a...
+  category: Desktop
+  tags:
+  - linuxserver
+  - linux
+  - remote-desktop
+  - business
+  displayName: Kasm Workspaces (LinuxServer)
+  homepageURL: https://www.kasmweb.com/?utm_campaign=LinuxServer&utm_source=listing
+  icon: https://kasm-ci.s3.amazonaws.com/kasm_wide.png
+  image: linuxserver/kasm:latest
+  imageHomepageURL: https://hub.docker.com/r/linuxserver/kasm
+  workspaceTypes:
+  - container
+  - scratch
+  sourceURL: https://github.com/linuxserver/docker-kasm
+  additionalPorts:
+  - name: tcp-443
+    port: 443
+    protocol: TCP
+  proxyConfig:
+    needsNoopSW: true
+    rewriteHostAbsolutePaths: true
+    scheme: https
+    tlsSkipVerify: true
+  privileged: true

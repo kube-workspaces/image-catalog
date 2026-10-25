@@ -1,0 +1,26 @@
+apiVersion: kubeworkspaces.io/v1alpha1
+kind: Image
+metadata:
+  name: linuxserver-photoshow
+spec:
+  defaultPath: /
+  defaultPort: 80
+  description: Legacy or infrastructure image available on Docker Hub. photoshow is gallery
+    software at its easiest, it doesn't even require a database.
+  category: Tool
+  tags:
+  - linuxserver
+  - linux
+  - hub-only
+  displayName: Photoshow (LinuxServer)
+  homepageURL: https://github.com/thibaud-rohmer/PhotoShow
+  icon: https://raw.githubusercontent.com/linuxserver/docker-templates/master/linuxserver.io/img/photoshow-icon.png
+  image: linuxserver/photoshow:latest
+  imageHomepageURL: https://hub.docker.com/r/linuxserver/photoshow
+  workspaceTypes:
+  - container
+  - scratch
+  sourceURL: https://github.com/linuxserver/docker-photoshow
+  proxyConfig:
+    needsNoopSW: true
+    rewriteHostAbsolutePaths: true

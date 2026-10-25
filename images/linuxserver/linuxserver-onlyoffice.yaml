@@ -1,0 +1,38 @@
+apiVersion: kubeworkspaces.io/v1alpha1
+kind: Image
+metadata:
+  name: linuxserver-onlyoffice
+spec:
+  defaultPath: /
+  defaultPort: 3000
+  description: '[ONLYOFFICE] provides a full range of tools to create, edit and collaborate
+    on text documents, spreadsheets, presentations, PDF forms and regular PDF files on web,
+    desktop and mobile platforms.'
+  category: Tool
+  tags:
+  - linuxserver
+  - linux
+  - documents
+  displayName: ONLYOFFICE (LinuxServer)
+  homepageURL: https://www.onlyoffice.com/
+  icon: https://raw.githubusercontent.com/linuxserver/docker-templates/master/linuxserver.io/img/onlyoffice-logo.png
+  image: linuxserver/onlyoffice:latest
+  imageHomepageURL: https://hub.docker.com/r/linuxserver/onlyoffice
+  workspaceTypes:
+  - container
+  - scratch
+  sourceURL: https://github.com/linuxserver/docker-onlyoffice
+  additionalPorts:
+  - name: tcp-3001
+    port: 3001
+    protocol: TCP
+  proxyConfig:
+    needsNoopSW: true
+    rewriteHostAbsolutePaths: true
+    preservePathPrefix: true
+  defaultSharedMemory: true
+  defaultEnv:
+  - name: SUBFOLDER
+    value: /proxy/{{namespace}}/{{name}}/
+  defaultUser: abc
+  defaultHomedir: /config

@@ -1,0 +1,38 @@
+apiVersion: kubeworkspaces.io/v1alpha1
+kind: Image
+metadata:
+  name: linuxserver-ppsspp
+spec:
+  defaultPath: /
+  defaultPort: 3000
+  description: '[PPSSPP] is a free and open-source PSP emulator for Windows, macOS, Linux,
+    iOS, Android, Nintendo Wii U, Nintendo Switch, BlackBerry 10, MeeGo, Pandora, Xbox Series
+    and Symbian with a focus on speed and portability.'
+  category: Game
+  tags:
+  - linuxserver
+  - linux
+  - games
+  displayName: PPSSPP (LinuxServer)
+  homepageURL: https://www.ppsspp.org/
+  icon: https://raw.githubusercontent.com/linuxserver/docker-templates/master/linuxserver.io/img/ppsspp-logo.png
+  image: linuxserver/ppsspp:latest
+  imageHomepageURL: https://hub.docker.com/r/linuxserver/ppsspp
+  workspaceTypes:
+  - container
+  - scratch
+  sourceURL: https://github.com/linuxserver/docker-ppsspp
+  additionalPorts:
+  - name: tcp-3001
+    port: 3001
+    protocol: TCP
+  proxyConfig:
+    needsNoopSW: true
+    rewriteHostAbsolutePaths: true
+    preservePathPrefix: true
+  defaultSharedMemory: true
+  defaultEnv:
+  - name: SUBFOLDER
+    value: /proxy/{{namespace}}/{{name}}/
+  defaultUser: abc
+  defaultHomedir: /config

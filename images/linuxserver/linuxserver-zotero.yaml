@@ -1,0 +1,37 @@
+apiVersion: kubeworkspaces.io/v1alpha1
+kind: Image
+metadata:
+  name: linuxserver-zotero
+spec:
+  defaultPath: /
+  defaultPort: 3000
+  description: '[Zotero] is a free, easy-to-use tool to help you collect, organize, annotate,
+    cite, and share research.'
+  category: Tool
+  tags:
+  - linuxserver
+  - linux
+  - documents
+  displayName: Zotero (LinuxServer)
+  homepageURL: https://www.zotero.org/
+  icon: https://raw.githubusercontent.com/linuxserver/docker-templates/master/linuxserver.io/img/zotero-icon.png
+  image: linuxserver/zotero:latest
+  imageHomepageURL: https://hub.docker.com/r/linuxserver/zotero
+  workspaceTypes:
+  - container
+  - scratch
+  sourceURL: https://github.com/linuxserver/docker-zotero
+  additionalPorts:
+  - name: tcp-3001
+    port: 3001
+    protocol: TCP
+  proxyConfig:
+    needsNoopSW: true
+    rewriteHostAbsolutePaths: true
+    preservePathPrefix: true
+  defaultSharedMemory: true
+  defaultEnv:
+  - name: SUBFOLDER
+    value: /proxy/{{namespace}}/{{name}}/
+  defaultUser: abc
+  defaultHomedir: /config

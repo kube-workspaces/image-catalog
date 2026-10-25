@@ -1,0 +1,32 @@
+apiVersion: kubeworkspaces.io/v1alpha1
+kind: Image
+metadata:
+  name: linuxserver-your-spotify
+spec:
+  defaultPath: /
+  defaultPort: 80
+  description: your_spotify is a self-hosted application that tracks what you listen and offers
+    you a dashboard to explore statistics about it! It's composed of a web server which polls
+    the Spotify API every now and then and a web application on which you can explore your
+    statistics.
+  category: Tool
+  tags:
+  - linuxserver
+  - linux
+  - music
+  displayName: Your Spotify (LinuxServer)
+  homepageURL: https://github.com/Yooooomi/your_spotify
+  icon: https://raw.githubusercontent.com/linuxserver/docker-templates/master/linuxserver.io/img/your_spotify-logo.png
+  image: linuxserver/your_spotify:latest
+  imageHomepageURL: https://hub.docker.com/r/linuxserver/your_spotify
+  workspaceTypes:
+  - container
+  - scratch
+  sourceURL: https://github.com/linuxserver/docker-your_spotify
+  additionalPorts:
+  - name: tcp-443
+    port: 443
+    protocol: TCP
+  proxyConfig:
+    needsNoopSW: true
+    rewriteHostAbsolutePaths: true

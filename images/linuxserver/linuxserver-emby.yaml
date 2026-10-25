@@ -1,0 +1,33 @@
+apiVersion: kubeworkspaces.io/v1alpha1
+kind: Image
+metadata:
+  name: linuxserver-emby
+spec:
+  defaultPath: /
+  defaultPort: 8096
+  description: emby organizes video, music, live TV, and photos from personal media libraries
+    and streams them to smart TVs, streaming boxes and mobile devices. This container is packaged
+    as a standalone emby Media Server.
+  category: Tool
+  tags:
+  - linuxserver
+  - linux
+  - media-servers
+  - music
+  - audiobooks
+  displayName: Emby (LinuxServer)
+  homepageURL: https://emby.media/
+  icon: https://raw.githubusercontent.com/linuxserver/docker-templates/master/linuxserver.io/img/emby-logo.png
+  image: linuxserver/emby:latest
+  imageHomepageURL: https://hub.docker.com/r/linuxserver/emby
+  workspaceTypes:
+  - container
+  - scratch
+  sourceURL: https://github.com/linuxserver/docker-emby
+  additionalPorts:
+  - name: tcp-8920
+    port: 8920
+    protocol: TCP
+  proxyConfig:
+    needsNoopSW: true
+    rewriteHostAbsolutePaths: true

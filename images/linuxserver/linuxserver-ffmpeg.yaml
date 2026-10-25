@@ -1,0 +1,24 @@
+apiVersion: kubeworkspaces.io/v1alpha1
+kind: Image
+metadata:
+  name: linuxserver-ffmpeg
+spec:
+  defaultPath: /
+  defaultPort: 80
+  description: A complete, cross-platform solution to record, convert and stream audio and
+    video. No browser endpoint; use the terminal or native client.
+  category: Tool
+  tags:
+  - linuxserver
+  - linux
+  - media-tools
+  - cli
+  displayName: FFmpeg (LinuxServer)
+  homepageURL: https://hub.docker.com/r/linuxserver/ffmpeg
+  icon: https://raw.githubusercontent.com/linuxserver/docker-templates/master/linuxserver.io/img/ffmpeg.png
+  image: linuxserver/ffmpeg:latest
+  imageHomepageURL: https://hub.docker.com/r/linuxserver/ffmpeg
+  workspaceTypes:
+  - container
+  - scratch
+  sourceURL: https://github.com/linuxserver/docker-ffmpeg

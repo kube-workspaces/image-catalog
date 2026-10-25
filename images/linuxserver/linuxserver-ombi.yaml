@@ -1,0 +1,29 @@
+apiVersion: kubeworkspaces.io/v1alpha1
+kind: Image
+metadata:
+  name: linuxserver-ombi
+spec:
+  defaultPath: /
+  defaultPort: 3579
+  description: ombi allows you to host your own Plex Request and user management system. If
+    you are sharing your Plex server with other users, allow them to request new content using
+    an easy to manage interface! Manage all your requests for Movies and TV with ease, leave
+    notes for the user and get notification when a user requests something. Allow your users
+    to post issues against their requests so you know...
+  category: Tool
+  tags:
+  - linuxserver
+  - linux
+  - media-requesters
+  displayName: Ombi (LinuxServer)
+  homepageURL: https://ombi.io
+  icon: https://raw.githubusercontent.com/linuxserver/docker-templates/master/linuxserver.io/img/ombi.png
+  image: linuxserver/ombi:latest
+  imageHomepageURL: https://hub.docker.com/r/linuxserver/ombi
+  workspaceTypes:
+  - container
+  - scratch
+  sourceURL: https://github.com/linuxserver/docker-ombi
+  proxyConfig:
+    needsNoopSW: true
+    rewriteHostAbsolutePaths: true

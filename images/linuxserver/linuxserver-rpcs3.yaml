@@ -1,0 +1,37 @@
+apiVersion: kubeworkspaces.io/v1alpha1
+kind: Image
+metadata:
+  name: linuxserver-rpcs3
+spec:
+  defaultPath: /
+  defaultPort: 3000
+  description: '[RPCS3] is a multi-platform open-source Sony PlayStation 3 emulator and debugger
+    written in C++ for Windows, Linux, macOS and FreeBSD.'
+  category: Game
+  tags:
+  - linuxserver
+  - linux
+  - games
+  displayName: RPCS3 (LinuxServer)
+  homepageURL: https://rpcs3.net/
+  icon: https://raw.githubusercontent.com/linuxserver/docker-templates/master/linuxserver.io/img/rpcs3-logo.png
+  image: linuxserver/rpcs3:latest
+  imageHomepageURL: https://hub.docker.com/r/linuxserver/rpcs3
+  workspaceTypes:
+  - container
+  - scratch
+  sourceURL: https://github.com/linuxserver/docker-rpcs3
+  additionalPorts:
+  - name: tcp-3001
+    port: 3001
+    protocol: TCP
+  proxyConfig:
+    needsNoopSW: true
+    rewriteHostAbsolutePaths: true
+    preservePathPrefix: true
+  defaultSharedMemory: true
+  defaultEnv:
+  - name: SUBFOLDER
+    value: /proxy/{{namespace}}/{{name}}/
+  defaultUser: abc
+  defaultHomedir: /config

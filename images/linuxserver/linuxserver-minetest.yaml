@@ -1,0 +1,30 @@
+apiVersion: kubeworkspaces.io/v1alpha1
+kind: Image
+metadata:
+  name: linuxserver-minetest
+spec:
+  defaultPath: /
+  defaultPort: 30000
+  description: Deprecated by LinuxServer.io. minetest (server) is a near-infinite-world block
+    sandbox game and a game engine, inspired by InfiniMiner, Minecraft, and the like. No browser
+    endpoint; use the terminal or native client.
+  category: Game
+  tags:
+  - linuxserver
+  - linux
+  - games
+  - deprecated
+  - non-http
+  displayName: Minetest (LinuxServer)
+  homepageURL: http://www.minetest.net/
+  icon: https://raw.githubusercontent.com/linuxserver/beta-templates/master/lsiodev/img/minetest-icon.png
+  image: linuxserver/minetest:latest
+  imageHomepageURL: https://hub.docker.com/r/linuxserver/minetest
+  workspaceTypes:
+  - container
+  - scratch
+  sourceURL: https://github.com/linuxserver/docker-minetest
+  additionalPorts:
+  - name: udp-30000
+    port: 30000
+    protocol: UDP

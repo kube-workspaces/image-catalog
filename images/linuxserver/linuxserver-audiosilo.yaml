@@ -1,0 +1,30 @@
+apiVersion: kubeworkspaces.io/v1alpha1
+kind: Image
+metadata:
+  name: linuxserver-audiosilo
+spec:
+  defaultPath: /web
+  defaultPort: 8080
+  description: '[AudioSilo] is a self-hosted audiobook server. Point it at your audiobook
+    folders and listen from the built-in web player or the AudioSilo apps for iOS and Android,
+    with listening progress synced across devices.'
+  category: Tool
+  tags:
+  - linuxserver
+  - linux
+  - audiobooks
+  - media-servers
+  displayName: AudioSilo (LinuxServer)
+  homepageURL: https://audiosilo.app
+  icon: https://raw.githubusercontent.com/linuxserver/docker-templates/master/linuxserver.io/img/audiosilo-logo.png
+  image: linuxserver/audiosilo:latest
+  imageHomepageURL: https://hub.docker.com/r/linuxserver/audiosilo
+  workspaceTypes:
+  - container
+  - scratch
+  sourceURL: https://github.com/linuxserver/docker-audiosilo
+  proxyConfig:
+    needsNoopSW: true
+    rewriteHostAbsolutePaths: true
+    scheme: https
+    tlsSkipVerify: true

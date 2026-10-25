@@ -1,0 +1,31 @@
+apiVersion: kubeworkspaces.io/v1alpha1
+kind: Image
+metadata:
+  name: linuxserver-ubooquity
+spec:
+  defaultPath: /ubooquity/
+  defaultPort: 2202
+  description: ubooquity is a free, lightweight and easy-to-use home server for your comics
+    and ebooks. Use it to access your files from anywhere, with a tablet, an e-reader, a phone
+    or a computer.
+  category: Tool
+  tags:
+  - linuxserver
+  - linux
+  - books
+  displayName: Ubooquity (LinuxServer)
+  homepageURL: https://vaemendis.net/ubooquity/
+  icon: https://raw.githubusercontent.com/linuxserver/docker-templates/master/linuxserver.io/img/ubooquity-banner.png
+  image: linuxserver/ubooquity:latest
+  imageHomepageURL: https://hub.docker.com/r/linuxserver/ubooquity
+  workspaceTypes:
+  - container
+  - scratch
+  sourceURL: https://github.com/linuxserver/docker-ubooquity
+  additionalPorts:
+  - name: tcp-2203
+    port: 2203
+    protocol: TCP
+  proxyConfig:
+    needsNoopSW: true
+    rewriteHostAbsolutePaths: true

@@ -1,0 +1,39 @@
+apiVersion: kubeworkspaces.io/v1alpha1
+kind: Image
+metadata:
+  name: linuxserver-deluge
+spec:
+  defaultPath: /
+  defaultPort: 8112
+  description: deluge is a lightweight, Free Software, cross-platform BitTorrent client. *
+    Full Encryption * WebUI * Plugin System * Much more...
+  category: Tool
+  tags:
+  - linuxserver
+  - linux
+  - downloaders
+  displayName: Deluge (LinuxServer)
+  homepageURL: http://deluge-torrent.org/
+  icon: https://raw.githubusercontent.com/linuxserver/docker-templates/master/linuxserver.io/img/deluge-logo.png
+  image: linuxserver/deluge:latest
+  imageHomepageURL: https://hub.docker.com/r/linuxserver/deluge
+  workspaceTypes:
+  - container
+  - scratch
+  sourceURL: https://github.com/linuxserver/docker-deluge
+  additionalPorts:
+  - name: tcp-6881
+    port: 6881
+    protocol: TCP
+  - name: udp-6881
+    port: 6881
+    protocol: UDP
+  - name: tcp-58846
+    port: 58846
+    protocol: TCP
+  proxyConfig:
+    needsNoopSW: true
+    rewriteHostAbsolutePaths: true
+  defaultCredentials:
+    username: admin
+    password: deluge

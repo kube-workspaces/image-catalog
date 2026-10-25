@@ -1,0 +1,35 @@
+apiVersion: kubeworkspaces.io/v1alpha1
+kind: Image
+metadata:
+  name: linuxserver-transmission
+spec:
+  defaultPath: /transmission/web/
+  defaultPort: 9091
+  description: 'transmission is designed for easy, powerful use. Transmission has the features
+    you want from a BitTorrent client: encryption, a web interface, peer exchange, magnet
+    links, DHT, µTP, UPnP and NAT-PMP port forwarding, webseed support, watch directories,
+    tracker editing, global and per-torrent speed limits, and more.'
+  category: Tool
+  tags:
+  - linuxserver
+  - linux
+  - downloaders
+  displayName: Transmission (LinuxServer)
+  homepageURL: https://www.transmissionbt.com/
+  icon: https://raw.githubusercontent.com/linuxserver/docker-templates/master/linuxserver.io/img/transmission.png
+  image: linuxserver/transmission:latest
+  imageHomepageURL: https://hub.docker.com/r/linuxserver/transmission
+  workspaceTypes:
+  - container
+  - scratch
+  sourceURL: https://github.com/linuxserver/docker-transmission
+  additionalPorts:
+  - name: tcp-51413
+    port: 51413
+    protocol: TCP
+  - name: udp-51413
+    port: 51413
+    protocol: UDP
+  proxyConfig:
+    needsNoopSW: true
+    rewriteHostAbsolutePaths: true

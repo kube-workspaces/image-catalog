@@ -1,0 +1,28 @@
+apiVersion: kubeworkspaces.io/v1alpha1
+kind: Image
+metadata:
+  name: linuxserver-mstream
+spec:
+  defaultPath: /
+  defaultPort: 3000
+  description: mstream is a personal music streaming server. You can use mStream to stream
+    your music from your home computer to any device, anywhere. There are mobile apps available
+    for both Android and iPhone.
+  category: Tool
+  tags:
+  - linuxserver
+  - linux
+  - media-servers
+  - music
+  displayName: mStream (LinuxServer)
+  homepageURL: https://mstream.io/
+  icon: https://raw.githubusercontent.com/linuxserver/docker-templates/master/linuxserver.io/img/mstream-icon.png
+  image: linuxserver/mstream:latest
+  imageHomepageURL: https://hub.docker.com/r/linuxserver/mstream
+  workspaceTypes:
+  - container
+  - scratch
+  sourceURL: https://github.com/linuxserver/docker-mstream
+  proxyConfig:
+    needsNoopSW: true
+    rewriteHostAbsolutePaths: true

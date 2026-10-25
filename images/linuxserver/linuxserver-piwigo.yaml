@@ -1,0 +1,26 @@
+apiVersion: kubeworkspaces.io/v1alpha1
+kind: Image
+metadata:
+  name: linuxserver-piwigo
+spec:
+  defaultPath: /
+  defaultPort: 80
+  description: piwigo is a photo gallery software for the web that comes with powerful features
+    to publish and manage your collection of pictures.
+  category: Tool
+  tags:
+  - linuxserver
+  - linux
+  - photos
+  displayName: Piwigo (LinuxServer)
+  homepageURL: http://piwigo.org/
+  icon: https://raw.githubusercontent.com/linuxserver/docker-templates/master/linuxserver.io/img/piwigo-banner.png
+  image: linuxserver/piwigo:latest
+  imageHomepageURL: https://hub.docker.com/r/linuxserver/piwigo
+  workspaceTypes:
+  - container
+  - scratch
+  sourceURL: https://github.com/linuxserver/docker-piwigo
+  proxyConfig:
+    needsNoopSW: true
+    rewriteHostAbsolutePaths: true

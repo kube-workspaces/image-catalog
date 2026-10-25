@@ -1,0 +1,37 @@
+apiVersion: kubeworkspaces.io/v1alpha1
+kind: Image
+metadata:
+  name: linuxserver-filezilla
+spec:
+  defaultPath: /
+  defaultPort: 3000
+  description: '[FIleZilla] Client is a fast and reliable cross-platform FTP, FTPS and SFTP
+    client with lots of useful features and an intuitive graphical user interface.'
+  category: Tool
+  tags:
+  - linuxserver
+  - linux
+  - ftp
+  displayName: FileZilla (LinuxServer)
+  homepageURL: https://filezilla-project.org/
+  icon: https://raw.githubusercontent.com/linuxserver/docker-templates/master/linuxserver.io/img/filezilla-logo.png
+  image: linuxserver/filezilla:latest
+  imageHomepageURL: https://hub.docker.com/r/linuxserver/filezilla
+  workspaceTypes:
+  - container
+  - scratch
+  sourceURL: https://github.com/linuxserver/docker-filezilla
+  additionalPorts:
+  - name: tcp-3001
+    port: 3001
+    protocol: TCP
+  proxyConfig:
+    needsNoopSW: true
+    rewriteHostAbsolutePaths: true
+    preservePathPrefix: true
+  defaultSharedMemory: true
+  defaultEnv:
+  - name: SUBFOLDER
+    value: /proxy/{{namespace}}/{{name}}/
+  defaultUser: abc
+  defaultHomedir: /config

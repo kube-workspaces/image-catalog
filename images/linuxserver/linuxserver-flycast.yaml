@@ -1,0 +1,37 @@
+apiVersion: kubeworkspaces.io/v1alpha1
+kind: Image
+metadata:
+  name: linuxserver-flycast
+spec:
+  defaultPath: /
+  defaultPort: 3000
+  description: '[Flycast] is a multi-platform Sega Dreamcast, Naomi, Naomi 2, and Atomiswave
+    emulator derived from reicast.'
+  category: Game
+  tags:
+  - linuxserver
+  - linux
+  - games
+  displayName: Flycast (LinuxServer)
+  homepageURL: https://github.com/flyinghead/flycast
+  icon: https://raw.githubusercontent.com/linuxserver/docker-templates/master/linuxserver.io/img/flycast-logo.png
+  image: linuxserver/flycast:latest
+  imageHomepageURL: https://hub.docker.com/r/linuxserver/flycast
+  workspaceTypes:
+  - container
+  - scratch
+  sourceURL: https://github.com/linuxserver/docker-flycast
+  additionalPorts:
+  - name: tcp-3001
+    port: 3001
+    protocol: TCP
+  proxyConfig:
+    needsNoopSW: true
+    rewriteHostAbsolutePaths: true
+    preservePathPrefix: true
+  defaultSharedMemory: true
+  defaultEnv:
+  - name: SUBFOLDER
+    value: /proxy/{{namespace}}/{{name}}/
+  defaultUser: abc
+  defaultHomedir: /config

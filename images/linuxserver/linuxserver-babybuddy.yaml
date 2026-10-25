@@ -1,0 +1,30 @@
+apiVersion: kubeworkspaces.io/v1alpha1
+kind: Image
+metadata:
+  name: linuxserver-babybuddy
+spec:
+  defaultPath: /
+  defaultPort: 8000
+  description: babybuddy is a buddy for babies! Helps caregivers track sleep, feedings, diaper
+    changes, tummy time and more to learn about and predict baby's needs without (as much)
+    guess work.
+  category: Tool
+  tags:
+  - linuxserver
+  - linux
+  - family
+  displayName: Baby Buddy (LinuxServer)
+  homepageURL: https://github.com/babybuddy/babybuddy
+  icon: https://github.com/linuxserver/docker-templates/raw/master/linuxserver.io/img/babybuddy-logo.png
+  image: linuxserver/babybuddy:latest
+  imageHomepageURL: https://hub.docker.com/r/linuxserver/babybuddy
+  workspaceTypes:
+  - container
+  - scratch
+  sourceURL: https://github.com/linuxserver/docker-babybuddy
+  proxyConfig:
+    needsNoopSW: true
+    rewriteHostAbsolutePaths: true
+  defaultCredentials:
+    username: admin
+    password: admin

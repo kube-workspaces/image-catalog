@@ -1,0 +1,27 @@
+apiVersion: kubeworkspaces.io/v1alpha1
+kind: Image
+metadata:
+  name: linuxserver-fleet
+spec:
+  defaultPath: /
+  defaultPort: 8080
+  description: Deprecated by LinuxServer.io. fleet provides an online web interface which
+    displays a set of maintained images from one or more owned repositories.
+  category: Tool
+  tags:
+  - linuxserver
+  - linux
+  - docker
+  - deprecated
+  displayName: Fleet (LinuxServer)
+  homepageURL: https://github.com/linuxserver/fleet
+  icon: https://raw.githubusercontent.com/linuxserver/docker-templates/master/linuxserver.io/img/linuxserver-ls-logo.png
+  image: linuxserver/fleet:latest
+  imageHomepageURL: https://hub.docker.com/r/linuxserver/fleet
+  workspaceTypes:
+  - container
+  - scratch
+  sourceURL: https://github.com/linuxserver/docker-fleet
+  proxyConfig:
+    needsNoopSW: true
+    rewriteHostAbsolutePaths: true

@@ -1,0 +1,26 @@
+apiVersion: kubeworkspaces.io/v1alpha1
+kind: Image
+metadata:
+  name: linuxserver-pixapop
+spec:
+  defaultPath: /
+  defaultPort: 80
+  description: Legacy or infrastructure image available on Docker Hub. pixapop is an open-source
+    single page application to view your photos in the easiest way possible.
+  category: Tool
+  tags:
+  - linuxserver
+  - linux
+  - hub-only
+  displayName: Pixapop (LinuxServer)
+  homepageURL: https://github.com/bierdok/pixapop
+  icon: https://raw.githubusercontent.com/linuxserver/docker-templates/master/linuxserver.io/img/pixapop.png
+  image: linuxserver/pixapop:latest
+  imageHomepageURL: https://hub.docker.com/r/linuxserver/pixapop
+  workspaceTypes:
+  - container
+  - scratch
+  sourceURL: https://github.com/linuxserver/docker-pixapop
+  proxyConfig:
+    needsNoopSW: true
+    rewriteHostAbsolutePaths: true

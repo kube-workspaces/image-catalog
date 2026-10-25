@@ -1,0 +1,24 @@
+apiVersion: kubeworkspaces.io/v1alpha1
+kind: Image
+metadata:
+  name: linuxserver-docker-compose
+spec:
+  defaultPath: /
+  defaultPort: 80
+  description: Legacy or infrastructure image available on Docker Hub. Docker Compose container
+    from LinuxServer.io. No browser endpoint; use the terminal or native client.
+  category: Tool
+  tags:
+  - linuxserver
+  - linux
+  - hub-only
+  - cli
+  displayName: Docker Compose (LinuxServer)
+  homepageURL: https://hub.docker.com/r/linuxserver/docker-compose
+  icon: https://raw.githubusercontent.com/linuxserver/docker-templates/master/linuxserver.io/img/linuxserver-ls-logo.png
+  image: linuxserver/docker-compose:latest
+  imageHomepageURL: https://hub.docker.com/r/linuxserver/docker-compose
+  workspaceTypes:
+  - container
+  - scratch
+  sourceURL: https://github.com/linuxserver/docker-docker-compose

@@ -1,0 +1,28 @@
+apiVersion: kubeworkspaces.io/v1alpha1
+kind: Image
+metadata:
+  name: linuxserver-ddclient
+spec:
+  defaultPath: /
+  defaultPort: 80
+  description: ddclient is a Perl client used to update dynamic DNS entries for accounts on
+    Dynamic DNS Network Service Provider. It was originally written by Paul Burry and is now
+    mostly by wimpunk. It has the capability to update more than just dyndns and it can fetch
+    your WAN-ipaddress in a few different ways. No browser endpoint; use the terminal or native
+    client.
+  category: Tool
+  tags:
+  - linuxserver
+  - linux
+  - network
+  - dns
+  - cli
+  displayName: DDClient (LinuxServer)
+  homepageURL: https://github.com/ddclient/ddclient
+  icon: https://raw.githubusercontent.com/linuxserver/docker-templates/master/linuxserver.io/img/ddclient-logo.png
+  image: linuxserver/ddclient:latest
+  imageHomepageURL: https://hub.docker.com/r/linuxserver/ddclient
+  workspaceTypes:
+  - container
+  - scratch
+  sourceURL: https://github.com/linuxserver/docker-ddclient

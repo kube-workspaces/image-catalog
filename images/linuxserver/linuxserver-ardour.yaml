@@ -1,0 +1,37 @@
+apiVersion: kubeworkspaces.io/v1alpha1
+kind: Image
+metadata:
+  name: linuxserver-ardour
+spec:
+  defaultPath: /
+  defaultPort: 3000
+  description: '[Ardour] is an open source, collaborative effort of a worldwide team including
+    musicians, programmers, and professional recording engineers.'
+  category: Tool
+  tags:
+  - linuxserver
+  - linux
+  - audio-processing
+  displayName: Ardour (LinuxServer)
+  homepageURL: https://ardour.org/
+  icon: https://raw.githubusercontent.com/linuxserver/docker-templates/master/linuxserver.io/img/ardour-logo.png
+  image: linuxserver/ardour:latest
+  imageHomepageURL: https://hub.docker.com/r/linuxserver/ardour
+  workspaceTypes:
+  - container
+  - scratch
+  sourceURL: https://github.com/linuxserver/docker-ardour
+  additionalPorts:
+  - name: tcp-3001
+    port: 3001
+    protocol: TCP
+  proxyConfig:
+    needsNoopSW: true
+    rewriteHostAbsolutePaths: true
+    preservePathPrefix: true
+  defaultSharedMemory: true
+  defaultEnv:
+  - name: SUBFOLDER
+    value: /proxy/{{namespace}}/{{name}}/
+  defaultUser: abc
+  defaultHomedir: /config

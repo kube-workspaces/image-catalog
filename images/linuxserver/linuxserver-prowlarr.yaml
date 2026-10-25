@@ -1,0 +1,29 @@
+apiVersion: kubeworkspaces.io/v1alpha1
+kind: Image
+metadata:
+  name: linuxserver-prowlarr
+spec:
+  defaultPath: /
+  defaultPort: 9696
+  description: prowlarr is a indexer manager/proxy built on the popular arr .net/reactjs base
+    stack to integrate with your various PVR apps. Prowlarr supports both Torrent Trackers
+    and Usenet Indexers. It integrates seamlessly with Sonarr, Radarr, Lidarr, and Readarr
+    offering complete management of your indexers with no per app Indexer setup required (we
+    do it all).
+  category: Tool
+  tags:
+  - linuxserver
+  - linux
+  - indexers
+  displayName: Prowlarr (LinuxServer)
+  homepageURL: https://github.com/Prowlarr/Prowlarr
+  icon: https://raw.githubusercontent.com/linuxserver/docker-templates/master/linuxserver.io/img/prowlarr-banner.png
+  image: linuxserver/prowlarr:latest
+  imageHomepageURL: https://hub.docker.com/r/linuxserver/prowlarr
+  workspaceTypes:
+  - container
+  - scratch
+  sourceURL: https://github.com/linuxserver/docker-prowlarr
+  proxyConfig:
+    needsNoopSW: true
+    rewriteHostAbsolutePaths: true

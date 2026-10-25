@@ -1,0 +1,27 @@
+apiVersion: kubeworkspaces.io/v1alpha1
+kind: Image
+metadata:
+  name: linuxserver-endlessh
+spec:
+  defaultPath: /
+  defaultPort: 2222
+  description: Legacy or infrastructure image available on Docker Hub. endlessh is an SSH
+    tarpit that very slowly sends an endless, random SSH banner. It keeps SSH clients locked
+    up for hours or even days at a time. The purpose is to put your real SSH server on another
+    port and then let the script kiddies get stuck in this tarpit instead of bothering a real
+    server. No browser endpoint; use the terminal or native client.
+  category: Tool
+  tags:
+  - linuxserver
+  - linux
+  - hub-only
+  - non-http
+  displayName: Endlessh (LinuxServer)
+  homepageURL: https://github.com/skeeto/endlessh
+  icon: https://github.com/linuxserver/docker-templates/raw/master/linuxserver.io/img/openssh-server-logo.png
+  image: linuxserver/endlessh:latest
+  imageHomepageURL: https://hub.docker.com/r/linuxserver/endlessh
+  workspaceTypes:
+  - container
+  - scratch
+  sourceURL: https://github.com/linuxserver/docker-endlessh

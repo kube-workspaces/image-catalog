@@ -1,0 +1,25 @@
+apiVersion: kubeworkspaces.io/v1alpha1
+kind: Image
+metadata:
+  name: linuxserver-xvfb
+spec:
+  defaultPath: /
+  defaultPort: 80
+  description: Legacy or infrastructure image available on Docker Hub. Xvfb container from
+    LinuxServer.io. No browser endpoint; use the terminal or native client.
+  category: Tool
+  tags:
+  - linuxserver
+  - linux
+  - internal
+  - hub-only
+  - cli
+  displayName: Xvfb (LinuxServer)
+  homepageURL: https://hub.docker.com/r/linuxserver/xvfb
+  icon: https://raw.githubusercontent.com/linuxserver/docker-templates/master/linuxserver.io/img/linuxserver-ls-logo.png
+  image: linuxserver/xvfb:ubunturesolute
+  imageHomepageURL: https://hub.docker.com/r/linuxserver/xvfb
+  workspaceTypes:
+  - container
+  - scratch
+  sourceURL: https://github.com/linuxserver/docker-xvfb
