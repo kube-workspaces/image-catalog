@@ -65,6 +65,7 @@ spec:
 | `arch-linux-gnome-vm` | Arch Linux GNOME Desktop VM | Desktop | 22 | - |
 | `chromium` | Chromium Browser | Browser | 3000 | - |
 | `code-server` | Code Server (VS Code) | IDE | 8080 | ✓ |
+| `craft-apps` | Craft Apps (ArtCraft) | Productivity | 3000 | - |
 | `cyberchef` | CyberChef | Tool | 8000 | - |
 | `debian-desktop` | Debian Desktop | Desktop | 6901 | ✓ |
 | `debian-vm` | Debian VM | VM | 22 | ✓ |
@@ -259,6 +260,13 @@ spec:
 "Example" marks the curated subset installed by default by the
 `kube-workspaces/deploy` Helm chart. See
 [Curated examples](CONTRIBUTING.md#curated-examples).
+
+Craft Apps supports both `container` (StatefulSet) and `scratch` (Deployment)
+workspace types in one Image CR. Its application container is not a bootable
+KubeVirt containerDisk, so it does not support `vm`. The proxy connects to HTTP
+port 3000 with a workspace-specific `SUBFOLDER`; browser access must use HTTPS
+for Selkies' media APIs. User files and settings live in `/config`; mount
+persistent storage there when they need to survive pod replacement.
 
 ## Schema
 
