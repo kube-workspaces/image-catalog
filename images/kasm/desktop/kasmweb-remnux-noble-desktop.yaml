@@ -1,0 +1,39 @@
+apiVersion: kubeworkspaces.io/v1alpha1
+kind: Image
+metadata:
+  name: kasmweb-remnux-noble-desktop
+spec:
+  image: kasmweb/remnux-noble-desktop:1.19.0
+  defaultCredentials:
+    username: kasm_user
+    password: password
+  defaultEnv:
+  - name: VNC_PW
+    value: password
+  defaultPath: /
+  defaultPort: 6901
+  defaultSharedMemory: true
+  defaultUser: kasm_user
+  defaultHomedir: /home/kasm-user
+  defaultShell: /bin/bash
+  proxyConfig:
+    needsNoopSW: true
+    rewriteHostAbsolutePaths: true
+    scheme: https
+    tlsSkipVerify: true
+    websocketPaths:
+    - /websockify
+  displayName: REMnux
+  description: REMnux is a Linux toolkit for reverse-engineering and analyzing malicious software.
+  category: Desktop
+  tags:
+  - desktop
+  - development
+  - kasm
+  - kasmvnc
+  - linux
+  - security
+  homepageURL: https://kasm.com/images
+  imageHomepageURL: https://hub.docker.com/r/kasmweb/remnux-noble-desktop
+  icon: https://registry.kasmweb.com/1.1/icons/remnux.png
+  sourceURL: https://github.com/kasmtech/workspaces-images/blob/develop/dockerfile-kasm-remnux-noble-desktop

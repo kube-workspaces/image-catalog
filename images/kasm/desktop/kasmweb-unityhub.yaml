@@ -1,0 +1,41 @@
+apiVersion: kubeworkspaces.io/v1alpha1
+kind: Image
+metadata:
+  name: kasmweb-unityhub
+spec:
+  image: kasmweb/unityhub:1.19.0
+  defaultCredentials:
+    username: kasm_user
+    password: password
+  defaultEnv:
+  - name: VNC_PW
+    value: password
+  defaultPath: /
+  defaultPort: 6901
+  defaultSharedMemory: true
+  defaultUser: kasm_user
+  defaultHomedir: /home/kasm-user
+  defaultShell: /bin/bash
+  proxyConfig:
+    needsNoopSW: true
+    rewriteHostAbsolutePaths: true
+    scheme: https
+    tlsSkipVerify: true
+    websocketPaths:
+    - /websockify
+  displayName: Unity Hub
+  description: Unity Hub manages multiple installations of Unity Editor, the world’s most
+    popular development platform for creating 2D and 3D multiplatform games and interactive
+    experiences.
+  category: IDE
+  tags:
+  - desktop
+  - development
+  - kasm
+  - kasmvnc
+  - linux
+  - multimedia
+  homepageURL: https://kasm.com/images
+  imageHomepageURL: https://hub.docker.com/r/kasmweb/unityhub
+  icon: https://registry.kasmweb.com/1.1/icons/unityhub.png
+  sourceURL: https://github.com/kasmtech/workspaces-images/blob/develop/dockerfile-kasm-unityhub

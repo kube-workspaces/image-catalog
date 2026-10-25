@@ -1,0 +1,38 @@
+apiVersion: kubeworkspaces.io/v1alpha1
+kind: Image
+metadata:
+  name: kasmweb-sublime-text
+spec:
+  image: kasmweb/sublime-text:1.19.0
+  defaultCredentials:
+    username: kasm_user
+    password: password
+  defaultEnv:
+  - name: VNC_PW
+    value: password
+  defaultPath: /
+  defaultPort: 6901
+  defaultSharedMemory: true
+  defaultUser: kasm_user
+  defaultHomedir: /home/kasm-user
+  defaultShell: /bin/bash
+  proxyConfig:
+    needsNoopSW: true
+    rewriteHostAbsolutePaths: true
+    scheme: https
+    tlsSkipVerify: true
+    websocketPaths:
+    - /websockify
+  displayName: Sublime Text
+  description: Sublime Text is a sophisticated text editor for code, markup and prose.
+  category: IDE
+  tags:
+  - desktop
+  - development
+  - kasm
+  - kasmvnc
+  - linux
+  homepageURL: https://kasm.com/images
+  imageHomepageURL: https://hub.docker.com/r/kasmweb/sublime-text
+  icon: https://registry.kasmweb.com/1.1/icons/sublime-text.png
+  sourceURL: https://github.com/kasmtech/workspaces-images/blob/develop/dockerfile-kasm-sublime-text

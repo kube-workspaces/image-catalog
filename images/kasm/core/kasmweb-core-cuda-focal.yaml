@@ -1,0 +1,40 @@
+apiVersion: kubeworkspaces.io/v1alpha1
+kind: Image
+metadata:
+  name: kasmweb-core-cuda-focal
+spec:
+  image: kasmweb/core-cuda-focal:1.16.1
+  defaultCredentials:
+    username: kasm_user
+    password: password
+  defaultEnv:
+  - name: VNC_PW
+    value: password
+  defaultPath: /
+  defaultPort: 6901
+  defaultSharedMemory: true
+  defaultUser: kasm_user
+  defaultHomedir: /home/kasm-user
+  defaultShell: /bin/bash
+  proxyConfig:
+    needsNoopSW: true
+    rewriteHostAbsolutePaths: true
+    scheme: https
+    tlsSkipVerify: true
+    websocketPaths:
+    - /websockify
+  displayName: CUDA Development Toolkit
+  description: The CUDA Toolkit includes GPU-accelerated libraries, a compiler, development
+    tools and the CUDA runtime on Ubuntu Focal.
+  category: Desktop
+  tags:
+  - core
+  - desktop
+  - development
+  - kasm
+  - kasmvnc
+  - linux
+  homepageURL: https://kasm.com/images
+  imageHomepageURL: https://hub.docker.com/r/kasmweb/core-cuda-focal
+  icon: https://registry.kasmweb.com/1.1/icons/nvidia.png
+  sourceURL: https://github.com/kasmtech/workspaces-core-images

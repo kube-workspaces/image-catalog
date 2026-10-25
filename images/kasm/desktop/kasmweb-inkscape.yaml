@@ -1,0 +1,39 @@
+apiVersion: kubeworkspaces.io/v1alpha1
+kind: Image
+metadata:
+  name: kasmweb-inkscape
+spec:
+  image: kasmweb/inkscape:1.19.0
+  defaultCredentials:
+    username: kasm_user
+    password: password
+  defaultEnv:
+  - name: VNC_PW
+    value: password
+  defaultPath: /
+  defaultPort: 6901
+  defaultSharedMemory: true
+  defaultUser: kasm_user
+  defaultHomedir: /home/kasm-user
+  defaultShell: /bin/bash
+  proxyConfig:
+    needsNoopSW: true
+    rewriteHostAbsolutePaths: true
+    scheme: https
+    tlsSkipVerify: true
+    websocketPaths:
+    - /websockify
+  displayName: Inkscape
+  description: A free and open-source vector graphics editor used to create vector images,
+    primarily in Scalable Vector Graphics (SVG) format.
+  category: Tool
+  tags:
+  - desktop
+  - kasm
+  - kasmvnc
+  - linux
+  - multimedia
+  homepageURL: https://kasm.com/images
+  imageHomepageURL: https://hub.docker.com/r/kasmweb/inkscape
+  icon: https://registry.kasmweb.com/1.1/icons/inkscape.png
+  sourceURL: https://github.com/kasmtech/workspaces-images/blob/develop/dockerfile-kasm-inkscape

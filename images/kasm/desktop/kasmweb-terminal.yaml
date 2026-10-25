@@ -1,0 +1,41 @@
+apiVersion: kubeworkspaces.io/v1alpha1
+kind: Image
+metadata:
+  name: kasmweb-terminal
+spec:
+  image: kasmweb/terminal:1.19.0
+  defaultCredentials:
+    username: kasm_user
+    password: password
+  defaultEnv:
+  - name: VNC_PW
+    value: password
+  - name: TERMINAL_ARGS
+    value: --fullscreen --hide-borders --hide-menubar --zoom=-1 --hide-scrollbar
+  defaultPath: /
+  defaultPort: 6901
+  defaultSharedMemory: true
+  defaultUser: kasm_user
+  defaultHomedir: /home/kasm-user
+  defaultShell: /bin/bash
+  proxyConfig:
+    needsNoopSW: true
+    rewriteHostAbsolutePaths: true
+    scheme: https
+    tlsSkipVerify: true
+    websocketPaths:
+    - /websockify
+  displayName: Terminal
+  description: Xfce Terminal is a lightweight and easy to use terminal emulator application
+    with many advanced features including drop down, tabs, unlimited scrolling, full colors,
+    fonts, transparent backgrounds, and more.
+  category: Tool
+  tags:
+  - desktop
+  - kasm
+  - kasmvnc
+  - linux
+  homepageURL: https://kasm.com/images
+  imageHomepageURL: https://hub.docker.com/r/kasmweb/terminal
+  icon: https://registry.kasmweb.com/1.1/icons/terminal.png
+  sourceURL: https://github.com/kasmtech/workspaces-images/blob/develop/dockerfile-kasm-terminal

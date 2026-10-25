@@ -3,7 +3,7 @@ kind: Image
 metadata:
   name: kasmweb-chrome
   annotations:
-    catalog.kubeworkspaces.io/example: "true"
+    catalog.kubeworkspaces.io/example: 'true'
 spec:
   defaultCredentials:
     password: password
@@ -13,11 +13,11 @@ spec:
     value: password
   defaultPath: /
   defaultPort: 6901
-  description: Chrome browser streamed via KasmVNC
+  description: Google Chrome is a cross-platform web browser developed by Google.
   category: Browser
-  displayName: Kasm Chrome
-  homepageURL: https://kasmweb.com
-  icon: https://cdn.simpleicons.org/googlechrome/4285F4
+  displayName: Chrome
+  homepageURL: https://kasm.com/images
+  icon: https://registry.kasmweb.com/1.1/icons/chrome.png
   image: kasmweb/chrome:1.19.0
   imageHomepageURL: https://hub.docker.com/r/kasmweb/chrome
   privileged: true
@@ -28,6 +28,14 @@ spec:
     tlsSkipVerify: true
     websocketPaths:
     - /websockify
-  sourceURL: https://github.com/kasmtech
+  sourceURL: https://github.com/kasmtech/workspaces-images/blob/develop/dockerfile-kasm-chrome
   defaultUser: kasm_user
-  defaultHomedir: /home/kasm_user
+  defaultHomedir: /home/kasm-user
+  defaultSharedMemory: true
+  defaultShell: /bin/bash
+  tags:
+  - browser
+  - desktop
+  - kasm
+  - kasmvnc
+  - linux

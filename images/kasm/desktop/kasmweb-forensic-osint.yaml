@@ -1,0 +1,38 @@
+apiVersion: kubeworkspaces.io/v1alpha1
+kind: Image
+metadata:
+  name: kasmweb-forensic-osint
+spec:
+  image: kasmweb/forensic-osint:1.19.0
+  defaultCredentials:
+    username: kasm_user
+    password: password
+  defaultEnv:
+  - name: VNC_PW
+    value: password
+  defaultPath: /
+  defaultPort: 6901
+  defaultSharedMemory: true
+  defaultUser: kasm_user
+  defaultHomedir: /home/kasm-user
+  defaultShell: /bin/bash
+  proxyConfig:
+    needsNoopSW: true
+    rewriteHostAbsolutePaths: true
+    scheme: https
+    tlsSkipVerify: true
+    websocketPaths:
+    - /websockify
+  displayName: Forensic OSINT
+  description: Ubuntu desktop with Google Chrome and Forensic OSINT Web Capture Tool
+  category: Productivity
+  tags:
+  - desktop
+  - kasm
+  - kasmvnc
+  - linux
+  - productivity
+  homepageURL: https://kasm.com/images
+  imageHomepageURL: https://hub.docker.com/r/kasmweb/forensic-osint
+  icon: https://registry.kasmweb.com/1.1/icons/forensic-osint.png
+  sourceURL: https://github.com/kasmtech/workspaces-images/blob/develop/dockerfile-kasm-forensic-osint

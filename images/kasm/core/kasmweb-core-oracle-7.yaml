@@ -1,0 +1,37 @@
+apiVersion: kubeworkspaces.io/v1alpha1
+kind: Image
+metadata:
+  name: kasmweb-core-oracle-7
+spec:
+  image: kasmweb/core-oracle-7:1.15.0
+  defaultCredentials:
+    username: kasm_user
+    password: password
+  defaultEnv:
+  - name: VNC_PW
+    value: password
+  defaultPath: /
+  defaultPort: 6901
+  defaultSharedMemory: true
+  defaultUser: kasm_user
+  defaultHomedir: /home/kasm-user
+  defaultShell: /bin/bash
+  proxyConfig:
+    needsNoopSW: true
+    rewriteHostAbsolutePaths: true
+    scheme: https
+    tlsSkipVerify: true
+    websocketPaths:
+    - /websockify
+  displayName: Core Oracle Linux 7
+  description: Oracle Linux 7 base image for Kasm Workspaces
+  category: Desktop
+  tags:
+  - core
+  - kasm
+  - kasmvnc
+  - linux
+  homepageURL: https://kasm.com/images
+  imageHomepageURL: https://hub.docker.com/r/kasmweb/core-oracle-7
+  icon: https://registry.kasmweb.com/1.1/icons/oracle-linux.png
+  sourceURL: https://github.com/kasmtech/workspaces-core-images

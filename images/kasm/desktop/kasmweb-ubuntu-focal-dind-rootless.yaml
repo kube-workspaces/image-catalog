@@ -1,0 +1,40 @@
+apiVersion: kubeworkspaces.io/v1alpha1
+kind: Image
+metadata:
+  name: kasmweb-ubuntu-focal-dind-rootless
+spec:
+  image: kasmweb/ubuntu-focal-dind-rootless:1.16.1
+  defaultCredentials:
+    username: kasm_user
+    password: password
+  defaultEnv:
+  - name: VNC_PW
+    value: password
+  defaultPath: /
+  defaultPort: 6901
+  defaultSharedMemory: true
+  defaultUser: kasm_user
+  defaultHomedir: /home/kasm-user
+  defaultShell: /bin/bash
+  privileged: true
+  proxyConfig:
+    needsNoopSW: true
+    rewriteHostAbsolutePaths: true
+    scheme: https
+    tlsSkipVerify: true
+    websocketPaths:
+    - /websockify
+  displayName: Docker Rootless Ubuntu Focal
+  description: Rootless Docker in Docker Desktop image Ubuntu Focal based.
+  category: Desktop
+  tags:
+  - desktop
+  - development
+  - kasm
+  - kasmvnc
+  - linux
+  - productivity
+  homepageURL: https://kasm.com/images
+  imageHomepageURL: https://hub.docker.com/r/kasmweb/ubuntu-focal-dind-rootless
+  icon: https://registry.kasmweb.com/1.1/icons/docker-ubuntu.png
+  sourceURL: https://github.com/kasmtech/workspaces-images

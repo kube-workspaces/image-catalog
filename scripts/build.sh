@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# Build distributable artifacts from images/*.yaml:
+# Build distributable artifacts from images/**/*.yaml:
 #
 #   dist/images.yaml          - every Image CR in the catalog, concatenated
 #   dist/images-examples.yaml - only the Image CRs annotated as curated
@@ -13,6 +13,9 @@ source "$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)/lib/common.sh"
 require_tools yq
 
 cd "$REPO_ROOT"
+shopt -s globstar nullglob
+image_files=(images/**/*.yaml)
+[ ${#image_files[@]} -gt 0 ] || die "no Image manifests found under images/"
 
 mkdir -p dist
 
@@ -25,7 +28,7 @@ examples_out="dist/images-examples.yaml"
 full_count=0
 examples_count=0
 
-for f in $(find images -maxdepth 1 -name '*.yaml' | sort); do
+for f in "${image_files[@]}"; do
   content=$(cat "$f")
 
   if [ -s "$full_out" ]; then printf -- '---\n' >> "$full_out"; fi

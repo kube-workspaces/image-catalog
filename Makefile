@@ -2,7 +2,7 @@
 
 .PHONY: validate build lint clean sync-crd check-crd
 
-## Validate every images/*.yaml against structural rules and, if kubeconform
+## Validate every YAML under images/ against structural rules and, if kubeconform
 ## is installed, against the Image CRD schema.
 validate:
 	@scripts/validate.sh

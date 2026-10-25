@@ -3,7 +3,7 @@ kind: Image
 metadata:
   name: kasmweb-desktop
   annotations:
-    catalog.kubeworkspaces.io/example: "true"
+    catalog.kubeworkspaces.io/example: 'true'
 spec:
   defaultCredentials:
     password: password
@@ -13,11 +13,11 @@ spec:
     value: password
   defaultPath: /
   defaultPort: 6901
-  description: Ubuntu desktop streamed via KasmVNC
+  description: Ubuntu desktop for Kasm Workspaces
   category: Desktop
-  displayName: Kasm Desktop
-  homepageURL: https://kasmweb.com
-  icon: https://cdn.jsdelivr.net/gh/homarr-labs/dashboard-icons/svg/kasm.svg
+  displayName: Ubuntu Desktop
+  homepageURL: https://kasm.com/images
+  icon: https://registry.kasmweb.com/1.1/icons/ubuntu.png
   image: kasmweb/desktop:1.19.0
   imageHomepageURL: https://hub.docker.com/r/kasmweb/desktop
   privileged: true
@@ -28,6 +28,13 @@ spec:
     tlsSkipVerify: true
     websocketPaths:
     - /websockify
-  sourceURL: https://github.com/kasmtech
+  sourceURL: https://github.com/kasmtech/workspaces-images/blob/develop/dockerfile-kasm-desktop
   defaultUser: kasm_user
-  defaultHomedir: /home/kasm_user
+  defaultHomedir: /home/kasm-user
+  defaultSharedMemory: true
+  defaultShell: /bin/bash
+  tags:
+  - desktop
+  - kasm
+  - kasmvnc
+  - linux

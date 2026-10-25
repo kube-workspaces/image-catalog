@@ -1,0 +1,41 @@
+apiVersion: kubeworkspaces.io/v1alpha1
+kind: Image
+metadata:
+  name: tor-browser
+spec:
+  defaultPath: /
+  defaultPort: 6901
+  description: Tor is free and open-source software for enabling anonymous communication by
+    directing Internet traffic through a free, worldwide, volunteer overlay network.
+  category: Browser
+  tags:
+  - browser
+  - desktop
+  - kasm
+  - kasmvnc
+  - linux
+  - privacy
+  - vnc
+  displayName: Tor-Browser
+  homepageURL: https://kasm.com/images
+  icon: https://registry.kasmweb.com/1.1/icons/tor-browser.png
+  image: kasmweb/tor-browser:1.18.0
+  imageHomepageURL: https://hub.docker.com/r/kasmweb/tor-browser
+  sourceURL: https://github.com/kasmtech/workspaces-images/blob/develop/dockerfile-kasm-tor-browser
+  defaultEnv:
+  - name: VNC_PW
+    value: password
+  defaultCredentials:
+    username: kasm_user
+    password: password
+  proxyConfig:
+    needsNoopSW: true
+    rewriteHostAbsolutePaths: true
+    scheme: https
+    tlsSkipVerify: true
+    websocketPaths:
+    - /websockify
+  defaultSharedMemory: true
+  defaultUser: kasm_user
+  defaultHomedir: /home/kasm-user
+  defaultShell: /bin/bash

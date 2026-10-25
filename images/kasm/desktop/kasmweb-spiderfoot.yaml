@@ -1,0 +1,40 @@
+apiVersion: kubeworkspaces.io/v1alpha1
+kind: Image
+metadata:
+  name: kasmweb-spiderfoot
+spec:
+  image: kasmweb/spiderfoot:1.19.0
+  defaultCredentials:
+    username: kasm_user
+    password: password
+  defaultEnv:
+  - name: VNC_PW
+    value: password
+  defaultPath: /
+  defaultPort: 6901
+  defaultSharedMemory: true
+  defaultUser: kasm_user
+  defaultHomedir: /home/kasm-user
+  defaultShell: /bin/bash
+  proxyConfig:
+    needsNoopSW: true
+    rewriteHostAbsolutePaths: true
+    scheme: https
+    tlsSkipVerify: true
+    websocketPaths:
+    - /websockify
+  displayName: Spiderfoot
+  description: SpiderFoot is an open source intelligence (OSINT) automation tool.
+  category: Productivity
+  tags:
+  - desktop
+  - kasm
+  - kasmvnc
+  - linux
+  - osint
+  - productivity
+  - security
+  homepageURL: https://kasm.com/images
+  imageHomepageURL: https://hub.docker.com/r/kasmweb/spiderfoot
+  icon: https://registry.kasmweb.com/1.1/icons/spiderfoot.svg
+  sourceURL: https://github.com/kasmtech/workspaces-images/blob/develop/dockerfile-kasm-spiderfoot

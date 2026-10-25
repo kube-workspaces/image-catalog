@@ -1,0 +1,41 @@
+apiVersion: kubeworkspaces.io/v1alpha1
+kind: Image
+metadata:
+  name: kasmweb-rockylinux-9-desktop
+spec:
+  image: kasmweb/rockylinux-9-desktop:1.19.0
+  defaultCredentials:
+    username: kasm_user
+    password: password
+  defaultEnv:
+  - name: VNC_PW
+    value: password
+  defaultPath: /
+  defaultPort: 6901
+  defaultSharedMemory: true
+  defaultUser: kasm_user
+  defaultHomedir: /home/kasm-user
+  defaultShell: /bin/bash
+  proxyConfig:
+    needsNoopSW: true
+    rewriteHostAbsolutePaths: true
+    scheme: https
+    tlsSkipVerify: true
+    websocketPaths:
+    - /websockify
+  displayName: Rocky Linux 9
+  description: Rocky Linux is a Linux distribution developed by Rocky Enterprise Software
+    Foundation, which is a privately owned benefit corporation that describes itself as a
+    "self imposed not-for-profit".
+  category: Desktop
+  tags:
+  - desktop
+  - development
+  - kasm
+  - kasmvnc
+  - linux
+  - productivity
+  homepageURL: https://kasm.com/images
+  imageHomepageURL: https://hub.docker.com/r/kasmweb/rockylinux-9-desktop
+  icon: https://registry.kasmweb.com/1.1/icons/rockylinux.svg
+  sourceURL: https://github.com/kasmtech/workspaces-images/blob/develop/dockerfile-kasm-rockylinux-9-desktop

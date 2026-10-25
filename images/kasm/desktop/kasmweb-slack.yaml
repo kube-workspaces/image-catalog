@@ -1,0 +1,41 @@
+apiVersion: kubeworkspaces.io/v1alpha1
+kind: Image
+metadata:
+  name: kasmweb-slack
+spec:
+  image: kasmweb/slack:1.19.0
+  defaultCredentials:
+    username: kasm_user
+    password: password
+  defaultEnv:
+  - name: VNC_PW
+    value: password
+  defaultPath: /
+  defaultPort: 6901
+  defaultSharedMemory: true
+  defaultUser: kasm_user
+  defaultHomedir: /home/kasm-user
+  defaultShell: /bin/bash
+  proxyConfig:
+    needsNoopSW: true
+    rewriteHostAbsolutePaths: true
+    scheme: https
+    tlsSkipVerify: true
+    websocketPaths:
+    - /websockify
+  displayName: Slack
+  description: Slack is a new way to communicate with your team. It's faster, better organized,
+    and more secure than email.
+  category: Productivity
+  tags:
+  - chat
+  - communication
+  - desktop
+  - kasm
+  - kasmvnc
+  - linux
+  - productivity
+  homepageURL: https://kasm.com/images
+  imageHomepageURL: https://hub.docker.com/r/kasmweb/slack
+  icon: https://registry.kasmweb.com/1.1/icons/slack.svg
+  sourceURL: https://github.com/kasmtech/workspaces-images/blob/develop/dockerfile-kasm-slack

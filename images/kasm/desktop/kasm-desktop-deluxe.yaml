@@ -11,16 +11,18 @@ spec:
     value: password
   defaultPath: /
   defaultPort: 6901
-  description: Extended Kasm desktop with additional applications and tools pre-installed.
-    Ubuntu desktop via KasmVNC with office suite, dev tools, and media apps.
+  description: Ubuntu productivity desktop for Kasm Workspaces
   category: Desktop
   tags:
-  - vnc
+  - desktop
+  - kasm
+  - kasmvnc
   - linux
   - ubuntu
-  displayName: Kasm Desktop Deluxe
-  homepageURL: https://kasmweb.com
-  icon: https://cdn.jsdelivr.net/gh/homarr-labs/dashboard-icons/svg/kasm.svg
+  - vnc
+  displayName: Ubuntu Desktop Deluxe
+  homepageURL: https://kasm.com/images
+  icon: https://registry.kasmweb.com/1.1/icons/ubuntu.png
   image: kasmweb/desktop-deluxe:1.19.0
   imageHomepageURL: https://hub.docker.com/r/kasmweb/desktop-deluxe
   privileged: true
@@ -31,6 +33,8 @@ spec:
     tlsSkipVerify: true
     websocketPaths:
     - /websockify
-  sourceURL: https://github.com/kasmtech
+  sourceURL: https://github.com/kasmtech/workspaces-images/blob/develop/dockerfile-kasm-desktop-deluxe
   defaultUser: kasm_user
-  defaultHomedir: /home/kasm_user
+  defaultHomedir: /home/kasm-user
+  defaultSharedMemory: true
+  defaultShell: /bin/bash

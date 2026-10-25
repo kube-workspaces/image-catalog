@@ -1,0 +1,38 @@
+apiVersion: kubeworkspaces.io/v1alpha1
+kind: Image
+metadata:
+  name: kasmweb-core-ubuntu-resolute-wkde
+spec:
+  image: kasmweb/core-ubuntu-resolute-wkde:develop
+  defaultCredentials:
+    username: kasm_user
+    password: password
+  defaultEnv:
+  - name: VNC_PW
+    value: password
+  defaultPath: /
+  defaultPort: 6901
+  defaultSharedMemory: true
+  defaultUser: kasm_user
+  defaultHomedir: /home/kasm-user
+  defaultShell: /bin/bash
+  proxyConfig:
+    needsNoopSW: true
+    rewriteHostAbsolutePaths: true
+    scheme: https
+    tlsSkipVerify: true
+    websocketPaths:
+    - /websockify
+  defaultImagePullPolicy: Always
+  displayName: Core Ubuntu Resolute Wkde
+  description: Ubuntu Resolute Wayland KDE Core Image
+  category: Desktop
+  tags:
+  - core
+  - kasm
+  - kasmvnc
+  - linux
+  homepageURL: https://kasm.com/images
+  imageHomepageURL: https://hub.docker.com/r/kasmweb/core-ubuntu-resolute-wkde
+  icon: https://registry.kasmweb.com/1.1/icons/ubuntu.png
+  sourceURL: https://github.com/kasmtech/workspaces-core-images

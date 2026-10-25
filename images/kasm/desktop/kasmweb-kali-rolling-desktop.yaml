@@ -1,0 +1,41 @@
+apiVersion: kubeworkspaces.io/v1alpha1
+kind: Image
+metadata:
+  name: kasmweb-kali-rolling-desktop
+spec:
+  image: kasmweb/kali-rolling-desktop:1.19.0
+  defaultCredentials:
+    username: kasm_user
+    password: password
+  defaultEnv:
+  - name: VNC_PW
+    value: password
+  defaultPath: /
+  defaultPort: 6901
+  defaultSharedMemory: true
+  defaultUser: kasm_user
+  defaultHomedir: /home/kasm-user
+  defaultShell: /bin/bash
+  proxyConfig:
+    needsNoopSW: true
+    rewriteHostAbsolutePaths: true
+    scheme: https
+    tlsSkipVerify: true
+    websocketPaths:
+    - /websockify
+  defaultImagePullPolicy: Always
+  displayName: Kali Linux
+  description: Kali Linux is a Debian-derived Linux distribution designed for digital forensics
+    and penetration testing.
+  category: Desktop
+  tags:
+  - desktop
+  - development
+  - kasm
+  - kasmvnc
+  - linux
+  - security
+  homepageURL: https://kasm.com/images
+  imageHomepageURL: https://hub.docker.com/r/kasmweb/kali-rolling-desktop
+  icon: https://registry.kasmweb.com/1.1/icons/kali.png
+  sourceURL: https://github.com/kasmtech/workspaces-images/blob/develop/dockerfile-kasm-kali-rolling-desktop

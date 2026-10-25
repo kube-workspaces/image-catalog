@@ -1,0 +1,39 @@
+apiVersion: kubeworkspaces.io/v1alpha1
+kind: Image
+metadata:
+  name: kasmweb-pinta
+spec:
+  image: kasmweb/pinta:1.19.0
+  defaultCredentials:
+    username: kasm_user
+    password: password
+  defaultEnv:
+  - name: VNC_PW
+    value: password
+  defaultPath: /
+  defaultPort: 6901
+  defaultSharedMemory: true
+  defaultUser: kasm_user
+  defaultHomedir: /home/kasm-user
+  defaultShell: /bin/bash
+  proxyConfig:
+    needsNoopSW: true
+    rewriteHostAbsolutePaths: true
+    scheme: https
+    tlsSkipVerify: true
+    websocketPaths:
+    - /websockify
+  displayName: Pinta
+  description: An open-source, cross-platform bitmap image drawing and editing program inspired
+    by Paint.NET.
+  category: Tool
+  tags:
+  - desktop
+  - kasm
+  - kasmvnc
+  - linux
+  - multimedia
+  homepageURL: https://kasm.com/images
+  imageHomepageURL: https://hub.docker.com/r/kasmweb/pinta
+  icon: https://registry.kasmweb.com/1.1/icons/pinta.png
+  sourceURL: https://github.com/kasmtech/workspaces-images/blob/develop/dockerfile-kasm-pinta

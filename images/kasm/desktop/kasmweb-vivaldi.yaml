@@ -1,0 +1,38 @@
+apiVersion: kubeworkspaces.io/v1alpha1
+kind: Image
+metadata:
+  name: kasmweb-vivaldi
+spec:
+  image: kasmweb/vivaldi:1.19.0
+  defaultCredentials:
+    username: kasm_user
+    password: password
+  defaultEnv:
+  - name: VNC_PW
+    value: password
+  defaultPath: /
+  defaultPort: 6901
+  defaultSharedMemory: true
+  defaultUser: kasm_user
+  defaultHomedir: /home/kasm-user
+  defaultShell: /bin/bash
+  proxyConfig:
+    needsNoopSW: true
+    rewriteHostAbsolutePaths: true
+    scheme: https
+    tlsSkipVerify: true
+    websocketPaths:
+    - /websockify
+  displayName: Vivaldi
+  description: Vivaldi is a freeware, cross-platform web browser developed by Vivaldi Technologies.
+  category: Browser
+  tags:
+  - browser
+  - desktop
+  - kasm
+  - kasmvnc
+  - linux
+  homepageURL: https://kasm.com/images
+  imageHomepageURL: https://hub.docker.com/r/kasmweb/vivaldi
+  icon: https://registry.kasmweb.com/1.1/icons/vivaldi.svg
+  sourceURL: https://github.com/kasmtech/workspaces-images/blob/develop/dockerfile-kasm-vivaldi

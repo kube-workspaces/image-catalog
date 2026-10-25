@@ -4,7 +4,9 @@ Thank you for considering a contribution to the kube-workspaces image catalog.
 
 ## Adding a new image
 
-1. Create `images/<name>.yaml` where `<name>` matches `metadata.name` exactly
+1. Create `images/<name>.yaml` (or use an existing collection subfolder such as
+   `images/kasm/core/` or `images/kasm/desktop/`) where `<name>` matches
+   `metadata.name` exactly
    and is RFC 1123 compliant (lowercase alphanumerics and hyphens).
 2. Write a complete `Image` custom resource — see an existing file such as
    `images/code-server.yaml` for the shape, and

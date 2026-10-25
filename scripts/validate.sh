@@ -3,7 +3,7 @@
 # seconds.
 #
 # Checks:
-#   - every images/*.yaml file parses as a single valid YAML document
+#   - every images/**/*.yaml file parses as a single valid YAML document
 #   - metadata.name matches the filename
 #   - no duplicate names across files
 #   - names are RFC 1123 compliant
@@ -19,12 +19,15 @@ source "$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)/lib/common.sh"
 require_tools yq
 
 cd "$REPO_ROOT"
+shopt -s globstar nullglob
+image_files=(images/**/*.yaml)
+[ ${#image_files[@]} -gt 0 ] || die "no Image manifests found under images/"
 
 group "per-file structure"
 
 declare -A seen_names
 
-for f in images/*.yaml; do
+for f in "${image_files[@]}"; do
   base=$(basename "$f" .yaml)
 
   if out=$(yq -e 'true' "$f" 2>&1 >/dev/null); then
@@ -100,7 +103,7 @@ group "image reference uniqueness"
 # second image with the same reference appears (e.g. a 'desktop' variant of
 # the same base). Keep spec.image unique across the catalog.
 declare -A seen_images
-for f in images/*.yaml; do
+for f in "${image_files[@]}"; do
   ref=$(yq -N '.spec.image' "$f" 2>/dev/null)
   if [ -n "$ref" ] && [ "$ref" != "null" ]; then
     if [ -n "${seen_images[$ref]:-}" ]; then
@@ -123,7 +126,7 @@ if command -v kubeconform >/dev/null 2>&1; then
   trap 'rm -rf "$SCHEMA_DIR"' EXIT
   scripts/crd-to-schema.sh "$SCHEMA_DIR" >/dev/null
 
-  for f in images/*.yaml; do
+  for f in "${image_files[@]}"; do
     if out=$(kubeconform -strict -summary=false \
         -schema-location default \
         -schema-location "${SCHEMA_DIR}/{{.ResourceKind}}.json" \

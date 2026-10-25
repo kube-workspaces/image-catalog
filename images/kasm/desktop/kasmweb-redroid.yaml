@@ -1,0 +1,59 @@
+apiVersion: kubeworkspaces.io/v1alpha1
+kind: Image
+metadata:
+  name: kasmweb-redroid
+spec:
+  image: kasmweb/redroid:1.19.0
+  defaultCredentials:
+    username: kasm_user
+    password: password
+  defaultEnv:
+  - name: VNC_PW
+    value: password
+  - name: ANDROID_VERSION
+    value: 15.0.0
+  - name: REDROID_GPU_GUEST_MODE
+    value: guest
+  - name: REDROID_FPS
+    value: '30'
+  - name: REDROID_WIDTH
+    value: '720'
+  - name: REDROID_HEIGHT
+    value: '1280'
+  - name: REDROID_DPI
+    value: '320'
+  - name: REDROID_SHOW_CONSOLE
+    value: '1'
+  - name: REDROID_DISABLE_AUTOSTART
+    value: '0'
+  - name: REDROID_DISABLE_HOST_CHECKS
+    value: '0'
+  defaultPath: /
+  defaultPort: 6901
+  defaultSharedMemory: true
+  defaultUser: kasm_user
+  defaultHomedir: /home/kasm-user
+  defaultShell: /bin/bash
+  privileged: true
+  proxyConfig:
+    needsNoopSW: true
+    rewriteHostAbsolutePaths: true
+    scheme: https
+    tlsSkipVerify: true
+    websocketPaths:
+    - /websockify
+  displayName: Redroid
+  description: redroid (Remote-Android) is a multi-arch, GPU enabled, Android in Cloud solution.
+  category: Productivity
+  tags:
+  - desktop
+  - development
+  - kasm
+  - kasmvnc
+  - linux
+  - mobile
+  - productivity
+  homepageURL: https://kasm.com/images
+  imageHomepageURL: https://hub.docker.com/r/kasmweb/redroid
+  icon: https://registry.kasmweb.com/1.1/icons/android.svg
+  sourceURL: https://github.com/kasmtech/workspaces-images/blob/develop/dockerfile-kasm-redroid

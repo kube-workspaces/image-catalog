@@ -11,15 +11,19 @@ spec:
     value: password
   defaultPath: /
   defaultPort: 6901
-  description: Play classic DOOM in the browser via KasmVNC. Chocolate Doom engine
-    with full shareware WAD included.
+  description: Doom is a 1993 first-person shooter developed by id Software.
   category: Game
   tags:
-  - vnc
+  - desktop
+  - games
+  - kasm
+  - kasmvnc
+  - linux
   - retro
-  displayName: DOOM
-  homepageURL: https://github.com/kasmtech/workspaces-images
-  icon: https://upload.wikimedia.org/wikipedia/en/5/57/Doom_cover_art.jpg
+  - vnc
+  displayName: Doom
+  homepageURL: https://kasm.com/images
+  icon: https://registry.kasmweb.com/1.1/icons/doom.png
   image: kasmweb/doom:1.19.0-rolling-daily
   defaultImagePullPolicy: Always
   imageHomepageURL: https://hub.docker.com/r/kasmweb/doom
@@ -30,6 +34,8 @@ spec:
     tlsSkipVerify: true
     websocketPaths:
     - /websockify
-  sourceURL: https://github.com/kasmtech/workspaces-images
+  sourceURL: https://github.com/kasmtech/workspaces-images/blob/develop/dockerfile-kasm-doom
   defaultUser: kasm_user
-  defaultHomedir: /home/kasm_user
+  defaultHomedir: /home/kasm-user
+  defaultSharedMemory: true
+  defaultShell: /bin/bash
