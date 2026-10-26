@@ -71,6 +71,7 @@ spec:
 |------|---------------|----------|------|---------|
 | `adminer` | Adminer (Database Manager) | Tool | 8080 | - |
 | `alpine` | Alpine Linux | Tool | 80 | - |
+| `alpine-container-init` | Alpine Linux — container-init demo | Tool | 80 | - |
 | `alpine-vm` | Alpine VM | VM | 22 | ✓ |
 | `arch-linux-gnome-vm` | Arch Linux GNOME Desktop VM | Desktop | 22 | - |
 | `chromium` | Chromium (LinuxServer) | Browser | 3000 | - |
@@ -579,12 +580,14 @@ Commonly used fields:
 | `tags` | []string | Filtering/search labels |
 | `defaultPath` | string | URL path appended when connecting |
 | `defaultArgs` | []string | Extra container args at creation time |
+| `defaultCommand` | []string | Explicit container entrypoint; required for injected initialization unless supplied by the workspace |
+| `defaultContainerInit` | {mode} | Opt-in `injected` or `baked-in` initialization for container/scratch; omitted or `disabled` preserves startup |
 | `defaultEnv` | []{name,value} | Env vars; supports `{{namespace}}`/`{{name}}` placeholders |
 | `defaultCredentials` | {username,password} | Default login shown in the UI |
 | `defaultUser` / `defaultHomedir` / `defaultShell` | string | Shell/exec session defaults |
 | `defaultPassword` | string | Default password for `defaultUser` (only set when there is a known default) |
 | `defaultCloudInit` | bool | Image has cloud-init baked in; lets user-data be seeded at first boot |
-| `defaultUserData` | string | cloud-init user-data (e.g. `#cloud-config`) applied to VM guests |
+| `defaultUserData` | string | Cloud-config for VM guests or explicitly enabled container initialization; container defaults are snapshotted at creation |
 | `workspaceTypes` | []string | Workspace types this image supports: `container`, `vm`, `scratch` (empty = container only) |
 | `persistentRootDisk` / `persistentRootDiskSize` | bool / string | VM root as a CDI DataVolume-backed PVC (e.g. `20Gi`) instead of an ephemeral containerDisk |
 | `memoryLimit` / `memoryRequest` | string | VM guest RAM and virt-launcher pod memory overrides (e.g. `4Gi` / `5Gi`) |
@@ -596,6 +599,23 @@ Commonly used fields:
 | `defaultImagePullPolicy` | string | Container pull policy (`Always`, `IfNotPresent`, `Never`); empty = Kubernetes default (`Always` for `:latest`, `IfNotPresent` for pinned tags). Set `Always` for images published under a rolling tag so restarted workspaces pick up new builds. A workspace can override it |
 | `privileged` | bool | Runs the container privileged |
 | `proxyConfig` | object | Reverse-proxy behaviour hints — see below |
+
+### Injected Alpine initialization example
+
+`images/alpine-container-init.yaml` uses stock `alpine:3.22` and supports both
+container and scratch workspaces. It installs curl, writes
+`/etc/container-init-demo.txt`, records curl's version in
+`/run/container-init-demo-curl.txt` and creates
+`/run/container-init-demo-ready` before execing `sleep infinity`. Use terminal
+access to inspect those files; port 80 is a schema placeholder, not an HTTP app.
+
+Requires the matching controller/API/CRDs and an operator-configured immutable
+container-init installer image (`controller.containerInitImage` in Helm or
+`KW_CONTAINER_INIT_IMAGE` for the controller). The installer copies a static
+binary into a shared volume; initialization runs in the main container.
+`defaultUserData` alone does not enable it, and `defaultCloudInit` is not used.
+See [container initialization](https://github.com/kube-workspaces/deploy/blob/main/docs/container-init.md)
+for setup, direct Workspace examples, lifecycle and Secret-reference behavior.
 
 VM images can opt into platform-managed live SSH keys with metadata annotation
 `kubeworkspaces.io/ssh-key-propagation: qemuGuestAgent` and `spec.defaultUser`.

@@ -1,0 +1,44 @@
+apiVersion: kubeworkspaces.io/v1alpha1
+kind: Image
+metadata:
+  name: alpine-container-init
+spec:
+  displayName: Alpine Linux — container-init demo
+  description: Stock Alpine with injected cloud-config initialization. Installs
+    curl, writes a sample file and records completion before running sleep
+    infinity. Terminal access only; port 80 is a schema placeholder.
+  category: Tool
+  tags:
+  - alpine
+  - container
+  - scratch
+  - cloud-config
+  image: alpine:3.22
+  defaultPort: 80
+  defaultPath: /
+  defaultShell: /bin/sh
+  homepageURL: https://alpinelinux.org
+  imageHomepageURL: https://hub.docker.com/_/alpine
+  sourceURL: https://github.com/kube-workspaces/container-init
+  icon: https://cdn.simpleicons.org/alpinelinux/0D597F
+  workspaceTypes:
+  - container
+  - scratch
+  defaultCommand:
+  - sleep
+  defaultArgs:
+  - infinity
+  defaultContainerInit:
+    mode: injected
+  defaultUserData: |
+    #cloud-config
+    packages:
+      - curl
+    write_files:
+      - path: /etc/container-init-demo.txt
+        content: |
+          Created by injected container-init in the main Alpine container.
+        permissions: '0644'
+    runcmd:
+      - [sh, -c, "curl --version > /run/container-init-demo-curl.txt"]
+      - [touch, /run/container-init-demo-ready]
