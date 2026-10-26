@@ -72,6 +72,7 @@ spec:
 | `adminer` | Adminer (Database Manager) | Tool | 8080 | - |
 | `alpine` | Alpine Linux | Tool | 80 | - |
 | `alpine-container-init` | Alpine Linux — container-init demo | Tool | 80 | - |
+| `alpine-container-init-baked` | Alpine Linux — baked-in container-init demo | Tool | 80 | - |
 | `alpine-vm` | Alpine VM | VM | 22 | ✓ |
 | `arch-linux-gnome-vm` | Arch Linux GNOME Desktop VM | Desktop | 22 | - |
 | `chromium` | Chromium (LinuxServer) | Browser | 3000 | - |
@@ -581,7 +582,7 @@ Commonly used fields:
 | `defaultPath` | string | URL path appended when connecting |
 | `defaultArgs` | []string | Extra container args at creation time |
 | `defaultCommand` | []string | Explicit container entrypoint; required for injected initialization unless supplied by the workspace |
-| `defaultContainerInit` | {mode} | Opt-in `injected` or `baked-in` initialization for container/scratch; omitted or `disabled` preserves startup |
+| `defaultContainerInit` | {mode,defaultUser?,runAsUser?} | Opt-in `injected` or `baked-in` initialization; optional injected account resolution/application privilege drop; omitted or `disabled` preserves startup |
 | `defaultEnv` | []{name,value} | Env vars; supports `{{namespace}}`/`{{name}}` placeholders |
 | `defaultCredentials` | {username,password} | Default login shown in the UI |
 | `defaultUser` / `defaultHomedir` / `defaultShell` | string | Shell/exec session defaults |
@@ -602,20 +603,30 @@ Commonly used fields:
 
 ### Injected Alpine initialization example
 
-`images/alpine-container-init.yaml` uses stock `alpine:3.22` and supports both
+`images/community/alpine-container-init.yaml` uses stock `alpine:3.22` and supports both
 container and scratch workspaces. It installs curl, writes
 `/etc/container-init-demo.txt`, records curl's version in
 `/run/container-init-demo-curl.txt` and creates
 `/run/container-init-demo-ready` before execing `sleep infinity`. Use terminal
 access to inspect those files; port 80 is a schema placeholder, not an HTTP app.
 
-Requires the matching controller/API/CRDs and an operator-configured immutable
-container-init installer image (`controller.containerInitImage` in Helm or
-`KW_CONTAINER_INIT_IMAGE` for the controller). The installer copies a static
+Requires the matching controller/API/CRDs. Helm defaults the installer to
+`ghcr.io/kube-workspaces/container-init:latest`; optional immutable pins use
+`controller.containerInitImage` in Helm or `KW_CONTAINER_INIT_IMAGE` for a direct
+controller deployment. The installer copies a static
 binary into a shared volume; initialization runs in the main container.
 `defaultUserData` alone does not enable it, and `defaultCloudInit` is not used.
 See [container initialization](https://github.com/kube-workspaces/deploy/blob/main/docs/container-init.md)
 for setup, direct Workspace examples, lifecycle and Secret-reference behavior.
+
+`images/community/alpine-container-init-baked.yaml` uses the Alpine-based
+container-init distribution image as an application image. Its own entrypoint
+runs the same provisioning before `sleep infinity`; baked-in mode only mounts
+the data, with no installer init container. Both examples support container and
+scratch workspaces. Account/CA/timezone modules require the corresponding tools
+and data baked into the application image; the stock Alpine examples deliberately
+use only package/file/command provisioning. Injected identity options live inside
+`defaultContainerInit`, separately from VM/shell-session `defaultUser` defaults.
 
 VM images can opt into platform-managed live SSH keys with metadata annotation
 `kubeworkspaces.io/ssh-key-propagation: qemuGuestAgent` and `spec.defaultUser`.
